@@ -1,0 +1,29 @@
+# dev
+virtualenv
+mercurial
+Cython
+
+# scripting
+plumbum
+
+# image processing
+Pillow
+
+# web stuff
+requests
+scrapy
+beautifulsoup4
+
+# math
+numpy
+scipy
+matplotlib
+
+# NLPv (ujson is missing req for spacy)
+Pattern
+nltk
+spacy
+ujson
+
+# for funsies
+rainbowstream

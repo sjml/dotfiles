@@ -1,0 +1,26 @@
+[ui]
+username = Shane Liesegang <shane@techie.net>
+merge = Kaleidoscope
+ssh = ssh -C
+
+[extensions]
+hgext.convert =
+hgext.purge =
+mq =
+hgext.extdiff =
+shelve =
+
+[web]
+cacerts = /etc/hg-dummy-cert.pem
+
+[auth]
+bitbucket.prefix = https://bitbucket.org
+bitbucket.username = sjml
+
+[extdiff]
+cmd.ksdiff = /usr/local/bin/ksdiff
+opts.ksdiff = --changeset --wait --filelist
+
+[merge-tools]
+Kaleidoscope.executable = /usr/local/bin/ksdiff
+Kaleidoscope.args = --merge --output $output --base $base -- $local $other
