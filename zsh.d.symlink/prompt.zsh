@@ -132,6 +132,7 @@ function _sjml_errcode_data () {
   fi
 }
 
+
 function _sjml_runtime_data () {
 }
 
@@ -145,7 +146,7 @@ local topRt="╮"
 local botRt="╯"
 local sep="─"
 
-function precmd() {
+function _sjml_buildPromptVars() {
   retCode=$?
 
   alerts=()
@@ -186,5 +187,8 @@ function precmd() {
 }
 
 
-
 PROMPT='$topLine$alertString$botLt$sep %%> '
+
+
+add-zsh-hook precmd _sjml_buildPromptVars
+
