@@ -1,6 +1,8 @@
 # this prompt was made by shamelessly stealing the parts
 #  I liked from liquidprompt https://github.com/nojhan/liquidprompt/
 
+zmodload zsh/datetime
+
 autoload colors
 colors
 
@@ -132,8 +134,23 @@ function _sjml_errcode_data () {
   fi
 }
 
+#local _sjml_command_start_time
+#local _sjml_command_end_time
+function _sjml_start_timer() {
+  _sjml_command_start_time=$EPOCHREALTIME
+}
+function _sjml_end_timer() {
+  _sjml_command_end_time=$EPOCHREALTIME
+}
+
+add-zsh-hook preexec _sjml_start_timer
 
 function _sjml_runtime_data () {
+  local dt
+  (( dt = _sjml_command_end_time - _sjml_command_start_time ))
+  if (( $dt > 3.0 )) then
+    echo "Execution took $(printf '%.4f' dt) seconds."
+  fi
 }
 
 local topLine=""
@@ -148,6 +165,7 @@ local sep="─"
 
 function _sjml_buildPromptVars() {
   retCode=$?
+  _sjml_end_timer
 
   alerts=()
   alertString=""
