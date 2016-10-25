@@ -1,0 +1,40 @@
+ZSH=~/.zsh.d
+
+# put any machine-specific environment variables in .localrc
+#   (NB that file is not in source control)
+if [[ -a ~/.localrc ]] then;
+	source ~/.localrc
+fi
+
+source $ZSH/env.zsh
+
+# paths first
+source $ZSH/path.zsh
+
+# initialize autocomplete
+autoload -U compinit
+compinit
+
+# now load our own completions
+#  (none right now)
+
+# now functions
+fpath=($ZSH/functions $fpath)
+autoload -U $ZSH/functions/*(:t)
+
+# fish-style suggestions
+source $ZSH/vendor/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# nvm
+export NVM_LAZY_LOAD=true
+source $ZSH/vendor/zsh-nvm/zsh-nvm.plugin.zsh
+
+# our own aliases
+source $ZSH/aliases.zsh
+
+# run any configuration stuff
+source $ZSH/config.zsh
+
+# load up our prompt
+source $ZSH/prompt.zsh
+
