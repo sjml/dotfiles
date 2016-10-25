@@ -4,7 +4,8 @@ if $(gls &>/dev/null)
 then
   alias ls="gls -F --color"
   alias ll="gls -lh --color"
-  alias la="gls -A --color"
+  alias la="gls -FA --color"
+  alias lla="gls -lhA --color"
 fi
 
 alias tma="tmux attach"

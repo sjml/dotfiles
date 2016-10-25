@@ -1,3 +1,6 @@
+# this prompt was made by shamelessly stealing the parts
+#  I liked from liquidprompt https://github.com/nojhan/liquidprompt/
+
 autoload colors
 colors
 
@@ -8,6 +11,17 @@ ZLE_RPROMPT_INDENT=0
 function _sjml_escape() {
   local arg="${1//\\/\\\\}"
   echo $arg
+}
+
+# to save us invoking hg every time we build a prompt
+function _sjml_upwards_find() {
+  local dir
+  dir=$PWD
+  while [[ -n $dir ]]; do
+    [[ -d $dir/$1 ]] && return 0
+    dir=${dir%/*}
+  done
+  return 1
 }
 
 function _sjml_git_data() {
@@ -66,6 +80,37 @@ function _sjml_git_data() {
   echo $output
 }
 
+function _sjml_hg_data() {
+  _sjml_upwards_find .hg || return
+  local branch
+  branch=$(hg branch 2>/dev/null)
+
+  local untracked
+  untracked=$(hg status -u 2>/dev/null)
+  if [[ $untracked =~ '^\?' ]]; then
+    #echo "untracked changes"
+  else
+    #echo "we cool"
+  fi
+
+  local -i commits
+  commits=$(hg log -q -r "draft()" 2>/dev/null | wc -l)
+
+  if [[ -n $(hg status --quiet -n) ]]; then
+    local has_lines
+    has_lines=$(hg diff --stat 2>/dev/null | sed -n '$ s!^.*, \([0-9]*\) .*, \([0-9]*\).*$!+\1/-\2!p')
+  fi
+
+  local output="☿ $branch"
+  if [[ -n $untracked ]]; then
+    output="$output*"
+  elif [[ -n $has_lines ]]; then
+    output="$output ($has_lines)"
+  fi
+  
+  echo $output
+}
+
 function _sjml_tmux_data() {
   if [[ $TERM == "screen" ]]; then
     return
@@ -108,6 +153,16 @@ function precmd() {
 
   PROMPT="$PROMPT
 $botLt$sep %%> "
-  RPROMPT=$(_sjml_git_data)$botRt
+
+  local vcsData
+  vcsData=$(_sjml_git_data)
+  if [[ -z $vcsData ]]; then
+    vcsData=$(_sjml_hg_data)
+  fi
+  if [[ -n $vcsData ]]; then
+    RPROMPT=$vcsData$botRt
+  else
+    RPROMPT=$botRt
+  fi
 }
 
