@@ -5,6 +5,9 @@ autoload colors
 colors
 
 ZLE_RPROMPT_INDENT=0
+setopt prompt_subst
+local -i retCode # return code from previous command
+
 
 # TODO: color all this
 
@@ -35,7 +38,7 @@ function _sjml_git_data() {
 
   local untracked
   untracked=$(git status --porcelain 2>/dev/null)
-  if [[ $untracked =~ '^\?\?' ]] then
+  if [[ $untracked =~ '^\?\?' ]]; then
    # echo "untracked changes"
   else
    # echo "we cool"
@@ -123,7 +126,18 @@ function _sjml_tmux_data() {
   fi
 }
 
+function _sjml_errcode_data () {
+  if (( $retCode != 0 )) then
+    echo "Error code: $retCode"
+  fi
+}
 
+function _sjml_runtime_data () {
+}
+
+local topLine=""
+local -a alerts
+local alertString=""
 
 local topLt="╭"
 local botLt="╰"
@@ -132,6 +146,11 @@ local botRt="╯"
 local sep="─"
 
 function precmd() {
+  retCode=$?
+
+  alerts=()
+  alertString=""
+
   local topLtDataF="$topLt$sep($(rtab))"
   local topRtDataF="(%n@%m)$sep$topRt"
   
@@ -141,18 +160,18 @@ function precmd() {
   local rtDataSize=${#rtData}
   
   local paddingSize=$(( COLUMNS - rtDataSize )) #  ltDataSize - rtDataSize + colCorrect))
-  eval "local topLine=\${(r:$paddingSize::${sep}:)ltData}$rtData"
-  
-  PROMPT="$topLine"
+  eval "topLine=\${(r:$paddingSize::${sep}:)ltData}$rtData"
+ 
+  alerts+=$(_sjml_tmux_data)
+  alerts+=$(_sjml_errcode_data)
+  alerts+=$(_sjml_runtime_data)
 
-  local alert=$(_sjml_tmux_data)
-  if [[ -n $alert ]]; then
-    PROMPT="$PROMPT
-│ ${(r:$(( COLUMNS - 3 )):: :)alert}|"
-  fi
-
-  PROMPT="$PROMPT
-$botLt$sep %%> "
+  local i
+  for (( i=1; i <= $#alerts; i++ )) do
+    if [[ -n $alerts[i] ]]; then
+      alertString="$alertString│ ${(r:$(( COLUMNS - 3 )):: :)alerts[i]}|"
+    fi
+  done
 
   local vcsData
   vcsData=$(_sjml_git_data)
@@ -166,3 +185,6 @@ $botLt$sep %%> "
   fi
 }
 
+
+
+PROMPT='$topLine$alertString$botLt$sep %%> '
