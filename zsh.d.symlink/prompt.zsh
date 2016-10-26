@@ -193,6 +193,7 @@ function _sjml_buildPromptVars() {
   local scaffold="$topLt$sep()()$sep$topRt"
   if [[ -n $VIRTUAL_ENV ]]; then
     scaffold="$topLt$sep()[🐍]()$sep$topRt"
+  fi
   local prettyPath=$(rtab)
   local userData=${(%):-"%n@%m"}
 
@@ -217,7 +218,9 @@ function _sjml_buildPromptVars() {
 
   local ltData="$topLt$sep($prettyPath)"
   if [[ -n $VIRTUAL_ENV ]]; then
-    ltData="$ltData[🐍]"
+    local venv="[🐍]"
+    ltData=$ltData$venv
+  fi
   local rtData="($userData)$sep$topRt"
 
   local ltDataSize=${#ltData}
