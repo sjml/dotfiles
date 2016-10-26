@@ -41,7 +41,7 @@ git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-
 zsh -i -c 'nvm install node'
 zsh -i -c 'nvm use node'
 zsh -i -c 'npm install -g yarn'
-zsh -i -c 'yarn global add typescript angular-cli vtop fkill-cli live-server gify'
+zsh -i -c 'yarn global add typescript angular-cli fkill-cli live-server gify'
 
 # NLP data comes last because it can take a looooong time
 python -m nltk.downloader all

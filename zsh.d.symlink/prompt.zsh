@@ -81,7 +81,7 @@ function _sjml_git_data() {
     output="$output*"
   elif [[ -n $has_commit  ]]; then
     output="$output ($has_commit)"
-  fi 
+  fi
 
   echo $output
 }
@@ -113,7 +113,7 @@ function _sjml_hg_data() {
   elif [[ -n $has_lines ]]; then
     output="$output ($has_lines)"
   fi
-  
+
   echo $output
 }
 
@@ -140,9 +140,9 @@ local -F _sjml_command_end_time
 local -F _sjml_command_dt
 function _sjml_start_timer() {
   # a little hacky, but keeps from printing execution
-  #  time after exiting tmux shells or vim. only works 
-  #  if command started with "tmux" or "vim" which I'm 
-  #  ok with, since it does the check post-alias 
+  #  time after exiting tmux shells or vim. only works
+  #  if command started with "tmux" or "vim" which I'm
+  #  ok with, since it does the check post-alias
   #  expansion)
   if [[ $2 =~ '^tmux' || $2 =~ '^vim' ]]; then
     return
@@ -186,7 +186,13 @@ function _sjml_buildPromptVars() {
   alerts=()
   alertString=""
 
+  # this solution to measuring out the top line doesn't scale as I add more
+  #  things like the virtualenv indicator, but since I don't have ambitions
+  #  of replacing liquidprompt's flexibility, I'm ok with it. (apologies to
+  #  the future version of myself who will have to rewrite this to scale.)
   local scaffold="$topLt$sep()()$sep$topRt"
+  if [[ -n $VIRTUAL_ENV ]]; then
+    scaffold="$topLt$sep()[🐍]()$sep$topRt"
   local prettyPath=$(rtab)
   local userData=${(%):-"%n@%m"}
 
@@ -208,16 +214,18 @@ function _sjml_buildPromptVars() {
   #  fi
   #  prettyPath=$(echo $prettyPath | sed -E 's/^…?\/?[^\/]*/…/')
   #done
-  
+
   local ltData="$topLt$sep($prettyPath)"
+  if [[ -n $VIRTUAL_ENV ]]; then
+    ltData="$ltData[🐍]"
   local rtData="($userData)$sep$topRt"
-  
+
   local ltDataSize=${#ltData}
   local rtDataSize=${#rtData}
-  
-  local paddingSize=$(( COLUMNS - ltDataSize )) 
+
+  local paddingSize=$(( COLUMNS - ltDataSize ))
   eval "topLine=\$ltData\${(l:$paddingSize::${sep}:)rtData}"
- 
+
   alerts+=$(_sjml_tmux_data)
   alerts+=$(_sjml_errcode_data)
   alerts+=$(_sjml_runtime_data)
@@ -246,4 +254,3 @@ PROMPT='$topLine$alertString$botLt$sep %%> '
 
 
 add-zsh-hook precmd _sjml_buildPromptVars
-
