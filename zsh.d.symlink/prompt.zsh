@@ -2,6 +2,7 @@
 #  I liked from liquidprompt https://github.com/nojhan/liquidprompt/
 
 zmodload zsh/datetime
+zmodload zsh/mathfunc
 
 autoload colors
 colors
@@ -134,22 +135,37 @@ function _sjml_errcode_data () {
   fi
 }
 
-#local _sjml_command_start_time
-#local _sjml_command_end_time
+local -F _sjml_command_start_time
+local -F _sjml_command_end_time
+local -F _sjml_command_dt
 function _sjml_start_timer() {
+  # a little hacky, but keeps from printing execution
+  #  time after exiting tmux shells or vim. only works 
+  #  if command started with "tmux" or "vim" which I'm 
+  #  ok with, since it does the check post-alias 
+  #  expansion)
+  if [[ $2 =~ '^tmux' || $2 =~ '^vim' ]]; then
+    return
+  fi
   _sjml_command_start_time=$EPOCHREALTIME
 }
 function _sjml_end_timer() {
-  _sjml_command_end_time=$EPOCHREALTIME
+  if (( _sjml_command_start_time > 0.0 )) then
+    _sjml_command_end_time=$EPOCHREALTIME
+    (( _sjml_command_dt = _sjml_command_end_time - _sjml_command_start_time ))
+    _sjml_command_start_time=-1.0
+  fi
 }
 
 add-zsh-hook preexec _sjml_start_timer
 
 function _sjml_runtime_data () {
-  local dt
-  (( dt = _sjml_command_end_time - _sjml_command_start_time ))
-  if (( $dt > 3.0 )) then
-    echo "Execution took $(printf '%.4f' dt) seconds."
+  if (( _sjml_command_dt > 3.0 )) then
+    echo -n "Long execution: "
+    (( dt >= 86400 )) && echo -n "$((int(_sjml_command_dt / 86400)))d"
+    (( dt >= 3600 )) && echo -n "$((int(_sjml_command_dt % 86400 / 3600)))h"
+    (( dt >= 60 )) && echo -n "$((int(_sjml_command_dt % 3600 / 60)))m"
+    printf "%.2fs" $((fmod($_sjml_command_dt, 60.0)))
   fi
 }
 
@@ -200,7 +216,7 @@ function _sjml_buildPromptVars() {
   if [[ -n $vcsData ]]; then
     RPROMPT=$vcsData$botRt
   else
-    RPROMPT=$botRt
+    RPROMPT=$(date "+%d-%b-%Y %H:%M")$botRt
   fi
 }
 
