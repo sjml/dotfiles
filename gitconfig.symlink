@@ -1,0 +1,24 @@
+[user]
+	name = Shane Liesegang
+	email = shane@techie.net
+
+[core]
+	editor = vim
+	excludesfile = /Users/shane/.gitignore_global
+[push]
+	default = simple
+
+[mergetool "Kaleidoscope"]
+	trustexitcode = true
+[mergetool]
+	prompt = false
+[merge]
+	tool = Kaleidoscope
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[diff]
+	tool = Kaleidoscope

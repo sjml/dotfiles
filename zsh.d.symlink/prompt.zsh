@@ -186,16 +186,37 @@ function _sjml_buildPromptVars() {
   alerts=()
   alertString=""
 
-  local topLtDataF="$topLt$sep($(rtab))"
-  local topRtDataF="(%n@%m)$sep$topRt"
+  local scaffold="$topLt$sep()()$sep$topRt"
+  local prettyPath=$(rtab)
+  local userData=${(%):-"%n@%m"}
+
+  if (( $#scaffold + $#prettyPath + $#userData > $COLUMNS )) then
+    userData=${(%):-"@%m"}
+  fi
+  if (( $#scaffold + $#prettyPath + $#userData > $COLUMNS )) then
+    userData="@"
+  fi
+  if (( $#scaffold + $#prettyPath + $#userData > $COLUMNS )) then
+    local diff=$(( ($#scaffold + $#prettyPath + $#userData) - $COLUMNS ))
+    prettyPath="…$prettyPath[$diff-1,-1]"
+  fi
+
+  ## this was fun, but silly
+  #while (( $#scaffold + $#prettyPath + $#userData > $COLUMNS )) do
+  #  if [[ $prettyPath = "…" ]]; then
+  #    break
+  #  fi
+  #  prettyPath=$(echo $prettyPath | sed -E 's/^…?\/?[^\/]*/…/')
+  #done
   
-  local ltData=${(%):-$topLtDataF}
-  local rtData=${(%):-$topRtDataF}
+  local ltData="$topLt$sep($prettyPath)"
+  local rtData="($userData)$sep$topRt"
+  
   local ltDataSize=${#ltData}
   local rtDataSize=${#rtData}
   
-  local paddingSize=$(( COLUMNS - rtDataSize )) #  ltDataSize - rtDataSize + colCorrect))
-  eval "topLine=\${(r:$paddingSize::${sep}:)ltData}$rtData"
+  local paddingSize=$(( COLUMNS - ltDataSize )) 
+  eval "topLine=\$ltData\${(l:$paddingSize::${sep}:)rtData}"
  
   alerts+=$(_sjml_tmux_data)
   alerts+=$(_sjml_errcode_data)

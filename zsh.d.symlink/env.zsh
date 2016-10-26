@@ -11,6 +11,10 @@ else
   export EDITOR='vim'
 fi
 
+## python setup
+# since we have our own plans for the prompt
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
 ## ruby setup
 #eval "$(rbenv init --no-rehash -)"
 #(rbenv rehash &) 2> /dev/null
@@ -31,6 +35,8 @@ setopt no_beep # ssshhhhhh
 setopt appendhistory # instead of overwriting it
 setopt histignoredups # don't record identical commands
 setopt extendedhistory # print timestamps in history file
+
+setopt extended_glob # more globing, all the globbing
 
 setopt autocd # treat a path like a command to cd to it
 setopt cdablevars # cd Projects --> cd ~/Projects
