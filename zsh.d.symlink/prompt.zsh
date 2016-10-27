@@ -212,9 +212,9 @@ function _sjml_buildPromptVars() {
   fi
   local prettyPath=$(rtab)
   local hostName=${(%):-%m}
-  local userData="$fg[green]$USER$reset_color@$fg[blue]$hostName$reset_color"
+  local userData="%F{green}$USER$reset_color@%F{blue}$hostName$reset_color"
   if (( $#scaffold + $#prettyPath + $(_gvl $userData) > $COLUMNS )) then
-    userData="@$fg[blue]$hostName$reset_color"
+    userData="@%F{blue}$hostName$reset_color"
   fi
   if (( $#scaffold + $#prettyPath + $(_gvl $userData) > $COLUMNS )) then
     userData="@"
@@ -236,12 +236,12 @@ function _sjml_buildPromptVars() {
   #  prettyPath=$(echo $prettyPath | sed -E 's/^…?\/?[^\/]*/…/')
   #done
 
-  local ltData="$fg[cyan]$topLt$sep$reset_color($prettyPath)"
+  local ltData="%F{cyan}$topLt$sep$reset_color($prettyPath)"
   if [[ -n $VIRTUAL_ENV ]]; then
-    local venv="[$fg[green]🐍$reset_color]"
+    local venv="[%F{green}🐍$reset_color]"
     ltData=$ltData$venv
   fi
-  local rtData="($userData)$fg[cyan]$sep$topRt$reset_color"
+  local rtData="($userData)%F{cyan}$sep$topRt$reset_color"
 
   local ltDataSize=$(_gvl $ltData)
   local rtDataSize=$(_gvl $rtData)
@@ -257,7 +257,8 @@ function _sjml_buildPromptVars() {
   local i
   for (( i=1; i <= $#alerts; i++ )) do
     if [[ -n $alerts[i] ]]; then
-      alertString="$alertString$fg[cyan]│$reset_color ${(r:$(( COLUMNS - 3 )):: :)alerts[i]}$fg[cyan]|$reset_color"
+      alertString="$alertString%F{cyan}│$reset_color ${(r:$(( COLUMNS - 3 )):: :)alerts[i]}%F{cyan}|$reset_color
+"
     fi
   done
 
@@ -267,15 +268,16 @@ function _sjml_buildPromptVars() {
     vcsData=$(_sjml_hg_data)
   fi
   if [[ -n $vcsData ]]; then
-    RPROMPT=$vcsData$botRt
+    RPROMPT=$vcsData
   else
-    RPROMPT=$(date "+%d-%b-%Y %H:%M")$botRt
+    RPROMPT=$(date "+%d-%b-%Y %H:%M")
   fi
+  RPROMPT=$RPROMPT%F{cyan}$botRt%F{reset_colr}
 }
 
 
 local newline=$'\n'
-PROMPT='$topLine${newline}$alertString$botLt$sep %%> '
+PROMPT='$topLine${newline}$alertString%F{cyan}$botLt$sep%F{reset_color} %%> '
 
 
 add-zsh-hook precmd _sjml_buildPromptVars
