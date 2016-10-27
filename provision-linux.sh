@@ -5,11 +5,11 @@ cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
 
 # symlink the designated dotfiles
-./install_symlinks
+./install_symlinks.sh
 
 # throw in our preferred monospace font
 mkdir -p ~/.fonts
-cp ./resources/Inconsolata/*.tff ~/.fonts/
+cp ./resources/Inconsolata/*.ttf ~/.fonts/
 
 # Install pip, but not the Python packages
 easy_install --user pip

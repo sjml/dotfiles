@@ -26,7 +26,7 @@ sudo -v
 # # homebrew installer invalidates sudo credentials, but we don't need it anymore
 
 # copy dotfiles
-./install_symlinks
+./install_symlinks.sh
 
 # copy Inconsolata
 # doing this outside of Cask because I handle all other fonts on their own,
