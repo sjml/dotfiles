@@ -181,6 +181,9 @@ local topLine=""
 local -a alerts
 local alertString=""
 
+local normColor="cyan"
+local rootColor="red"
+local outlineColor=$normColor
 local topLt="╭"
 local botLt="╰"
 local topRt="╮"
@@ -202,6 +205,12 @@ function _sjml_buildPromptVars() {
   alerts=()
   alertString=""
 
+  if [[ $UID == 0 || $EUID == 0 ]]; then
+    outlineColor=$rootColor
+  else
+    outlineColor=$normColor
+  fi
+
   # this solution to measuring out the top line doesn't scale as I add more
   #  things like the virtualenv indicator, but since I don't have ambitions
   #  of replacing liquidprompt's flexibility, I'm ok with it. (apologies to
@@ -212,13 +221,17 @@ function _sjml_buildPromptVars() {
   fi
   local prettyPath=$(rtab)
   local hostName=${(%):-%m}
-  local userData="$fg[green]$USER$reset_color@$fg[blue]$hostName$reset_color"
+  local userColor="$fg[green]"
+  if [[ $UID == 0 || $EUID == 0 ]]; then
+    userColor="$fg[black]$bg[red]"
+  fi
+  local userData="$userColor$USER$reset_color@$fg[blue]$hostName$reset_color"
   
   if (( $#scaffold + $#prettyPath + $(_gvl $userData) > $COLUMNS )) then
-    userData="@$fg[blue]$hostName$reset_color"
+    userData="$userColor@$reset_color$fg[blue]$hostName$reset_color"
   fi
   if (( $#scaffold + $#prettyPath + $(_gvl $userData) > $COLUMNS )) then
-    userData="@"
+    userData="$userColor@$reset_color"
   fi
   if (( $#scaffold + $#prettyPath + $(_gvl $userData) > $COLUMNS )) then
     local diff=$(( ($#scaffold + $#prettyPath + $(_gvl $userData)) - $COLUMNS ))
@@ -237,18 +250,18 @@ function _sjml_buildPromptVars() {
   #  prettyPath=$(echo $prettyPath | sed -E 's/^…?\/?[^\/]*/…/')
   #done
 
-  local ltData="$fg[cyan]$topLt$sep$reset_color($prettyPath)"
+  local ltData="$fg[$outlineColor]$topLt$sep$reset_color($prettyPath)"
   if [[ -n $VIRTUAL_ENV ]]; then
     local venv="[$fg[green]🐍$reset_color]"
     ltData=$ltData$venv
   fi
-  local rtData="($userData)$fg[cyan]$sep$topRt$reset_color"
+  local rtData="($userData)$fg[$outlineColor]$sep$topRt$reset_color"
 
   local ltDataSize=$(_gvl $ltData)
   local rtDataSize=$(_gvl $rtData)
 
   local paddingSize=$(( COLUMNS - ltDataSize - rtDataSize ))
-  local paddingString=%F{cyan}$(printf "$sep%.0s" {1..$paddingSize})$reset_color
+  local paddingString=%F{$outlineColor}$(printf "$sep%.0s" {1..$paddingSize})$reset_color
   topLine=$ltData$paddingString$rtData
 
   alerts+=$(_sjml_tmux_data)
@@ -258,7 +271,7 @@ function _sjml_buildPromptVars() {
   local i
   for (( i=1; i <= $#alerts; i++ )) do
     if [[ -n $alerts[i] ]]; then
-      alertString="$alertString%F{cyan}│$reset_color ${(r:$(( COLUMNS - 3 )):: :)alerts[i]}%F{cyan}|$reset_color
+      alertString="$alertString%F{$outlineColor}│$reset_color ${(r:$(( COLUMNS - 3 )):: :)alerts[i]}%F{$outlineColor}|$reset_color
 "
     fi
   done
@@ -273,12 +286,12 @@ function _sjml_buildPromptVars() {
   else
     RPROMPT=$(date "+%d-%b-%Y %H:%M")
   fi
-  RPROMPT=$RPROMPT%F{cyan}$botRt%f
+  RPROMPT=$RPROMPT%F{$outlineColor}$botRt%f
 }
 
 
 local newline=$'\n'
-PROMPT='$topLine${newline}$alertString%F{cyan}$botLt$sep%f %%> '
+PROMPT='$topLine${newline}$alertString%F{$outlineColor}$botLt$sep%f %#> '
 
 
 add-zsh-hook precmd _sjml_buildPromptVars
