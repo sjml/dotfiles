@@ -38,7 +38,6 @@ function _sjml_upwards_find() {
   return 1
 }
 
-# TODO: colorize output
 function _sjml_git_data() {
   git rev-parse --is-inside-work-tree >/dev/null 2>&1 || return
   local branch
@@ -89,13 +88,14 @@ function _sjml_git_data() {
   if [[ $unstaged || -n $untracked ]]; then
     output="%F{magenta}$output*%f"
   elif [[ -n $has_commit  ]]; then
-    output="$output ($has_commit)"
+    output="%F{yellow}$output%f ($has_commit)"
+  else
+    output="%F{green}$output%f"
   fi
 
   echo $output
 }
 
-# TODO: colorize output
 function _sjml_hg_data() {
   _sjml_upwards_find .hg || return
   local branch
@@ -119,9 +119,11 @@ function _sjml_hg_data() {
 
   local output="☿ $branch"
   if [[ -n $untracked ]]; then
-    output="$output*"
+    output="%F{magenta}$output*%f"
   elif [[ -n $has_lines ]]; then
-    output="$output ($has_lines)"
+    output="%F{yellow}$output%f ($has_lines)"
+  else
+    output="%F{green}$output%f"
   fi
 
   echo $output
