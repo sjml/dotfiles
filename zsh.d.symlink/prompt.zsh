@@ -18,7 +18,7 @@ function _sjml_escape() {
 }
 
 # not the most obvious place for this
-#  function, but its need came from 
+#  function, but its need came from
 #  seeing the prompt, so here it is.
 function _sjml_kill_venv() {
   if [[ -n $VIRTUAL_ENV ]]; then
@@ -38,6 +38,7 @@ function _sjml_upwards_find() {
   return 1
 }
 
+# TODO: colorize output
 function _sjml_git_data() {
   git rev-parse --is-inside-work-tree >/dev/null 2>&1 || return
   local branch
@@ -94,6 +95,7 @@ function _sjml_git_data() {
   echo $output
 }
 
+# TODO: colorize output
 function _sjml_hg_data() {
   _sjml_upwards_find .hg || return
   local branch
@@ -125,6 +127,7 @@ function _sjml_hg_data() {
   echo $output
 }
 
+# TODO: colorize and unicode-ize output
 function _sjml_tmux_data() {
   if [[ $TERM == "screen" ]]; then
     return
@@ -137,6 +140,7 @@ function _sjml_tmux_data() {
   fi
 }
 
+# TODO: colorize output
 function _sjml_errcode_data () {
   if (( $retCode != 0 )) then
     echo "Error code: $retCode"
@@ -167,6 +171,7 @@ function _sjml_end_timer() {
 
 add-zsh-hook preexec _sjml_start_timer
 
+# TODO: colorize output
 function _sjml_runtime_data () {
   if (( _sjml_command_dt > 3.0 )) then
     echo -n "Long execution: "
@@ -226,7 +231,7 @@ function _sjml_buildPromptVars() {
     userColor="$fg[black]$bg[red]"
   fi
   local userData="$userColor$USER$reset_color@$fg[blue]$hostName$reset_color"
-  
+
   if (( $#scaffold + $#prettyPath + $(_gvl $userData) > $COLUMNS )) then
     userData="$userColor@$reset_color$fg[blue]$hostName$reset_color"
   fi
@@ -238,11 +243,8 @@ function _sjml_buildPromptVars() {
     prettyPath="…$prettyPath[$diff-1,-1]"
   fi
 
-  ## this was fun, but silly; seriously,
-  ##  a while loop whose exiting depends
-  #
-  ##  on my having properly made a 
-  ##  regex?! in the PROMPT?! 
+  ## this was fun to make, but silly; seriously, a while loop whose exiting
+  ##  depends on my having properly made a regex?! in the PROMPT?!
   #while (( $#scaffold + $#prettyPath + $#userData > $COLUMNS )) do
   #  if [[ $prettyPath = "…" ]]; then
   #    break
