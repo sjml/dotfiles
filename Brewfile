@@ -45,7 +45,7 @@ brew 'trash'
 brew 'gnupg'
 brew 'keybase'
 brew 'ntfs-3g'
-cask 'homebrew/games/nethacked'
+brew 'homebrew/games/nethacked'
 brew 'fontforge'
 brew 'imgcat'
 
