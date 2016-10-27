@@ -12,12 +12,20 @@ setopt prompt_subst
 local -i retCode # return code from previous command
 
 
-# TODO: color all this
-
 function _sjml_escape() {
   local arg="${1//\\/\\\\}"
   echo $arg
 }
+
+# not the most obvious place for this
+#  function, but its need came from 
+#  seeing the prompt, so here it is.
+function _sjml_kill_venv() {
+  if [[ -n $VIRTUAL_ENV ]]; then
+    deactivate
+  fi
+}
+add-zsh-hook zshexit _sjml_kill_venv
 
 # to save us invoking hg every time we build a prompt
 function _sjml_upwards_find() {
@@ -179,6 +187,14 @@ local topRt="╮"
 local botRt="╯"
 local sep="─"
 
+# get visible length of string
+#  (won't work if string contains
+#  newline)
+function _gvl() {
+  local stripped=$(echo $1 | tr -d '[:cntrl:]' | sed -E 's/\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g')
+  echo $#stripped
+}
+
 function _sjml_buildPromptVars() {
   retCode=$?
   _sjml_end_timer
@@ -195,20 +211,24 @@ function _sjml_buildPromptVars() {
     scaffold="$topLt$sep()[🐍]()$sep$topRt"
   fi
   local prettyPath=$(rtab)
-  local userData=${(%):-"%n@%m"}
-
-  if (( $#scaffold + $#prettyPath + $#userData > $COLUMNS )) then
-    userData=${(%):-"@%m"}
+  local hostName=${(%):-%m}
+  local userData="$fg[green]$USER$reset_color@$fg[blue]$hostName$reset_color"
+  if (( $#scaffold + $#prettyPath + $(_gvl $userData) > $COLUMNS )) then
+    userData="@$fg[blue]$hostName$reset_color"
   fi
-  if (( $#scaffold + $#prettyPath + $#userData > $COLUMNS )) then
+  if (( $#scaffold + $#prettyPath + $(_gvl $userData) > $COLUMNS )) then
     userData="@"
   fi
-  if (( $#scaffold + $#prettyPath + $#userData > $COLUMNS )) then
-    local diff=$(( ($#scaffold + $#prettyPath + $#userData) - $COLUMNS ))
+  if (( $#scaffold + $#prettyPath + $(_gvl $userData) > $COLUMNS )) then
+    local diff=$(( ($#scaffold + $#prettyPath + $(_gvl $userData)) - $COLUMNS ))
     prettyPath="…$prettyPath[$diff-1,-1]"
   fi
 
-  ## this was fun, but silly
+  ## this was fun, but silly; seriously,
+  ##  a while loop whose exiting depends
+  #
+  ##  on my having properly made a 
+  ##  regex?! in the PROMPT?! 
   #while (( $#scaffold + $#prettyPath + $#userData > $COLUMNS )) do
   #  if [[ $prettyPath = "…" ]]; then
   #    break
@@ -216,18 +236,19 @@ function _sjml_buildPromptVars() {
   #  prettyPath=$(echo $prettyPath | sed -E 's/^…?\/?[^\/]*/…/')
   #done
 
-  local ltData="$topLt$sep($prettyPath)"
+  local ltData="$fg[cyan]$topLt$sep$reset_color($prettyPath)"
   if [[ -n $VIRTUAL_ENV ]]; then
-    local venv="[🐍]"
+    local venv="[$fg[green]🐍$reset_color]"
     ltData=$ltData$venv
   fi
-  local rtData="($userData)$sep$topRt"
+  local rtData="($userData)$fg[cyan]$sep$topRt$reset_color"
 
-  local ltDataSize=${#ltData}
-  local rtDataSize=${#rtData}
+  local ltDataSize=$(_gvl $ltData)
+  local rtDataSize=$(_gvl $rtData)
 
-  local paddingSize=$(( COLUMNS - ltDataSize ))
-  eval "topLine=\$ltData\${(l:$paddingSize::${sep}:)rtData}"
+  local paddingSize=$(( COLUMNS - ltDataSize - rtDataSize ))
+  local paddingString=%F{cyan}$(printf "$sep%.0s" {1..$paddingSize})$reset_color
+  topLine=$ltData$paddingString$rtData
 
   alerts+=$(_sjml_tmux_data)
   alerts+=$(_sjml_errcode_data)
@@ -236,7 +257,7 @@ function _sjml_buildPromptVars() {
   local i
   for (( i=1; i <= $#alerts; i++ )) do
     if [[ -n $alerts[i] ]]; then
-      alertString="$alertString│ ${(r:$(( COLUMNS - 3 )):: :)alerts[i]}|"
+      alertString="$alertString$fg[cyan]│$reset_color ${(r:$(( COLUMNS - 3 )):: :)alerts[i]}$fg[cyan]|$reset_color"
     fi
   done
 
@@ -253,7 +274,8 @@ function _sjml_buildPromptVars() {
 }
 
 
-PROMPT='$topLine$alertString$botLt$sep %%> '
+local newline=$'\n'
+PROMPT='$topLine${newline}$alertString$botLt$sep %%> '
 
 
 add-zsh-hook precmd _sjml_buildPromptVars
