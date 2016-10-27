@@ -130,13 +130,13 @@ cask 'suspicious-package'
 # and finally, stuff from the Mac App Store
 brew 'mas'
 
-# internet
-mas 'Tweetbot',           id: 557168941
-
 # development
 mas 'Xcode',              id: 497799835
 mas 'Base',               id: 402383384
 mas 'Soulver',            id: 413965349
+
+# internet
+mas 'Tweetbot',           id: 557168941
 
 # graphics and office
 mas 'Pixelmator',         id: 407963104
