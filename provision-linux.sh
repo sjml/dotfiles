@@ -13,7 +13,7 @@ cp ./resources/Inconsolata/*.tff ~/.fonts/
 
 # Install pip, but not the Python packages
 easy_install --user pip
-local pyPrefix="~/Library/Python/2.7/bin"
+local pyPrefix=".local/bin"
 
 # install zsh-nvm, Node.js, and yarn, but nothing else
 zsh -i -c 'nvm install node'
