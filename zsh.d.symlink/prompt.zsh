@@ -129,7 +129,7 @@ function _sjml_hg_data() {
   echo $output
 }
 
-# TODO: colorize and unicode-ize output
+# TODO: unicode-ize output
 function _sjml_tmux_data() {
   if [[ $TERM == "screen" ]]; then
     return
@@ -137,15 +137,16 @@ function _sjml_tmux_data() {
   local icon="[]" #"▢"
   local count=$(tmux list-sessions 2>/dev/null| grep -cv 'attached')
   if [[ count -ne 0 ]]; then
-    # TODO: probably some clever way to avoid the (s)
-    echo "$icon $count detached tmux session(s)"
+    echo -n "$icon $count detached tmux session"
+    if [[ count -gt 1 ]]; then
+      echo "s"
+    fi
   fi
 }
 
-# TODO: colorize output
 function _sjml_errcode_data () {
   if (( $retCode != 0 )) then
-    echo "Error code: $retCode"
+    echo "$fg[red]Error code:$reset_color $retCode"
   fi
 }
 
@@ -173,10 +174,9 @@ function _sjml_end_timer() {
 
 add-zsh-hook preexec _sjml_start_timer
 
-# TODO: colorize output
 function _sjml_runtime_data () {
   if (( _sjml_command_dt > 3.0 )) then
-    echo -n "Long execution: "
+    echo -n "$fg[yellow]Long execution:$reset_color "
     (( dt >= 86400 )) && echo -n "$((int(_sjml_command_dt / 86400)))d"
     (( dt >= 3600 )) && echo -n "$((int(_sjml_command_dt % 86400 / 3600)))h"
     (( dt >= 60 )) && echo -n "$((int(_sjml_command_dt % 3600 / 60)))m"
@@ -275,8 +275,13 @@ function _sjml_buildPromptVars() {
   local i
   for (( i=1; i <= $#alerts; i++ )) do
     if [[ -n $alerts[i] ]]; then
-      alertString="$alertString%F{$outlineColor}│$reset_color ${(r:$(( COLUMNS - 3 )):: :)alerts[i]}%F{$outlineColor}|$reset_color
+      local lt="$fg[$outlineColor]|$reset_color "
+      local rt="$fg[$outlineColor]|$reset_color
 "
+      local alertText=$alerts[i]
+      local padding=$(( COLUMNS - $(_gvl $lt) - $(_gvl $rt) - $(_gvl $alertText) ))
+      local paddingString=$(printf " %.0s" {1..$padding})
+      alertString="$alertString$lt$alertText$paddingString$rt"
     fi
   done
 
