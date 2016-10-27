@@ -6,6 +6,9 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Get rid of weirdness
+set nocompatible
+
 " Sets how many lines of history VIM has to remember
 set history=500
 
@@ -50,7 +53,7 @@ endif
 set ruler
 
 " Height of the command bar
-set cmdheight=2
+set cmdheight=1
 
 " A buffer becomes hidden when it is abandoned
 set hid
@@ -70,6 +73,9 @@ set hlsearch
 
 " Makes search act like search in modern browsers
 set incsearch
+
+" Press return/enter to clear search highlighting
+nnoremap <CR> :noh<return><esc>
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
@@ -110,7 +116,7 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
-    colorscheme desert
+    colorscheme delek
 catch
 endtry
 
@@ -230,7 +236,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 set laststatus=2
 
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+set statusline=\ %w\ \ %r%{getcwd()}/%h\ \ \ Position:\ %l,%c\ \ \ %P
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
