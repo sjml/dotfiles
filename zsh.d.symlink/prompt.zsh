@@ -120,8 +120,8 @@ function _sjml_hg_data() {
   local output="☿ $branch"
   if [[ -n $untracked ]]; then
     output="%F{magenta}$output*%f"
-  elif [[ -n $has_lines ]]; then
-    output="%F{yellow}$output%f ($has_lines)"
+  elif [[ $commits -gt 0 ]]; then
+    output="%F{yellow}$output%f (+$commits)"
   else
     output="%F{green}$output%f"
   fi
