@@ -10,13 +10,6 @@ mq =
 hgext.extdiff =
 shelve =
 
-[web]
-cacerts = /etc/hg-dummy-cert.pem
-
-[auth]
-bitbucket.prefix = https://bitbucket.org
-bitbucket.username = sjml
-
 [extdiff]
 cmd.ksdiff = /usr/local/bin/ksdiff
 opts.ksdiff = --changeset --wait --filelist

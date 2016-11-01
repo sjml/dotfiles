@@ -15,7 +15,7 @@ Running `provision-mac.sh` on a clean user account will:
     * Dropbox, 1Password, web browsers, text editors, gamedev tools,
       virtualization, Steam, VLC, various utilities, quicklook plugins, etc.
   * Attempt to install Mac App Store stuff from the mas section of the Brewfile
-    * Xcode, devtools, Tweetbot, Pixlemator, Affinity Designer, iWork
+    * Xcode, devtools, Tweetbot, Pixelmator, Affinity Designer, iWork
   * TODO: Set preferences for Finder, Safari, and various OS X system things
   * Install pip
   * Install all packages listed in python-packages.txt

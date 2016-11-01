@@ -39,6 +39,7 @@ brew bundle
 
 # python setup
 easy_install --user pip
+# (this path is set permanently in the zsh configs, but this is bash)
 local pyPrefix="~/Library/Python/2.7/bin"
 $pyPrefix/pip install --user -r python-packages.txt
 
@@ -46,7 +47,7 @@ $pyPrefix/pip install --user -r python-packages.txt
 zsh -i -c 'nvm install node'
 zsh -i -c 'nvm use node'
 zsh -i -c 'npm install -g yarn'
-zsh -i -c 'yarn global add typescript angular-cli fkill-cli live-server gify'
+zsh -i -c 'yarn global add typescript angular-cli live-server'
 
 # NLP data comes last because it can take a looooong time
 $pyPrefix/bin/python -m nltk.downloader all
