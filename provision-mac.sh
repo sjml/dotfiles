@@ -23,7 +23,7 @@ sudo -v
 
 # install homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-# # homebrew installer invalidates sudo credentials, but we don't need it anymore
+# # homebrew installer invalidates sudo credentials, but we don't need them anymore
 
 # copy dotfiles
 ./install_symlinks.sh
@@ -44,14 +44,10 @@ local pyPrefix="~/Library/Python/2.7/bin"
 $pyPrefix/pip install --user -r python-packages.txt
 
 # node setup
-zsh -i -c 'nvm install node'
-zsh -i -c 'nvm use node'
-zsh -i -c 'npm install -g yarn'
-zsh -i -c 'yarn global add typescript angular-cli live-server'
-
-# NLP data comes last because it can take a looooong time
-$pyPrefix/bin/python -m nltk.downloader all
-$pyPrefix/bin/python -m spacy.en.download all
+zsh -i -c 'nvm install node; \
+           nvm use node; \
+           npm install -g yarn; \
+           yarn global add typescript angular-cli live-server'
 
 # try to set zsh up as the shell
 currentShell=$(expr "$SHELL" : '.*/\(.*\)')
@@ -60,6 +56,10 @@ if [ "$currentShell" != "zsh" ]; then
   printf "Looks like zsh isn't your default shell. Trying to change that..."
   chsh -s $targetZShell
 fi
+
+# NLP data comes last because it can take a looooong time
+$pyPrefix/bin/python -m nltk.downloader all
+$pyPrefix/bin/python -m spacy.en.download all
 
 cd ~
 read -n 1 -p "And that's it! You're good to go. Press any key to close out."

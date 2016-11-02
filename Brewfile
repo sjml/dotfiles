@@ -37,6 +37,7 @@ brew 'peco'
 
 # various and sundry
 brew 'pandoc'
+brew 'fontforge'
 brew 'hugo'
 brew 'lame'
 brew 'youtube-dl'
@@ -45,9 +46,12 @@ brew 'trash'
 brew 'gnupg'
 brew 'keybase'
 brew 'ntfs-3g'
-brew 'homebrew/games/nethacked'
-brew 'fontforge'
+
+# amusements!
 brew 'imgcat'
+tap 'homebrew/games'
+brew 'homebrew/games/nethacked'
+brew 'homebrew/games/frotz'
 
 
 # now getting into full macOS apps
