@@ -23,6 +23,7 @@ brew 'elinks'
 
 # dev tools
 brew 'capstone'
+brew 'clang-format'
 brew 'hub'
 brew 'heroku'
 brew 'docker'
@@ -49,7 +50,7 @@ brew 'ntfs-3g'
 
 # amusements!
 brew 'imgcat'
-tap 'homebrew/games'
+tap  'homebrew/games'
 brew 'homebrew/games/nethacked'
 brew 'homebrew/games/frotz'
 
@@ -82,6 +83,7 @@ cask 'nvalt'
 cask 'sublime-text'
 cask 'atom'
 cask 'visual-studio-code'
+cask 'dash'
 cask 'kaleidoscope'
 cask 'github-desktop'
 cask 'sqlelectron'

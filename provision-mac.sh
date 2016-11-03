@@ -30,7 +30,7 @@ sudo -v
 
 # copy Inconsolata
 # doing this outside of Cask because I handle all other fonts on their own,
-#  and Inconsolata is my go-to for terminal/editor/etc. so want to make sure
+#  but Inconsolata is my go-to for terminal/editor/etc. so want to make sure
 #  it's available since it's name-checked in a couple config files.
 cp ./resources/Inconsolata/*.ttf ~/Library/Fonts/
 
@@ -47,7 +47,7 @@ $pyPrefix/pip install --user -r python-packages.txt
 zsh -i -c 'nvm install node; \
            nvm use node; \
            npm install -g yarn; \
-           yarn global add typescript angular-cli live-server'
+           yarn global add typescript typings angular-cli live-server'
 
 # try to set zsh up as the shell
 currentShell=$(expr "$SHELL" : '.*/\(.*\)')

@@ -1,9 +1,3 @@
 Mercurial indicator in zsh prompt is slow
   - profile which parts of it are the worst
   - maybe move the whole thing to a single Python script to save invocations?
-Figure out if we can somehow save/restore Atom and Sublime Text package lists
-  - Atom possibilities:
-    * https://github.com/holman/dotfiles/blob/master/bin/atom-package-install
-    * https://github.com/holman/dotfiles/blob/master/bin/atom-package-backup
-  - Sublime possibilities:
-    * from the defaults script: cp -r init/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text*/Packages/User/Preferences.sublime-settings 2> /dev/null
