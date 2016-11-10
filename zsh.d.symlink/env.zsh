@@ -7,6 +7,7 @@ bindkey -e
 # Preferred editor for local and remote sessions
 if [[ -z $SSH_CONNECTION ]]; then
   export EDITOR='subl'
+  # export EDITOR='code'
 else
   export EDITOR='vim'
 fi

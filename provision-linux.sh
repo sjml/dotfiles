@@ -16,9 +16,9 @@ easy_install --user pip
 local pyPrefix=".local/bin"
 
 # install zsh-nvm, Node.js, and yarn, but nothing else
-zsh -i -c 'nvm install node'
-zsh -i -c 'nvm use node'
-zsh -i -c 'npm install -g yarn'
+zsh -i -c 'nvm install node; \
+           nvm use node; \
+           npm install -g yarn'
 
 # Attempt to change the default shell to zsh
 currentShell=$(expr "$SHELL" : '.*/\(.*\)')

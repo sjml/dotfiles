@@ -47,7 +47,7 @@ $pyPrefix/pip install --user -r python-packages.txt
 zsh -i -c 'nvm install node; \
            nvm use node; \
            npm install -g yarn; \
-           yarn global add typescript typings angular-cli live-server'
+           yarn global add typescript typings angular-cli ember-cli live-server vorlon surge'
 
 # try to set zsh up as the shell
 currentShell=$(expr "$SHELL" : '.*/\(.*\)')
