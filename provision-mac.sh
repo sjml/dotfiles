@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # make sure we're in the right place...
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")"
 DOTFILES_ROOT=$(pwd -P)
 
 # having us echo all output
@@ -17,13 +17,22 @@ set -x
 
 read -n 1 -p "Make sure you're signed in to the Mac App Store before continuing. Press Ctrl-C to cancel."
 
+# try to set zsh up as the shell
+echo "First need your password to change the shell."
+currentShell=$(expr "$SHELL" : '.*/\(.*\)')
+targetZShell=$(grep /zsh$ /etc/shells | tail -1)
+if [ "$currentShell" != "zsh" ]; then
+  printf "Looks like zsh isn't your default shell. Trying to change that..."
+  chsh -s $targetZShell
+fi
+
 # Ask for the administrator password upfront
-echo "Need sudo access to install homebrew; after this you can walk away."
+echo "Now we need sudo access to install homebrew; after this you can walk away."
 sudo -v
 
 # install homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-# # homebrew installer invalidates sudo credentials, but we don't need them anymore
+# # homebrew installer invalidates sudo credentials, but we won't need them anymore
 
 # copy dotfiles
 ./install_symlinks.sh
@@ -48,14 +57,6 @@ zsh -i -c 'nvm install node; \
            nvm use node; \
            npm install -g yarn; \
            yarn global add typescript typings angular-cli ember-cli live-server vorlon surge'
-
-# try to set zsh up as the shell
-currentShell=$(expr "$SHELL" : '.*/\(.*\)')
-targetZShell=$(grep /zsh$ /etc/shells | tail -1)
-if [ "$currentShell" != "zsh" ]; then
-  printf "Looks like zsh isn't your default shell. Trying to change that..."
-  chsh -s $targetZShell
-fi
 
 # NLP data comes last because it can take a looooong time
 $pyPrefix/bin/python -m nltk.downloader all

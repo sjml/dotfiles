@@ -3,7 +3,7 @@
 # modified from https://github.com/holman/dotfiles/blob/master/script/bootstrap
 
 # make sure we're in the right place...
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")"
 DOTFILES_ROOT=$(pwd -P)
 
 link_file () {
