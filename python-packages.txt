@@ -19,11 +19,10 @@ numpy
 scipy
 matplotlib
 
-# NLPv (ujson is missing req for spacy)
+# NLP
 Pattern
 nltk
 spacy
-ujson
 
 # for funsies
 rainbowstream

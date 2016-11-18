@@ -38,6 +38,11 @@ source $ZSH/vendor/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export NVM_LAZY_LOAD=true
 source $ZSH/vendor/zsh-nvm/zsh-nvm.plugin.zsh
 
+# if we start a tmux session from a virtualenved environment
+if [ -n "$VIRTUAL_ENV" ]; then
+  source "$VIRTUAL_ENV/bin/activate"
+fi
+
 # load up our prompt
 source $ZSH/prompt.zsh
 
