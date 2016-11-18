@@ -18,7 +18,6 @@ set -x
 read -n 1 -p "Make sure you're signed in to the Mac App Store before continuing. Press Ctrl-C to cancel."
 
 # try to set zsh up as the shell
-echo "First need your password to change the shell."
 currentShell=$(expr "$SHELL" : '.*/\(.*\)')
 targetZShell=$(grep /zsh$ /etc/shells | tail -1)
 if [ "$currentShell" != "zsh" ]; then
@@ -37,10 +36,15 @@ sudo -v
 # copy dotfiles
 ./install_symlinks.sh
 
-# copy Inconsolata
-# doing this outside of Cask because I handle all other fonts on their own,
-#  but Inconsolata is my go-to for terminal/editor/etc. so want to make sure
-#  it's available since it's name-checked in a couple config files.
+# Projects folder is where most code stuff lives; link this there, too,
+#  because otherwise I'll forget where it is
+mkdir ~/Projects
+ln -s $DOTFILES_ROOT ~/Projects/dotfiles
+
+# copying Inconsolata outside of Cask because I handle all other fonts on 
+#  their own, but Inconsolata is my go-to for terminal/editor/etc. so want 
+#  to make sure it's available since it's name-checked in a couple config 
+#  files.
 cp ./resources/Inconsolata/*.ttf ~/Library/Fonts/
 
 # all the goodies! (see ./Brewfile for list)
@@ -59,8 +63,8 @@ zsh -i -c 'nvm install node; \
            yarn global add typescript typings angular-cli live-server vorlon surge'
 
 # NLP data comes last because it can take a looooong time
-$pyPrefix/bin/python -m nltk.downloader all
-$pyPrefix/bin/python -m spacy.en.download all
+$pyPrefix/python -m nltk.downloader all
+$pyPrefix/python -m spacy.en.download all
 
 cd ~
 read -n 1 -p "And that's it! You're good to go. Press any key to close out."
