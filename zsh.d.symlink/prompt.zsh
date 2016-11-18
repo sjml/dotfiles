@@ -177,9 +177,9 @@ add-zsh-hook preexec _sjml_start_timer
 function _sjml_runtime_data () {
   if (( _sjml_command_dt > 3.0 )) then
     echo -n "$fg[yellow]Long execution:$reset_color "
-    (( dt >= 86400 )) && echo -n "$((int(_sjml_command_dt / 86400)))d"
-    (( dt >= 3600 )) && echo -n "$((int(_sjml_command_dt % 86400 / 3600)))h"
-    (( dt >= 60 )) && echo -n "$((int(_sjml_command_dt % 3600 / 60)))m"
+    (( _sjml_command_dt >= 86400 )) && echo -n "$((int(_sjml_command_dt / 86400)))d"
+    (( _sjml_command_dt >= 3600 )) && echo -n "$((int(_sjml_command_dt % 86400 / 3600)))h"
+    (( _sjml_command_dt >= 60 )) && echo -n "$((int(_sjml_command_dt % 3600 / 60)))m"
     printf "%.2fs" $((fmod($_sjml_command_dt, 60.0)))
   fi
 }
