@@ -4,10 +4,12 @@ and all. :)
 To get it: `git clone --recursive https://github.com/sjml/dotfiles ~/.dotfiles`
 
 Running `provision-mac.sh` on a clean user account will:
-  * Install homebrew
+  * Attempt to change the default shell to zsh
   * Take everything in this directory that ends with .symlink and make a
     symbolic link to it in the home directory, minus the `.symlink` and
     prepended with a `.`
+  * Install [homebrew](http://brew.sh)
+  * Make a `~/Projects` directory and symlink the dotfiles there
   * Add Inconsolata to user fonts
   * Install all the packages listed in the Brewfile
     * command line utilities, programming languages, devtools, etc.
@@ -22,12 +24,11 @@ Running `provision-mac.sh` on a clean user account will:
   * Install the zsh-compatible version of nvm
   * Use that nvm to install Node.js, yarn, and a few node packages
   * Download data for the Python natural language processing libraries
-  * Attempt to change the default shell to zsh
 
 The `provision-linux.sh` is much simpler because I don't have root on most Linux
 machines I use, and tend to not have them quite as customized. All it does:
+  * Attempt to change the default shell to zsh
   * Symlink the designated dotfiles
   * Throw Inconsolata into a user folder
   * Install pip, but not the Python packages
   * Install zsh-nvm, Node.js, and yarn, but nothing else
-  * Attempt to change the default shell to zsh

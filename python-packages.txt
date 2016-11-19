@@ -2,6 +2,7 @@
 virtualenv
 mercurial
 Cython
+cffi
 
 # scripting
 plumbum

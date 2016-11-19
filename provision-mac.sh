@@ -25,7 +25,11 @@ if [ "$currentShell" != "zsh" ]; then
   chsh -s $targetZShell
 fi
 
-# Ask for the administrator password upfront
+# copy dotfiles
+echo "Linking dotfiles; hang out for a second to answer potential prompts about overwriting..."
+./install_symlinks.sh
+
+# Ask for the administrator password
 echo "Now we need sudo access to install homebrew; after this you can walk away."
 sudo -v
 
@@ -33,12 +37,9 @@ sudo -v
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 # # homebrew installer invalidates sudo credentials, but we won't need them anymore
 
-# copy dotfiles
-./install_symlinks.sh
-
 # Projects folder is where most code stuff lives; link this there, too,
 #  because otherwise I'll forget where it is
-mkdir ~/Projects
+mkdir -p ~/Projects
 ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 
 # copying Inconsolata outside of Cask because I handle all other fonts on 
@@ -63,8 +64,8 @@ zsh -i -c 'nvm install node; \
            yarn global add typescript typings angular-cli live-server vorlon surge'
 
 # NLP data comes last because it can take a looooong time
-$pyPrefix/python -m nltk.downloader all
-$pyPrefix/python -m spacy.en.download all
+python -m nltk.downloader all
+python -m spacy.en.download all
 
 cd ~
 read -n 1 -p "And that's it! You're good to go. Press any key to close out."
