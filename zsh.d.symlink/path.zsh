@@ -8,4 +8,4 @@ else
   export GOPATH="$HOME/.local/go"
 fi
 
-export PATH="./bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$pyPath:$GOPATH/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$HOME/bin:$pyPath:$GOPATH/bin:$PATH"
