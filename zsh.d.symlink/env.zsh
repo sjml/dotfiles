@@ -37,12 +37,12 @@ setopt appendhistory # instead of overwriting it
 setopt histignoredups # don't record identical commands
 setopt extendedhistory # print timestamps in history file
 
-setopt extended_glob # more globing, all the globbing
+setopt extended_glob # more globbing, all the globbing
 
 setopt autocd # treat a path like a command to cd to it
 setopt cdablevars # cd Projects --> cd ~/Projects
 
 setopt correct # spelling correction for commands
 
-setopt local_options # let functions have local toptions
+setopt local_options # let functions have local options
 
