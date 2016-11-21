@@ -60,8 +60,7 @@ $pyPrefix/pip install --user -r python-packages.txt
 # node setup
 zsh -i -c 'nvm install node; \
            nvm use node; \
-           npm install -g yarn; \
-           yarn global add typescript typings angular-cli live-server vorlon surge'
+           npm install -g yarn typescript angular-cli live-server vorlon surge;'
 
 # NLP data comes last because it can take a looooong time
 python -m nltk.downloader all
