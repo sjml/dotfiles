@@ -1,5 +1,0 @@
-# whenever we install something, save it to the local package.json
-save=true
-
-# when we save it, stick the version exactly; we can manually update
-save-exact=true
