@@ -16,6 +16,11 @@ fi
 echo "Linking dotfiles; hang out for a second to answer potential prompts about overwriting..."
 ./install_symlinks.sh
 
+# Projects folder is where most code stuff lives; link this there, too,
+#  because otherwise I'll forget where it is
+mkdir -p ~/Projects
+ln -s $DOTFILES_ROOT ~/Projects/dotfiles
+
 # throw in our preferred monospace font
 mkdir -p ~/.fonts
 cp ./resources/Inconsolata/*.ttf ~/.fonts/
