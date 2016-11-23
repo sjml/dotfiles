@@ -35,7 +35,7 @@ sudo -v
 
 # install homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-# # homebrew installer invalidates sudo credentials, but we won't need them anymore
+# homebrew installer invalidates sudo credentials, but we won't need them anymore
 
 # Projects folder is where most code stuff lives; link this there, too,
 #  because otherwise I'll forget where it is
@@ -53,9 +53,9 @@ brew bundle
 
 # python setup
 easy_install --user pip
-# (this path is set permanently in the zsh configs, but this is bash)
-local pyPrefix="~/Library/Python/2.7/bin"
-$pyPrefix/pip install --user -r python-packages.txt
+# (this path is set in the zsh configs, but this is bash)
+local pyPath="$(python -m site --user-base)/bin"
+$pyPath/pip install --user -r python-packages.txt
 
 # node setup
 zsh -i -c 'nvm install node; \
