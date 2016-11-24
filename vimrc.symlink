@@ -9,12 +9,19 @@
 " Get rid of weirdness
 set nocompatible
 
+" Unicode 4 Life
+set encoding=utf-8
+
 " Sets how many lines of history VIM has to remember
 set history=500
 
 " Enable filetype plugins
+filetype on
 filetype plugin on
 filetype indent on
+
+" Vundle loading
+source ~/.vim/bundles.vim
 
 " Set to auto read when a file is changed from the outside
 set autoread

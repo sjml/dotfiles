@@ -7,3 +7,6 @@
 [submodule "zsh.d.symlink/vendor/zsh-syntax-highlighting"]
 	path = zsh.d.symlink/vendor/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "vim.symlink/bundle/Vundle.vim"]
+	path = vim.symlink/bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim
