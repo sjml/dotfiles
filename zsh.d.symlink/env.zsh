@@ -12,6 +12,10 @@ else
   export EDITOR='vim'
 fi
 
+## homebrew setup
+# don't phone home
+export HOMEBREW_NO_ANALYTICS=1
+
 ## python setup
 # since we have our own plans for the prompt
 export VIRTUAL_ENV_DISABLE_PROMPT=1

@@ -34,6 +34,7 @@ echo "Now we need sudo access to install homebrew; after this you can walk away.
 sudo -v
 
 # install homebrew
+export HOMEBREW_NO_ANALYTICS=1
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 # homebrew installer invalidates sudo credentials, but we won't need them anymore
 
