@@ -20,9 +20,9 @@ Running `provision-mac.sh` on a clean user account will:
     * Xcode, devtools, Tweetbot, Pixelmator, Affinity Designer, iWork
   * TODO: Set preferences for Finder, Safari, and various OS X system things
   * Install pip
-  * Install all packages listed in python-packages.txt
+  * Install all packages listed in `python-packages.txt`
   * Install the zsh-compatible version of nvm
-  * Use that nvm to install Node.js, yarn, and a few node packages
+  * Use that nvm to install Node.js, yarn, and a few node utilities
   * Download data for the Python natural language processing libraries
 
 The `provision-linux.sh` is much simpler because I don't have root on most Linux

@@ -1,4 +1,4 @@
-# we start with standard command line utilities
+# standard command line utilities
 brew 'coreutils'
 brew 'tmux'
 brew 'readline'
@@ -33,13 +33,21 @@ brew 'heroku'
 brew 'docker'
 brew 'doxygen'
 brew 'phantomjs'
+brew 'httpie'
 brew 'webkit2png'
 brew 'pngcrush'
 brew 'pngquant'
 brew 'imagemagick'
+brew 'sassc'
 brew 'ack'
 brew 'the_silver_searcher'
 brew 'peco'
+
+# encryption and privacy
+brew 'keybase'
+brew 'gnupg'
+brew 'gnupg2'
+brew 'bcwipe'
 
 # various and sundry
 brew 'pandoc'
@@ -50,10 +58,6 @@ brew 'youtube-dl'
 brew 'speedtest-cli'
 brew 'ntfs-3g'
 brew 'trash'
-brew 'keybase'
-brew 'gnupg'
-brew 'gnupg2'
-brew 'bcwipe'
 
 # amusements!
 brew 'imgcat'
@@ -88,13 +92,14 @@ cask 'libreoffice'
 cask 'nvalt'
 
 # development
-  # one of these days I really need to settle on a text editor
+#    (one of these days I really need to settle on a text editor)
 cask 'sublime-text'
 cask 'visual-studio-code'
 cask 'atom'
 cask 'dash'
 cask 'kaleidoscope'
 cask 'github-desktop'
+cask 'postman'
 cask 'sqlelectron'
 cask 'robomongo'
 cask 'origami'

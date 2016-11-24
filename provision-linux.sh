@@ -25,9 +25,10 @@ ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 mkdir -p ~/.fonts
 cp ./resources/Inconsolata/*.ttf ~/.fonts/
 
-# Install pip, but not the Python packages
+# Install pip
 easy_install --user pip
-local pyPrefix=".local/bin"
+local pyPath="$(python -m site --user-base)/bin"
+# not automatically installing things with pip in this script
 
 # install zsh-nvm, Node.js, and yarn, but nothing else
 zsh -i -c 'nvm install node; \
