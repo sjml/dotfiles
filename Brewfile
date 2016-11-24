@@ -15,6 +15,9 @@ brew 'go'
 brew 'erlang'
 brew 'mit-scheme'
 brew 'rust'
+brew 'ghc'
+brew 'cabal-install'
+brew 'elm'
 
 # network stuff
 brew 'wget'
