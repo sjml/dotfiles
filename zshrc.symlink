@@ -15,12 +15,15 @@ source $ZSH/path.zsh
 autoload -U compinit
 compinit
 
+# start z tracking the directory changes
+source $(/usr/local/bin/brew --prefix)/etc/profile.d/z.sh
+
 # now load our own completions
 #  (none right now)
 
 # now functions
 fpath=($ZSH/functions $fpath)
-autoload -U $ZSH/functions/*(:t)
+autoload -Uz $ZSH/functions/*(:t)
 
 # our own aliases
 source $ZSH/aliases.zsh
@@ -29,7 +32,7 @@ source $ZSH/aliases.zsh
 source $ZSH/config.zsh
 
 # fish-style suggestions
-source $ZSH/vendor/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source $ZSH/vendor/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # fish-style line-edit coloring
 source $ZSH/vendor/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -46,5 +49,3 @@ fi
 # load up our prompt
 source $ZSH/prompt.zsh
 
-# start z tracking the directory changes
-. $(brew --prefix)/etc/profile.d/z.sh

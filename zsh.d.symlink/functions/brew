@@ -5,16 +5,16 @@
 #  accidentally pull in the homebrew version of Python,
 #  which has the potential to upend a lot of apple carts.
 
-local _brew="/usr/local/bin/brew"
-
 brew() {
+  local _brew="/usr/local/bin/brew"
+
   if [[ " ${@[*]} " == *" --build-from-source "* ]]; then
     # already committed to building; don't bother
     #  with checks
     $_brew $@
     return
   fi
-  case "$cmd" in
+  case "$1" in
     instal|install|reinstall)
       for pkg in $@
       do
