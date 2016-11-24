@@ -46,3 +46,5 @@ fi
 # load up our prompt
 source $ZSH/prompt.zsh
 
+# start z tracking the directory changes
+. $(brew --prefix)/etc/profile.d/z.sh
