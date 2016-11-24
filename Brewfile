@@ -15,7 +15,6 @@ brew 'go'
 brew 'erlang'
 brew 'mit-scheme'
 brew 'rust'
-brew 'haskell'
 
 # network stuff
 brew 'wget'
@@ -47,7 +46,6 @@ brew 'peco'
 brew 'keybase'
 brew 'gnupg'
 brew 'gnupg2'
-brew 'bcwipe'
 
 # various and sundry
 brew 'pandoc'
@@ -57,11 +55,9 @@ brew 'mdp'
 brew 'lame'
 brew 'youtube-dl'
 brew 'speedtest-cli'
-brew 'ntfs-3g'
 brew 'trash'
 
 # amusements!
-brew 'imgcat'
 tap  'homebrew/games'
 brew 'homebrew/games/nethacked'
 brew 'homebrew/games/frotz'
