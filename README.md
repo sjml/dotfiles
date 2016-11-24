@@ -19,6 +19,7 @@ Running `provision-mac.sh` on a clean user account will:
   * Attempt to install Mac App Store stuff from the mas section of the Brewfile
     * Xcode, devtools, Tweetbot, Pixelmator, Affinity Designer, iWork
   * TODO: Set preferences for Finder, Safari, and various OS X system things
+  * Install a set of Vim bundles, managed by Vundle
   * Install pip
   * Install all packages listed in `python-packages.txt`
   * Install the zsh-compatible version of nvm
@@ -30,5 +31,6 @@ machines I use, and tend to not have them quite as customized. All it does:
   * Attempt to change the default shell to zsh
   * Symlink the designated dotfiles
   * Throw Inconsolata into a user folder
+  * Install the vim bundles
   * Install pip, but not the Python packages
   * Install zsh-nvm, Node.js, and yarn, but nothing else

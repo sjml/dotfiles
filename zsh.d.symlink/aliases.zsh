@@ -14,6 +14,7 @@ else
 fi
 
 alias tma="tmux attach"
+alias mkdir="mkdir -p"
 
 # Mac-specific aliases
 if [[ $OSTYPE == darwin* ]]; then

@@ -51,6 +51,9 @@ cp ./resources/Inconsolata/*.ttf ~/Library/Fonts/
 # all the goodies! (see ./Brewfile for list)
 brew bundle
 
+# any vim bundles
+vim +PluginInstall +qall
+
 # python setup
 easy_install --user pip
 # (this path is set in the zsh configs, but this is bash)

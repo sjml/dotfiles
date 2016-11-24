@@ -25,6 +25,9 @@ ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 mkdir -p ~/.fonts
 cp ./resources/Inconsolata/*.ttf ~/.fonts/
 
+# any vim bundles
+vim +PluginInstall +qall
+
 # Install pip
 easy_install --user pip
 local pyPath="$(python -m site --user-base)/bin"
