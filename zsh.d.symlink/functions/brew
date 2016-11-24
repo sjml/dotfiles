@@ -1,0 +1,42 @@
+#!/bin/zsh
+
+# A simple wrapper on the homebrew command to check
+#  potential installations and make sure we don't
+#  accidentally pull in the homebrew version of Python,
+#  which has the potential to upend a lot of apple carts.
+
+local _brew="/usr/local/bin/brew"
+
+brew() {
+  if [[ " ${@[*]} " == *" --build-from-source "* ]]; then
+    # already committed to building; don't bother
+    #  with checks
+    $_brew $@
+    return
+  fi
+  case "$cmd" in
+    instal|install|reinstall)
+      for pkg in $@
+      do
+        # skip initial command
+        if [[ $pkg == $cmd ]]; then
+          continue
+        fi
+        # skip flags
+        if [[ $pkg == -* ]]; then
+          continue
+        fi
+
+        local deps=$($_brew deps $pkg 2>/dev/null | grep "^python")
+        if [[ -n $deps ]]; then
+          echo "Cancelling installation; package $pkg will pull in Homebrew's Python, which we don't want. Install it with the --build-from-source flag OR use pip." | fold -s -w $COLUMNS
+          return
+        fi
+      done
+      $_brew $@
+      ;;
+    *)
+      $_brew $@
+      ;;
+  esac
+}
