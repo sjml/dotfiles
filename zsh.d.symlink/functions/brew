@@ -27,7 +27,7 @@ brew() {
           continue
         fi
 
-        local deps=$($_brew deps $pkg 2>/dev/null | grep "^python")
+        local deps=$($_brew deps $pkg 2>/dev/null | grep "^python$")
         if [[ -n $deps ]]; then
           echo "Cancelling installation; package $pkg will pull in Homebrew's Python, which we don't want. Install it with the --build-from-source flag OR use pip." | fold -s -w $COLUMNS
           return
