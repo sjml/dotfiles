@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+upip() {
+  PIP_REQUIRE_VIRTUALENV="" PIP_USER=1 pip "$@"
+}

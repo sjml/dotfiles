@@ -19,6 +19,9 @@ export HOMEBREW_NO_ANALYTICS=1
 ## python setup
 # since we have our own plans for the prompt
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+# make pip only work in virtualenvs; use custom upip
+#  function to install "global" packages
+export PIP_REQUIRE_VIRTUALENV=1
 
 ## ruby setup
 #eval "$(rbenv init --no-rehash -)"
