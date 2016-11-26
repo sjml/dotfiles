@@ -228,7 +228,7 @@ function _sjml_buildPromptVars() {
   fi
   local prettyPath=$(rtab)
   local hostName=${(%):-%m}
-  local userColor="$fg[green]"
+  local userColor="$fg[yellow]"
   if [[ $UID == 0 || $EUID == 0 ]]; then
     userColor="$fg[black]$bg[red]"
   fi
