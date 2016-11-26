@@ -169,6 +169,8 @@ function _sjml_end_timer() {
     _sjml_command_end_time=$EPOCHREALTIME
     (( _sjml_command_dt = _sjml_command_end_time - _sjml_command_start_time ))
     _sjml_command_start_time=-1.0
+  else
+    _sjml_command_dt=0.0
   fi
 }
 
