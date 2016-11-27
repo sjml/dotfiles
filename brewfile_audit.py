@@ -28,7 +28,7 @@ for dep in deps.split("\n"):
         erred = True
 
 FNULL = open(os.devnull, "w")
-for pkg in pkgs:
+for pkg in packages:
     infoStatus = subprocess.call(["brew", "info", pkg], stdout=FNULL, stderr=FNULL)
     if (infoStatus != 0):
         sys.stderr.write("WARNING: problematic package: %s\n" % pkg)
