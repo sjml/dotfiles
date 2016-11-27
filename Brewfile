@@ -1,4 +1,5 @@
-# standard command line utilities
+# zsh and standard command line utilities
+brew 'zsh'
 brew 'coreutils'
 brew 'tmux'
 brew 'readline'

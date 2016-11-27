@@ -13,6 +13,8 @@ else
   alias lla="ls -lhA --color"
 fi
 
+alias git="hub"
+
 alias tma="tmux attach"
 alias mkdir="mkdir -p"
 

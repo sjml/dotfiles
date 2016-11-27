@@ -16,7 +16,9 @@ autoload -U compinit
 compinit
 
 # start z tracking the directory changes
-source $(/usr/local/bin/brew --prefix)/etc/profile.d/z.sh
+if [[ $OSTYPE == darwin* ]]; then
+  source $(/usr/local/bin/brew --prefix)/etc/profile.d/z.sh
+fi
 
 # now load our own completions
 #  (none right now)
@@ -32,10 +34,10 @@ source $ZSH/aliases.zsh
 source $ZSH/config.zsh
 
 # fish-style suggestions
-#source $ZSH/vendor/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZSH/vendor/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # fish-style line-edit coloring
-source $ZSH/vendor/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source $ZSH/vendor/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # nvm
 export NVM_LAZY_LOAD=true

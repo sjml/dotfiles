@@ -11,32 +11,42 @@ set -x
 # xcode-select -p
 # while [ $? -ne 0 ]; do
 #   xcode-select --install
-#   read -n 1 -p "A dialog should be up asking to install command line tools. \nPress any key when finished."
+#   echo "A dialog should be up asking to install command line tools. \nPress any key when finished."
+#   read -n 1 
 #   xcode-select -p
 # done
 
-read -n 1 -p "Make sure you're signed in to the Mac App Store before continuing. Press Ctrl-C to cancel."
-
-# try to set zsh up as the shell
-currentShell=$(expr "$SHELL" : '.*/\(.*\)')
-targetZShell=$(grep /zsh$ /etc/shells | tail -1)
-if [ "$currentShell" != "zsh" ]; then
-  printf "Looks like zsh isn't your default shell. Trying to change that..."
-  chsh -s $targetZShell
-fi
+echo "Make sure you're signed in to the Mac App Store before continuing."
+echo "Press Ctrl-C to cancel, or any other key to continue."
+read -n 1 
 
 # copy dotfiles
-echo "Linking dotfiles; hang out for a second to answer potential prompts about overwriting..."
+echo "Linking dotfiles; hang out for a second to answer potential prompts..."
 ./install_symlinks.sh
 
 # Ask for the administrator password
-echo "Now we need sudo access to install homebrew; after this you can walk away."
+echo "Now we need sudo access to install homebrew and change the shell."
+echo "After this you can walk away for a bit\!"
 sudo -v
 
 # install homebrew
 export HOMEBREW_NO_ANALYTICS=1
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-# homebrew installer invalidates sudo credentials, but we won't need them anymore
+
+# install zsh real quick so we can chsh to it while we still have sudo
+brew install zsh
+
+# try to set zsh up as the shell
+targetZShell="/usr/local/bin/zsh"
+# targetZShell=$(grep /zsh$ /etc/shells | tail -1)
+echo $targetZShell | sudo tee -a /etc/shells
+sudo chsh -s $targetZShell $USER
+
+## done with sudo
+sudo -k
+
+# all the goodies\! (see ./Brewfile for list)
+brew bundle
 
 # Projects folder is where most code stuff lives; link this there, too,
 #  because otherwise I'll forget where it is
@@ -49,9 +59,6 @@ ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 #  files.
 cp ./resources/Inconsolata/*.ttf ~/Library/Fonts/
 
-# all the goodies! (see ./Brewfile for list)
-brew bundle
-
 # any vim bundles
 vim +PluginInstall +qall
 
@@ -59,7 +66,7 @@ vim +PluginInstall +qall
 easy_install --user pip
 # (this path is set in the zsh configs, but this is bash)
 local pyPath="$(python -m site --user-base)/bin"
-$pyPath/pip install --user -r python-packages.txt
+PIP_REQUIRE_VIRTUALENV="" $pyPath/pip install --user -r python-packages.txt
 
 # node setup
 zsh -i -c 'nvm install node; \
@@ -71,5 +78,6 @@ python -m nltk.downloader all
 python -m spacy.en.download all
 
 cd ~
-read -n 1 -p "And that's it! You're good to go. Press any key to close out."
+echo "And that's it\! You're good to go. Press any key to close out."
+read -n 1
 exec $targetZShell
