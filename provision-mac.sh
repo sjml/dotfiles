@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
 
+local function timerData() {
+  echo $1: $SECONDS >> provision_timing.txt
+}
+
 # make sure we're in the right place...
 cd "$(dirname "$0")"
 DOTFILES_ROOT=$(pwd -P)
+
+date >> provision_timing.txt
+timerData "START"
 
 # having us echo all output
 set -x
@@ -29,6 +36,8 @@ echo "Now we need sudo access to install homebrew and change the shell."
 echo "After this you can walk away for a bit\!"
 sudo -v
 
+timerData "POST-INTERACTIVE"
+
 # install homebrew
 export HOMEBREW_NO_ANALYTICS=1
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -47,6 +56,8 @@ sudo -k
 
 # all the goodies\! (see ./Brewfile for list)
 brew bundle
+
+timerData "POST-BREW"
 
 # Projects folder is where most code stuff lives; link this there, too,
 #  because otherwise I'll forget where it is
@@ -68,14 +79,20 @@ easy_install --user pip
 local pyPath="$(python -m site --user-base)/bin"
 PIP_REQUIRE_VIRTUALENV="" $pyPath/pip install --user -r python-packages.txt
 
+timerData "POST-PYTHON"
+
 # node setup
 zsh -i -c 'nvm install node; \
            nvm use node; \
            npm install -g yarn typescript angular-cli live-server vorlon surge;'
 
+timerData "POST-NODE"
+
 # NLP data comes last because it can take a looooong time
 python -m nltk.downloader all
 python -m spacy.en.download all
+
+timerData "DONE"
 
 cd ~
 echo "And that's it\! You're good to go. Press any key to close out."
