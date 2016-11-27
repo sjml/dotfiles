@@ -27,8 +27,13 @@ for dep in deps.split("\n"):
         sys.stderr.write("WARNING: this Brewfile will result in Homebrew Python.\n")
         erred = True
 
+FNULL = open(os.devnull, "w")
+for pkg in pkgs:
+    infoStatus = subprocess.call(["brew", "info", pkg], stdout=FNULL, stderr=FNULL)
+    if (infoStatus != 0):
+        sys.stderr.write("WARNING: problematic package: %s\n" % pkg)
+        erred = True
 for cask in casks:
-    FNULL = open(os.devnull, "w")
     infoStatus = subprocess.call(["brew", "cask", "info", cask], stdout=FNULL, stderr=FNULL)
     if (infoStatus != 0):
         sys.stderr.write("WARNING: problematic cask: %s\n" % cask)
