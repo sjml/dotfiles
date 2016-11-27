@@ -13,13 +13,12 @@ else
   alias lla="ls -lhA --color"
 fi
 
-alias git="hub"
-
 alias tma="tmux attach"
 alias mkdir="mkdir -p"
 
 # Mac-specific aliases
 if [[ $OSTYPE == darwin* ]]; then
+  alias git="hub"
   alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
   alias ffdev='/Applications/Firefox.app/Contents/MacOS/firefox-bin -no-remote -P dev'
 fi
