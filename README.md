@@ -1,6 +1,7 @@
-My dotfiles, to get a computer running the way I like it. Customized zsh prompt
+My dotfiles, to get a Mac or Linux computer running the way I like it. Customized zsh prompt
 and all. :)
 
+## Installation
 To get the whole repo: 
 ```shell-script
 git clone --recursive https://github.com/sjml/dotfiles ~/.dotfiles
@@ -11,6 +12,7 @@ To bootstrap onto a fresh computer (that may not have git, like Macs out of the 
 curl -fsSL https://raw.githubusercontent.com/sjml/dotfiles/master/bootstrap.sh | bash
 ```
 
+## What it does
 Running `provision-mac.sh` on a clean user account will:
   * Attempt to change the default shell to zsh
   * Take everything in this directory that ends with .symlink and make a

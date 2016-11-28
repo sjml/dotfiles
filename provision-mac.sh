@@ -16,7 +16,7 @@ set -x
 
 # # looks like Homebrew handles this now!
 # xcode-select -p
-# while [ $? -ne 0 ]; do
+# while [[ $? -ne 0 ]]; do
 #   xcode-select --install
 #   echo "A dialog should be up asking to install command line tools. \nPress any key when finished."
 #   read -n 1 
@@ -56,11 +56,14 @@ sudo -k
 
 # make sure we're running in a local git working copy
 #  (this hooks us in if we were set up from the bootstrap script)
-if [ ! -d .git ]; then
+if [[ ! -d .git ]]; then
   git init
   git remote add origin https://github.com/sjml/dotfiles.git
   git fetch
   git reset origin/master
+fi
+# ensure that submodules are set up
+if [[ ! -d zsh.d.symlink/vendor/zsh-autosuggestions/src ]]; then
   git submodule update --init --recursive
 fi
 
