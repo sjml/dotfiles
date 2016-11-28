@@ -3,6 +3,9 @@ and all. :)
 
 To get it: `git clone --recursive https://github.com/sjml/dotfiles ~/.dotfiles`
 
+To bootstrap onto a fresh computer (that may not have git): 
+`curl -fsSL https://raw.githubusercontent.com/sjml/dotfiles/master/bootstrap.sh | bash`
+
 Running `provision-mac.sh` on a clean user account will:
   * Attempt to change the default shell to zsh
   * Take everything in this directory that ends with .symlink and make a

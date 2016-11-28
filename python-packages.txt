@@ -4,6 +4,7 @@ mercurial
 Cython
 cffi
 twine
+mkdocs
 
 # scripting
 plumbum

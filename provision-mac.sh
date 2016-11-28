@@ -51,8 +51,17 @@ targetZShell="/usr/local/bin/zsh"
 echo $targetZShell | sudo tee -a /etc/shells
 sudo chsh -s $targetZShell $USER
 
-## done with sudo
+# done with sudo
 sudo -k
+
+# make sure we're running in a local git working copy
+if [ ! -d .git ]; then
+  git init
+  git remote add origin https://github.com/sjml/dotfiles.git
+  git fetch
+  git reset origin/master
+  git submodule update --init --recursive
+fi
 
 # all the goodies\! (see ./Brewfile for list)
 brew bundle
