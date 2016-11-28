@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+pip() {
+    _pip="$(/usr/bin/python -m site --user-base)/bin/pip"
+  if [[ -n $VIRTUAL_ENV ]]; then
+    $VIRTUAL_ENV/bin/pip "$@"
+  else
+    PIP_USER=1 $_pip "$@"
+  fi
+}
