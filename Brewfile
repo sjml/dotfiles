@@ -63,6 +63,7 @@ brew 'mdp'
 brew 'lame'
 brew 'youtube-dl'
 brew 'speedtest-cli'
+brew 'dockutil'
 brew 'trash'
 
 # amusements!

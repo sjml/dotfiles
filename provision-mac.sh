@@ -101,6 +101,37 @@ zsh -i -c 'nvm install node; \
 
 timerData "POST-NODE"
 
+# set up Dock
+declare -a dockList=(\
+  App\ Store\
+  Slack\
+  Tweetbot\
+  Firefox\
+  iTunes\
+  Photos\
+  Steam\
+  Keynote\
+  Affinity\ Designer\
+  Pixelmator\
+  Scrivener\
+  Sublime\ Text\
+  Visual\ Studio\ Code\
+  Xcode\
+  Transmit\
+  VMware\ Fusion\
+  Utilities/Terminal\
+  System\ Preferences\
+)
+dockutil --remove all --no-restart
+for app in "${dockList[@]}"
+do
+  dockutil --add "/Applications/$app.app" --no-restart
+done
+dockutil --add "~/Downloads" --section others --view grid --display stack --no-restart
+killall Dock 
+
+timerData "POST-DOCK"
+
 # NLP data comes last because it can take a looooong time
 python -m nltk.downloader all
 python -m spacy.en.download all
