@@ -55,6 +55,7 @@ sudo chsh -s $targetZShell $USER
 sudo -k
 
 # make sure we're running in a local git working copy
+#  (this hooks us in if we were set up from the bootstrap script)
 if [ ! -d .git ]; then
   git init
   git remote add origin https://github.com/sjml/dotfiles.git

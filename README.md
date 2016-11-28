@@ -1,10 +1,15 @@
 My dotfiles, to get a computer running the way I like it. Customized zsh prompt
 and all. :)
 
-To get it: `git clone --recursive https://github.com/sjml/dotfiles ~/.dotfiles`
+To get the whole repo: 
+```shell-script
+git clone --recursive https://github.com/sjml/dotfiles ~/.dotfiles
+```
 
-To bootstrap onto a fresh computer (that may not have git): 
-`curl -fsSL https://raw.githubusercontent.com/sjml/dotfiles/master/bootstrap.sh | bash`
+To bootstrap onto a fresh computer (that may not have git, like Macs out of the box): 
+```shell-script
+curl -fsSL https://raw.githubusercontent.com/sjml/dotfiles/master/bootstrap.sh | bash
+```
 
 Running `provision-mac.sh` on a clean user account will:
   * Attempt to change the default shell to zsh
