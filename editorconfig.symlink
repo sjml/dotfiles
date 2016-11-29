@@ -15,9 +15,12 @@ trim_trailing_whitespace = false
 [Makefile]
 indent_style = tab
 
-[*.js]
+[{*.js,*.json}]
 indent_size = 2
 quote_type = single
+
+[{Gemfile*,Rakefile,Brewfile,*.rb}]
+indent_size = 2
 
 [{*.sh,*.zsh,*.bash}]
 indent_size = 2
