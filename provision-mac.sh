@@ -67,7 +67,7 @@ if [[ ! -d zsh.d.symlink/vendor/zsh-autosuggestions/src ]]; then
   git submodule update --init --recursive
 fi
 
-# all the goodies\! (see ./Brewfile for list)
+# all the goodies! (see ./Brewfile for list)
 brew bundle
 
 timerData "POST-BREW"
@@ -90,7 +90,7 @@ vim +PluginInstall +qall
 easy_install --user pip
 # (this path is set in the zsh configs, but this is bash)
 local pyPath="$(python -m site --user-base)/bin"
-PIP_REQUIRE_VIRTUALENV="" $pyPath/pip install --user -r python-packages.txt
+$pyPath/pip install --user -r python-packages.txt
 
 timerData "POST-PYTHON"
 
