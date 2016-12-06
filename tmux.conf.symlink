@@ -11,3 +11,6 @@ bind ^B select-pane -t :.+
 
 # Mouse works as expected
 set -g mouse on
+
+# Enable OS X copy/paste
+if-shell "type 'reattach-to-user-namespace' >/dev/null" "set -g default-command 'reattach-to-user-namespace -l $SHELL'"
