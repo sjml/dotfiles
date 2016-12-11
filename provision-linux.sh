@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# set up input
+exec </dev/tty >/dev/tty
+
 # make sure we're in the right place...
 cd "$(dirname "$0")"
 DOTFILES_ROOT=$(pwd -P)

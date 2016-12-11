@@ -3,4 +3,3 @@ Mercurial indicator in zsh prompt is slow
   - maybe move the whole thing to a single Python script to save invocations?
 Have brew function output to stderr
 consider prettier output, like this: https://github.com/zenorocha/old-dotfiles
-provision script enters an infinite loop when run from bootstrap. :( 

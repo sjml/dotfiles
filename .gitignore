@@ -1,2 +1,3 @@
 *.swp
 vim.symlink/bundle/
+provision_timing.txt

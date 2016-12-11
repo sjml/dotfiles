@@ -4,6 +4,9 @@ function timerData() {
   echo $1: $SECONDS >> provision_timing.txt
 }
 
+# set up input
+exec </dev/tty >/dev/tty
+
 # make sure we're in the right place...
 cd "$(dirname "$0")"
 DOTFILES_ROOT=$(pwd -P)
@@ -16,7 +19,7 @@ timerData "START"
 # while [[ $? -ne 0 ]]; do
 #   xcode-select --install
 #   echo "A dialog should be up asking to install command line tools. \nPress any key when finished."
-#   read -n 1 
+#   read -n 1
 #   xcode-select -p
 # done
 
@@ -79,9 +82,9 @@ timerData "POST-BREW"
 mkdir -p ~/Projects
 ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 
-# copying Inconsolata outside of Cask because I handle all other fonts on 
-#  their own, but Inconsolata is my go-to for terminal/editor/etc. so want 
-#  to make sure it's available since it's name-checked in a couple config 
+# copying Inconsolata outside of Cask because I handle all other fonts on
+#  their own, but Inconsolata is my go-to for terminal/editor/etc. so want
+#  to make sure it's available since it's name-checked in a couple config
 #  files.
 cp ./resources/Inconsolata/*.ttf ~/Library/Fonts/
 
@@ -130,7 +133,7 @@ do
   dockutil --add "/Applications/$app.app" --no-restart
 done
 dockutil --add "~/Downloads" --section others --view grid --display stack --no-restart
-killall Dock 
+killall Dock
 
 timerData "POST-DOCK"
 
