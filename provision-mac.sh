@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-local function timerData() {
+function timerData() {
   echo $1: $SECONDS >> provision_timing.txt
 }
 
@@ -11,9 +11,6 @@ DOTFILES_ROOT=$(pwd -P)
 date >> provision_timing.txt
 timerData "START"
 
-# having us echo all output
-set -x
-
 # # looks like Homebrew handles this now!
 # xcode-select -p
 # while [[ $? -ne 0 ]]; do
@@ -23,9 +20,14 @@ set -x
 #   xcode-select -p
 # done
 
-echo "Make sure you're signed in to the Mac App Store before continuing."
-echo "Press Ctrl-C to cancel, or any other key to continue."
-read -n 1 
+while true; do
+  echo "Are you signed in to the Mac App Store?"
+  read -p "(y/n) " yn
+  case $yn in
+    [Yy]* ) echo "OK, cool. Let's do this."; break;;
+    [Nn]* ) echo "Go do that first."; exit;;
+  esac
+done
 
 # copy dotfiles
 echo "Linking dotfiles; hang out for a second to answer potential prompts..."
