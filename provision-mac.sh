@@ -144,6 +144,6 @@ python -m spacy.en.download all
 timerData "DONE"
 
 cd ~
-echo "And that's it\! You're good to go. Press any key to close out."
+echo "And that's it! You're good to go. Press any key to close out."
 read -n 1
 exec $targetZShell
