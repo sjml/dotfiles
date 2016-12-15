@@ -38,7 +38,7 @@ echo "Linking dotfiles; hang out for a second to answer potential prompts..."
 
 # Ask for the administrator password
 echo "Now we need sudo access to install homebrew and change the shell."
-echo "After this you can walk away for a bit\!"
+echo "After this you can walk away for a bit!"
 sudo -v
 
 timerData "POST-INTERACTIVE"
