@@ -66,11 +66,14 @@ if [[ ! -d .git ]]; then
   git remote add origin https://github.com/sjml/dotfiles.git
   git fetch
   git reset origin/master
+  git branch --set-upstream-to=origin/master master
 fi
 # ensure that submodules are set up
 if [[ ! -d zsh.d.symlink/vendor/zsh-autosuggestions/src ]]; then
   git submodule update --init --recursive
 fi
+# swap to ssh; credentials can get added later
+git remote set-url origin git@github.com:sjml/dotfiles.git
 
 # all the goodies! (see ./Brewfile for list)
 brew bundle
