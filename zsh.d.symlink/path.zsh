@@ -1,5 +1,19 @@
-local pyPath="$(python -m site --user-base)/bin"
-local rbPath="$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
 
-export GOPATH="$HOME/go"
-export PATH="$HOME/bin:$pyPath:$rbPath:$GOPATH/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+local -a myPath=()
+myPath+=($HOME/bin)
+
+if type python > /dev/null; then
+  myPath+=("$(python -m site --user-base)/bin")
+fi
+if type ruby > /dev/null; then
+  myPath+=("$(ruby -rubygems -e 'puts Gem.user_dir')/bin")
+fi
+if type go > /dev/null; then
+  export GOPATH="$HOME/go"
+  myPath+=("$GOPATH/bin")
+fi
+
+myPath+=(/usr/local/bin)
+myPath+=(/usr/local/sbin)
+
+path=($myPath $path)
