@@ -109,6 +109,30 @@ zsh -i -c 'nvm install node; \
 
 timerData "POST-NODE"
 
+# set up Terminal
+osascript 2>/dev/null <<EOD
+  tell application "Terminal"
+    local allOpenedWindows
+    local initialOpenedWindows
+    local windowID
+
+    set initialOpenedWindows to id of every window
+
+    do shell script "open './SJML.terminal'"
+    delay 1
+    set default settings to settings set "SJML"
+
+    set allOpenedWindows to id of every window
+    repeat with windowID in allOpenedWindows
+      if initialOpenedWindows does not contain windowID then
+        close (every window whose id is windowID)
+      else
+        set current settings of tabs of (every window whose id is windowID) to settings set "SJML"
+      end if
+    end repeat
+  end tell
+EOD
+
 # set up Dock
 declare -a dockList=(\
   App\ Store\

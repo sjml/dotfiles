@@ -165,7 +165,7 @@ cask 'suspicious-package'
 
 # a few monospaced fonts from caskroom
 #   (others handled outside of script)
-tap 'caskroom/fonts'
+tap  'caskroom/fonts'
 cask 'font-inconsolata'
 cask 'font-hack'
 
