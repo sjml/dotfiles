@@ -163,6 +163,13 @@ cask 'qlimagesize'
 cask 'suspicious-package'
 
 
+# a few monospaced fonts from caskroom
+#   (others handled outside of script)
+tap 'caskroom/fonts'
+cask 'font-inconsolata'
+cask 'font-hack'
+
+
 # and finally, stuff from the Mac App Store
 brew 'mas'
 
