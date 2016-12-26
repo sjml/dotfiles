@@ -193,12 +193,12 @@ local alertString=""
 local normColor="cyan"
 local rootColor="red"
 local outlineColor=$normColor
-local topLt="┏"
-local botLt="┗"
-local topRt="┓"
-local botRt="┛"
-local vertBar="┃"
-local sep="━"
+local topLt="╭"
+local botLt="╰"
+local topRt="╮"
+local botRt="╯"
+local vertBar="│"
+local sep="─"
 
 # get visible length of string
 #  (won't work if string contains
