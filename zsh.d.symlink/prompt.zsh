@@ -193,11 +193,12 @@ local alertString=""
 local normColor="cyan"
 local rootColor="red"
 local outlineColor=$normColor
-local topLt="╭"
-local botLt="╰"
-local topRt="╮"
-local botRt="╯"
-local sep="─"
+local topLt="┏"
+local botLt="┗"
+local topRt="┓"
+local botRt="┛"
+local vertBar="┃"
+local sep="━"
 
 # get visible length of string
 #  (won't work if string contains
@@ -277,8 +278,8 @@ function _sjml_buildPromptVars() {
   local i
   for (( i=1; i <= $#alerts; i++ )) do
     if [[ -n $alerts[i] ]]; then
-      local lt="$fg[$outlineColor]|$reset_color "
-      local rt="$fg[$outlineColor]|$reset_color
+      local lt="$fg[$outlineColor]$vertBar$reset_color "
+      local rt="$fg[$outlineColor]$vertBar$reset_color
 "
       local alertText=$alerts[i]
       local padding=$(( COLUMNS - $(_gvl $lt) - $(_gvl $rt) - $(_gvl $alertText) ))
