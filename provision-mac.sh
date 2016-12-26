@@ -85,12 +85,6 @@ timerData "POST-BREW"
 mkdir -p ~/Projects
 ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 
-# copying Inconsolata outside of Cask because I handle all other fonts on
-#  their own, but Inconsolata is my go-to for terminal/editor/etc. so want
-#  to make sure it's available since it's name-checked in a couple config
-#  files.
-cp ./resources/Inconsolata/*.ttf ~/Library/Fonts/
-
 # any vim bundles
 vim +PluginInstall +qall
 
@@ -174,3 +168,4 @@ cd ~
 echo "And that's it! You're good to go. Press any key to close out."
 read -n 1
 exec $targetZShell
+

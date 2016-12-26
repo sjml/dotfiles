@@ -40,10 +40,6 @@ git remote set-url origin git@github.com:sjml/dotfiles.git
 mkdir -p ~/Projects
 ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 
-# throw in our preferred monospace font
-mkdir -p ~/.fonts
-cp ./resources/Inconsolata/*.ttf ~/.fonts/
-
 # any vim bundles
 vim +PluginInstall +qall
 

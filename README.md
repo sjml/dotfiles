@@ -19,9 +19,9 @@ Running `provision-mac.sh` on a clean user account will:
   * Install [homebrew](http://brew.sh)
   * Attempt to change the default shell to zsh
   * Make a `~/Projects` directory and symlink the dotfiles there
-  * Add Inconsolata to user fonts
   * Install all the packages listed in the Brewfile
   * Install all GUI applications listed in the Cask section of the Brewfile
+  * Install Inconsolata and Hack fonts
   * Attempt to install Mac App Store stuff from the mas section of the Brewfile
   * TODO: Set preferences for Finder, Safari, and various OS X system things
   * Install a set of vim bundles, managed by [Vundle](https://github.com/VundleVim/Vundle.vim)
@@ -29,6 +29,7 @@ Running `provision-mac.sh` on a clean user account will:
   * Install all packages listed in `python-packages.txt`
   * Install the zsh-compatible version of nvm
   * Use that nvm to install Node.js, yarn, and a few node utilities
+  * Set up appearance of Terminal.app
   * Set up the Dock
   * Download data for the Python natural language processing libraries
 
@@ -36,7 +37,7 @@ The `provision-linux.sh` is much simpler because I don't have root on most Linux
 machines I use, and tend to not have them quite as customized. All it does:
   * Attempt to change the default shell to zsh
   * Symlink the designated dotfiles
-  * Throw Inconsolata into a user folder
   * Install the vim bundles
   * Install pip, but not the Python packages
   * Install zsh-nvm, Node.js, and yarn, but nothing else
+
