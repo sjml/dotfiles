@@ -37,7 +37,7 @@ source $ZSH/config.zsh
 source $ZSH/vendor/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # fish-style line-edit coloring
-#source $ZSH/vendor/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH/vendor/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # nvm
 export NVM_LAZY_LOAD=true

@@ -31,12 +31,12 @@ for dep in deps.split("\n"):
 
 FNULL = open(os.devnull, "w")
 for pkg in packages:
-    infoStatus = subprocess.call(["brew", "info", pkg], stdout=FNULL, stderr=FNULL)
+    infoStatus = subprocess.call(["/usr/local/bin/brew", "info", pkg], stdout=FNULL, stderr=FNULL)
     if (infoStatus != 0):
         sys.stderr.write("WARNING: problematic package: %s\n" % pkg)
         erred = True
 for cask in casks:
-    infoStatus = subprocess.call(["brew", "cask", "info", cask], stdout=FNULL, stderr=FNULL)
+    infoStatus = subprocess.call(["/usr/local/bin/brew", "cask", "info", cask], stdout=FNULL, stderr=FNULL)
     if (infoStatus != 0):
         sys.stderr.write("WARNING: problematic cask: %s\n" % cask)
         erred = True
