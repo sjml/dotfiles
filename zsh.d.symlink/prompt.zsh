@@ -303,7 +303,7 @@ function _sjml_buildPromptVars() {
 
 
 local newline=$'\n'
-PROMPT='$topLine${newline}$alertString%F{$outlineColor}$botLt$sep%f %#> '
+PROMPT='$topLine${newline}$alertString%F{$outlineColor}$botLt$sep%f %#>  '
 
 
 add-zsh-hook precmd _sjml_buildPromptVars
