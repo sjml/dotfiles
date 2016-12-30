@@ -7,7 +7,7 @@ zmodload zsh/mathfunc
 autoload colors
 colors
 
-ZLE_RPROMPT_INDENT=0
+ZLE_RPROMPT_INDENT=1
 setopt prompt_subst
 local -i retCode # return code from previous command
 
@@ -237,20 +237,20 @@ function _sjml_buildPromptVars() {
   fi
   local userData="$userColor$USER$reset_color@$fg[blue]$hostName$reset_color"
 
-  if (( $#scaffold + $#prettyPath + $(_gvl $userData) > $COLUMNS )) then
+  if (( $#scaffold + $#prettyPath + $(_gvl $userData) > $COLUMNS - 1 )) then
     userData="$userColor@$reset_color$fg[blue]$hostName$reset_color"
   fi
-  if (( $#scaffold + $#prettyPath + $(_gvl $userData) > $COLUMNS )) then
+  if (( $#scaffold + $#prettyPath + $(_gvl $userData) > $COLUMNS - 1 )) then
     userData="$userColor@$reset_color"
   fi
-  if (( $#scaffold + $#prettyPath + $(_gvl $userData) > $COLUMNS )) then
-    local diff=$(( ($#scaffold + $#prettyPath + $(_gvl $userData)) - $COLUMNS ))
+  if (( $#scaffold + $#prettyPath + $(_gvl $userData) > $COLUMNS - 1 )) then
+    local diff=$(( ($#scaffold + $#prettyPath + $(_gvl $userData)) - $COLUMNS - 1 ))
     prettyPath="…$prettyPath[$diff-1,-1]"
   fi
 
   ## this was fun to make, but silly; seriously, a while loop whose exiting
   ##  depends on my having properly made a regex?! in the PROMPT?!
-  #while (( $#scaffold + $#prettyPath + $#userData > $COLUMNS )) do
+  #while (( $#scaffold + $#prettyPath + $#userData > $COLUMNS - 1 )) do
   #  if [[ $prettyPath = "…" ]]; then
   #    break
   #  fi
@@ -267,7 +267,7 @@ function _sjml_buildPromptVars() {
   local ltDataSize=$(_gvl $ltData)
   local rtDataSize=$(_gvl $rtData)
 
-  local paddingSize=$(( COLUMNS - ltDataSize - rtDataSize ))
+  local paddingSize=$(( COLUMNS - 1 - ltDataSize - rtDataSize ))
   local paddingString=%F{$outlineColor}$(printf "$sep%.0s" {1..$paddingSize})$reset_color
   topLine=$ltData$paddingString$rtData
 
@@ -282,7 +282,7 @@ function _sjml_buildPromptVars() {
       local rt="$fg[$outlineColor]$vertBar$reset_color
 "
       local alertText=$alerts[i]
-      local padding=$(( COLUMNS - $(_gvl $lt) - $(_gvl $rt) - $(_gvl $alertText) ))
+      local padding=$(( COLUMNS - 1 - $(_gvl $lt) - $(_gvl $rt) - $(_gvl $alertText) ))
       local paddingString=$(printf " %.0s" {1..$padding})
       alertString="$alertString$lt$alertText$paddingString$rt"
     fi
@@ -298,12 +298,12 @@ function _sjml_buildPromptVars() {
   else
     RPROMPT=$(date "+%d-%b-%Y %H:%M")
   fi
-  RPROMPT=$RPROMPT%F{$outlineColor}$botRt%f
+  RPROMPT="$RPROMPT%F{$outlineColor} $botRt%f"
 }
 
 
 local newline=$'\n'
-PROMPT='$topLine${newline}$alertString%F{$outlineColor}$botLt$sep%f %#> '
+PROMPT='$topLine$newline$alertString%F{$outlineColor}$botLt$sep%f %#> '
 
 
 add-zsh-hook precmd _sjml_buildPromptVars
