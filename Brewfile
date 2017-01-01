@@ -152,6 +152,7 @@ cask 'vlc'
 # utilities
 cask 'iterm2'
 cask 'hammerspoon'
+cask 'uebersicht'
 cask 'little-snitch'
 cask 'gpgtools'
 cask 'arq'
