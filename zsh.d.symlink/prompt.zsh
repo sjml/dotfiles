@@ -87,6 +87,9 @@ function _sjml_git_data() {
   local output="± $branch"
   if [[ $unstaged || -n $untracked ]]; then
     output="%F{magenta}$output*%f"
+    if [[ -n $has_commit ]]; then
+      output="$output ($has_commit)"
+    fi
   elif [[ -n $has_commit  ]]; then
     output="%F{yellow}$output%f ($has_commit)"
   else
