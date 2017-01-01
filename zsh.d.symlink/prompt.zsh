@@ -230,7 +230,7 @@ function _sjml_buildPromptVars() {
   #  the future version of myself who will have to rewrite this to scale.)
   local scaffold="$topLt$sep()()$sep$topRt"
   if [[ -n $VIRTUAL_ENV ]]; then
-    scaffold="$topLt$sep()[🐍]()$sep$topRt"
+    scaffold="$topLt$sep()[🐍 ]()$sep$topRt"
   fi
   local prettyPath=$(rtab)
   local hostName=${(%):-%m}
@@ -262,7 +262,7 @@ function _sjml_buildPromptVars() {
 
   local ltData="$fg[$outlineColor]$topLt$sep$reset_color($prettyPath)"
   if [[ -n $VIRTUAL_ENV ]]; then
-    local venv="[$fg[green]🐍$reset_color]"
+    local venv="[$fg[green]🐍 $reset_color]"
     ltData=$ltData$venv
   fi
   local rtData="($userData)$fg[$outlineColor]$sep$topRt$reset_color"
