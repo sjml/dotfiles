@@ -19,8 +19,7 @@ brew 'erlang'
 brew 'elixir'
 brew 'mit-scheme'
 brew 'rust'
-brew 'ghc'
-brew 'cabal-install'
+brew 'haskell-stack'
 brew 'elm'
 
 # network stuff
@@ -63,7 +62,6 @@ brew 'gnupg2'
 # various and sundry
 brew 'pandoc'
 brew 'multimarkdown'
-brew 'fontforge'
 brew 'hugo'
 brew 'mdp'
 brew 'lame'
@@ -114,6 +112,7 @@ cask 'vimr'
 cask 'atom'
 cask 'arduino'
 cask 'fritzing'
+cask 'processing'
 cask 'dash'
 cask 'kaleidoscope'
 cask 'github-desktop'
@@ -131,7 +130,7 @@ cask 'inkscape'
 cask 'sketchup'
 cask 'openscad'
 cask 'skitch'
-cask 'glyphs'
+cask 'fontforge'
 
 # various virtualization thingies
 cask 'vmware-fusion'
@@ -193,6 +192,10 @@ mas 'Soulver',            id: 413965349
 
 # internet
 mas 'Tweetbot',           id: 557168941
+
+# media
+mas 'Kindle',             id: 405399194
+mas 'GarageBand',         id: 682658836
 
 # graphics and office
 mas 'Pixelmator',         id: 407963104

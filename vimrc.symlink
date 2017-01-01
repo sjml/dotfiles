@@ -12,6 +12,12 @@ set nocompatible
 " Unicode 4 Life
 set encoding=utf-8
 
+" Training myself to not use the arrows
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
 " Sets how many lines of history VIM has to remember
 set history=500
 
