@@ -80,6 +80,7 @@ brew 'homebrew/games/frotz'
 # now getting into full macOS apps
 cask_args appdir: '/Applications'
 tap 'caskroom/cask'
+tap 'caskroom/versions'
 
 # infrastructure
 cask 'dropbox'
@@ -113,7 +114,7 @@ cask 'atom'
 cask 'arduino'
 cask 'fritzing'
 cask 'processing'
-cask 'dash'
+cask 'dash2'
 cask 'kaleidoscope'
 cask 'github-desktop'
 cask 'sourcetree'
@@ -134,7 +135,7 @@ cask 'skitch'
 cask 'fontforge'
 
 # various virtualization thingies
-cask 'vmware-fusion'
+cask 'vmware-fusion6'
 cask 'virtualbox'
 cask 'vagrant'
 
