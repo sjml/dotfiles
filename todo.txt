@@ -3,3 +3,5 @@ Mercurial indicator in zsh prompt is slow
   - maybe move the whole thing to a single Python script to save invocations?
 Have brew function output to stderr
 consider prettier output, like this: https://github.com/zenorocha/old-dotfiles
+consolidate caskroom stuff so it doesn't have to prompt for password?
+  - is it the tapping or the installations that require it?

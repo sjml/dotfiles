@@ -159,13 +159,11 @@ killall Dock
 timerData "POST-DOCK"
 
 # NLP data comes last because it can take a looooong time
-python -m nltk.downloader all
-python -m spacy.en.download all
+## too slow; commented out for now. run manually when you want it.
+# python -m nltk.downloader all
+# python -m spacy.en.download all
 
 timerData "DONE"
 
 cd ~
-echo "And that's it! You're good to go. Press any key to close out."
-read -n 1
-exec $targetZShell
-
+echo "And that's it! You're good to go."

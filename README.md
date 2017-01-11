@@ -23,7 +23,6 @@ Running `provision-mac.sh` on a clean user account will:
   * Install all GUI applications listed in the Cask section of the Brewfile
   * Install Inconsolata and Hack fonts
   * Attempt to install Mac App Store stuff from the mas section of the Brewfile
-  * TODO: Set preferences for Finder, Safari, and various OS X system things
   * Install a set of vim bundles, managed by [Vundle](https://github.com/VundleVim/Vundle.vim)
   * Install pip
   * Install all packages listed in `python-packages.txt`
@@ -31,7 +30,6 @@ Running `provision-mac.sh` on a clean user account will:
   * Use that nvm to install Node.js, yarn, and a few node utilities
   * Set up appearance of Terminal.app
   * Set up the Dock
-  * Download data for the Python natural language processing libraries
 
 The `provision-linux.sh` is much simpler because I don't have root on most Linux
 machines I use, and tend to not have them quite as customized. All it does:
