@@ -134,10 +134,10 @@ function _sjml_hg_data() {
 
 # TODO: unicode-ize output
 function _sjml_tmux_data() {
-  if [[ $TERM == "screen" ]]; then
+  if [[ $TERM =~ "screen*" ]]; then
     return
   fi
-  local icon="[]" #"▢"
+  local icon="⛶" #"⛚" #"⚄" #"▢" #"[]"
   local count=$(tmux list-sessions 2>/dev/null| grep -cv 'attached')
   if [[ count -ne 0 ]]; then
     echo -n "$icon $count detached tmux session"

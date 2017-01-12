@@ -1,8 +1,10 @@
 # unicode. always, unicode
 export LANG=en_US.UTF-8
+export LANGUAGE=$LANG
+export LC_ALL=$LANG
 
-# emacs style line entry
-bindkey -e
+# vim style line entry
+bindkey -v
 
 # Preferred editor for local and remote sessions
 if [[ -z $SSH_CONNECTION ]]; then

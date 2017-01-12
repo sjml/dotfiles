@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+# Run tmux attach, putting in a session name if provided
+
+tma() {
+  if [[ -n $1 ]]; then
+    tmux attach-session -t $1
+  else
+    tmux attach-session
+  fi
+}

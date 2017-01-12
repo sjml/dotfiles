@@ -5,3 +5,6 @@ Have brew function output to stderr
 consider prettier output, like this: https://github.com/zenorocha/old-dotfiles
 consolidate caskroom stuff so it doesn't have to prompt for password?
   - is it the tapping or the installations that require it?
+  - look at https://github.com/vitorgalvao/dotfiles for renew_sudo
+    - maybe move things out of Brewfile and into custom script?
+  - add brew and cask cleanup commands

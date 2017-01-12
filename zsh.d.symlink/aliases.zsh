@@ -13,7 +13,6 @@ else
   alias lla="ls -lhA --color"
 fi
 
-alias tma="tmux attach"
 alias mkdir="mkdir -p"
 alias gitsubpull="git submodule update --recursive --remote"
 
