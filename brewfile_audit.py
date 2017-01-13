@@ -28,6 +28,9 @@ for dep in deps.split("\n"):
     if dep == "python":
         sys.stderr.write("WARNING: this Brewfile will result in Homebrew Python.\n")
         erred = True
+    if dep == "node":
+        sys.stderr.write("WARNING: this Brewfile will result in Homebrew Node.js.\n")
+        erred = True
 
 FNULL = open(os.devnull, "w")
 for pkg in packages:
