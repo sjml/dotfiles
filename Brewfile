@@ -127,6 +127,8 @@ cask 'xquartz'
 # artsy
 cask 'unity'
 cask 'blender'
+cask 'tiled'
+cask 'bfxr'
 cask 'twine'
 cask 'inkscape'
 cask 'sketchup'
