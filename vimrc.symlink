@@ -44,12 +44,24 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => NERDTree settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Start NERDTree automatically when we open a directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+" Ctrl-N to toggle NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+" Close vim if we're only left with NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
+"set so=7
 
 " Turn on the WiLd menu
 set wildmenu
@@ -132,7 +144,7 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
-    colorscheme delek
+    colorscheme pablo
 catch
 endtry
 
@@ -252,14 +264,14 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 set laststatus=2
 
 " Format the status line
-set statusline=\ %w\ \ %r%{getcwd()}/%h\ \ \ Position:\ %l,%c\ \ \ %P
+set statusline=\ %w\ \ %r%{getcwd()}/%h\ \ \ Position:\ %l,\ %c\ \ \ %P
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap VIM 0 to first non-blank character
-map 0 ^
+"map 0 ^
 
 " Move a line of text using ALT+[jk] or Command+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
