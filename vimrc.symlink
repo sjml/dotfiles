@@ -144,7 +144,7 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
-    colorscheme pablo
+    colorscheme inkpot
 catch
 endtry
 
