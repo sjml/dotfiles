@@ -1,10 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# modified from https://github.com/holman/dotfiles/blob/master/script/bootstrap
-
-# make sure we're in the right place...
-cd "$(dirname "$0")"
-DOTFILES_ROOT=$(pwd -P)
+# just yanking this from the install_symlinks script; should centralize it someplace
 
 link_file () {
   local src=$1 dst=$2
@@ -70,29 +66,26 @@ link_file () {
   fi
 }
 
-install_dotfiles () {
+# make sure we're in the right place...
+cd "$(dirname "$0")"
+LOCAL_ROOT=$(pwd -P)
+
+settingsDir="$HOME/Library/Application Support/Code"
+mkdir -p "$settingsDir/User"
+
+install_symlinks () {
   local overwrite_all=false backup_all=false skip_all=false
 
-  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
+  for src in $(find -H "$LOCAL_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
   do
-    dst="$HOME/.$(basename "${src%.*}")"
+    dst="$settingsDir/User/$(basename "${src%.*}")"
     link_file "$src" "$dst"
   done
 }
+install_symlinks
 
-install_dotfiles
+while read extension; do
+  code --install-extension $extension
+done <extensions.txt
 
 
-install_launchagents() {
-  local overwrite_all=false backup_all=false skip_all=false
-
-  mkdir -p $HOME/Library/LaunchAgents
-  for src in $(find -H "$DOTFILES_ROOT/osx-launchagents" -maxdepth 2 -name '*.plist' -not -path '*.git*')
-  do
-    dst="$HOME/Library/LaunchAgents/$(basename "$src")"
-    link_file "$src" "$dst"
-  done
-}
-if [[ $OSTYPE == darwin* ]]; then
-  install_launchagents
-fi

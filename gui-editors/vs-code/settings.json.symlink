@@ -1,0 +1,14 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "editor.fontSize": 14,
+    "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+    "files.associations": {
+        "Brewfile": "ruby",
+        "*.plist": "xml"
+    },
+    "workbench.activityBar.visible": true,
+    "git.confirmSync": false,
+    "window.zoomLevel": 0,
+    "python.linting.pylintEnabled": false,
+    "terminal.integrated.fontSize": 14
+}

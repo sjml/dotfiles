@@ -1,0 +1,10 @@
+EditorConfig.EditorConfig
+LaurentTreguier.vscode-simple-icons
+Tobiah.language-pde
+azemoh.one-monokai
+azemoh.theme-onedark
+donjayamanne.python
+eg2.tslint
+lukehoban.Go
+ms-vscode.cpptools
+ms-vscode.sublime-keybindings
