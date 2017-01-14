@@ -52,4 +52,12 @@ ssh-make-key() {
         ssh-add -K $privateKey
     fi
   fi
+
+  echo "Where do you want to upload the public key?"
+  echo "(Leave blank to not upload it anywhere.)"
+  echo -n "Target username@server: "
+  read serverTarget
+  if [[ -n $serverTarget ]]; then
+    cat ${privateKey}.pub | ssh $serverTarget 'cat >> .ssh/authorized_keys2'
+  fi
 }
