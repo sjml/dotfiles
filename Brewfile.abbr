@@ -1,0 +1,19 @@
+# zsh and standard command line utilities
+brew 'zsh'
+
+brew 'hub'
+brew 'dockutil'
+
+# now getting into full macOS apps
+tap 'caskroom/cask'
+tap 'caskroom/versions'
+
+# infrastructure
+cask 'dropbox'
+cask 'gpgtools'
+
+# and finally, stuff from the Mac App Store
+brew 'mas'
+
+# development
+mas 'Base',               id: 402383384
