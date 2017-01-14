@@ -1,48 +1,55 @@
 #!/bin/zsh
 
+# Creates a local SSH key and adds it to the macOS keychain if appropriate
 make-ssh-key() {
-    # Creating local keys (that will have to be manually uploaded to their
-    #   respective hosts.
+  if [[ -n $1 ]]; then
+    keyname=$1
+  else
+    echo -n "Enter name for new key: "
+    read keyname
+  fi
 
-    if [[ -n $1 ]]; then
-      keyname=$1
-    else
-      echo -n "Enter name for new key: "
-      read keyname
-    fi
+  email="shane@techie.net"
+  byteSize=4096
+  keyPath=$HOME/.ssh
 
-    email="shane@techie.net"
-    byteSize=4096
-    keyPath=$HOME/.ssh
+  privateKey=$keyPath/${keyname}_rsa
+  if [[ -a $privateKey ]]; then
+    echo "$privateKey already exists." >&2
+    return 1
+  fi
 
-    privateKey=$keyPath/${keyname}_rsa
-    if [[ -a $privateKey ]]; then
-      echo "$keyname already exists. Skipping."
+  finished=0
+  echo "GENERATING SSH KEY FOR $keyname"
+  while [[ $finished -eq 0 ]]; do
+    echo -n "  Passphrase: "
+    read -s pass1
+    echo
+    echo -n "  Confirm passphrase: "
+    read -s pass2
+    echo
+    if [[ $pass1 != $pass2 ]]; then
+      echo "Passphrases don't match. Try again!" >&2
       continue
     fi
+    if [[ ${#pass1} -lt 5 ]]; then
+      echo "Passphrase is too short. Try again!" >&2
+      continue
+    fi
+    finished=1
+  done
 
-    finished=0
-    echo "GENERATING SSH KEY FOR $keyname"
-    while [[ $finished -eq 0 ]]; do
-      echo -n "  Passphrase: "
-      read -s pass1
-      echo
-      echo -n "  Confirm passphrase: "
-      read -s pass2
-      echo
-      if [[ $pass1 != $pass2 ]]; then
-          echo "Passphrases don't match. Try again!" >&2
-          continue
-      fi
-      if [[ ${#pass1} -lt 5 ]]; then
-          echo "Passphrase is too short. Try again!" >&2
-          continue
-      fi
-      finished=1
-    done
+  ssh-keygen -t rsa -b $byteSize -C $email -N $pass1 -f $privateKey
 
-    ssh-keygen -t rsa -b $byteSize -C $email -N $pass1 -f $privateKey
-
-    echo "Key is made, but will need its passphrase once more to add it to the keychain."
-    ssh-add -K $privateKey
+  if [[ $OSTYPE == darwin* ]]; then
+    if type expect > /dev/null; then
+        expect -c "spawn ssh-add -K $privateKey
+                expect \"Enter passphrase for $privateKey:\"
+                send \"$pass1\n\"
+                interact"
+    else
+        echo "Key is made, but we need its passphrase once more to add it to the keychain."
+        ssh-add -K $privateKey
+    fi
+  fi
 }
