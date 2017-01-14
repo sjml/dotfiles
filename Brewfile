@@ -124,6 +124,7 @@ cask 'fontforge'
 cask 'vmware-fusion'
 cask 'virtualbox'
 cask 'vagrant'
+cask 'docker-toolbox'
 
 # entertainment
 cask 'steam'
