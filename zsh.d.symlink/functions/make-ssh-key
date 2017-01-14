@@ -42,5 +42,7 @@ make-ssh-key() {
     done
 
     ssh-keygen -t rsa -b $byteSize -C $email -N $pass1 -f $privateKey
-    echo
+
+    echo "Key is made, but will need its passphrase once more to add it to the keychain."
+    ssh-add -K $privateKey
 }

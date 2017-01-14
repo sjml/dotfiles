@@ -1,5 +1,4 @@
 Mercurial indicator in zsh prompt is slow
   - profile which parts of it are the worst
   - maybe move the whole thing to a single Python script to save invocations?
-Have brew function output to stderr
-ssh add to keychain for new keys
+See if there's a way for make-ssh-key to feed the password to ssh-add -K at the end
