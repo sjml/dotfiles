@@ -35,7 +35,6 @@ brew 'git-lfs'
 brew 'git-cal'
 brew 'tig'
 brew 'cmake'
-brew 'capstone'
 brew 'clang-format'
 brew 'swig'
 brew 'hub'
@@ -54,16 +53,10 @@ brew 'ack'
 brew 'the_silver_searcher'
 brew 'peco'
 
-# encryption and privacy
-brew 'keybase'
-brew 'gnupg'
-brew 'gnupg2'
-
 # various and sundry
 brew 'pandoc'
 brew 'multimarkdown'
 brew 'hugo'
-brew 'mdp'
 brew 'lame'
 brew 'libdvdcss'
 brew 'youtube-dl'
@@ -99,28 +92,23 @@ cask 'transmission'
 
 # writing and office
 cask 'scrivener'
-cask 'marked'
 cask 'libreoffice'
-cask 'nvalt'
 
 # development
 #    (one of these days I really need to settle on a text editor)
 cask 'sublime-text'
 cask 'visual-studio-code'
 cask 'macvim'
-cask 'vimr'
 cask 'atom'
 cask 'arduino'
 cask 'fritzing'
 cask 'processing'
-cask 'dash2'
 cask 'kaleidoscope'
 cask 'github-desktop'
 cask 'sourcetree'
 cask 'postman'
 cask 'sqlectron'
 cask 'robomongo'
-cask 'origami'
 cask 'xquartz'
 
 # artsy
@@ -131,12 +119,10 @@ cask 'bfxr'
 cask 'twine'
 cask 'inkscape'
 cask 'sketchup'
-cask 'openscad'
-cask 'skitch'
 cask 'fontforge'
 
 # various virtualization thingies
-cask 'vmware-fusion6'
+cask 'vmware-fusion'
 cask 'virtualbox'
 cask 'vagrant'
 
@@ -153,6 +139,7 @@ cask 'vlc'
 
 # utilities
 cask 'iterm2'
+cask 'keybase'
 cask 'hammerspoon'
 cask 'karabiner-elements'
 cask 'ubersicht'
@@ -190,6 +177,7 @@ brew 'mas'
 mas 'Xcode',              id: 497799835
 mas 'Base',               id: 402383384
 mas 'Soulver',            id: 413965349
+mas 'Marked',             id: 448925439
 
 # internet
 mas 'Tweetbot',           id: 557168941
