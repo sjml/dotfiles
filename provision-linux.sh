@@ -44,7 +44,7 @@ ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 vim +PluginInstall +qall
 
 # Install pip
-easy_install --user pip
+easy_install --quiet --user pip
 local pyPath="$(python -m site --user-base)/bin"
 # not automatically installing things with pip in this script
 

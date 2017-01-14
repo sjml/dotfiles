@@ -18,45 +18,6 @@ timerData "START"
 echo "Linking dotfiles..."
 ./install_symlinks.sh
 
-# Creating local keys (that will have to be manually uploaded to their
-#   respective hosts.
-echo "Creating SSH keys..."
-declare -a keyList=(bear dream github kiln bitbucket)
-email="shane@techie.net"
-byteSize=4096
-keyPath=$HOME/.ssh
-
-for keyname in "${keyList[@]}"; do
-  privateKey=$keyPath/${keyname}_rsa
-  if [[ -a $privateKey ]]; then
-    echo "$keyname already exists. Skipping."
-    continue
-  fi
-
-  finished=0
-  echo "GENERATING SSH KEY FOR $keyname"
-  while [[ $finished -eq 0 ]]; do
-    echo -n "  Passphrase: "
-    read -s pass1
-    echo
-    echo -n "  Confirm passphrase: "
-    read -s pass2
-    echo
-    if [[ $pass1 != $pass2 ]]; then
-      echo "Passphrases don't match. Try again!" >&2
-      continue
-    fi
-    if [[ ${#pass1} -lt 5 ]]; then
-      echo "Passphrase is too short. Try again!" >&2
-      continue
-    fi
-    finished=1
-  done
-
-  ssh-keygen -t rsa -b $byteSize -C $email -N $pass1 -f $privateKey
-  echo
-done
-
 # Ask for the administrator password
 echo "Now we need sudo access to install homebrew, some GUI apps, and change the shell."
 sudo -v
@@ -119,7 +80,7 @@ ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 vim +PluginInstall +qall
 
 # python setup
-easy_install --user pip
+easy_install --quiet --user pip
 # (this path is set in the zsh configs, but this is bash)
 pyPath="$(python -m site --user-base)/bin"
 $pyPath/pip install --user -r python-packages.txt
@@ -129,7 +90,8 @@ timerData "POST-PYTHON"
 # node setup
 zsh -i -c 'nvm install node; \
            nvm use node; \
-           npm install -g yarn typescript angular-cli live-server vorlon surge;'
+           npm install -g yarn; \
+           yarn global add typescript angular-cli live-server vorlon surge;'
 
 timerData "POST-NODE"
 

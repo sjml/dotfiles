@@ -36,6 +36,17 @@ done
 # refresh!
 sudo -v
 
+# log in to the Mac App Store if necessary
+if [[ ${#mass[@]} -gt 0 ]]; then
+  /usr/local/bin/brew install mas
+
+  # just bouncing out to make sure we signin with the correct ID here
+  mas signout
+  echo -n "AppleID username: "
+  read appleID
+  /usr/local/bin/mas signin $appleID
+fi
+
 # get the casks first; this can be the time-consuming part where we
 #  lose sudo if we aren't careful
 mkdir -p ~/Library/Caches/Homebrew/Cask
@@ -53,21 +64,10 @@ done
 # no more sudo needed!
 sudo -k
 
-# but we will need to bother the user once more... <sigh>
-if [[ ${#mass[@]} -gt 0 ]]; then
-  /usr/local/bin/brew install mas
-
-  # just bouncing out to make sure we signin with the correct ID here
-  mas signout
-  echo -n "AppleID username: "
-  read appleID
-  /usr/local/bin/mas signin $appleID
-
-  # app store installations
-  for app in "${mass[@]}"; do
-    /usr/local/bin/mas install $app
-  done
-fi
+# app store installations
+for app in "${mass[@]}"; do
+  /usr/local/bin/mas install $app
+done
 
 # finally, our beloved CLI things, which Simply Work™
 for package in "${packages[@]}"; do
