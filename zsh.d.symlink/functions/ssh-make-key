@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Creates a local SSH key and adds it to the macOS keychain if appropriate
-make-ssh-key() {
+ssh-make-key() {
   if [[ -n $1 ]]; then
     keyname=$1
   else
