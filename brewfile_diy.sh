@@ -38,6 +38,7 @@ sudo -v
 
 # get the casks first; this can be the time-consuming part where we
 #  lose sudo if we aren't careful
+mkdir -p ~/Library/Caches/Homebrew/Cask
 for cask in "${casks[@]}"; do
   /usr/local/bin/brew cask fetch $cask
   sudo -v # TODO: move this to magical indefinite loop?
@@ -53,6 +54,8 @@ done
 sudo -k
 
 # but we will need to bother the user once more... <sigh>
+# just bouncing out to make sure we sign in with the correct ID here
+mas signout
 echo -n "AppleID username: "
 read appleID
 /usr/local/bin/mas signin $appleID

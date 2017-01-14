@@ -121,7 +121,7 @@ vim +PluginInstall +qall
 # python setup
 easy_install --user pip
 # (this path is set in the zsh configs, but this is bash)
-local pyPath="$(python -m site --user-base)/bin"
+pyPath="$(python -m site --user-base)/bin"
 $pyPath/pip install --user -r python-packages.txt
 
 timerData "POST-PYTHON"
@@ -173,7 +173,6 @@ declare -a dockList=(\
   Sublime\ Text\
   Visual\ Studio\ Code\
   Xcode\
-  Transmit\
   VMware\ Fusion\
   Utilities/Terminal\
   System\ Preferences\

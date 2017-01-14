@@ -86,6 +86,7 @@ install_dotfiles
 install_launchagents() {
   local overwrite_all=false backup_all=false skip_all=false
 
+  mkdir -p $HOME/Library/LaunchAgents
   for src in $(find -H "$DOTFILES_ROOT/osx-launchagents" -maxdepth 2 -name '*.plist' -not -path '*.git*')
   do
     dst="$HOME/Library/LaunchAgents/$(basename "$src")"
