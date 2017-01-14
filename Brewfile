@@ -78,7 +78,6 @@ brew 'homebrew/games/frotz'
 
 
 # now getting into full macOS apps
-cask_args appdir: '/Applications'
 tap 'caskroom/cask'
 tap 'caskroom/versions'
 

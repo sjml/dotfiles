@@ -2,8 +2,4 @@ Mercurial indicator in zsh prompt is slow
   - profile which parts of it are the worst
   - maybe move the whole thing to a single Python script to save invocations?
 Have brew function output to stderr
-consolidate caskroom stuff so it doesn't have to prompt for password?
-  - is it the tapping or the installations that require it?
-  - look at https://github.com/vitorgalvao/dotfiles for renew_sudo
-    - maybe move things out of Brewfile and into custom script?
-  - add brew and cask cleanup commands
+parallelize the brew/cask/mas phases of the DIY brewfile processing?

@@ -58,17 +58,17 @@ for keyname in "${keyList[@]}"; do
 done
 
 # Ask for the administrator password
-echo "Now we need sudo access to install homebrew and change the shell."
-echo "After this you can walk away for a bit!"
+echo "Now we need sudo access to install homebrew, some GUI apps, and change the shell."
 sudo -v
 
-timerData "POST-INTERACTIVE"
+timerData "POST-KEYS"
 
 # install homebrew
 export HOMEBREW_NO_ANALYTICS=1
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # install zsh real quick so we can chsh to it while we still have sudo
+sudo -v
 brew install zsh
 
 # try to set zsh up as the shell
@@ -76,6 +76,20 @@ targetZShell="/usr/local/bin/zsh"
 # targetZShell=$(grep /zsh$ /etc/shells | tail -1)
 echo $targetZShell | sudo tee -a /etc/shells
 sudo chsh -s $targetZShell $USER
+
+# using a DIY replacement for `brew bundle` that handles permissions better
+echo "Installing from the Brewfile..."
+./brewfile_diy.sh
+
+# the diy script does this internally, but just so it's explicit out here, too
+sudo -k
+
+# clean up after homebrew
+brew cleanup -s
+brew cask cleanup
+rm -rf $(brew --cache)
+
+timerData "POST-BREW"
 
 # done with sudo
 sudo -k
@@ -95,11 +109,6 @@ if [[ ! -d zsh.d.symlink/vendor/zsh-autosuggestions/src ]]; then
 fi
 # swap to ssh; credentials can get added later
 git remote set-url origin git@github.com:sjml/dotfiles.git
-
-# all the goodies! (see ./Brewfile for list)
-brew bundle
-
-timerData "POST-BREW"
 
 # Projects folder is where most code stuff lives; link this there, too,
 #  because otherwise I'll forget where it is
