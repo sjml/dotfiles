@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# nab the input
+exec </dev/tty >/dev/tty
+
 declare -a packages=()
 declare -a casks=()
 declare -a taps=()
