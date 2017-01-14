@@ -43,6 +43,9 @@ for cask in casks:
     if (infoStatus != 0):
         sys.stderr.write("WARNING: problematic cask: %s\n" % cask)
         erred = True
+    rawCask = subprocess.check_output(["/usr/local/bin/brew", "cask", "cat", cask])
+    if "installer manual:" in rawCask:
+        sys.stdout.write("INFO: %s cask requires a manual installation step." % cask)
 
 if (erred):
     sys.exit(1)
