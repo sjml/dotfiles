@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# keep up our permissions until we've gotten through everything
+still_need_sudo=1
+while still_need_sudo; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 declare -a packages=()
 declare -a casks=()
 declare -a taps=()
@@ -33,35 +37,30 @@ for tap in "${taps[@]}"; do
   /usr/local/bin/brew tap $tap
 done
 
-# refresh!
-sudo -v
-
 # log in to the Mac App Store if necessary
 if [[ ${#mass[@]} -gt 0 ]]; then
   /usr/local/bin/brew install mas
 
-  # just bouncing out to make sure we signin with the correct ID here
-  mas signout
+  # just bouncing out to make sure we sign in with the correct ID here
+  /usr/local/bin/mas signout
   echo -n "AppleID username: "
   read appleID
   /usr/local/bin/mas signin $appleID
 fi
 
-# get the casks first; this can be the time-consuming part where we
-#  lose sudo if we aren't careful
+# get the casks first
 mkdir -p ~/Library/Caches/Homebrew/Cask
 for cask in "${casks[@]}"; do
   /usr/local/bin/brew cask fetch $cask
-  sudo -v # TODO: move this to magical indefinite loop?
 done
 
 # now actually install
 for cask in "${casks[@]}"; do
   /usr/local/bin/brew cask install $cask
-  sudo -v # nothing should take longer than the timeout
 done
 
 # no more sudo needed!
+still_need_sudo=0
 sudo -k
 
 # app store installations
