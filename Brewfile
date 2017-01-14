@@ -72,7 +72,6 @@ brew 'homebrew/games/frotz'
 
 # now getting into full macOS apps
 tap 'caskroom/cask'
-tap 'caskroom/versions'
 
 # infrastructure
 cask 'dropbox'
