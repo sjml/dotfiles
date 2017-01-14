@@ -1,7 +1,6 @@
 # zsh and standard command line utilities
 brew 'zsh'
 
-brew 'mas'
 brew 'hub'
 brew 'dockutil'
 

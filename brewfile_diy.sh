@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# nab the input
-exec </dev/tty >/dev/tty
-
 declare -a packages=()
 declare -a casks=()
 declare -a taps=()
@@ -57,11 +54,20 @@ done
 sudo -k
 
 # but we will need to bother the user once more... <sigh>
-# just bouncing out to make sure we sign in with the correct ID here
-mas signout
-echo -n "AppleID username: "
-read appleID
-/usr/local/bin/mas signin $appleID
+if [[ ${#mass[@]} -gt 0 ]]; then
+  /usr/local/bin/brew install mas
+
+  # just bouncing out to make sure we signin with the correct ID here
+  mas signout
+  echo -n "AppleID username: "
+  read appleID
+  /usr/local/bin/mas signin $appleID
+
+  # app store installations
+  for app in "${mass[@]}"; do
+    /usr/local/bin/mas install $app
+  done
+fi
 
 # finally, our beloved CLI things, which Simply Work™
 for package in "${packages[@]}"; do
