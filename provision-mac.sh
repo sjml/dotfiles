@@ -14,27 +14,48 @@ DOTFILES_ROOT=$(pwd -P)
 date >> provision_timing.txt
 timerData "START"
 
-# # looks like Homebrew handles this now!
-# xcode-select -p
-# while [[ $? -ne 0 ]]; do
-#   xcode-select --install
-#   echo "A dialog should be up asking to install command line tools. \nPress any key when finished."
-#   read -n 1
-#   xcode-select -p
-# done
-
-while true; do
-  echo "Are you signed in to the Mac App Store?"
-  read -p "(y/n) " yn
-  case $yn in
-    [Yy]* ) echo "OK, cool. Let's do this."; break;;
-    [Nn]* ) echo "Go do that first."; exit;;
-  esac
-done
-
 # copy dotfiles
-echo "Linking dotfiles; hang out for a second to answer potential prompts..."
+echo "Linking dotfiles..."
 ./install_symlinks.sh
+
+# Creating local keys (that will have to be manually uploaded to their
+#   respective hosts.
+echo "Creating SSH keys..."
+declare -a keyList=(bear dream github kiln bitbucket)
+email="shane@techie.net"
+byteSize=4096
+keyPath=$HOME/.ssh
+
+for keyname in "${keyList[@]}"; do
+  privateKey=$keyPath/${keyname}_rsa
+  if [[ -a $privateKey ]]; then
+    echo "$keyname already exists. Skipping."
+    continue
+  fi
+
+  finished=0
+  echo "GENERATING SSH KEY FOR $keyname"
+  while [[ $finished -eq 0 ]]; do
+    echo -n "  Passphrase: "
+    read -s pass1
+    echo
+    echo -n "  Confirm passphrase: "
+    read -s pass2
+    echo
+    if [[ $pass1 != $pass2 ]]; then
+      echo "Passphrases don't match. Try again!" >&2
+      continue
+    fi
+    if [[ ${#pass1} -lt 5 ]]; then
+      echo "Passphrase is too short. Try again!" >&2
+      continue
+    fi
+    finished=1
+  done
+
+  ssh-keygen -t rsa -b $byteSize -C $email -N $pass1 -f $privateKey
+  echo
+done
 
 # Ask for the administrator password
 echo "Now we need sudo access to install homebrew and change the shell."

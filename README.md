@@ -13,9 +13,11 @@ curl -fsSL https://raw.githubusercontent.com/sjml/dotfiles/master/bootstrap.sh |
 
 ## What it does
 Running `provision-mac.sh` on a clean user account will:
-  * Take everything in this directory that ends with .symlink and make a
+  * Take everything in this directory that ends with `.symlink` and make a
     symbolic link to it in the home directory, minus the `.symlink` and
     prepended with a `.`
+  * Symlink files in `osx-launchagents` to ~/Library/LaunchAgents
+  * Generate a set of local SSH keys
   * Install [homebrew](http://brew.sh)
   * Attempt to change the default shell to zsh
   * Make a `~/Projects` directory and symlink the dotfiles there

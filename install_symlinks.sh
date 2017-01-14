@@ -81,3 +81,17 @@ install_dotfiles () {
 }
 
 install_dotfiles
+
+
+install_launchagents() {
+  local overwrite_all=false backup_all=false skip_all=false
+
+  for src in $(find -H "$DOTFILES_ROOT/osx-launchagents" -maxdepth 2 -name '*.plist' -not -path '*.git*')
+  do
+    dst="$HOME/Library/LaunchAgents/$(basename "$src")"
+    link_file "$src" "$dst"
+  done
+}
+if [[ $OSTYPE == darwin* ]]; then
+  install_launchagents
+fi
