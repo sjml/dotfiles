@@ -1,6 +1,7 @@
 #!/bin/zsh
 
-# Creates a local SSH key and adds it to the macOS keychain if appropriate
+# Creates a local SSH key, adds it to the macOS keychain if appropriate,
+#  and offers to upload it to a remote host.
 ssh-make-key() {
   if [[ -n $1 ]]; then
     keyname=$1
@@ -44,9 +45,9 @@ ssh-make-key() {
   if [[ $OSTYPE == darwin* ]]; then
     if type expect > /dev/null; then
         expect -c "spawn ssh-add -K $privateKey
-                expect \"Enter passphrase for $privateKey:\"
-                send \"$pass1\n\"
-                interact"
+                   expect \"Enter passphrase for $privateKey:\"
+                   send \"$pass1\n\"
+                   interact"
     else
         echo "Key is made, but we need its passphrase once more to add it to the keychain."
         ssh-add -K $privateKey
