@@ -4,7 +4,8 @@
     "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
     "files.associations": {
         "Brewfile": "ruby",
-        "*.plist": "xml"
+        "*.plist": "xml",
+        "*.sublime-settings": "json"
     },
     "workbench.activityBar.visible": true,
     "git.confirmSync": false,
