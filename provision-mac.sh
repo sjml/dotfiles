@@ -108,6 +108,7 @@ osascript 2>/dev/null <<EOD
     delay 1
     set default settings to settings set "SJML"
 
+    delay 5
     set allOpenedWindows to id of every window
     repeat with windowID in allOpenedWindows
       if initialOpenedWindows does not contain windowID then
