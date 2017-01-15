@@ -1,0 +1,10 @@
+{
+	"color_scheme": "Packages/One Dark Color Scheme/One Dark.tmTheme",
+	"font_face": "Hack",
+	"font_size": 14,
+	"highlight_line": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	]
+}
