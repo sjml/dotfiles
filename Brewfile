@@ -13,7 +13,6 @@ brew 'unrar'
 
 # programming languages
 brew 'python3'
-brew 'mono'
 brew 'go'
 brew 'erlang'
 brew 'elixir'
@@ -108,6 +107,7 @@ cask 'postman'
 cask 'sqlectron'
 cask 'robomongo'
 cask 'xquartz'
+cask 'mono-mdk'
 
 # artsy
 cask 'unity'
@@ -141,6 +141,7 @@ cask 'iterm2'
 cask 'keybase'
 cask 'hammerspoon'
 cask 'karabiner-elements'
+cask 'scroll-reverser'
 cask 'ubersicht'
 cask 'arq'
 cask 'etcher'

@@ -45,20 +45,34 @@ ssh-make-key() {
   if [[ $OSTYPE == darwin* ]]; then
     if type expect > /dev/null; then
         expect -c "spawn ssh-add -K $privateKey
-                   expect \"Enter passphrase for $privateKey:\"
-                   send \"$pass1\n\"
-                   interact"
+                   expect \"Enter passphrase for $privateKey:\" {
+                     send \"$pass1\n\"
+                     interact
+                   }"
     else
         echo "Key is made, but we need its passphrase once more to add it to the keychain."
         ssh-add -K $privateKey
     fi
   fi
 
-  echo "Where do you want to upload the public key?"
-  echo "(Leave blank to not upload it anywhere.)"
-  echo -n "Target username@server: "
-  read serverTarget
-  if [[ -n $serverTarget ]]; then
-    cat ${privateKey}.pub | ssh $serverTarget 'cat >> .ssh/authorized_keys2'
+  echo "Map this key to a specific domain?"
+  echo "(Leave blank to keep it generic.)"
+  echo -n "Target domain: "
+  read domainTarget
+  if [[ -n $domainTarget ]]; then
+    echo "Upload key to server?"
+    echo "(Leave blank to skip upload.)"
+    echo -n "Username: "
+    read userNameTarget
+    if [[ -n $userNameTarget ]]; then
+      cat ${privateKey}.pub | ssh $userNameTarget@$domainTarget -o PasswordAuthentication=yes -o PubkeyAuthentication=no 'cat >> .ssh/authorized_keys2'
+    fi
+    echo "Host $domainTarget" >> ~/.ssh/config
+    echo "  IdentityFile $privateKey" >> ~/.ssh/config
+    echo "  IdentitiesOnly yes" >> ~/.ssh/config
+    echo "  Port 22" >> ~/.ssh/config
+    echo "" >> ~/.ssh/config
   fi
+
+  echo "All done!"
 }
