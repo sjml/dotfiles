@@ -75,4 +75,9 @@ ssh-make-key() {
   fi
 
   echo "All done!"
+
+  if [[ $OSTYPE == darwin* ]]; then
+    cat ${privateKey}.pub | pbcopy
+    echo "(Public key is in your clipboard.)"
+  fi
 }
