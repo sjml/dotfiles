@@ -1,6 +1,8 @@
 EditorConfig.EditorConfig
 LaurentTreguier.vscode-simple-icons
 azemoh.theme-onedark
+dbaeumer.vscode-eslint
+donjayamanne.githistory
 donjayamanne.python
 eg2.tslint
 lukehoban.Go
