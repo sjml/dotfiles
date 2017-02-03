@@ -5,7 +5,8 @@
     "files.associations": {
         "Brewfile": "ruby",
         "*.plist": "xml",
-        "*.sublime-settings": "json"
+        "*.sublime-settings": "json",
+        ".localrc": "shellscript"
     },
     "workbench.activityBar.visible": true,
     "git.confirmSync": false,

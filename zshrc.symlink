@@ -3,7 +3,7 @@ ZSH=~/.zsh.d
 # put any machine-specific environment variables in .localrc
 #   (NB that file is not in source control)
 if [[ -a ~/.localrc ]] then;
-	source ~/.localrc
+  source ~/.localrc
 fi
 
 source $ZSH/env.zsh
