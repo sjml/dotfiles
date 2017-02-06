@@ -12,5 +12,13 @@
     "git.confirmSync": false,
     "window.zoomLevel": 0,
     "python.linting.pylintEnabled": false,
-    "terminal.integrated.fontSize": 14
+    "terminal.integrated.fontSize": 14,
+    "editor.renderWhitespace": "boundary",
+    "editor.snippetSuggestions": "top",
+    "editor.cursorBlinking": "smooth",
+    "editor.renderControlCharacters": true,
+    "workbench.editor.enablePreview": false,
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "git.enableLongCommitWarning": false
 }
