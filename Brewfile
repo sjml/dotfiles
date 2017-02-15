@@ -34,6 +34,7 @@ brew 'git-lfs'
 brew 'git-cal'
 brew 'tig'
 brew 'cmake'
+brew 'automake'
 brew 'clang-format'
 brew 'swig'
 brew 'hub'
@@ -64,9 +65,8 @@ brew 'dockutil'
 brew 'trash'
 
 # amusements!
-tap  'homebrew/games'
-brew 'homebrew/games/nethacked'
-brew 'homebrew/games/frotz'
+brew 'nethack'
+brew 'frotz'
 
 
 # now getting into full macOS apps

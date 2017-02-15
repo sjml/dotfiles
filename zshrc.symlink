@@ -40,7 +40,7 @@ source $ZSH/vendor/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH/vendor/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # nvm
-export NVM_LAZY_LOAD=true
+# export NVM_LAZY_LOAD=true
 source $ZSH/vendor/zsh-nvm/zsh-nvm.plugin.zsh
 
 # if we start a tmux session from a virtualenved environment
