@@ -61,6 +61,7 @@ brew 'lame'
 brew 'libdvdcss'
 brew 'youtube-dl'
 brew 'speedtest-cli'
+brew 'dieharder'
 brew 'dockutil'
 brew 'trash'
 
@@ -111,6 +112,7 @@ cask 'mono-mdk'
 
 # artsy
 cask 'unity'
+cask 'godot'
 cask 'blender'
 cask 'tiled'
 cask 'bfxr'
