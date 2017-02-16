@@ -1,3 +1,0 @@
-Mercurial indicator in zsh prompt is slow
-  - profile which parts of it are the worst
-  - maybe move the whole thing to a single Python script to save invocations?
