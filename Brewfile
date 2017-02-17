@@ -108,11 +108,13 @@ cask 'postman'
 cask 'sqlectron'
 cask 'robomongo'
 cask 'xquartz'
+cask 'dotnet'
 cask 'mono-mdk'
 
 # artsy
 cask 'unity'
 cask 'godot'
+cask 'love'
 cask 'blender'
 cask 'tiled'
 cask 'bfxr'

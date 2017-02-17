@@ -1,10 +1,14 @@
 EditorConfig.EditorConfig
 LaurentTreguier.vscode-simple-icons
+Tobiah.unity-tools
+Unity.unity-debug
 azemoh.theme-onedark
+bungcip.better-toml
 dbaeumer.vscode-eslint
 donjayamanne.githistory
 donjayamanne.python
 eg2.tslint
 lukehoban.Go
 ms-vscode.cpptools
+ms-vscode.csharp
 ms-vscode.sublime-keybindings
