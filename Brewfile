@@ -113,7 +113,11 @@ cask 'mono-mdk'
 
 # artsy
 cask 'unity'
-cask 'godot'
+cask 'unity-standard-assets'
+cask 'unity-webgl-support-for-editor'
+cask 'unity-ios-support-for-editor'
+cask 'unity-windows-support-for-editor'
+cask 'unity-linux-support-for-editor'
 cask 'love'
 cask 'blender'
 cask 'tiled'

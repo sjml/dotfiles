@@ -20,5 +20,6 @@
     "workbench.editor.enablePreview": false,
     "files.insertFinalNewline": true,
     "git.enableLongCommitWarning": false,
-    "editor.wordWrap": true
+    "editor.wordWrap": true,
+    "editor.codeLens": false
 }
