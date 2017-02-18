@@ -14,7 +14,6 @@ else
 fi
 
 alias mkdir="mkdir -p"
-alias gitsubpull="git pull --recurse-submodules; git submodule update --recursive --remote"
 
 # Mac-specific aliases
 if [[ $OSTYPE == darwin* ]]; then
