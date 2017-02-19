@@ -131,6 +131,7 @@ declare -a dockList=(\
   Sublime\ Text\
   Visual\ Studio\ Code\
   Xcode\
+  Unity/Unity\
   VMware\ Fusion\
   Utilities/Terminal\
   System\ Preferences\

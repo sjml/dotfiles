@@ -94,11 +94,8 @@ cask 'scrivener'
 cask 'libreoffice'
 
 # development
-#    (one of these days I really need to settle on a text editor)
 cask 'sublime-text'
 cask 'visual-studio-code'
-cask 'macvim'
-cask 'atom'
 cask 'arduino'
 cask 'processing'
 cask 'kaleidoscope'
