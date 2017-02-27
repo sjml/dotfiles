@@ -86,7 +86,7 @@ timerData "POST-PYTHON"
 # node setup
 zsh -i -c 'nvm install node; \
            nvm use node; \
-           npm install -g typescript angular-cli live-server vorlon surge;'
+           npm install -g typescript @angular/cli live-server vorlon surge;'
 
 timerData "POST-NODE"
 
