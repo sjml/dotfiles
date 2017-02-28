@@ -88,7 +88,6 @@ cask 'tunnelbear'
 cask 'transmit'
 cask 'slack'
 cask 'gitter'
-cask 'adium'
 cask 'transmission'
 
 # writing and office
