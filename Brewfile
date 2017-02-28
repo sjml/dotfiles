@@ -176,6 +176,11 @@ cask 'font-inconsolata'
 cask 'font-hack'
 
 
+# drivers
+tap  'caskroom/drivers'
+cask 'xbox360-controller-driver'
+
+
 # and finally, stuff from the Mac App Store
 brew 'mas'
 
