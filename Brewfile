@@ -140,10 +140,12 @@ cask 'dwarf-fortress'
 cask 'minecraft'
 cask 'boxer'
 cask 'handbrake'
+cask 'snes9x'
 cask 'vlc'
 
 # utilities
 cask 'iterm2'
+cask 'coconutbattery'
 cask 'keybase'
 cask 'hammerspoon'
 cask 'karabiner-elements'

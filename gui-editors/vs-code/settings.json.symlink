@@ -21,5 +21,7 @@
     "files.insertFinalNewline": true,
     "git.enableLongCommitWarning": false,
     "editor.wordWrap": true,
-    "editor.codeLens": false
+    "editor.codeLens": false,
+    "workbench.colorTheme": "One Dark",
+    "workbench.iconTheme": "simple-icons"
 }
