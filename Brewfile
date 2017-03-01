@@ -145,7 +145,6 @@ cask 'vlc'
 
 # utilities
 cask 'iterm2'
-cask 'coconutbattery'
 cask 'keybase'
 cask 'hammerspoon'
 cask 'karabiner-elements'
