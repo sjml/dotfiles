@@ -20,8 +20,8 @@
     "workbench.editor.enablePreview": false,
     "files.insertFinalNewline": true,
     "git.enableLongCommitWarning": false,
-    "editor.wordWrap": true,
     "editor.codeLens": false,
     "workbench.colorTheme": "One Dark",
-    "workbench.iconTheme": "simple-icons"
+    "workbench.iconTheme": "simple-icons",
+    "editor.minimap.renderCharacters": false
 }
