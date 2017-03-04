@@ -1,10 +1,4 @@
-origin	git@github.com:sjml/dotfiles.git (fetch)
-origin	git@github.com:sjml/dotfiles.git (push)
-vundle.vim	git@github.com:VundleVim/Vundle.vim.git (push)
-vundle.vim	git@github.com:VundleVim/Vundle.vim.git (fetch)
-zsh-autosuggestions	git@github.com:zsh-users/zsh-autosuggestions.git (fetch)
-zsh-autosuggestions	git@github.com:zsh-users/zsh-autosuggestions.git (push)
-zsh-nvm	git@github.com:lukechilds/zsh-nvm.git (fetch)
-zsh-nvm	git@github.com:lukechilds/zsh-nvm.git (push)
-zsh-syntax-highlighting	git@github.com:zsh-users/zsh-syntax-highlighting.git (fetch)
-zsh-syntax-highlighting	git@github.com:zsh-users/zsh-syntax-highlighting.git (push)
+vundle.vim	git@github.com:VundleVim/Vundle.vim.git	vim.symlink/bundle/Vundle.vim
+zsh-autosuggestions	git@github.com:zsh-users/zsh-autosuggestions.git	zsh.d.symlink/vendor/zsh-autosuggestions
+zsh-nvm	git@github.com:lukechilds/zsh-nvm.git	zsh.d.symlink/vendor/zsh-nvm
+zsh-syntax-highlighting	git@github.com:zsh-users/zsh-syntax-highlighting.git	zsh.d.symlink/vendor/zsh-syntax-highlighting

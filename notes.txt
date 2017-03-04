@@ -5,7 +5,7 @@ Mercurial indicator in zsh prompt is slow
 
 NOTES:
 To add new subtree:
-    git remote add [REMOTE_NAME] --prefix git@github.com:[USER_NAME]/[REPO_NAME].git
+    git remote add [REMOTE_NAME] git@github.com:[USER_NAME]/[REPO_NAME].git
     git subtree add --prefix=[PATH_TO_LOCAL_SUBTREE] --squash [REMOTE_NAME] master
 
 To update subtree:
