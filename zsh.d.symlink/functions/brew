@@ -1,9 +1,8 @@
 #!/bin/zsh
 
-# A simple wrapper on the homebrew command to check
-#  potential installations and make sure we don't
-#  accidentally pull in the homebrew version of Python,
-#  which has the potential to upend a lot of apple carts.
+# A simple wrapper on the homebrew command to check  potential installations 
+#  and make sure we don't accidentally pull in the homebrew version of Python
+#  or Node.js, which have the potential to mess up outside installations.
 
 brew() {
   local _brew="/usr/local/bin/brew"
@@ -28,14 +27,11 @@ brew() {
         fi
 
         declare -a avoidances=(python node)
-        for dep in $avoidances
-        do
-          local deps=$($_brew deps $pkg 2>/dev/null | grep "^${dep}$")
-          if [[ -n $deps ]]; then
-            echo "Cancelling installation; package $pkg will pull in Homebrew's ${dep}, which we don't want." | fold -s -w $COLUMNS
-            return 1
-          fi
-        done
+        local badDep=$($_brew deps $pkg 2>/dev/null | grep -E "^(${(j:|:)avoidances})$")
+        if [[ -n $badDep ]]; then
+          echo "Cancelling installation; package $pkg will pull in Homebrew's ${badDep}, which we don't want." | fold -s -w $COLUMNS
+          return 1
+        fi
       done
       $_brew $@
       ;;
