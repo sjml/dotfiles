@@ -17,13 +17,15 @@ requests
 scrapy
 beautifulsoup4
 
-# math
+# math and visualization
 numpy
 scipy
 matplotlib
 jupyter
 pandas
 seaborn
+mpld3
+plotly
 
 # NLP
 Pattern

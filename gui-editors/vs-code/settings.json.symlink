@@ -20,9 +20,11 @@
     "workbench.editor.enablePreview": false,
     "files.insertFinalNewline": true,
     "git.enableLongCommitWarning": false,
-    "editor.codeLens": false,
-    "workbench.colorTheme": "One Dark",
+    "workbench.colorTheme": "Atom One Dark",
     "workbench.iconTheme": "simple-icons",
     "editor.minimap.renderCharacters": false,
-    "editor.minimap.enabled": true
+    "editor.minimap.enabled": true,
+    "[csharp]": {
+        "editor.codeLens": false
+    }
 }
