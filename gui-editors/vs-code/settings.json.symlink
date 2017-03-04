@@ -23,5 +23,6 @@
     "editor.codeLens": false,
     "workbench.colorTheme": "One Dark",
     "workbench.iconTheme": "simple-icons",
-    "editor.minimap.renderCharacters": false
+    "editor.minimap.renderCharacters": false,
+    "editor.minimap.enabled": true
 }

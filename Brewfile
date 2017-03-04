@@ -153,7 +153,6 @@ cask 'arq'
 cask 'etcher'
 cask 'the-unarchiver'
 cask 'omnidisksweeper'
-cask 'flux'
 cask 'selfcontrol'
 
 # quicklook stuff
