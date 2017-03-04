@@ -22,7 +22,7 @@ echo "Linking dotfiles..."
 echo "Now we need sudo access to install homebrew, some GUI apps, and change the shell."
 sudo -v
 
-timerData "POST-KEYS"
+timerData "PRE-BREW"
 
 # install homebrew
 export HOMEBREW_NO_ANALYTICS=1
