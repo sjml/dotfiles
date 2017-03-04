@@ -6,7 +6,7 @@
 cd "$(dirname "$0")"
 DOTFILES_ROOT=$(pwd -P)
 
-source ./resources/utility_functions.sh
+source ./utility/utility_functions.sh
 
 install_dotfiles () {
   local overwrite_all=false backup_all=false skip_all=false
