@@ -150,7 +150,6 @@ timerData "POST-DOCK"
 ## too slow; commented out for now. run manually when you want it.
 # python -m nltk.downloader all
 # python -m spacy.en.download all
-# python -m textblob.download_corpora
 
 timerData "DONE"
 
