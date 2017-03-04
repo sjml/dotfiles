@@ -2,7 +2,8 @@ EditorConfig.EditorConfig
 LaurentTreguier.vscode-simple-icons
 Tobiah.unity-tools
 Unity.unity-debug
-azemoh.theme-onedark
+akamud.vscode-theme-onedark
+akamud.vscode-theme-onelight
 bungcip.better-toml
 dbaeumer.vscode-eslint
 donjayamanne.githistory
