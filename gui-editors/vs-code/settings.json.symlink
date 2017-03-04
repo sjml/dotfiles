@@ -17,7 +17,6 @@
     "editor.snippetSuggestions": "top",
     "editor.cursorBlinking": "smooth",
     "editor.renderControlCharacters": true,
-    "workbench.editor.enablePreview": false,
     "files.insertFinalNewline": true,
     "git.enableLongCommitWarning": false,
     "workbench.colorTheme": "Atom One Dark",
