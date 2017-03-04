@@ -5,6 +5,7 @@ Cython
 cffi
 twine
 mkdocs
+autopep8
 
 # scripting
 plumbum
@@ -26,6 +27,7 @@ pandas
 seaborn
 mpld3
 plotly
+vispy
 
 # NLP
 Pattern

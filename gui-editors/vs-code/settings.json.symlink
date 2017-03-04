@@ -26,5 +26,7 @@
     "editor.minimap.enabled": true,
     "[csharp]": {
         "editor.codeLens": false
-    }
+    },
+    "python.linting.enabledWithoutWorkspace": false,
+    "python.jupyter.appendResults": false
 }
