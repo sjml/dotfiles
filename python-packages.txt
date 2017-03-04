@@ -21,11 +21,15 @@ beautifulsoup4
 numpy
 scipy
 matplotlib
+jupyter
+pandas
+seaborn
 
 # NLP
 Pattern
 nltk
 spacy
+textblob
 
 # for funsies
 rainbowstream
