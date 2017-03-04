@@ -147,7 +147,6 @@ killall Dock
 timerData "POST-DOCK"
 
 # NLP data comes last because it can take a looooong time
-## too slow; commented out for now. run manually when you want it.
 python -m nltk.downloader all
 python -m spacy.en.download all
 
