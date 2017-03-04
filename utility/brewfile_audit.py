@@ -5,9 +5,11 @@ import sys
 import re
 import subprocess
 
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 packages = []
 casks = []
-brewData = open("Brewfile", "r").readlines()
+brewData = open("../Brewfile", "r").readlines()
 for command in brewData:
     if (len(command.strip()) == 0):
         continue

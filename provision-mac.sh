@@ -40,7 +40,7 @@ sudo chsh -s $targetZShell $USER
 
 # using a DIY replacement for `brew bundle` that handles permissions better
 echo "Installing from the Brewfile..."
-./brewfile_diy.sh
+./utility/brewfile_diy.sh
 
 # the diy script does this internally, but just so it's explicit out here, too
 sudo -k

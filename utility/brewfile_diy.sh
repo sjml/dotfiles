@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "$(dirname "$0")"
+
 # keep up our permissions until we've gotten through everything
 still_need_sudo=1
 while still_need_sudo; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
@@ -29,7 +31,7 @@ while read command; do
     appId=$(echo $command | sed -E "s/.*id:[[:space:]]+([0-9]*)/\1/")
     mass+=($appId)
   fi
-done <Brewfile
+done <../Brewfile
 
 
 # I wanna tap everything
