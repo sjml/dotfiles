@@ -7,9 +7,6 @@ twine
 mkdocs
 autopep8
 
-# scripting
-plumbum
-
 # image processing
 Pillow
 
