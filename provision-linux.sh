@@ -46,9 +46,8 @@ local pyPath="$(python -m site --user-base)/bin"
 
 # install zsh-nvm, Node.js, and yarn, but nothing else
 zsh -i -c 'nvm install node; \
-           nvm use node; \
-           npm install -g yarn'
+           nvm use node;'
+          #  npm install -g yarn'
 
 cd ~
-read -n 1 -p "And that's it! You're good to go. Press any key to close out."
-exec $targetZShell
+echo "And that's it! You're good to go."
