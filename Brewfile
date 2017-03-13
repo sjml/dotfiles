@@ -154,6 +154,7 @@ cask 'etcher'
 cask 'the-unarchiver'
 cask 'omnidisksweeper'
 cask 'selfcontrol'
+cask 'aerial'
 
 # quicklook stuff
 cask 'qlcolorcode'
