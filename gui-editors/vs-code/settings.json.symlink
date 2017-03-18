@@ -27,5 +27,5 @@
         "editor.codeLens": false
     },
     "python.linting.enabledWithoutWorkspace": false,
-    "python.jupyter.appendResults": false
+    "jupyter.appendResults": false
 }
