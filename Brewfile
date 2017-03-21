@@ -139,8 +139,8 @@ cask 'itch'
 cask 'dwarf-fortress'
 cask 'minecraft'
 cask 'boxer'
-cask 'handbrake'
 cask 'snes9x'
+cask 'handbrake'
 cask 'vlc'
 
 # utilities
