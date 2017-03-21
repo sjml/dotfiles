@@ -97,6 +97,7 @@ cask 'libreoffice'
 # development
 cask 'sublime-text'
 cask 'visual-studio-code'
+cask 'macdown'
 cask 'arduino'
 cask 'processing'
 cask 'kaleidoscope'
@@ -187,7 +188,6 @@ brew 'mas'
 mas 'Xcode',              id: 497799835
 mas 'Base',               id: 402383384
 mas 'Soulver',            id: 413965349
-mas 'Marked',             id: 448925439
 
 # internet
 mas 'Tweetbot',           id: 557168941
