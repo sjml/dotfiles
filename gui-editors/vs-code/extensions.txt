@@ -7,6 +7,7 @@ akamud.vscode-theme-onelight
 bungcip.better-toml
 dbaeumer.vscode-eslint
 donjayamanne.githistory
+donjayamanne.jupyter
 donjayamanne.python
 eg2.tslint
 lukehoban.Go
