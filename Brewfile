@@ -123,6 +123,7 @@ cask 'bfxr'
 cask 'twine'
 cask 'inkscape'
 cask 'sketchup'
+cask 'nodebox'
 cask 'fontforge'
 
 # various virtualization thingies
