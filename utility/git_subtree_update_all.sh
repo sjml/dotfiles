@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
-cd "$(dirname "$0")"
+SRC_DIR=$(cd "$(dirname "$0")"; pwd)
+cd $SRC_DIR
 
 while read data; do
   local name=$data[(w)1]
@@ -23,7 +24,7 @@ while read data; do
 
   cd ..
   git subtree pull --prefix=$prefix --squash $name master
-  cd "$(dirname "$0")"
+  cd $SRC_DIR
   
 done <git_subtrees.txt
 
