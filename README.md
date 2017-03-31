@@ -27,7 +27,7 @@ Running `provision-mac.sh` on a clean user account will:
   * Install a set of vim bundles, managed by [Vundle](https://github.com/VundleVim/Vundle.vim)
   * Install pip
   * Install all packages listed in `python-packages.txt`
-  * Use that zsh-nvm to install Node.js and a few node utilities
+  * Use zsh-nvm to install Node.js and a few node utilities
   * Set up appearance of Terminal.app
   * Set up the Dock
   * Download NLP data for various Python libraries
