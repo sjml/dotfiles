@@ -46,11 +46,11 @@ brew 'webkit2png'
 brew 'pngcrush'
 brew 'pngquant'
 brew 'zopfli'
+brew 'guetzli'
 brew 'imagemagick'
 brew 'ghostscript'
 brew 'sassc'
-brew 'ack'
-brew 'the_silver_searcher'
+brew 'ripgrep'
 brew 'peco'
 
 # various and sundry
