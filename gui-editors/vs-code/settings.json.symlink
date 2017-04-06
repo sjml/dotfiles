@@ -18,7 +18,6 @@
     "editor.cursorBlinking": "smooth",
     "editor.renderControlCharacters": true,
     "files.insertFinalNewline": true,
-    "git.enableLongCommitWarning": false,
     "workbench.colorTheme": "Atom One Dark",
     "workbench.iconTheme": "simple-icons",
     "editor.minimap.renderCharacters": false,
