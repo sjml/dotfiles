@@ -76,9 +76,10 @@ brew 'frotz'
 tap 'caskroom/cask'
 
 # infrastructure
-cask 'dropbox'
 cask '1password'
+cask 'dropbox'
 cask 'google-drive'
+cask 'onedrive'
 
 # internet
 cask 'firefox'
