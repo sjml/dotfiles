@@ -18,6 +18,11 @@ timerData "START"
 echo "Linking dotfiles..."
 ./install_symlinks.sh
 
+# ssh config
+echo "Creating SSH configuration..."
+mkdir -p ~/.ssh
+cp resources/ssh_config.base ~/.ssh/config
+
 # Ask for the administrator password
 echo "Now we need sudo access to install homebrew, some GUI apps, and change the shell."
 sudo -v

@@ -19,6 +19,11 @@ fi
 echo "Linking dotfiles; hang out for a second to answer potential prompts about overwriting..."
 ./install_symlinks.sh
 
+# ssh config
+echo "Creating SSH configuration..."
+mkdir -p ~/.ssh
+cp resources/ssh_config.base ~/.ssh/config
+
 # make sure we're running in a local git working copy
 #  (this hooks us in if we were set up from the bootstrap script)
 if [[ ! -d .git ]]; then

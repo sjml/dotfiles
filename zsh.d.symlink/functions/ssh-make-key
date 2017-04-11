@@ -67,10 +67,22 @@ ssh-make-key() {
     if [[ -n $userNameTarget ]]; then
       cat ${privateKey}.pub | ssh $userNameTarget@$domainTarget -o PasswordAuthentication=yes -o PubkeyAuthentication=no 'cat >> .ssh/authorized_keys2'
     fi
+
+    lineBreak=$(grep -n "####" ~/.ssh/config | cut -f1 -d:)
+    lineBreak=$(expr $lineBreak - 1)
+    prefile=$(head -$lineBreak ~/.ssh/config)
+    echo "$prefile" > ~/.ssh/config # overwriting old file
+    echo "" >> ~/.ssh/config
+
     echo "Host $domainTarget" >> ~/.ssh/config
     echo "  IdentityFile $privateKey" >> ~/.ssh/config
     echo "  IdentitiesOnly yes" >> ~/.ssh/config
+    echo "  PubkeyAuthentication yes" >> ~/.ssh/config
+    echo "  PasswordAuthentication no" >> ~/.ssh/config
     echo "  Port 22" >> ~/.ssh/config
+    echo "" >> ~/.ssh/config
+
+    cat ~/.dotfiles/resources/ssh_config.base >> ~/.ssh/config
     echo "" >> ~/.ssh/config
   fi
 
