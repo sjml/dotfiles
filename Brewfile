@@ -24,6 +24,7 @@ brew 'elm'
 # network stuff
 brew 'wget'
 brew 'nmap'
+brew 'tor'
 brew 'arm'
 brew 'links'
 brew 'elinks'

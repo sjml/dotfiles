@@ -20,6 +20,18 @@ install_dotfiles () {
 
 install_dotfiles
 
+install_homefiles () {
+  local overwrite_all=false backup_all=false skip_all=false
+
+  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.homelink' -not -path '*.git*')
+  do
+    dst="$HOME/$(basename "${src%.*}")"
+    link_file "$src" "$dst"
+  done
+}
+
+install_homefiles
+
 
 install_launchagents() {
   local overwrite_all=false backup_all=false skip_all=false
