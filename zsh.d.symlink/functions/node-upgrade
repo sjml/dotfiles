@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+
+node-upgrade() {
+  local localVersion=$(nvm version)
+  local remoteVersion=$(nvm version-remote node)
+
+  if [[ $localVersion != $remoteVersion ]]; then
+    echo "Installing $remoteVersion..."
+    nvm install node --reinstall-packages-from=$localVersion
+    echo "Updating global packages..."
+    npm update -g
+    echo "Uninstalling $localVersion..."
+    nvm uninstall $localVersion
+    echo "Done!"
+  else
+    echo "Latest node already installed."
+  fi
+}
