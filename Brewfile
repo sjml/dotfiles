@@ -111,6 +111,7 @@ cask 'robomongo'
 cask 'xquartz'
 cask 'dotnet'
 cask 'mono-mdk'
+cask 'racket'
 
 # artsy
 cask 'unity'
