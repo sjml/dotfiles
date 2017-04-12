@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # Only run pip normally if we're currently running it from
 #  a virtual environment. Otherwise only let it install to

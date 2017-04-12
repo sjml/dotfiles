@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # Creates a local SSH key, adds it to the macOS keychain if appropriate,
 #  and offers to upload it to a remote host.

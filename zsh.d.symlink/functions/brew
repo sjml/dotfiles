@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # A simple wrapper on the homebrew command to check potential installations
 #  and make sure we don't accidentally pull in the homebrew version of Python
