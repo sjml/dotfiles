@@ -53,6 +53,7 @@ brew 'ghostscript'
 brew 'sassc'
 brew 'ripgrep'
 brew 'peco'
+brew 'vitorgalvao/tiny-scripts/cask-repair'
 
 # various and sundry
 brew 'pandoc'
