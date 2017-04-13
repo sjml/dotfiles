@@ -27,6 +27,11 @@ brew() {
         fi
 
         declare -a avoidances=(python node)
+        local badPak=$(echo $pkg | grep -E "^(${(j:|:)avoidances})$")
+        if [[ -n $badPak ]]; then
+          echo "Cancelling installation; don't want to install $pkg from Homebrew." | fold -s -w $COLUMNS
+          return 1
+        fi
         local badDep=$($_brew deps $pkg 2>/dev/null | grep -E "^(${(j:|:)avoidances})$")
         if [[ -n $badDep ]]; then
           echo "Cancelling installation; package $pkg will pull in Homebrew's ${badDep}, which we don't want." | fold -s -w $COLUMNS
