@@ -14,3 +14,4 @@ lukehoban.Go
 ms-vscode.cpptools
 ms-vscode.csharp
 ms-vscode.sublime-keybindings
+vsmobile.vscode-react-native
