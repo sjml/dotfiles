@@ -3,7 +3,14 @@
 # 'Wi-Fi' or 'Ethernet' or 'Display Ethernet'
 INTERFACE=Wi-Fi
 
+function exit_before_sudo() {
+  exit 13
+}
+trap exit_before_sudo INT
+
 # Ask for the administrator password upfront
+echo "Need sudo privileges to set up Tor routing on $INTERFACE..."
+sudo -k # to make sure this can't slip by
 sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until finished
@@ -15,6 +22,7 @@ function disable_proxy() {
   echo "$(tput setaf 64)" #green
   echo "SOCKS proxy disabled."
   echo "$(tput sgr0)" # color reset
+  sudo -k
 }
 trap disable_proxy INT
 
