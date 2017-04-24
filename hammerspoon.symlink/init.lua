@@ -1,3 +1,7 @@
+-- Note: if Hammerspoon's menubar and dock icons are hidden,
+--   get back to the preferences screen by activating the
+--   console from Spotlight and hitting Command-Comma.
+
 function reloadConfig(files)
     doReload = false
     for _,file in pairs(files) do
