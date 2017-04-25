@@ -3,9 +3,9 @@
 	"font_face": "Hack",
 	"font_size": 16,
 	"highlight_line": true,
-    "scroll_past_end": true,
 	"ignored_packages":
 	[
 		"Vintage"
-	]
+	],
+	"scroll_past_end": true
 }

@@ -123,9 +123,10 @@ EOD
 # set up Dock
 declare -a dockList=(\
   App\ Store\
-  Slack\
-  Tweetbot\
+  Mail\
   Firefox\
+  Tweetbot\
+  Slack\
   iTunes\
   Photos\
   Steam\
