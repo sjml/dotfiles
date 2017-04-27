@@ -28,7 +28,9 @@ Running `provision-mac.sh` on a clean user account will:
   * Install pip
   * Install all packages listed in `python-packages.txt`
   * Use zsh-nvm to install Node.js and a few node utilities
+  * Sets the Caps-Lock key to act as a Control key
   * Set up appearance of Terminal.app
+  * Various and sundry macOS GUI settings (Finder behaviors, Trackpad settings, etc.)
   * Set up the Dock
   * Download NLP data for various Python libraries
 
