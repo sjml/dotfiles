@@ -51,7 +51,8 @@ echo "Installing from the Brewfile..."
 sudo -k
 
 # clean up after homebrew
-brew cleanup -s
+echo "Cleaning up Homebrew..."
+brew cleanup -s --force
 brew cask cleanup
 rm -rf $(brew --cache)
 
@@ -95,6 +96,26 @@ zsh -i -c 'nvm install node; \
 
 timerData "POST-NODE"
 
+# swap caps-lock for control
+osascript 2>/dev/null <<EOD
+  tell application "System Preferences"
+    activate
+    reveal anchor "keyboardTab" of pane id "com.apple.preference.keyboard"
+    delay 0.5
+  end tell
+  tell application "System Events" to tell process "System Preferences"
+    tell window "Keyboard"
+      click button 1 of tab group 1
+      tell sheet 1
+        click pop up button "Caps Lock (⇪) Key:"
+        pick menu item "⌃ Control" of menu 1 of pop up button "Caps Lock (⇪) Key:"
+        click button "OK"
+      end tell
+    end tell
+  end tell
+  tell application "System Preferences" to quit
+EOD
+
 # set up Terminal
 osascript 2>/dev/null <<EOD
   tell application "Terminal"
@@ -119,6 +140,151 @@ osascript 2>/dev/null <<EOD
     end repeat
   end tell
 EOD
+
+# Turn off unneeded menu bar items
+defaults -currentHost write dontAutoLoad -array-add "/System/Library/CoreServices/Menu Extras/Displays.menu"
+defaults -currentHost write dontAutoLoad -array-add "/System/Library/CoreServices/Menu Extras/TimeMachine.menu"
+defaults -currentHost write dontAutoLoad -array-add "/System/Library/CoreServices/Menu Extras/Volume.menu"
+defaults -currentHost write dontAutoLoad -array-add "/System/Library/CoreServices/Menu Extras/User.menu"
+
+# Clock formatting: with seconds, 12 hr AM/PM, no flashing separators
+defaults write com.apple.menuextra.clock DateFormat -string "h:mm:ss a"
+defaults write com.apple.menuextra.clock FlashDateSeparators -bool false
+
+# Always show scrollbars
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+
+# Text selection in QuickLook
+defaults write com.apple.finder QLEnableTextSelection -bool true
+
+# Don't open folders in tabs
+defaults write com.apple.finder FinderSpawnTab -bool false
+
+# Set ~ as the default location for new Finder windows
+defaults write com.apple.finder NewWindowTarget -string "PfHm"
+defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME/"
+
+# Show icons for external hard drives, servers, and removable media on the desktop
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+
+# Finder: show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Finder: show status bar
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Finder: show path bar
+defaults write com.apple.finder ShowPathbar -bool true
+
+# When performing a search, search the current folder by default
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Disable the warning when changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Avoid creating .DS_Store files on network or USB volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+# Use list view in all Finder windows by default
+# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+# Show the ~/Library folder
+chflags nohidden ~/Library
+
+# Expand save and print panels by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+# Save to disk (not to iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Automatically quit printer app once the print jobs complete
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+# disable tap to click
+defaults write com.apple.AppleMultitouchTrackpad Clicking -int 0
+
+# enable two-fingered right-click
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -int 1
+
+# disable three-fingered tap for lookup
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -int 0
+
+# enable three-finger swipe through pages
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 1
+
+# enable four-finger swipe through fullscreen apps
+defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerHorizSwipeGesture -int 2
+
+# enable four-finger-swipes for Mission Control and App Expose
+defaults write com.apple.dock showMissionControlGestureEnabled -bool true
+defaults write com.apple.dock showAppExposeGestureEnabled -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerVertSwipeGesture -int 2
+
+# enable four-finger spread to show desktop
+defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerPinchGesture -int 2
+defaults write com.apple.AppleMultitouchTrackpad TrackpadFiveFingerPinchGesture -int 2
+defaults write com.apple.dock showDesktopGestureEnabled -bool true
+
+# disable Launchpad gesture
+defaults write com.apple.dock showLaunchpadGestureEnabled -bool false
+
+# Enable Control-Scroll to zoom screen
+defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
+
+# Require password 5 minutes after sleep or screen saver begins
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -float 300.0
+
+# Set screen saver to Shell with visible clock
+defaults -currentHost write com.apple.screensaver modulePath -string "/System/Library/Screen Savers/Shell.saver"
+defaults -currentHost write com.apple.screensaver moduleName -string "Shell"
+defaults -currentHost write com.apple.screensaver showClock -bool true
+
+# Disable shadow in screenshots
+defaults write com.apple.screencapture disable-shadow -bool true
+
+# Disable Dashboard
+defaults write com.apple.dashboard mcx-disabled -bool true
+
+# Set the icon size of Dock items to biggest
+defaults write com.apple.dock tilesize -int 128
+
+# Automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool true
+
+# Turn off Dock magnification
+defaults write com.apple.dock magnification -bool false
+
+# Hot corner, bottom-left: Start screen saver
+defaults write com.apple.dock wvous-bl-corner -int 5
+defaults write com.apple.dock wvous-bl-modifier -int 0
+
+# Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app
+defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\U21a9"
+
+# Enable the automatic update check
+defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+
+# Check for software updates daily, not just once per week
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+
+# Download newly available updates in background
+defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
+
+# Don't automatically update apps
+defaults write com.apple.commerce AutoUpdate -bool false
+
+# Install System data files & security updates
+defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 
 # set up Dock
 declare -a dockList=(\
@@ -148,9 +314,14 @@ do
   dockutil --add "/Applications/$app.app" --no-restart
 done
 dockutil --add "~/Downloads" --section others --view grid --display stack --no-restart
-killall Dock
 
-timerData "POST-DOCK"
+killall cfprefsd
+killall SystemUIServer
+killall Finder
+killall Dock
+killall Mail
+
+timerData "POST-GUI"
 
 # NLP data comes last because it can take a looooong time
 python -m nltk.downloader all
@@ -159,4 +330,4 @@ python -m spacy.en.download all
 timerData "DONE"
 
 cd ~
-echo "And that's it! You're good to go."
+echo "And that's it! You're good to go, but restarting might be wise."
