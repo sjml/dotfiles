@@ -31,5 +31,6 @@
     },
     "[c]": {
         "editor.quickSuggestions": false
-    }
+    },
+    "workbench.colorTheme": "Atom One Dark"
 }
