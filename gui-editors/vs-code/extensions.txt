@@ -11,7 +11,7 @@ donjayamanne.jupyter
 donjayamanne.python
 eg2.tslint
 lukehoban.Go
+mrcrowl.hg
 ms-vscode.cpptools
 ms-vscode.csharp
-ms-vscode.sublime-keybindings
 vsmobile.vscode-react-native
