@@ -124,12 +124,12 @@ cask 'boxer'
 cask 'snes9x'
 cask 'handbrake'
 cask 'vlc'
+cask 'amazon-music'
 
 # utilities
 cask 'keybase'
 cask 'hammerspoon'
 cask 'karabiner-elements'
-cask 'scroll-reverser'
 cask 'arq'
 cask 'the-unarchiver'
 cask 'omnidisksweeper'
