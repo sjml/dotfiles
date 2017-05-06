@@ -39,8 +39,10 @@ source $ZSH/vendor/zsh-autosuggestions/zsh-autosuggestions.zsh
 # fish-style line-edit coloring
 source $ZSH/vendor/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# nvm
-# export NVM_LAZY_LOAD=true
+# lazy load nvm unless we're inside VS Code
+if [ -z "$VSCODE_PID" ]; then
+  export NVM_LAZY_LOAD=true
+fi
 source $ZSH/vendor/zsh-nvm/zsh-nvm.plugin.zsh
 
 # if we start a tmux session from a virtualenved environment
