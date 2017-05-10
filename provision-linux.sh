@@ -32,6 +32,7 @@ if [[ ! -d .git ]]; then
   git fetch
   git reset origin/master
   git branch --set-upstream-to=origin/master master
+  git checkout .
 fi
 # swap to ssh; credentials can get added later
 git remote set-url origin git@github.com:sjml/dotfiles.git
