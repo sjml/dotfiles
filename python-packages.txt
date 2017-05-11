@@ -18,9 +18,10 @@ beautifulsoup4
 # math and visualization
 numpy
 scipy
-matplotlib
-jupyter
 pandas
+tensorflow
+jupyter
+matplotlib
 seaborn
 mpld3
 plotly
