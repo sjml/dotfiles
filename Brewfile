@@ -72,7 +72,7 @@ tap 'caskroom/cask'
 # infrastructure
 cask '1password'
 cask 'dropbox'
-cask 'google-drive'
+cask 'google-backup-and-sync'
 cask 'onedrive'
 
 # internet
@@ -96,7 +96,7 @@ cask 'processing'
 cask 'kaleidoscope'
 cask 'sourcetree'
 cask 'postman'
-cask 'robomongo'
+cask 'robo-3t'
 cask 'dotnet'
 cask 'mono-mdk'
 

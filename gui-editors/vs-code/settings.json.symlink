@@ -26,11 +26,5 @@
     },
     "python.linting.enabledWithoutWorkspace": false,
     "jupyter.appendResults": false,
-    "[cpp]": {
-        "editor.quickSuggestions": false
-    },
-    "[c]": {
-        "editor.quickSuggestions": false
-    },
     "workbench.colorTheme": "Atom One Dark"
 }
