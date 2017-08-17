@@ -127,7 +127,6 @@ cask 'vlc'
 cask 'amazon-music'
 
 # utilities
-cask 'keybase'
 cask 'hammerspoon'
 cask 'karabiner-elements'
 cask 'arq'
