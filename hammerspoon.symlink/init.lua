@@ -22,3 +22,4 @@ hypershift = {"ctrl", "alt", "cmd", "shift"}
 
 require('position')
 require('mute-on-wake')
+require('hub-handler')
