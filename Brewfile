@@ -72,8 +72,7 @@ tap 'caskroom/cask'
 # infrastructure
 cask '1password'
 cask 'dropbox'
-cask 'google-backup-and-sync'
-cask 'onedrive'
+cask 'backblaze'
 
 # internet
 cask 'firefox'
@@ -81,7 +80,6 @@ cask 'google-chrome'
 cask 'torbrowser'
 cask 'tunnelbear'
 cask 'transmit'
-cask 'slack'
 cask 'transmission'
 
 # writing and office
@@ -102,7 +100,6 @@ cask 'mono-mdk'
 
 # artsy
 cask 'unity'
-cask 'unity-standard-assets'
 cask 'unity-webgl-support-for-editor'
 cask 'blender'
 cask 'bfxr'
