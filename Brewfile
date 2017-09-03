@@ -68,6 +68,7 @@ brew 'frotz'
 
 # now getting into full macOS apps
 tap 'caskroom/cask'
+tap 'caskroom/versions'
 
 # infrastructure
 cask '1password'
@@ -79,7 +80,7 @@ cask 'firefox'
 cask 'google-chrome'
 cask 'torbrowser'
 cask 'tunnelbear'
-cask 'transmit'
+cask 'transmit4'
 cask 'transmission'
 
 # writing and office
@@ -96,11 +97,12 @@ cask 'sourcetree'
 cask 'postman'
 cask 'robo-3t'
 cask 'dotnet'
+cask 'dotnet-sdk'
 cask 'mono-mdk'
 
 # artsy
-cask 'unity'
-cask 'unity-webgl-support-for-editor'
+# cask 'unity'
+# cask 'unity-webgl-support-for-editor'
 cask 'blender'
 cask 'bfxr'
 cask 'twine'
