@@ -6,7 +6,7 @@
 --       attachment; if you are not me, you'll have to change
 --       the values.
 local USB_VENDOR = 8457
-local USB_PRODUCT = 528
+local USB_PRODUCT = 2066
 local ETHERNET_VENDOR = 3034
 local ETHERNET_PRODUCT = 33107
 
