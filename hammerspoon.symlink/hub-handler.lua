@@ -67,14 +67,15 @@ function usbWatcherCallback(data)
         end
     end
 
-    -- look for Ethernet adapter
-    if checkIDs(ETHERNET_VENDOR, ETHERNET_PRODUCT, data) then
-        if data["eventType"] == "added" then
-            hs.execute("/usr/sbin/networksetup -setairportpower en0 off")
-        else
-            hs.execute("/usr/sbin/networksetup -setairportpower en0 on")
-        end
-    end
+    -- more trouble than it's worth for now
+    -- -- look for Ethernet adapter
+    -- if checkIDs(ETHERNET_VENDOR, ETHERNET_PRODUCT, data) then
+    --     if data["eventType"] == "added" then
+    --         hs.execute("/usr/sbin/networksetup -setairportpower en0 off")
+    --     else
+    --         hs.execute("/usr/sbin/networksetup -setairportpower en0 on")
+    --     end
+    -- end
 end
 
 usbWatcher = hs.usb.watcher.new(usbWatcherCallback)
