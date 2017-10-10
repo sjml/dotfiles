@@ -12,6 +12,9 @@ if type go > /dev/null; then
   export GOPATH="$HOME/go"
   myPath+=("$GOPATH/bin")
 fi
+if [[ -d $HOME/Library/Application\ Support/itch/bin ]]; then
+  myPath+=($HOME/Library/Application\ Support/itch/bin)
+fi
 
 myPath+=(/usr/local/bin)
 myPath+=(/usr/local/sbin)
