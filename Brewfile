@@ -165,6 +165,7 @@ brew 'mas'
 mas 'Xcode',              id: 497799835
 mas 'Base',               id: 402383384
 mas 'Soulver',            id: 413965349
+mas 'Calca',              id: 635758264
 
 # internet
 mas 'Tweetbot',           id: 557168941
