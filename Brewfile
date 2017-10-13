@@ -106,7 +106,6 @@ cask 'mono-mdk'
 cask 'blender'
 cask 'bfxr'
 cask 'twine'
-cask 'sketchup'
 cask 'nodebox'
 
 # various virtualization thingies
