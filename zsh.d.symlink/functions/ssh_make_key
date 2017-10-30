@@ -2,7 +2,7 @@
 
 # Creates a local SSH key, adds it to the macOS keychain if appropriate,
 #  and offers to upload it to a remote host.
-ssh-make-key() {
+ssh_make_key() {
   if [[ -n $1 ]]; then
     keyname=$1
   else

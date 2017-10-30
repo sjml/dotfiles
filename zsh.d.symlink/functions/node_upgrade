@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-node-upgrade() {
+node_upgrade() {
   local localVersion=$(nvm version)
   local remoteVersion=$(nvm version-remote node)
 
