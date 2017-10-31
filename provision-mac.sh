@@ -97,25 +97,25 @@ zsh -i -c 'nvm install node; \
 
 timerData "POST-NODE"
 
-# swap caps-lock for control
-osascript 2>/dev/null <<EOD
-  tell application "System Preferences"
-    activate
-    reveal anchor "keyboardTab" of pane id "com.apple.preference.keyboard"
-    delay 0.5
-  end tell
-  tell application "System Events" to tell process "System Preferences"
-    tell window "Keyboard"
-      click button 1 of tab group 1
-      tell sheet 1
-        click pop up button "Caps Lock (⇪) Key:"
-        pick menu item "⌃ Control" of menu 1 of pop up button "Caps Lock (⇪) Key:"
-        click button "OK"
-      end tell
-    end tell
-  end tell
-  tell application "System Preferences" to quit
-EOD
+# # swap caps-lock for control
+# osascript 2>/dev/null <<EOD
+#   tell application "System Preferences"
+#     activate
+#     reveal anchor "keyboardTab" of pane id "com.apple.preference.keyboard"
+#     delay 0.5
+#   end tell
+#   tell application "System Events" to tell process "System Preferences"
+#     tell window "Keyboard"
+#       click button 1 of tab group 1
+#       tell sheet 1
+#         click pop up button "Caps Lock (⇪) Key:"
+#         pick menu item "⌃ Control" of menu 1 of pop up button "Caps Lock (⇪) Key:"
+#         click button "OK"
+#       end tell
+#     end tell
+#   end tell
+#   tell application "System Preferences" to quit
+# EOD
 
 # set up Terminal
 osascript 2>/dev/null <<EOD
