@@ -29,14 +29,13 @@ end
 
 
 function ejectionClicked()
-    -- local vols = hs.fs.volume.allVolumes(true)
-    -- for mountPath, volInfo in pairs(vols) do
-    --     if volInfo["NSURLVolumeIsInternalKey"] == false then
-    --         local ejected = hs.fs.volume.eject(mountPath)
-    --         log.i(mountPath .. "  " .. tostring(ejected))
-    --     end
-    -- end
-    hs.osascript.applescript('tell application "Finder" to eject (every disk whose ejectable is true)')
+    local vols = hs.fs.volume.allVolumes(true)
+    for mountPath, volInfo in pairs(vols) do
+        if volInfo["NSURLVolumeIsInternalKey"] == false then
+            hs.execute("diskutil umount '" .. mountPath .. "'")
+            -- log.i(mountPath)
+        end
+    end
     ejection:removeFromMenuBar()
 end
 
