@@ -8,6 +8,7 @@
 		"EditorConfig",
 		"Git",
 		"Package Control",
-		"TypeScript"
+		"TypeScript",
+		"WordCount"
 	]
 }
