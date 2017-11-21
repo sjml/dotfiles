@@ -194,6 +194,7 @@ local -a alerts
 local alertString=""
 
 local normColor="cyan"
+local remoteColor="green"
 local rootColor="red"
 local outlineColor=$normColor
 local topLt="╭"
@@ -220,6 +221,8 @@ function _sjml_buildPromptVars() {
 
   if [[ $UID == 0 || $EUID == 0 ]]; then
     outlineColor=$rootColor
+  elif [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    outlineColor=$remoteColor
   else
     outlineColor=$normColor
   fi
