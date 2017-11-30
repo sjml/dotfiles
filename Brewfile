@@ -126,7 +126,6 @@ cask 'amazon-music'
 
 # utilities
 cask 'hammerspoon'
-cask 'karabiner-elements'
 cask 'arq'
 cask 'the-unarchiver'
 cask 'omnidisksweeper'
