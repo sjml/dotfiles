@@ -8,8 +8,7 @@ brew() {
   local _brew="/usr/local/bin/brew"
 
   if [[ " ${@[*]} " == *" --build-from-source "* ]]; then
-    # already committed to building; don't bother
-    #  with checks
+    # already committed to building; don't bother with checks
     $_brew $@
     return
   fi
