@@ -25,4 +25,4 @@ if [[ $OSTYPE == darwin* ]]; then
 fi
 
 # goofiness :)
-alias techlorem='hexdump -C /dev/urandom | head -$LINES'
+alias techlorem='hexdump -C /dev/urandom | head -$(($LINES - 2))'
