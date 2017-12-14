@@ -1,5 +1,5 @@
 # -------------------------------------------------------------------------------------------------
-# Copyright (c) 2015 zsh-syntax-highlighting contributors
+# Copyright (c) 2016 zsh-syntax-highlighting contributors
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted
@@ -27,18 +27,11 @@
 # vim: ft=zsh sw=2 ts=2 et
 # -------------------------------------------------------------------------------------------------
 
-if [[ $OSTYPE == msys ]]; then
-  skip_test='Cannot chmod +x in msys2'
-else
-  setopt PATH_DIRS
-  mkdir -p foo/bar
-  touch foo/bar/testing-issue-228
-  chmod  +x foo/bar/testing-issue-228
-  path+=( "$PWD"/foo )
+ZSH_HIGHLIGHT_REGEXP+=('[0-9\+\-]+' 'fg=white,bold,bg=red')
 
-  BUFFER='bar/testing-issue-228'
+BUFFER='echo 1+9-3 7+2'
 
-  expected_region_highlight=(
-    "1 21 command" # bar/testing-issue-228
-  )
-fi
+expected_region_highlight=(
+  "6 10 fg=white,bold,bg=red"
+  "12 14 fg=white,bold,bg=red"
+)

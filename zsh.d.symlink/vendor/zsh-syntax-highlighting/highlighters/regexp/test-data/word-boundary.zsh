@@ -1,5 +1,5 @@
 # -------------------------------------------------------------------------------------------------
-# Copyright (c) 2015 zsh-syntax-highlighting contributors
+# Copyright (c) 2016 zsh-syntax-highlighting contributors
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted
@@ -27,18 +27,12 @@
 # vim: ft=zsh sw=2 ts=2 et
 # -------------------------------------------------------------------------------------------------
 
-if [[ $OSTYPE == msys ]]; then
-  skip_test='Cannot chmod +x in msys2'
-else
-  setopt PATH_DIRS
-  mkdir -p foo/bar
-  touch foo/bar/testing-issue-228
-  chmod  +x foo/bar/testing-issue-228
-  path+=( "$PWD"/foo )
+setopt RE_MATCH_PCRE
 
-  BUFFER='bar/testing-issue-228'
+ZSH_HIGHLIGHT_REGEXP+=('\bsudo\b' 'fg=white,bold,bg=red')
 
-  expected_region_highlight=(
-    "1 21 command" # bar/testing-issue-228
-  )
-fi
+BUFFER='sudo ls'
+
+expected_region_highlight=(
+  "1 4 fg=white,bold,bg=red"
+)
