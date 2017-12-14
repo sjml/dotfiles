@@ -147,6 +147,7 @@ _zsh_highlight_main__type() {
     fi
   fi
   if ! (( $+REPLY )); then
+    # Note that 'type -w' will run 'rehash' implicitly.
     REPLY="${$(LC_ALL=C builtin type -w -- $1 2>/dev/null)##*: }"
   fi
   if (( $+_zsh_highlight_main__command_type_cache )); then
@@ -194,25 +195,22 @@ _zsh_highlight_main__stack_pop() {
 # Main syntax highlighting function.
 _zsh_highlight_highlighter_main_paint()
 {
-  ## Before we even 'emulate -L', we must test a few options that would reset.
-  if [[ -o interactive_comments ]]; then
-    local interactive_comments= # set to empty
-  fi
-  if [[ -o ignore_braces ]] || eval '[[ -o ignore_close_braces ]] 2>/dev/null'; then
-    local right_brace_is_recognised_everywhere=false
+  # Before we even 'emulate -L', save the user's options
+  local -A useroptions
+  if zmodload -e zsh/parameter; then
+    useroptions=("${(@kv)options}")
   else
-    local right_brace_is_recognised_everywhere=true
+    local canonicaloptions onoff option rawoptions
+    rawoptions=(${(f)"$(emulate -R zsh; set -o)"})
+    canonicaloptions=(${${${(M)rawoptions:#*off}%% *}#no} ${${(M)rawoptions:#*on}%% *})
+    for option in $canonicaloptions; do
+      [[ -o $option ]]
+      # This variable cannot be eliminated c.f. workers/42101.
+      onoff=${${=:-off on}[2-$?]}
+      useroptions+=($option $onoff)
+    done
   fi
-  if [[ -o path_dirs ]]; then
-    integer path_dirs_was_set=1
-  else
-    integer path_dirs_was_set=0
-  fi
-  if [[ -o multi_func_def ]]; then
-    integer multi_func_def=1
-  else
-    integer multi_func_def=0
-  fi
+
   emulate -L zsh
   setopt localoptions extendedglob bareglobqual
 
@@ -245,10 +243,15 @@ _zsh_highlight_highlighter_main_paint()
   # ":" for 'then'
   local braces_stack
 
-  if (( path_dirs_was_set )); then
+  if [[ $useroptions[ignorebraces] == on || ${useroptions[ignoreclosebraces]:-off} == on ]]; then
+    local right_brace_is_recognised_everywhere=false
+  else
+    local right_brace_is_recognised_everywhere=true
+  fi
+
+  if [[ $useroptions[pathdirs] == on ]]; then
     options_to_set+=( PATH_DIRS )
   fi
-  unset path_dirs_was_set
 
   ZSH_HIGHLIGHT_TOKENS_COMMANDSEPARATOR=(
     '|' '||' ';' '&' '&&'
@@ -322,8 +325,13 @@ _zsh_highlight_highlighter_main_paint()
   integer in_redirection
   # Processing buffer
   local proc_buf="$buf"
-  for arg in ${interactive_comments-${(z)buf}} \
-             ${interactive_comments+${(zZ+c+)buf}}; do
+  local -a args
+  if [[ $useroptions[interactivecomments] == on ]]; then
+    args=(${(zZ+c+)buf})
+  else
+    args=(${(z)buf})
+  fi
+  for arg in $args; do
     # Initialize $next_word.
     if (( in_redirection )); then
       (( --in_redirection ))
@@ -412,7 +420,7 @@ _zsh_highlight_highlighter_main_paint()
     # Handle the INTERACTIVE_COMMENTS option.
     #
     # We use the (Z+c+) flag so the entire comment is presented as one token in $arg.
-    if [[ -n ${interactive_comments+'set'} && $arg[1] == $histchars[3] ]]; then
+    if [[ $useroptions[interactivecomments] == on && $arg[1] == $histchars[3] ]]; then
       if [[ $this_word == *(':regular:'|':start:')* ]]; then
         style=comment
       else
@@ -464,7 +472,7 @@ _zsh_highlight_highlighter_main_paint()
    elif [[ $this_word == *':start:'* ]] && (( in_redirection == 0 )); then # $arg is the command word
      if [[ -n ${(M)ZSH_HIGHLIGHT_TOKENS_PRECOMMANDS:#"$arg"} ]]; then
       style=precommand
-     elif [[ "$arg" = "sudo" ]]; then
+     elif [[ "$arg" = "sudo" ]] && { _zsh_highlight_main__type sudo; [[ -n $REPLY && $REPLY != "none" ]] }; then
       style=precommand
       next_word=${next_word//:regular:/}
       next_word+=':sudo_opt:'
@@ -494,6 +502,8 @@ _zsh_highlight_highlighter_main_paint()
       case $res in
         reserved)       # reserved word
                         style=reserved-word
+                        #
+                        # Match braces.
                         case $arg in
                           ($'\x7b')
                             braces_stack='Y'"$braces_stack"
@@ -560,6 +570,7 @@ _zsh_highlight_highlighter_main_paint()
                           if (( insane_alias )); then
                             style=unknown-token
                           else
+                            # The common case.
                             style=alias
                             _zsh_highlight_main__resolve_alias $arg
                             local alias_target="$REPLY"
@@ -648,7 +659,7 @@ _zsh_highlight_highlighter_main_paint()
                    _zsh_highlight_main__stack_pop 'R' style=reserved-word
                  fi;;
         $'\x28\x29') # possibly a function definition
-                 if (( multi_func_def )) || false # TODO: or if the previous word was a command word
+                 if [[ $useroptions[multifuncdef] == on ]] || false # TODO: or if the previous word was a command word
                  then
                    next_word+=':start:'
                  fi
@@ -912,7 +923,7 @@ _zsh_highlight_main_highlighter_expand_path()
   # The $~1 syntax normally performs filename generation, but not when it's on the right-hand side of ${x:=y}.
   setopt localoptions nonomatch
   unset REPLY
-  : ${REPLY:=${(Q)~1}}
+  : ${REPLY:=${(Q)${~1}}}
 }
 
 # -------------------------------------------------------------------------------------------------
