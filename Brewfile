@@ -177,6 +177,5 @@ mas 'Affinity Designer',  id: 824171161
 mas 'Pages',              id: 409201541
 mas 'Numbers',            id: 409203825
 mas 'Keynote',            id: 409183694
-mas 'Wunderlist',         id: 410628904
 mas 'GIF Brewery 3',      id: 1081413713
 mas 'GIPHY Capture'       id: 668208984
