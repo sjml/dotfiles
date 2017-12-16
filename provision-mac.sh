@@ -93,7 +93,7 @@ timerData "POST-PYTHON"
 # node setup
 zsh -i -c 'nvm install node; \
            nvm use node; \
-           npm install -g live-server vorlon surge;'
+           npm install -g yarn live-server vorlon surge;'
 
 timerData "POST-NODE"
 
