@@ -36,7 +36,18 @@ function ejectionClicked()
             -- log.i(mountPath)
         end
     end
-    ejection:removeFromMenuBar()
+
+    local allGone = true
+    vols = hs.fs.volume.allVolumes(true)
+    for mountPath, volInfo in pairs(vols) do
+        if volInfo["NSURLVolumeIsInternalKey"] == false then
+            allGone = false
+        end
+    end
+
+    if allGone == true then
+        ejection:removeFromMenuBar()
+    end
 end
 
 ejection = hs.menubar.new()
@@ -66,7 +77,7 @@ function usbWatcherCallback(data)
         end
     end
 
-    -- more trouble than it's worth for now
+    -- more trouble than it's worth for now; just let the network priorities play it out
     -- -- look for Ethernet adapter
     -- if checkIDs(ETHERNET_VENDOR, ETHERNET_PRODUCT, data) then
     --     if data["eventType"] == "added" then

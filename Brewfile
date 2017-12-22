@@ -64,6 +64,7 @@ brew 'trash'
 # amusements!
 brew 'nethack'
 brew 'frotz'
+brew 'solarus'
 
 
 # now getting into full macOS apps
