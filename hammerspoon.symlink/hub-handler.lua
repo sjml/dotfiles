@@ -5,8 +5,8 @@
 -- NOTE: this is configured to look for a very specific device
 --       attachment; if you are not me, you'll have to change
 --       the values.
-local USB_VENDOR = 8457
-local USB_PRODUCT = 2066
+local USB_VENDOR = 1293
+local USB_PRODUCT = 1850
 local ETHERNET_VENDOR = 3034
 local ETHERNET_PRODUCT = 33107
 
@@ -59,6 +59,11 @@ if ejection then
     local devices = hs.usb.attachedDevices()
     local foundHub = false
     for _, data in pairs(devices) do
+        for k,v in pairs(data) do
+            print(k)
+            print(v)
+        end
+        print('')
         if checkIDs(USB_VENDOR, USB_PRODUCT, data) then
             foundHub = true
         end
@@ -71,6 +76,10 @@ end
 
 function usbWatcherCallback(data)
     -- look for USB 3.0 hub
+    for k,v in pairs(data) do
+        print(k)
+        print(v)
+    end
     if checkIDs(USB_VENDOR, USB_PRODUCT, data) then
         if data["eventType"] == "added" then
             ejection:returnToMenuBar()
