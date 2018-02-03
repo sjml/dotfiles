@@ -59,11 +59,6 @@ if ejection then
     local devices = hs.usb.attachedDevices()
     local foundHub = false
     for _, data in pairs(devices) do
-        for k,v in pairs(data) do
-            print(k)
-            print(v)
-        end
-        print('')
         if checkIDs(USB_VENDOR, USB_PRODUCT, data) then
             foundHub = true
         end
@@ -76,10 +71,6 @@ end
 
 function usbWatcherCallback(data)
     -- look for USB 3.0 hub
-    for k,v in pairs(data) do
-        print(k)
-        print(v)
-    end
     if checkIDs(USB_VENDOR, USB_PRODUCT, data) then
         if data["eventType"] == "added" then
             ejection:returnToMenuBar()
