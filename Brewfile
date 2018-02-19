@@ -130,7 +130,6 @@ cask 'amazon-music'
 cask 'hammerspoon'
 cask 'arq'
 cask 'the-unarchiver'
-cask 'omnidisksweeper'
 cask 'selfcontrol'
 cask 'aerial'
 
@@ -173,6 +172,9 @@ mas 'Tweetbot',           id: 557168941
 # media
 mas 'Kindle',             id: 405399194
 mas 'GarageBand',         id: 682658836
+
+# utility
+mas 'GrandPerspective'    id: 1111570163
 
 # graphics and office
 mas 'Pixelmator',         id: 407963104
