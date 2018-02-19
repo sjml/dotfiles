@@ -131,7 +131,6 @@ cask 'hammerspoon'
 cask 'arq'
 cask 'the-unarchiver'
 cask 'selfcontrol'
-cask 'aerial'
 
 # quicklook stuff
 cask 'qlcolorcode'
