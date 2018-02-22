@@ -91,3 +91,20 @@ end
 usbWatcher = hs.usb.watcher.new(usbWatcherCallback)
 usbWatcher:start()
 
+
+-- High Sierra gets finicky waking from sleep with USB watching active,
+--   for some reason. Shut off watching when we're about to sleep and
+--   turn it back on when we wake up.
+function toggleWatcher(eventType)
+    if (eventType == hs.caffeinate.watcher.systemDidWake) then
+        print('restarting usb watcher')
+        usbWatcher:start()
+    elseif (eventType == hs.caffeinate.watcher.systemWillSleep) then
+        print('stopping usb watcher')
+        usbWatcher:stop()
+    end
+end
+
+caffeinateWatcher = hs.caffeinate.watcher.new(toggleWatcher)
+caffeinateWatcher:start()
+
