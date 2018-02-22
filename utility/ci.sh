@@ -5,6 +5,7 @@ cd "$(dirname "$0")"
 cat ../install_lists/Brewfile | sed -n "s/^tap[[:space:]]*'\([^']*\)'/\1/p" | xargs -n 1 brew tap
 brew update
 
+echo "Running Brewfile audit..."
 ./brewfile_audit.py
 status=$?
 if [ $status -ne 0 ]; then
