@@ -174,7 +174,7 @@ mas 'Kindle',             id: 405399194
 mas 'GarageBand',         id: 682658836
 
 # utility
-mas 'GrandPerspective'    id: 1111570163
+mas 'GrandPerspective',   id: 1111570163
 
 # graphics and office
 mas 'Pixelmator',         id: 407963104
@@ -183,4 +183,4 @@ mas 'Pages',              id: 409201541
 mas 'Numbers',            id: 409203825
 mas 'Keynote',            id: 409183694
 mas 'GIF Brewery 3',      id: 1081413713
-mas 'GIPHY Capture'       id: 668208984
+mas 'GIPHY Capture',      id: 668208984
