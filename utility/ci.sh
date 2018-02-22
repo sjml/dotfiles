@@ -2,7 +2,7 @@
 
 cd "$(dirname "$0")"
 
-cat ./install_lists/Brewfile | sed -n "s/^tap[[:space:]]*'\([^']*\)'/\1/p" | xargs -n 1 brew tap
+cat ../install_lists/Brewfile | sed -n "s/^tap[[:space:]]*'\([^']*\)'/\1/p" | xargs -n 1 brew tap
 brew update
 
 ./brewfile_audit.py
