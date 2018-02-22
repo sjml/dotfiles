@@ -2,6 +2,7 @@
 
 cd "$(dirname "$0")"
 
+echo "Setting homebrew taps..."
 cat ../install_lists/Brewfile | sed -n "s/^tap[[:space:]]*'\([^']*\)'/\1/p" | xargs -n 1 brew tap
 brew update
 
