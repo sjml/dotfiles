@@ -45,7 +45,10 @@ brew 'imagemagick'
 brew 'ghostscript'
 brew 'ripgrep'
 brew 'peco'
-brew 'vitorgalvao/tiny-scripts/cask-repair'
+
+# cask tools
+tap 'vitorgalvao/tiny-scripts'
+brew 'cask-repair'
 
 # various and sundry
 brew 'pandoc'
@@ -152,7 +155,7 @@ cask 'font-hack'
 
 # drivers
 tap  'caskroom/drivers'
-# cask 'xbox360-controller-driver'
+# cask 'xbox360-controller-driver-unofficial'
 
 
 # and finally, stuff from the Mac App Store
