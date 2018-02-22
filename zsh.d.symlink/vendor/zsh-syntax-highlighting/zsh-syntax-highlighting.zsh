@@ -83,8 +83,25 @@ _zsh_highlight()
     return $ret
   fi
 
+  # Before we 'emulate -L', save the user's options
+  local -A zsyh_user_options
+  if zmodload -e zsh/parameter; then
+    zsyh_user_options=("${(@kv)options}")
+  else
+    local canonical_options onoff option raw_options
+    raw_options=(${(f)"$(emulate -R zsh; set -o)"})
+    canonical_options=(${${${(M)raw_options:#*off}%% *}#no} ${${(M)raw_options:#*on}%% *})
+    for option in $canonical_options; do
+      [[ -o $option ]]
+      # This variable cannot be eliminated c.f. workers/42101.
+      onoff=${${=:-off on}[2-$?]}
+      zsyh_user_options+=($option $onoff)
+    done
+  fi
+  typeset -r zsyh_user_options
+
+  emulate -L zsh
   setopt localoptions warncreateglobal
-  setopt localoptions noksharrays
   local REPLY # don't leak $REPLY into global scope
 
   # Do not highlight if there are more than 300 chars in the buffer. It's most
@@ -124,7 +141,7 @@ _zsh_highlight()
         {
           "_zsh_highlight_highlighter_${highlighter}_paint"
         } always {
-          eval "${cache_place}=(\"\${region_highlight[@]}\")"
+          : ${(AP)cache_place::="${region_highlight[@]}"}
         }
 
         # Restore saved region_highlight
@@ -133,7 +150,7 @@ _zsh_highlight()
       fi
 
       # Use value form cache if any cached
-      eval "region_highlight+=(\"\${${cache_place}[@]}\")"
+      region_highlight+=("${(@P)cache_place}")
 
     done
 
@@ -151,8 +168,10 @@ _zsh_highlight()
         else
           min=$MARK max=$CURSOR
         fi
-        (( min = ${${BUFFER[1,$min]}[(I)$needle]} ))
-        (( max += ${${BUFFER:($max-1)}[(i)$needle]} - 1 ))
+        # CURSOR and MARK are 0 indexed between letters like region_highlight
+        # Do not include the newline in the highlight
+        (( min = ${BUFFER[(Ib:min:)$needle]} ))
+        (( max = ${BUFFER[(ib:max:)$needle]} - 1 ))
         _zsh_highlight_apply_zle_highlight region standout "$min" "$max"
       }
     fi
