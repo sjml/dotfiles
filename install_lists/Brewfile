@@ -35,7 +35,6 @@ brew 'automake'
 brew 'clang-format'
 brew 'swig'
 brew 'hub'
-brew 'heroku'
 brew 'travis'
 brew 'pngcrush'
 brew 'pngquant'
@@ -153,7 +152,7 @@ cask 'font-hack'
 
 # drivers
 tap  'caskroom/drivers'
-cask 'xbox360-controller-driver'
+# cask 'xbox360-controller-driver'
 
 
 # and finally, stuff from the Mac App Store

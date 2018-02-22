@@ -31,7 +31,7 @@ while read command; do
     appId=$(echo $command | sed -E "s/.*id:[[:space:]]+([0-9]*)/\1/")
     mass+=($appId)
   fi
-done <../Brewfile
+done <../install_lists/Brewfile
 
 
 # I wanna tap everything

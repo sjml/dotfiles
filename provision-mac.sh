@@ -86,36 +86,16 @@ vim +PluginInstall +qall
 easy_install --quiet --user pip
 # (this path is set in the zsh configs, but this is bash)
 pyPath="$(python -m site --user-base)/bin"
-$pyPath/pip install --user -r python-packages.txt
+$pyPath/pip install --user -r install_lists/python-packages.txt
 
 timerData "POST-PYTHON"
 
 # node setup
 zsh -i -c 'nvm install node; \
            nvm use node; \
-           npm install -g yarn live-server vorlon surge;'
+           npm install -g $(cat install_lists/node-packages.txt);'
 
 timerData "POST-NODE"
-
-# # swap caps-lock for control
-# osascript 2>/dev/null <<EOD
-#   tell application "System Preferences"
-#     activate
-#     reveal anchor "keyboardTab" of pane id "com.apple.preference.keyboard"
-#     delay 0.5
-#   end tell
-#   tell application "System Events" to tell process "System Preferences"
-#     tell window "Keyboard"
-#       click button 1 of tab group 1
-#       tell sheet 1
-#         click pop up button "Caps Lock (⇪) Key:"
-#         pick menu item "⌃ Control" of menu 1 of pop up button "Caps Lock (⇪) Key:"
-#         click button "OK"
-#       end tell
-#     end tell
-#   end tell
-#   tell application "System Preferences" to quit
-# EOD
 
 # set up Terminal
 osascript 2>/dev/null <<EOD
