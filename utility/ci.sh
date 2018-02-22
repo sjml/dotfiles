@@ -2,6 +2,7 @@
 
 cd "$(dirname "$0")"
 
+brew update
 ./brewfile_audit.py
 status=$?
 if [ $status -ne 0 ]; then
