@@ -14,7 +14,7 @@ function reloadConfig(files)
     end
 end
 local configWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
-hs.alert.show("Configuration loaded")
+hs.alert.show("Hammerspoon Loaded")
 
 
 hyper = {"ctrl", "alt", "cmd"}

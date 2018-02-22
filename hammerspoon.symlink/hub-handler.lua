@@ -97,10 +97,8 @@ usbWatcher:start()
 --   turn it back on when we wake up.
 function toggleWatcher(eventType)
     if (eventType == hs.caffeinate.watcher.systemDidWake) then
-        print('restarting usb watcher')
         usbWatcher:start()
     elseif (eventType == hs.caffeinate.watcher.systemWillSleep) then
-        print('stopping usb watcher')
         usbWatcher:stop()
     end
 end
