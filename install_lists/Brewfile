@@ -13,7 +13,7 @@ brew 'unrar'
 
 # programming languages
 # brew 'python'
-# brew 'python@2'
+brew 'python@2'
 brew 'go'
 brew 'erlang'
 brew 'elixir'
