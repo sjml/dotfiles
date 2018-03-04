@@ -2,7 +2,11 @@
 local -a myPath=()
 myPath+=($HOME/bin)
 
-if type python > /dev/null; then
+if [[ -a $HOME/.pyenv/bin/pyenv ]]; then
+  myPath+=($HOME/.pyenv/bin)
+  eval "$($HOME/.pyenv/bin/pyenv init -)"
+  eval "$($HOME/.pyenv/bin/pyenv virtualenv-init -)"
+elif type python > /dev/null; then
   myPath+=("$(python -m site --user-base)/bin")
 fi
 if type ruby > /dev/null; then

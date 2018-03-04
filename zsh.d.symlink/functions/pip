@@ -7,6 +7,8 @@
 pip() {
   if [[ -n $VIRTUAL_ENV ]]; then
     $VIRTUAL_ENV/bin/pip "$@"
+  elif [[ -a $HOME/.pyenv/shims/pip ]]; then
+    $HOME/.pyenv/shims/pip "$@"
   else
     _pip="$(/usr/bin/python -m site --user-base)/bin/pip"
     PIP_USER=1 $_pip "$@"

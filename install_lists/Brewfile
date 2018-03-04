@@ -10,10 +10,11 @@ brew 'z'
 brew 'p7zip'
 brew 'lbzip2'
 brew 'unrar'
+brew 'xz'
 
 # programming languages
 # brew 'python'
-brew 'python@2'
+# brew 'python@2'
 brew 'go'
 brew 'erlang'
 brew 'elixir'

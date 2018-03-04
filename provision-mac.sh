@@ -83,10 +83,17 @@ ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 vim +PluginInstall +qall
 
 # python setup
-easy_install --quiet --user pip
+curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+py2version=$(brew info python@2 | sed -n 's/^python@2: stable \([0-9.]*\).*/\1/p')
+py3version=$(brew info python   | sed -n 's/^python: stable \([0-9.]*\).*/\1/p')
+CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" $HOME/.pyenv/bin/pyenv install -v $py2version
+CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" $HOME/.pyenv/bin/pyenv install -v $py3version
+$HOME/.pyenv/bin/pyenv global $py2version
+
 # (this path is set in the zsh configs, but this is bash)
-pyPath="$(python -m site --user-base)/bin"
-$pyPath/pip install --user -r install_lists/python-packages.txt
+# pyPath="$(python -m site --user-base)/bin"
+pyPath="$HOME/.pyenv/shims"
+$pyPath/pip install -r install_lists/python-packages.txt
 
 timerData "POST-PYTHON"
 
