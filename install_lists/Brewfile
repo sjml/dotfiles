@@ -12,7 +12,8 @@ brew 'lbzip2'
 brew 'unrar'
 
 # programming languages
-brew 'python3'
+# brew 'python'
+# brew 'python@2'
 brew 'go'
 brew 'erlang'
 brew 'elixir'
