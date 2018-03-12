@@ -9,3 +9,6 @@ doesn't get *unnecessarily* bloated. :)
 ## ssh_config.base
 The file that gets appended to the end of my `~/.ssh/config` after a new key is
 added to it, so that servers without a corresponding key just ask for a password.
+
+## Office Templates
+Templates for MS Office.
