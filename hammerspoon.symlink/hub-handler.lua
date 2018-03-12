@@ -97,8 +97,10 @@ usbWatcher:start()
 --   turn it back on when we wake up.
 function toggleWatcher(eventType)
     if (eventType == hs.caffeinate.watcher.systemDidWake) then
+        hs.execute("/usr/sbin/networksetup -setairportpower en0 on")
         usbWatcher:start()
     elseif (eventType == hs.caffeinate.watcher.systemWillSleep) then
+        hs.execute("/usr/sbin/networksetup -setairportpower en0 off")
         usbWatcher:stop()
     end
 end
