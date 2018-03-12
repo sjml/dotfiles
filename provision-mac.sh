@@ -97,6 +97,11 @@ $pyPath/pip install -r install_lists/python-packages.txt
 
 timerData "POST-PYTHON"
 
+# rust setup
+curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
+
+timerData "POST-RUST"
+
 # node setup
 zsh -i -c 'nvm install node; \
            nvm use node; \

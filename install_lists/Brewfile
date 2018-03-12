@@ -13,13 +13,13 @@ brew 'unrar'
 brew 'xz'
 
 # programming languages
-# brew 'python'
+# brew 'python' # homebrew's python is a mess
 # brew 'python@2'
 brew 'go'
 brew 'erlang'
 brew 'elixir'
 brew 'mit-scheme'
-brew 'rust'
+# brew 'rust' # installed via rustup
 brew 'haskell-stack'
 brew 'elm'
 
