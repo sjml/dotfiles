@@ -60,6 +60,7 @@ ssh_make_key() {
   echo -n "Target domain: "
   read domainTarget
   if [[ -n $domainTarget ]]; then
+    # TODO: https://www.ssh.com/ssh/copy-id
     echo "Upload key to server?"
     echo "(Leave blank to skip upload.)"
     echo -n "Username: "
@@ -68,22 +69,22 @@ ssh_make_key() {
       cat ${privateKey}.pub | ssh $userNameTarget@$domainTarget -o PasswordAuthentication=yes -o PubkeyAuthentication=no 'mkdir -p .ssh; cat >> .ssh/authorized_keys2'
     fi
 
-    lineBreak=$(grep -n "####" ~/.ssh/config | cut -f1 -d:)
+    lineBreak=$(grep -n "####" $HOME/.ssh/config | cut -f1 -d:)
     lineBreak=$(expr $lineBreak - 1)
-    prefile=$(head -$lineBreak ~/.ssh/config)
-    echo "$prefile" > ~/.ssh/config # overwriting old file
-    echo "" >> ~/.ssh/config
+    prefile=$(head -$lineBreak $HOME/.ssh/config)
+    echo "$prefile" > $HOME/.ssh/config # overwriting old file
+    echo "" >> $HOME/.ssh/config
 
-    echo "Host $domainTarget" >> ~/.ssh/config
-    echo "  IdentityFile $privateKey" >> ~/.ssh/config
-    echo "  IdentitiesOnly yes" >> ~/.ssh/config
-    echo "  PubkeyAuthentication yes" >> ~/.ssh/config
-    echo "  PasswordAuthentication no" >> ~/.ssh/config
-    echo "  Port 22" >> ~/.ssh/config
-    echo "" >> ~/.ssh/config
+    echo "Host $domainTarget" >> $HOME/.ssh/config
+    echo "  IdentityFile $privateKey" >> $HOME/.ssh/config
+    echo "  IdentitiesOnly yes" >> $HOME/.ssh/config
+    echo "  PubkeyAuthentication yes" >> $HOME/.ssh/config
+    echo "  PasswordAuthentication no" >> $HOME/.ssh/config
+    echo "  Port 22" >> $HOME/.ssh/config
+    echo "" >> $HOME/.ssh/config
 
-    cat ~/.dotfiles/resources/ssh_config.base >> ~/.ssh/config
-    echo "" >> ~/.ssh/config
+    cat $HOME/.dotfiles/resources/ssh_config.base >> $HOME/.ssh/config
+    echo "" >> $HOME/.ssh/config
   fi
 
   echo "All done!"
