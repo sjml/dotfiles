@@ -99,6 +99,7 @@ timerData "POST-PYTHON"
 
 # rust setup
 curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
+$HOME/.cargo/bin/rustup install nightly
 
 timerData "POST-RUST"
 
@@ -285,19 +286,17 @@ declare -a dockList=(\
   Mail\
   Firefox\
   Tweetbot\
-  Slack\
+  Messages\
   iTunes\
   Photos\
   Steam\
-  Keynote\
+  itch\
   Affinity\ Designer\
   Pixelmator\
-  Scrivener\
   Sublime\ Text\
   Visual\ Studio\ Code\
-  Xcode\
   Unity/Unity\
-  VMware\ Fusion\
+  Xcode\
   Utilities/Terminal\
   System\ Preferences\
 )

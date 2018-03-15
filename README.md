@@ -17,17 +17,17 @@ Running `provision-mac.sh` on a clean user account will:
     symbolic link to it in the home directory, minus the `.symlink` and
     prepended with a `.`
   * Symlink files in `osx-launchagents` to ~/Library/LaunchAgents
-  * Install [homebrew](http://brew.sh)
+  * Install [homebrew](http://brew.sh) with analytics turned off
   * Attempt to change the default shell to zsh
-  * Install all GUI applications listed in the Cask section of the Brewfile
-  * Install all the packages listed in the `install_lists/Brewfile`
+  * Install all the packages and GUI apps listed in the `install_lists/Brewfile`
   * Install Inconsolata and Hack fonts
   * Attempt to install Mac App Store stuff from the mas section of the Brewfile
   * Make a `~/Projects` directory and symlink the dotfiles there
   * Install a set of vim bundles, managed by [Vundle](https://github.com/VundleVim/Vundle.vim)
-  * Install pip
+  * Install Python 2 and 3 (2 as default) via [pyenv](https://github.com/pyenv/pyenv)
   * Install all packages listed in `install_lists/python-packages.txt`
-  * Use zsh-nvm to install Node.js and any Node utilities listed in `install_lists/node-packages.txt`
+  * Install Rust (stable and nightly; stable as default) via [rustup](https://www.rustup.rs/)
+  * Use [zsh-nvm](https://github.com/lukechilds/zsh-nvm) to install Node.js and any Node utilities listed in `install_lists/node-packages.txt`
   * Set up appearance of Terminal.app
   * Various and sundry macOS GUI settings (Finder behaviors, Trackpad settings, etc.)
   * Set up the Dock
