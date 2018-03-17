@@ -13,7 +13,7 @@ brew 'unrar'
 brew 'xz'
 
 # programming languages
-# brew 'python' # homebrew's python is a mess
+# brew 'python' # homebrew's python is a mess; installed via pyenv
 # brew 'python@2'
 brew 'go'
 brew 'erlang'
@@ -138,6 +138,8 @@ cask 'hammerspoon'
 cask 'arq'
 cask 'the-unarchiver'
 cask 'selfcontrol'
+cask 'etcher'
+cask 'unetbootin'
 
 # quicklook stuff
 cask 'qlcolorcode'
