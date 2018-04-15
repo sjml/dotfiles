@@ -10,6 +10,7 @@ brew 'z'
 brew 'p7zip'
 brew 'lbzip2'
 brew 'unrar'
+brew 'gnupg'
 brew 'xz'
 
 # programming languages
