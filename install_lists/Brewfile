@@ -97,7 +97,8 @@ cask 'transmission'
 
 # writing and office
 cask 'scrivener'
-cask 'libreoffice'
+# cask 'libreoffice' # so long as I can use MS Office proper, don't need it
+cask 'mactex'
 
 # development
 cask 'sublime-text'
