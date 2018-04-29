@@ -21,7 +21,16 @@ while read command; do
     taps+=($tap)
   elif [[ $command =~ ^[[:space:]]*brew[[:space:]]*\' ]]; then
     pkg=$(echo $command | sed -E "s/brew[[:space:]]+'([^']*)'/\1/")
-    packages+=($pkg)
+    if [[ $pkg =~ ,[[:space:]]+args: ]]; then
+      pkgName=$(echo $pkg | sed -E "s/^([^,]*).*/\1/")
+      pkgArgs=$(echo $pkg | sed -E "s/.*args:[[:space:]]*\[(.*)\]/\1/")
+      pkg=$pkgName
+      pkgArgsArr=$(echo $pkgArgs | tr "," "\n")
+      for arg in $pkgArgsArr; do
+        pkg+=$(echo $arg | sed -E "s/^\"(.*)\"$/ --\1/")
+      done
+    fi
+    packages+=("$pkg")
   elif [[ $command =~ ^[[:space:]]*cask[[:space:]]*\' ]]; then
     cask=$(echo $command | sed -E "s/cask[[:space:]]+'([^']*)'/\1/")
     casks+=($cask)
@@ -32,7 +41,6 @@ while read command; do
     mass+=($appId)
   fi
 done <../install_lists/Brewfile
-
 
 # I wanna tap everything
 for tap in "${taps[@]}"; do
