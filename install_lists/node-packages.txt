@@ -1,4 +1,4 @@
 live-server
 vorlon
 surge
-heroku-cli
+heroku
