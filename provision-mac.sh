@@ -90,8 +90,7 @@ CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" $HOME/.pyenv/bin/pyenv install -
 CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" $HOME/.pyenv/bin/pyenv install -v $py3version
 $HOME/.pyenv/bin/pyenv global $py2version
 
-# (this path is set in the zsh configs, but this is bash)
-# pyPath="$(python -m site --user-base)/bin"
+# (this path is set in the zsh configs, but we're in bash, still)
 pyPath="$HOME/.pyenv/shims"
 $pyPath/pip install -r install_lists/python-packages.txt
 
@@ -281,6 +280,7 @@ defaults write com.apple.commerce AutoUpdate -bool false
 defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 
 # set up Dock
+dockutil --remove all --no-restart
 declare -a dockList=(\
   App\ Store\
   Mail\
@@ -300,9 +300,7 @@ declare -a dockList=(\
   Utilities/Terminal\
   System\ Preferences\
 )
-dockutil --remove all --no-restart
-for app in "${dockList[@]}"
-do
+for app in "${dockList[@]}"; do
   dockutil --add "/Applications/$app.app" --no-restart
 done
 dockutil --add "~/Downloads" --section others --view grid --display stack --no-restart
@@ -316,8 +314,8 @@ killall Mail
 timerData "POST-GUI"
 
 # NLP data comes last because it can take a looooong time
-python -m nltk.downloader all
-python -m spacy.en.download all
+$pyPath/python -m nltk.downloader all
+$pyPath/python -m spacy.en.download all
 
 timerData "DONE"
 
