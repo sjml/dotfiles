@@ -257,6 +257,9 @@ defaults write com.apple.dock autohide -bool true
 # Turn off Dock magnification
 defaults write com.apple.dock magnification -bool false
 
+# Allow slow-motion minimize effects when holding down shift (relic from old OS X :D)
+defaults write com.apple.dock slow-motion-allowed -bool true
+
 # Hot corner, bottom-left: Start screen saver
 defaults write com.apple.dock wvous-bl-corner -int 5
 defaults write com.apple.dock wvous-bl-modifier -int 0
