@@ -5,6 +5,7 @@ Cython
 cffi
 twine
 rope
+pylint
 mkdocs
 autopep8
 
