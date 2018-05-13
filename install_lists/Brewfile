@@ -16,6 +16,8 @@ brew 'xz'
 # programming languages
 # brew 'python' # homebrew's python is a mess; installed via pyenv
 # brew 'python@2'
+brew 'pyenv'
+brew 'pyenv-virtualenv'
 brew 'ruby'
 brew 'go'
 brew 'erlang'

@@ -1,32 +1,43 @@
 
 local -a myPath=()
+
+## Any custom programs come first
 myPath+=($HOME/bin)
 
-if [[ -a $HOME/.pyenv/bin/pyenv ]]; then
-  myPath+=($HOME/.pyenv/bin)
-  eval "$($HOME/.pyenv/bin/pyenv init -)"
-  eval "$($HOME/.pyenv/bin/pyenv virtualenv-init -)"
-elif type python > /dev/null; then
+## Python, checking for pyenv first
+if [[ -a /usr/local/bin/pyenv ]]; then
+  eval "$(/usr/local/bin/pyenv init -)"
+  eval "$(/usr/local/bin/pyenv virtualenv-init -)"
+elif type python > /dev/null 2>&1; then
   myPath+=("$(python -m site --user-base)/bin")
 fi
 
-if type ruby > /dev/null; then
+## Ruby
+if type ruby > /dev/null 2>&1; then
   myPath+=("$(ruby -rubygems -e 'puts Gem.user_dir')/bin")
 fi
 
-if type go > /dev/null; then
+## Go
+if type go > /dev/null 2>&1; then
   export GOPATH="$HOME/go"
   myPath+=("$GOPATH/bin")
 fi
 
-if [[ -a $HOME/.cargo/bin ]]; then
-  myPath+=("$HOME/.cargo/bin")
-fi
+## Various paths to add if certain things are installed
+local -a addIfExists=(
+  # Rust
+  $HOME/.cargo/bin
 
-if [[ -d $HOME/Library/Application\ Support/itch/bin ]]; then
-  myPath+=($HOME/Library/Application\ Support/itch/bin)
-fi
+  # itch.io
+  $HOME/Library/Application\ Support/itch/bin
+)
+for maybePath in "${addIfExists[@]}"; do
+  if [[ -d $maybePath ]]; then
+    myPath+=("$maybePath")
+  fi
+done
 
+## Installed stuff (mostly from Homebrew)
 myPath+=(/usr/local/bin)
 myPath+=(/usr/local/sbin)
 

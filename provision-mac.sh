@@ -83,16 +83,27 @@ ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 vim +PluginInstall +qall
 
 # python setup
-curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-py2version=$(brew info python@2 | sed -n 's/^python@2: stable \([0-9.]*\).*/\1/p')
-py3version=$(brew info python   | sed -n 's/^python: stable \([0-9.]*\).*/\1/p')
-CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" $HOME/.pyenv/bin/pyenv install -v $py2version
-CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" $HOME/.pyenv/bin/pyenv install -v $py3version
-$HOME/.pyenv/bin/pyenv global $py2version
+# curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+# py2version=$(brew info python@2 | sed -n 's/^python@2: stable \([0-9.]*\).*/\1/p')
+# py3version=$(brew info python   | sed -n 's/^python: stable \([0-9.]*\).*/\1/p')
+# CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" $HOME/.pyenv/bin/pyenv install -v $py2version
+# CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" $HOME/.pyenv/bin/pyenv install -v $py3version
+py2base=2.7
+py3base=3.6
+git clone https://github.com/momo-lab/pyenv-install-latest.git "$(/usr/local/bin/pyenv root)"/plugins/pyenv-install-latest
+/usr/local/bin/pyenv install-latest $py2base
+/usr/local/bin/pyenv install-latest $py3base
+/usr/local/bin/pyenv install miniconda3-latest
+py2version=$(pyenv versions | grep $py2base | xargs)
+py3version=$(pyenv versions | grep $py3base | xargs)
+/usr/local/bin/pyenv global $py2version $py3version miniconda3-latest
 
 # (this path is set in the zsh configs, but we're in bash, still)
 pyPath="$HOME/.pyenv/shims"
-$pyPath/pip install -r install_lists/python-packages.txt
+$pyPath/pip install --upgrade pip
+$pyPath/pip3 install --upgrade pip
+$pyPath/pip install -r install_lists/python-dev-packages.txt
+$pyPath/conda install --yes --file install_lists/python-sci-packages.txt
 
 timerData "POST-PYTHON"
 

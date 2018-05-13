@@ -1,0 +1,17 @@
+# math and visualization
+numpy
+scipy
+pandas
+tensorflow
+jupyter
+matplotlib
+seaborn
+mpld3
+plotly
+vispy
+
+# NLP
+nltk
+spacy
+# -c anaconda Pattern
+# -c https://conda.anaconda.org/sloria textblob

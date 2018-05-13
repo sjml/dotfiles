@@ -15,21 +15,3 @@ Pillow
 requests
 scrapy
 beautifulsoup4
-
-# math and visualization
-numpy
-scipy
-pandas
-tensorflow
-jupyter
-matplotlib
-seaborn
-mpld3
-plotly
-vispy
-
-# NLP
-Pattern
-nltk
-spacy
-textblob
