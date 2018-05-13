@@ -29,7 +29,7 @@ local -a addIfExists=(
   $HOME/.cargo/bin
 
   # itch.io
-  $HOME/Library/Application\ Support/itch/bin
+  # $HOME/Library/Application\ Support/itch/bin
 )
 for maybePath in "${addIfExists[@]}"; do
   if [[ -d $maybePath ]]; then
