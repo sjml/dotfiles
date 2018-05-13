@@ -1,0 +1,26 @@
+name: root
+channels:
+  - defaults
+
+dependencies:
+    # meta
+    - anaconda-navigator
+
+    # math and visualization
+    - numpy
+    - scipy
+    - pandas
+    - tensorflow
+    - jupyter
+    - matplotlib
+    - seaborn
+    - mpld3
+    - plotly
+    - vispy
+
+    # NLP
+    - nltk
+    - spacy
+
+    - pip:
+        - textblob

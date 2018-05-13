@@ -2,3 +2,6 @@
 virtualenv
 mercurial
 pylint
+
+# NLP
+Pattern

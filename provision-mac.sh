@@ -104,7 +104,8 @@ pyPath="$HOME/.pyenv/shims"
 $pyPath/pip2 install --upgrade pip
 $pyPath/pip3 install --upgrade pip
 $pyPath/pip2 install -r install_lists/python-dev-packages.txt
-$pyPath/conda install --yes --file install_lists/python-sci-packages.txt
+# $pyPath/conda install --yes --file install_lists/python-sci-packages.txt
+$pyPath/conda env update --name root --file ./python-sci-packages.yml
 $pyPath/conda clean --all --yes
 
 timerData "POST-PYTHON"
