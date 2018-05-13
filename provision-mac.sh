@@ -105,6 +105,7 @@ $pyPath/pip2 install --upgrade pip
 $pyPath/pip3 install --upgrade pip
 $pyPath/pip2 install -r install_lists/python-dev-packages.txt
 $pyPath/conda install --yes --file install_lists/python-sci-packages.txt
+$pyPath/conda clean --all --yes
 
 timerData "POST-PYTHON"
 
