@@ -1,6 +1,5 @@
 # dev
 virtualenv
-mercurial
 Cython
 cffi
 twine

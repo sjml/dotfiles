@@ -97,7 +97,7 @@ git clone https://github.com/momo-lab/pyenv-install-latest.git "$(/usr/local/bin
 py2version=$(pyenv versions | grep $py2base | xargs)
 py3version=$(pyenv versions | grep $py3base | xargs)
 minicondaversion=$(pyenv versions | grep miniconda3 | xargs)
-/usr/local/bin/pyenv global $py2version $py3version $minicondaversion
+/usr/local/bin/pyenv global $py3version $py2version $minicondaversion
 
 # (this path is set in the zsh configs, but we're in bash, still)
 pyPath="$HOME/.pyenv/shims"

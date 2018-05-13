@@ -1,0 +1,4 @@
+# dev
+virtualenv
+mercurial
+pylint
