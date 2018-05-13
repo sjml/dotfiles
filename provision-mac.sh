@@ -93,16 +93,17 @@ py3base=3.6
 git clone https://github.com/momo-lab/pyenv-install-latest.git "$(/usr/local/bin/pyenv root)"/plugins/pyenv-install-latest
 /usr/local/bin/pyenv install-latest $py2base
 /usr/local/bin/pyenv install-latest $py3base
-/usr/local/bin/pyenv install miniconda3-latest
+/usr/local/bin/pyenv install-latest miniconda3
 py2version=$(pyenv versions | grep $py2base | xargs)
 py3version=$(pyenv versions | grep $py3base | xargs)
-/usr/local/bin/pyenv global $py2version $py3version miniconda3-latest
+minicondaversion=$(pyenv versions | grep miniconda3 | xargs)
+/usr/local/bin/pyenv global $py2version $py3version $minicondaversion
 
 # (this path is set in the zsh configs, but we're in bash, still)
 pyPath="$HOME/.pyenv/shims"
-$pyPath/pip install --upgrade pip
+$pyPath/pip2 install --upgrade pip
 $pyPath/pip3 install --upgrade pip
-$pyPath/pip install -r install_lists/python-dev-packages.txt
+$pyPath/pip2 install -r install_lists/python-dev-packages.txt
 $pyPath/conda install --yes --file install_lists/python-sci-packages.txt
 
 timerData "POST-PYTHON"
