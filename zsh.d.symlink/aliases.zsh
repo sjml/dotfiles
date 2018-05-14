@@ -15,6 +15,8 @@ fi
 
 alias mkdir="mkdir -p"
 
+alias whence="which -a"
+
 # Mac-specific aliases
 if [[ $OSTYPE == darwin* ]]; then
   if type hub > /dev/null; then

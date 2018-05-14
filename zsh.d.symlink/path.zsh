@@ -38,7 +38,7 @@ for maybePath in "${addIfExists[@]}"; do
 done
 
 ## Installed stuff (mostly from Homebrew)
-myPath+=(/usr/local/bin)
+# myPath+=(/usr/local/bin)
 myPath+=(/usr/local/sbin)
 
 path=($myPath $path)
