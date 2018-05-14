@@ -83,30 +83,29 @@ ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 vim +PluginInstall +qall
 
 # python setup
-# curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-# py2version=$(brew info python@2 | sed -n 's/^python@2: stable \([0-9.]*\).*/\1/p')
-# py3version=$(brew info python   | sed -n 's/^python: stable \([0-9.]*\).*/\1/p')
-# CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" $HOME/.pyenv/bin/pyenv install -v $py2version
-# CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" $HOME/.pyenv/bin/pyenv install -v $py3version
-py2base=2.7
-py3base=3.6
 git clone https://github.com/momo-lab/pyenv-install-latest.git "$(/usr/local/bin/pyenv root)"/plugins/pyenv-install-latest
-/usr/local/bin/pyenv install-latest $py2base
-/usr/local/bin/pyenv install-latest $py3base
-/usr/local/bin/pyenv install-latest miniconda3
-py2version=$(pyenv versions | grep $py2base | xargs)
-py3version=$(pyenv versions | grep $py3base | xargs)
-minicondaversion=$(pyenv versions | grep miniconda3 | xargs)
-/usr/local/bin/pyenv global $py3version $py2version $minicondaversion
 
-# (this path is set in the zsh configs, but we're in bash, still)
+py2base=2.7
+/usr/local/bin/pyenv install-latest $py2base
+py2version=$(pyenv versions | grep $py2base | xargs)
+
+py3base=3.6
+/usr/local/bin/pyenv install-latest $py3base
+py3version=$(pyenv versions | grep $py3base | xargs)
+
+# /usr/local/bin/pyenv install-latest miniconda3
+# minicondaversion=$(pyenv versions | grep miniconda3 | xargs)
+
+/usr/local/bin/pyenv global $py3version $py2version # $minicondaversion
+
 pyPath="$HOME/.pyenv/shims"
 $pyPath/pip2 install --upgrade pip
 $pyPath/pip3 install --upgrade pip
 $pyPath/pip2 install -r install_lists/python-dev-packages.txt
-# $pyPath/conda install --yes --file install_lists/python-sci-packages.txt
-$pyPath/conda env update --name root --file ./python-sci-packages.yml
-$pyPath/conda clean --all --yes
+# $pyPath/conda env update --name root --file install_lists/conda-root-packages.yml
+# $pyPath/conda env create --file install_lists/conda-scimath.yml
+# $pyPath/conda env create --file install_lists/conda-nlp.yml
+# $pyPath/conda clean --all --yes
 
 timerData "POST-PYTHON"
 

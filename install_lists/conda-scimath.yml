@@ -1,11 +1,8 @@
-name: root
+name: scimath
 channels:
   - defaults
 
 dependencies:
-    # meta
-    - anaconda-navigator
-
     # math and visualization
     - numpy
     - scipy
@@ -18,9 +15,3 @@ dependencies:
     - plotly
     - vispy
 
-    # NLP
-    - nltk
-    - spacy
-
-    - pip:
-        - textblob

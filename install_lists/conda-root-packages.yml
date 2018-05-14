@@ -1,0 +1,7 @@
+name: root
+channels:
+  - defaults
+
+dependencies:
+    # meta
+    - anaconda-navigator
