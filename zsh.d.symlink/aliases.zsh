@@ -1,7 +1,6 @@
 alias reload!='. ~/.zshrc'
 
-if $(gls &>/dev/null)
-then
+if $(gls &>/dev/null); then
   alias ls="gls -F --color"
   alias ll="gls -lh --color"
   alias la="gls -FA --color"
@@ -14,6 +13,8 @@ else
 fi
 
 alias mkdir="mkdir -p"
+
+alias brewup="brew update; brew upgrade; brew cleanup -s --force; brew cask cleanup; rm -rf $(brew --cache)"
 
 # Mac-specific aliases
 if [[ $OSTYPE == darwin* ]]; then
