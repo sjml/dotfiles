@@ -18,10 +18,6 @@ export HOMEBREW_NO_ANALYTICS=1
 # since we have our own plans for the prompt
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-## ruby setup
-#eval "$(rbenv init --no-rehash -)"
-#(rbenv rehash &) 2> /dev/null
-
 # purty colors
 export LSCOLORS=exfxcxdxbxegedabagacad
 # export LSCOLORS=GxFxCxDxBxegedabagaced

@@ -114,6 +114,20 @@ $pyPath/pip3 install -r install_lists/python3-dev-packages.txt
 
 timerData "POST-PYTHON"
 
+# ruby setup
+rbPath="$HOME/.rbenv/shims"
+rbenv="/usr/local/bin/rbenv"
+rbversion=$($rbenv install -l | grep -v - | tail -1 | xargs)
+$rbenv install $rbversion
+
+$rbenv global $rbversion
+
+$rbPath/gem update --system
+yes | $rbPath/gem update
+$rbPath/gem install bundler
+
+timerData "POST-RUBY"
+
 # rust setup
 curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
 $HOME/.cargo/bin/rustup install nightly

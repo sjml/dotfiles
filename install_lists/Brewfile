@@ -13,17 +13,18 @@ brew 'unrar'
 brew 'gnupg'
 brew 'xz'
 
-# programming languages
-# brew 'python' # homebrew's python is a mess; installed via pyenv
-# brew 'python@2'
+# meta environments
 brew 'pyenv'
 brew 'pyenv-virtualenv'
-brew 'ruby'
+brew 'rbenv'
+brew 'ruby-build'
+# brew 'rustup-init' # installed in provision-mac.sh
+
+# programming languages
 brew 'go'
 brew 'erlang'
 brew 'elixir'
 brew 'mit-scheme'
-# brew 'rust' # installed via rustup
 brew 'haskell-stack'
 brew 'elm'
 
