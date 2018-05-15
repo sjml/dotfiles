@@ -139,6 +139,8 @@ cask 'snes9x'
 cask 'handbrake'
 cask 'vlc'
 cask 'amazon-music'
+cask 'calibre'
+cask 'cloudlibrary'
 
 # utilities
 cask 'hammerspoon'
