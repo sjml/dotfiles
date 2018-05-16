@@ -87,26 +87,26 @@ pyPath="$HOME/.pyenv/shims"
 pyenv="/usr/local/bin/pyenv"
 git clone https://github.com/momo-lab/pyenv-install-latest.git "$($pyenv root)"/plugins/pyenv-install-latest
 
-py2base=2.7
-$pyenv install-latest $py2base
-py2version=$($pyenv versions | grep $py2base | xargs)
-
 py3base=3.6
 $pyenv install-latest $py3base
 py3version=$($pyenv versions | grep $py3base | xargs)
-
-# $pyenv install-latest miniconda3
-# minicondaversion=$($pyenv versions | grep miniconda3 | xargs)
-
-$pyenv global $py3version $py2version # $minicondaversion
+$pyenv global $py3version
 $pyenv rehash
-
-$pyPath/pip2 install --upgrade pip
-$pyPath/pip2 install -r install_lists/python2-dev-packages.txt
-
 $pyPath/pip3 install --upgrade pip
 $pyPath/pip3 install -r install_lists/python3-dev-packages.txt
 
+py2base=2.7
+$pyenv install-latest $py2base
+py2version=$($pyenv versions | grep $py2base | xargs)
+$pyenv global $py3version $py2version
+$pyenv rehash
+$pyPath/pip2 install --upgrade pip
+$pyPath/pip2 install -r install_lists/python2-dev-packages.txt
+
+# $pyenv install-latest miniconda3
+# minicondaversion=$($pyenv versions | grep miniconda3 | xargs)
+# $pyenv global $py3version $py2version $minicondaversion
+# $pyenv rehash
 # $pyPath/conda env update --name root --file install_lists/conda-root-packages.yml
 # $pyPath/conda env create --file install_lists/conda-scimath.yml
 # $pyPath/conda env create --file install_lists/conda-nlp.yml
@@ -125,6 +125,7 @@ $rbenv global $rbversion
 $rbPath/gem update --system
 yes | $rbPath/gem update
 $rbPath/gem install bundler
+$rbPath/gem cleanup
 
 timerData "POST-RUBY"
 
@@ -348,9 +349,7 @@ killall Mail
 
 timerData "POST-GUI"
 
-# NLP data comes last because it can take a looooong time
-$pyPath/python -m nltk.downloader all
-$pyPath/python -m spacy.en.download all
+
 
 timerData "DONE"
 

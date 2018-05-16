@@ -32,7 +32,6 @@ Running `provision-mac.sh` on a clean user account will:
   * Set up appearance of Terminal.app
   * Various and sundry macOS GUI settings (Finder behaviors, Trackpad settings, etc.)
   * Set up the Dock
-  * Download NLP data for various Python libraries
 
 The `provision-linux.sh` is much simpler because I don't have root on most Linux
 machines I use, and tend to not have them quite as customized. All it does:
