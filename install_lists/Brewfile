@@ -25,7 +25,7 @@ brew 'go'
 brew 'erlang'
 brew 'elixir'
 brew 'mit-scheme'
-brew 'haskell-stack'
+# brew 'haskell-stack' # installed as part of platform in casks
 brew 'elm'
 
 # network stuff
@@ -115,6 +115,7 @@ cask 'robo-3t'
 cask 'dotnet'
 cask 'dotnet-sdk'
 cask 'mono-mdk'
+cask 'haskell-platform'
 
 # artsy
 # cask 'unity'
