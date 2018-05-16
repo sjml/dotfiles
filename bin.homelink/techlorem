@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# goofiness :)
+hexdump -C /dev/urandom | head -$(($LINES - 2))
