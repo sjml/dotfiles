@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+
+# Only run pip normally if we're currently running it from
+#  a virtual environment. Otherwise only let it install to
+#  the local user directory.
+
+pip() {
+  if [[ -n $VIRTUAL_ENV ]]; then
+    $VIRTUAL_ENV/bin/pip "$@"
+  elif [[ -a $HOME/.pyenv/shims/pip ]]; then
+    $HOME/.pyenv/shims/pip "$@"
+  else
+    _pip="$(/usr/bin/python -m site --user-base)/bin/pip"
+    PIP_USER=1 $_pip "$@"
+  fi
+}
