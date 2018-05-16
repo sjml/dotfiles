@@ -227,13 +227,18 @@ function _sjml_buildPromptVars() {
     outlineColor=$normColor
   fi
 
+  local snake="🐍"
+  if [[ -n $VSCODE_PID ]]; then
+    snake="$snake "
+  fi
+
   # this solution to measuring out the top line doesn't scale as I add more
   #  things like the virtualenv indicator, but since I don't have ambitions
   #  of replacing liquidprompt's flexibility, I'm ok with it. (apologies to
   #  the future version of myself who will have to rewrite this to scale.)
   local scaffold="$topLt$sep()()$sep$topRt"
   if [[ -n $VIRTUAL_ENV ]]; then
-    scaffold="$topLt$sep()[🐍]()$sep$topRt"
+    scaffold="$topLt$sep()[$snake]()$sep$topRt"
   fi
   local prettyPath=$(rtab)
   local hostName=${(%):-%m}
@@ -265,7 +270,7 @@ function _sjml_buildPromptVars() {
 
   local ltData="$fg[$outlineColor]$topLt$sep$reset_color($prettyPath)"
   if [[ -n $VIRTUAL_ENV ]]; then
-    local venv="[$fg[green]🐍$reset_color]"
+    local venv="[$fg[green]$snake$reset_color]"
     ltData=$ltData$venv
   fi
   local rtData="($userData)$fg[$outlineColor]$sep$topRt$reset_color"
@@ -273,7 +278,12 @@ function _sjml_buildPromptVars() {
   local ltDataSize=$(_gvl $ltData)
   local rtDataSize=$(_gvl $rtData)
 
-  local paddingSize=$(( COLUMNS - 1 - ltDataSize - rtDataSize ))
+  local offset=1
+  if [[ -n $VIRTUAL_ENV && -z $VSCODE_PID ]]; then
+    offset=2
+  fi
+
+  local paddingSize=$(( COLUMNS - offset - ltDataSize - rtDataSize ))
   local paddingString=%F{$outlineColor}$(printf "$sep%.0s" {1..$paddingSize})$reset_color
   topLine=$ltData$paddingString$rtData
 

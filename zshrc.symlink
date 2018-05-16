@@ -42,6 +42,8 @@ source $ZSH/vendor/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # lazy load nvm unless we're inside VS Code
 if [ -z "$VSCODE_PID" ]; then
   export NVM_LAZY_LOAD=true
+else
+  export NVM_LAZY_LOAD=false
 fi
 source $ZSH/vendor/zsh-nvm/zsh-nvm.plugin.zsh
 
