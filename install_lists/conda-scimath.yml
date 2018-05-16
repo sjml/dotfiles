@@ -8,7 +8,6 @@ dependencies:
     - scipy
     - pandas
     - tensorflow
-    - jupyter
     - matplotlib
     - seaborn
     - mpld3
