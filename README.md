@@ -24,8 +24,9 @@ Running `provision-mac.sh` on a clean user account will:
   * Attempt to install Mac App Store stuff from the mas section of the Brewfile
   * Make a `~/Projects` directory and symlink the dotfiles there
   * Install a set of vim bundles, managed by [Vundle](https://github.com/VundleVim/Vundle.vim)
-  * Install Python 2 and 3 (2 as default) via [pyenv](https://github.com/pyenv/pyenv)
+  * Install latest versions of Python 2 and 3 (3 as default) via [pyenv](https://github.com/pyenv/pyenv)
   * Install all packages listed in `install_lists/python-packages.txt`
+  * Install the latest version of Ruby via [rbenv](https://github.com/rbenv/rbenv)
   * Install Rust (stable and nightly; stable as default) via [rustup](https://www.rustup.rs/)
   * Use [zsh-nvm](https://github.com/lukechilds/zsh-nvm) to install Node.js and any Node utilities listed in `install_lists/node-packages.txt`
   * Set up appearance of Terminal.app
