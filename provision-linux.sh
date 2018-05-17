@@ -50,10 +50,5 @@ easy_install --quiet --user pip
 local pyPath="$(python -m site --user-base)/bin"
 # not automatically installing things with pip in this script
 
-# install zsh-nvm, Node.js, and yarn, but nothing else
-zsh -i -c 'nvm install node; \
-           nvm use node;'
-          #  npm install -g yarn'
-
 cd ~
 echo "And that's it! You're good to go."

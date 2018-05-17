@@ -18,6 +18,8 @@ brew 'pyenv'
 brew 'pyenv-virtualenv'
 brew 'rbenv'
 brew 'ruby-build'
+brew 'nodenv'
+brew 'node-build'
 # brew 'rustup-init' # installed in provision-mac.sh
 
 # programming languages

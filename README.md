@@ -27,8 +27,9 @@ Running `provision-mac.sh` on a clean user account will:
   * Install latest versions of Python 2 and 3 (3 as default) via [pyenv](https://github.com/pyenv/pyenv)
   * Install all packages listed in `install_lists/python-packages.txt`
   * Install the latest version of Ruby via [rbenv](https://github.com/rbenv/rbenv)
+  * Install the latest version of Node.js via [nodenv](https://github.com/nodenv/nodenv)
+  * Install all Node-based programs listed in `install_lists/node-packages.txt`
   * Install Rust (stable and nightly; stable as default) via [rustup](https://www.rustup.rs/)
-  * Use [zsh-nvm](https://github.com/lukechilds/zsh-nvm) to install Node.js and any Node utilities listed in `install_lists/node-packages.txt`
   * Set up appearance of Terminal.app
   * Various and sundry macOS GUI settings (Finder behaviors, Trackpad settings, etc.)
   * Set up the Dock
@@ -40,7 +41,6 @@ machines I use, and tend to not have them quite as customized. All it does:
   * Symlink this to ~/Projects/dotfiles
   * Install the vim bundles
   * Install pip, but not the Python packages
-  * Install an nvm-ed Node.js, but nothing else
 
 
 ## Custom ZSH prompt

@@ -1,0 +1,227 @@
+#!/usr/bin/env zsh
+
+source $HOME/.zshrc # probably some better way to get the paths, etc...
+
+local -a envs=(python3 python2 node ruby)
+local -a cmds=(check up)
+
+
+help() {
+    echo "Usage: envup [check|up] [environment]"
+    echo "    defaults: envup check all"
+}
+
+
+all_check() {
+    for env in "${envs[@]}"; do
+        ${env}_check
+    done
+}
+
+all_up() {
+    echo "Update individually for now."
+    exit 1
+}
+
+
+print_check() {
+    if [[ $2 != $3 ]]; then
+        echo "  ⚠️   $1 latest version is $3; installed is $2."
+    else
+        echo "  ✅  $1 is up to date. ($2)"
+    fi
+}
+
+
+env_remVer() {
+    $1 install -l \
+        | grep -vE "\s*[a-zA-Z-]" \
+        | sort -V \
+        | grep "^\s*$2" \
+        | tail -1 \
+        | xargs
+}
+env_locVer() {
+    $1 global | grep "^$2"
+}
+
+env_check() {
+    remoteVersion=$( env_remVer $1 $2 )
+    localVersion=$( env_locVer $1 $2 )
+
+    print_check $3 $localVersion $remoteVersion
+}
+
+env_migration_failed() {
+    {
+        echo
+        echo "MIGRATION FAILED"
+        echo
+        echo "Inspect the requirements file: $REQ_FILE"
+    } 1>&2
+    exit
+}
+
+
+node_check() {
+    env_check nodenv "" "Node.js"
+}
+
+node_up() {
+    newVersion=$( env_remVer nodenv "" )
+    oldVersion=$( env_locVer nodenv "" )
+
+    if [[ $newVersion == $oldVersion ]]; then
+        print_check "Node.js" $newVersion $newVersion
+        return
+    fi
+
+    nodenv install $newVersion
+
+    trap env_migration_failed ERR
+        local seed="$(date '+%Y%m%d%H%M%S').$$"
+        REQ_FILE="$HOME/node-npmfile.$seed.txt"
+        npm list --global --depth=0 \
+            | tail -n +2 \
+            | cut -d" " -f2 \
+            | grep -v "npm@" \
+            > "$REQ_FILE"
+        nodenv global $newVersion
+        npm install --global $(cat "$REQ_FILE")
+
+        nodenv uninstall -f $oldVersion
+        nodenv rehash
+        rm "$REQ_FILE"
+        print_check "Node.js" $newVersion $newVersion
+    trap - ERR
+}
+
+python3_check() {
+    env_check pyenv 3 "Python 3"
+}
+
+python3_up() {
+    newVersion=$( env_remVer pyenv 3 )
+    oldVersion=$( env_locVer pyenv 3 )
+    version2=$( env_locVer pyenv 2)
+
+    if [[ $newVersion == $oldVersion ]]; then
+        print_check "Python 3" $newVersion $newVersion
+        return
+    fi
+
+    pyenv install $newVersion
+    pyenv global $newVersion $version2
+    pyenv rehash
+
+    trap env_migration_failed ERR
+        local seed="$(date '+%Y%m%d%H%M%S').$$"
+        REQ_FILE="$HOME/python3.requirements.$seed.txt"
+        ~/.pyenv/versions/$oldVersion/bin/pip freeze | grep -v "^-e" > "$REQ_FILE"
+        ~/.pyenv/versions/$newVersion/bin/pip install --upgrade pip
+        ~/.pyenv/versions/$newVersion/bin/pip install -r "$REQ_FILE"
+        pyenv uninstall -f $oldVersion
+        pyenv rehash
+        rm "$REQ_FILE"
+        print_check "Python 3" $newVersion $newVersion
+    trap - ERR
+}
+
+
+python2_check() {
+    env_check pyenv 2 "Python 2"
+}
+
+python2_up() {
+    newVersion=$( env_remVer pyenv 2 )
+    oldVersion=$( env_locVer pyenv 2 )
+    version3=$( env_locVer pyenv 3)
+
+    if [[ $newVersion == $oldVersion ]]; then
+        print_check "Python 2" $newVersion $newVersion
+        return
+    fi
+
+    pyenv install $newVersion
+    pyenv global $version3 $newVersion
+    pyenv rehash
+
+    trap env_migration_failed ERR
+        local seed="$(date '+%Y%m%d%H%M%S').$$"
+        REQ_FILE="$HOME/python2-requirements.$seed.txt"
+        ~/.pyenv/versions/$oldVersion/bin/pip freeze | grep -v "^-e" > "$REQ_FILE"
+        ~/.pyenv/versions/$newVersion/bin/pip install --upgrade pip
+        ~/.pyenv/versions/$newVersion/bin/pip install -r "$REQ_FILE"
+        pyenv uninstall -f $oldVersion
+        pyenv rehash
+        rm "$REQ_FILE"
+        print_check "Python 2" $newVersion $newVersion
+    trap - ERR
+}
+
+
+ruby_check() {
+    env_check rbenv 2 "Ruby"
+}
+
+ruby_up() {
+    newVersion=$( env_remVer rbenv 2 )
+    oldVersion=$( env_locVer rbenv 2 )
+
+    if [[ $newVersion == $oldVersion ]]; then
+        print_check "Ruby" $newVersion $newVersion
+        return
+    fi
+
+    rbenv install $newVersion
+    rbenv global $newVersion
+    newGem=~/.rbenv/versions/$newVersion/bin/gem
+    oldGem=~/.rbenv/versions/$oldVersion/bin/gem
+
+    trap env_migration_failed ERR
+        local seed="$(date '+%Y%m%d%H%M%S').$$"
+        REQ_FILE="$HOME/ruby-gemfile.$seed.txt"
+        $oldGem list > "$REQ_FILE"
+        $newGem update --system
+        yes | $newGem update
+        for i in $($oldGem list | awk '{ if ( $1 !~ /^$/ ) print $1}'); do
+            $newGem list "${i}" | grep "${i}" > /dev/null 2>&1
+            if [[ $? -ne 0 ]]; then
+                $newGem install -f "${i}"
+            fi
+        done
+
+        rbenv uninstall -f $oldVersion
+        rbenv rehash
+        rm "$REQ_FILE"
+        print_check "Ruby" $newVersion $newVersion
+    trap - ERR
+}
+
+
+if [[ $#@ -lt 2 ]]; then
+    val="all"
+fi
+if [[ $#@ -lt 1 ]]; then
+    command="check"
+fi
+if [[ $#@ -ge 2 ]]; then
+    command=$1
+    val=$2
+fi
+
+if [[ ${envs[(ie)$val]} -gt ${#envs} ]]; then
+    if [[ $val != "all" ]]; then
+        echo "INVALID ENVIRONMENT: $val"
+        help
+        exit
+    fi
+fi
+
+if [[ ${cmds[(ie)$command]} -gt ${#cmds} ]]; then
+    echo "INVALID COMMAND: $command"
+    help
+    exit
+fi
+
+${val}_${command}

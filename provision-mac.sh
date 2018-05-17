@@ -103,6 +103,8 @@ $pyenv rehash
 $pyPath/pip2 install --upgrade pip
 $pyPath/pip2 install -r install_lists/python2-dev-packages.txt
 
+eval "$($pyenv init --no-rehash -)"
+
 # $pyenv install-latest miniconda3
 # minicondaversion=$($pyenv versions | grep miniconda3 | xargs)
 # $pyenv global $py3version $py2version $minicondaversion
@@ -121,6 +123,7 @@ rbversion=$($rbenv install -l | grep -v - | tail -1 | xargs)
 $rbenv install $rbversion
 
 $rbenv global $rbversion
+eval "$($rbenv init --no-rehash -)"
 
 $rbPath/gem update --system
 yes | $rbPath/gem update
@@ -136,9 +139,15 @@ $HOME/.cargo/bin/rustup install nightly
 timerData "POST-RUST"
 
 # node setup
-zsh -i -c 'nvm install node; \
-           nvm use node; \
-           npm install -g $(cat install_lists/node-packages.txt);'
+nodePath="$HOME/.nodenv/shims"
+nodenv="/usr/local/bin/nodenv"
+nodeversion=$($nodenv install -l | grep -vE "\s*[a-zA-Z-]" | sort -V | tail -1 | xargs)
+$nodenv install $nodeversion
+
+$nodenv global $nodeversion
+eval "$($nodenv init --no-rehash -)"
+
+$nodePath/npm install -g $(cat install_lists/node-packages.txt)
 
 timerData "POST-NODE"
 

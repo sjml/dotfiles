@@ -30,12 +30,20 @@ path=($myPath $path)
 
 myPath=()
 
-## Ruby, checking for rbenv virst
+## Ruby, checking for rbenv first
 if [[ -a /usr/local/bin/rbenv ]]; then
   eval "$(/usr/local/bin/rbenv init --no-rehash -)"
-  (/usr/local/bin/rbenvrbenv rehash &) 2> /dev/null
+  (/usr/local/bin/rbenv rehash &) 2> /dev/null
 elif type ruby > /dev/null 2>&1; then
   myPath+=("$(ruby -rubygems -e 'puts Gem.user_dir')/bin")
+fi
+
+## Node.js, checking for nodenv first
+if [[ -a /usr/local/bin/nodenv ]]; then
+  eval "$(/usr/local/bin/nodenv init --no-rehash -)"
+  (/usr/local/bin/nodenv rehash &) 2> /dev/null
+elif type npm > /dev/null 2>&1; then
+  myPath+=("$(npm bin -g)")
 fi
 
 ## Python, checking for pyenv first
