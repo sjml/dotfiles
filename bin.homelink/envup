@@ -1,8 +1,6 @@
 #!/usr/bin/env zsh
 
-source $HOME/.zshrc # probably some better way to get the paths, etc...
-
-local -a envs=(python3 python2 node ruby)
+local -a envs=(brew cask python3 python2 node ruby)
 local -a cmds=(check up)
 
 
@@ -31,6 +29,55 @@ print_check() {
         echo "  ✅  $1 is up to date. ($2)"
     fi
 }
+
+
+brew_check() {
+    /usr/local/bin/brew update > /dev/null
+    local outBrew=$(/usr/local/bin/brew outdated --quiet)
+    local outFmt=$(echo $outBrew | xargs | sed -e "s/ /, /")
+    local outCount=$(echo $outBrew | wc -l | xargs)
+    local info=""
+    if [[ ${#outBrew} == 0 ]]; then
+        info="  ✅  Homebrew packages are up to date."
+    elif [[ $outCount == 1 ]]; then
+        info="  ⚠️   Homebrew has 1 outdated package. ($outFmt)"
+    else
+        info="  ⚠️   Homebrew has $outBrew outdated packages. ($outFmt)"
+    fi
+    echo ${info:0:$COLUMNS}
+}
+
+brew_up() {
+    /usr/local/bin/brew upgrade
+    /usr/local/bin/brew cleanup -s --force
+    rm -rf $(/usr/local/bin/brew --cache)
+    all_check # since this might have updated one of the envs
+}
+
+
+cask_check() {
+    /usr/local/bin/brew update > /dev/null
+    local outCask=$(/usr/local/bin/brew cask outdated --quiet)
+    local outFmt=$(echo $outCask | xargs | sed -e "s/ /, /")
+    local outCount=$(echo $outCask | wc -l | xargs)
+    local info=""
+    if [[ ${#outCask} == 0 ]]; then
+        info="  ✅  Homebrew casks are up to date."
+    elif [[ $outCount == 1 ]]; then
+        info="  ⚠️   Homebrew has 1 outdated cask. ($outFmt)"
+    else
+        info="  ⚠️   Homebrew has $outBrew outdated casks. ($outFmt)"
+    fi
+    echo ${info:0:$COLUMNS}
+}
+
+cask_up() {
+    /usr/local/bin/brew cask upgrade
+    /usr/local/bin/brew cask cleanup
+    rm -rf $(/usr/local/bin/brew --cache)
+    echo "  ✅  Homebrew casks are up to date."
+}
+
 
 
 env_remVer() {
@@ -87,6 +134,7 @@ node_up() {
             | grep -v "npm@" \
             > "$REQ_FILE"
         nodenv global $newVersion
+        npm install --global npm
         npm install --global $(cat "$REQ_FILE")
 
         nodenv uninstall -f $oldVersion

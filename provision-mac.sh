@@ -103,7 +103,7 @@ $pyenv rehash
 $pyPath/pip2 install --upgrade pip
 $pyPath/pip2 install -r install_lists/python2-dev-packages.txt
 
-eval "$($pyenv init --no-rehash -)"
+eval "$($pyenv init -)"
 
 # $pyenv install-latest miniconda3
 # minicondaversion=$($pyenv versions | grep miniconda3 | xargs)
@@ -123,7 +123,7 @@ rbversion=$($rbenv install -l | grep -v - | tail -1 | xargs)
 $rbenv install $rbversion
 
 $rbenv global $rbversion
-eval "$($rbenv init --no-rehash -)"
+eval "$($rbenv init -)"
 
 $rbPath/gem update --system
 yes | $rbPath/gem update
@@ -145,8 +145,9 @@ nodeversion=$($nodenv install -l | grep -vE "\s*[a-zA-Z-]" | sort -V | tail -1 |
 $nodenv install $nodeversion
 
 $nodenv global $nodeversion
-eval "$($nodenv init --no-rehash -)"
+eval "$($nodenv init -)"
 
+$nodePath/npm install -g npm
 $nodePath/npm install -g $(cat install_lists/node-packages.txt)
 
 timerData "POST-NODE"

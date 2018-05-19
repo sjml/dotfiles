@@ -1,17 +1,9 @@
 # dev
 virtualenv
+pylint
+rope
+autopep8
 Cython
 cffi
-twine
-rope
-pylint
 mkdocs
-autopep8
-
-# image processing
-Pillow
-
-# web stuff
-requests
-scrapy
-beautifulsoup4
+twine

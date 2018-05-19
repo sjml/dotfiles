@@ -53,9 +53,8 @@ if [[ ${#mass[@]} -gt 0 ]]; then
 
   # just bouncing out to make sure we sign in with the correct ID here
   /usr/local/bin/mas signout
-  echo -n "AppleID username: "
-  read appleID
-  /usr/local/bin/mas signin $appleID
+  echo "Signing in to Mac App Store via GUI..."
+  /usr/local/bin/mas signin --dialog
 fi
 
 # get the casks first

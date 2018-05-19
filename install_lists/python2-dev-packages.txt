@@ -1,4 +1,4 @@
 # dev
 virtualenv
-mercurial
 pylint
+mercurial
