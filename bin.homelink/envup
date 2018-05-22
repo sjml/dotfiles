@@ -32,7 +32,11 @@ print_check() {
 
 
 brew_check() {
-    /usr/local/bin/brew update > /dev/null
+    /usr/local/bin/brew update > /dev/null 2>&1
+    if [[ $? -ne 0 ]]; then
+        echo "  ❌  Couldn’t check Homebrew packages. Internet down?"
+        return
+    fi
     local outBrew=$(/usr/local/bin/brew outdated --quiet)
     local outFmt=$(echo $outBrew | xargs | sed -e "s/ /, /")
     local outCount=$(echo $outBrew | wc -l | xargs)
@@ -56,7 +60,11 @@ brew_up() {
 
 
 cask_check() {
-    /usr/local/bin/brew update > /dev/null
+    /usr/local/bin/brew update > /dev/null 2>&1
+    if [[ $? -ne 0 ]]; then
+        echo "  ❌  Couldn’t check Homebrew casks. Internet down?"
+        return
+    fi
     local outCask=$(/usr/local/bin/brew cask outdated --quiet)
     local outFmt=$(echo $outCask | xargs | sed -e "s/ /, /")
     local outCount=$(echo $outCask | wc -l | xargs)
