@@ -38,7 +38,7 @@ brew_check() {
         return
     fi
     local outBrew=$(/usr/local/bin/brew outdated --quiet)
-    local outFmt=$(echo $outBrew | xargs | sed -e "s/ /, /")
+    local outFmt=$(echo $outBrew | xargs | sed -e "s/ /, /g")
     local outCount=$(echo $outBrew | wc -l | xargs)
     local info=""
     if [[ ${#outBrew} == 0 ]]; then
@@ -46,7 +46,7 @@ brew_check() {
     elif [[ $outCount == 1 ]]; then
         info="  ⚠️   Homebrew has 1 outdated package. ($outFmt)"
     else
-        info="  ⚠️   Homebrew has $outBrew outdated packages. ($outFmt)"
+        info="  ⚠️   Homebrew has $outCount outdated packages. ($outFmt)"
     fi
     echo ${info:0:$COLUMNS}
 }
@@ -66,7 +66,7 @@ cask_check() {
         return
     fi
     local outCask=$(/usr/local/bin/brew cask outdated --quiet)
-    local outFmt=$(echo $outCask | xargs | sed -e "s/ /, /")
+    local outFmt=$(echo $outCask | xargs | sed -e "s/ /, /g")
     local outCount=$(echo $outCask | wc -l | xargs)
     local info=""
     if [[ ${#outCask} == 0 ]]; then
@@ -74,7 +74,7 @@ cask_check() {
     elif [[ $outCount == 1 ]]; then
         info="  ⚠️   Homebrew has 1 outdated cask. ($outFmt)"
     else
-        info="  ⚠️   Homebrew has $outBrew outdated casks. ($outFmt)"
+        info="  ⚠️   Homebrew has $outCount outdated casks. ($outFmt)"
     fi
     echo ${info:0:$COLUMNS}
 }
