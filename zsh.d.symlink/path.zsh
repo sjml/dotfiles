@@ -1,4 +1,6 @@
 
+source /etc/zprofile
+
 local -a myPath=()
 
 ## Go

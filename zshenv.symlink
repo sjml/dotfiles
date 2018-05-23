@@ -1,7 +1,11 @@
+#!/usr/bin/env zsh
+
 # unicode. always, unicode
 export LANG=en_US.UTF-8
 export LANGUAGE=$LANG
 export LC_ALL=$LANG
+
+source $HOME/.zsh.d/path.zsh
 
 # vim style line entry
 bindkey -v
@@ -44,3 +48,4 @@ setopt correct # spelling correction for commands
 
 setopt local_options # let functions have local options
 
+setopt no_global_rcs # don't let macOS override my path with /etc/zprofile

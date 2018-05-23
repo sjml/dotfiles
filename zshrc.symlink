@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 ZSH=~/.zsh.d
 
 # put any machine-specific environment variables in .localrc
@@ -5,11 +7,6 @@ ZSH=~/.zsh.d
 if [[ -a ~/.localrc ]] then;
   source ~/.localrc
 fi
-
-source $ZSH/env.zsh
-
-# paths first
-source $ZSH/path.zsh
 
 # initialize autocomplete
 autoload -U compinit
