@@ -56,6 +56,7 @@ brew 'imagemagick'
 brew 'ghostscript'
 brew 'pdf2svg'
 brew 'svg2png'
+brew 'woff2'
 brew 'ripgrep'
 brew 'peco'
 

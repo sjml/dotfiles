@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+baseName=${1:r}
+
+woff2_compress $1
+ttf2woff $1 ${baseName}.woff
