@@ -1,9 +1,7 @@
 # dev
+setuptools
 virtualenv
 pylint
 rope
 autopep8
-Cython
-cffi
-mkdocs
 twine

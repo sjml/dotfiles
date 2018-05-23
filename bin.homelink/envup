@@ -1,6 +1,16 @@
 #!/usr/bin/env zsh
 
-local -a envs=(brew cask python3 python2 node ruby)
+# A single script that monitors each of the following for updates:
+#     Homebrew (command line programs)
+#     Homebrew's Casks (GUI apps)
+#     Mac App Store
+#     Python 3/2, Node.js, and Ruby environments
+#
+# Specifically does not monitor packages within script environments;
+#   those might be pinned to specific versions and need to be checked
+#   individually.
+
+local -a envs=(brew cask mas python3 python2 node ruby)
 local -a cmds=(check up)
 
 
@@ -86,6 +96,27 @@ cask_up() {
     echo "  ✅  Homebrew casks are up to date."
 }
 
+
+mas_check() {
+    # <sigh> no "--quiet" modifier for mas :-/
+    local outMas=$(/usr/local/bin/mas outdated | sed -E 's/^[0-9]+[[:space:]]+(.*)[[:space:]]+\([0-9.]*[[:space:]]+->[[:space:]]+[0-9.]*\)$/\1/')
+    local outFmt=$(echo $outMas | xargs | sed -e "s/ /, /g")
+    local outCount=$(echo $outMas | wc -l | xargs)
+    local info=""
+    if [[ ${#outMas} == 0 ]]; then
+        info="  ✅  Mac App Store apps are up to date."
+    elif [[ $outCount == 1 ]]; then
+        info="  ⚠️   Mac App Store has 1 outdated app. ($outFmt)"
+    else
+        info="  ⚠️   Mac App Store has $outCount outdated apps. ($outFmt)"
+    fi
+    echo ${info:0:$COLUMNS}
+}
+
+mas_up() {
+    /usr/local/bin/mas upgrade
+    echo "  ✅  Mac App Store apps are up to date."
+}
 
 
 env_remVer() {
