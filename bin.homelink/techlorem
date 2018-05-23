@@ -1,4 +1,10 @@
 #!/usr/bin/env zsh
 
 # goofiness :)
+
+autoload colors
+colors
+
+echo $fg[green]
 hexdump -C /dev/urandom | head -$(($LINES - 2))
+echo -n $reset_color
