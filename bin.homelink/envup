@@ -288,29 +288,35 @@ ruby_up() {
 }
 
 
-if [[ $#@ -lt 2 ]]; then
-    val="all"
-fi
-if [[ $#@ -lt 1 ]]; then
-    command="check"
-fi
-if [[ $#@ -ge 2 ]]; then
-    command=$1
-    val=$2
-fi
+[[ $ZSH_EVAL_CONTEXT =~ :file$ ]] && sourced=1 || sourced=0
+if [[ $sourced -ne 1 ]]; then
+    if [[ !$sourced ]]; then
+        if [[ $#@ -lt 2 ]]; then
+            val="all"
+        fi
+        if [[ $#@ -lt 1 ]]; then
+            command="check"
+        fi
+        if [[ $#@ -ge 2 ]]; then
+            command=$1
+            val=$2
+        fi
 
-if [[ ${envs[(ie)$val]} -gt ${#envs} ]]; then
-    if [[ $val != "all" ]]; then
-        echo "INVALID ENVIRONMENT: $val"
-        help
-        exit
+        if [[ ${envs[(ie)$val]} -gt ${#envs} ]]; then
+            if [[ $val != "all" ]]; then
+                echo "INVALID ENVIRONMENT: $val"
+                help
+                exit
+            fi
+        fi
+
+        if [[ ${cmds[(ie)$command]} -gt ${#cmds} ]]; then
+            echo "INVALID COMMAND: $command"
+            help
+            exit
+        fi
+
+        ${val}_${command}
     fi
 fi
 
-if [[ ${cmds[(ie)$command]} -gt ${#cmds} ]]; then
-    echo "INVALID COMMAND: $command"
-    help
-    exit
-fi
-
-${val}_${command}

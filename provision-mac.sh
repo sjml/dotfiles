@@ -82,23 +82,24 @@ ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 # any vim bundles
 vim +PluginInstall +qall
 
+
+# pull in environment check functions
+source "$HOME/bin/envup"
+
 # python setup
 pyPath="$HOME/.pyenv/shims"
 pyenv="/usr/local/bin/pyenv"
-git clone https://github.com/momo-lab/pyenv-install-latest.git "$($pyenv root)"/plugins/pyenv-install-latest
 
-py3base=3.6
-$pyenv install-latest $py3base
-py3version=$($pyenv versions | grep $py3base | xargs)
+py3version=$(env_remVer pyenv 3)
+$pyenv install $py3version
 $pyenv global $py3version
 $pyenv rehash
 $pyPath/pip3 install --upgrade pip
 $pyPath/pip3 install -r install_lists/python3-dev-packages.txt
 $pyenv rehash
 
-py2base=2.7
-$pyenv install-latest $py2base
-py2version=$($pyenv versions | grep $py2base | xargs)
+py2version=$(env_remVer pyenv 2)
+$pyenv install $py2version
 $pyenv global $py3version $py2version
 $pyenv rehash
 $pyPath/pip2 install --upgrade pip
@@ -107,21 +108,12 @@ $pyenv rehash
 
 eval "$($pyenv init -)"
 
-# $pyenv install-latest miniconda3
-# minicondaversion=$($pyenv versions | grep miniconda3 | xargs)
-# $pyenv global $py3version $py2version $minicondaversion
-# $pyenv rehash
-# $pyPath/conda env update --name root --file install_lists/conda-root-packages.yml
-# $pyPath/conda env create --file install_lists/conda-scimath.yml
-# $pyPath/conda env create --file install_lists/conda-nlp.yml
-# $pyPath/conda clean --all --yes
-
 timerData "POST-PYTHON"
 
 # ruby setup
 rbPath="$HOME/.rbenv/shims"
 rbenv="/usr/local/bin/rbenv"
-rbversion=$($rbenv install -l | grep -v - | tail -1 | xargs)
+rbversion=$(env_remVer rbenv)
 $rbenv install $rbversion
 
 $rbenv global $rbversion
@@ -129,7 +121,7 @@ eval "$($rbenv init -)"
 
 $rbPath/gem update --system
 yes | $rbPath/gem update
-$rbPath/gem install bundler
+yes | $rbPath/gem install bundler
 $rbPath/gem cleanup
 
 timerData "POST-RUBY"
@@ -139,7 +131,7 @@ nodePath="$HOME/.nodenv/shims"
 nodenv="/usr/local/bin/nodenv"
 git clone https://github.com/nodenv/node-build-update-defs.git "$(nodenv root)"/plugins/node-build-update-defs
 $nodenv update-version-defs
-nodeversion=$($nodenv install -l | grep -vE "\s*[a-zA-Z-]" | sort -V | tail -1 | xargs)
+nodeversion=$(env_remVer nodenv)
 $nodenv install $nodeversion
 
 $nodenv global $nodeversion
