@@ -52,7 +52,6 @@ fi
 if [[ -a /usr/local/bin/pyenv ]]; then
   eval "$(/usr/local/bin/pyenv init --no-rehash -)"
   (/usr/local/bin/pyenv rehash &) 2> /dev/null
-  eval "$(/usr/local/bin/pyenv virtualenv-init -)"
 elif type python > /dev/null 2>&1; then
   myPath+=("$(python -m site --user-base)/bin")
 fi

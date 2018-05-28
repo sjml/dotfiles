@@ -15,7 +15,6 @@ brew 'xz'
 
 # meta environments
 brew 'pyenv'
-brew 'pyenv-virtualenv'
 brew 'rbenv'
 brew 'ruby-build'
 brew 'nodenv'

@@ -150,7 +150,9 @@ env_migration_failed() {
 
 
 node_check() {
+    /usr/local/bin/nodenv update-version-defs > /dev/null 2>&1
     env_check nodenv "" "Node.js"
+    /usr/local/bin/nodenv prune-version-defs > /dev/null 2>&1
 }
 
 node_up() {

@@ -94,6 +94,7 @@ $pyenv global $py3version
 $pyenv rehash
 $pyPath/pip3 install --upgrade pip
 $pyPath/pip3 install -r install_lists/python3-dev-packages.txt
+$pyenv rehash
 
 py2base=2.7
 $pyenv install-latest $py2base
@@ -102,6 +103,7 @@ $pyenv global $py3version $py2version
 $pyenv rehash
 $pyPath/pip2 install --upgrade pip
 $pyPath/pip2 install -r install_lists/python2-dev-packages.txt
+$pyenv rehash
 
 eval "$($pyenv init -)"
 
@@ -141,6 +143,8 @@ timerData "POST-RUST"
 # node setup
 nodePath="$HOME/.nodenv/shims"
 nodenv="/usr/local/bin/nodenv"
+git clone https://github.com/nodenv/node-build-update-defs.git "$(nodenv root)"/plugins/node-build-update-defs
+$nodenv update-version-defs
 nodeversion=$($nodenv install -l | grep -vE "\s*[a-zA-Z-]" | sort -V | tail -1 | xargs)
 $nodenv install $nodeversion
 

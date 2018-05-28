@@ -1,5 +1,6 @@
 # dev
 setuptools
 virtualenv
+pipenv
 pylint
 mercurial

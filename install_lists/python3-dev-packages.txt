@@ -1,6 +1,7 @@
 # dev
 setuptools
 virtualenv
+pipenv
 pylint
 rope
 autopep8
