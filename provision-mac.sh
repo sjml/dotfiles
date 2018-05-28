@@ -134,12 +134,6 @@ $rbPath/gem cleanup
 
 timerData "POST-RUBY"
 
-# rust setup
-curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
-$HOME/.cargo/bin/rustup install nightly
-
-timerData "POST-RUST"
-
 # node setup
 nodePath="$HOME/.nodenv/shims"
 nodenv="/usr/local/bin/nodenv"
@@ -155,6 +149,12 @@ $nodePath/npm install -g npm
 $nodePath/npm install -g $(cat install_lists/node-packages.txt)
 
 timerData "POST-NODE"
+
+# rust setup
+curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
+$HOME/.cargo/bin/rustup install nightly
+
+timerData "POST-RUST"
 
 # set up Terminal
 osascript 2>/dev/null <<EOD
