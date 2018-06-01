@@ -3,6 +3,5 @@ channels:
   - defaults
 
 dependencies:
-    # meta
     - anaconda-navigator
     - jupyter

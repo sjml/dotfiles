@@ -3,7 +3,6 @@ channels:
   - defaults
 
 dependencies:
-    # math and visualization
     - numpy
     - scipy
     - pandas
