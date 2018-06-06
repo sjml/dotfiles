@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+
+# This was hastily coded in 15 minutes before a D&D session.
+# It mostly works.
+
+
+import sys
+import re
+import random
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: dieroller [dice string]")
+        print("  Example: dieroller 3d6 + 2")
+        print("Add \"--basic\" flag to just show the result.")
+        sys.exit(1)
+    roll_string = ""
+    flag = None
+    for arg in sys.argv[1:]:
+        if arg.startswith("--"):
+            flag = arg
+            break
+        roll_string += arg
+
+    die_check = r"(\d+)?d(\d+|f)([+-]\d+)?"
+    roll_data = re.match(die_check, roll_string, re.I)
+    if not roll_data:
+        print("Invalid die roll: Couldn't match.")
+        sys.exit(1)
+
+    roll_count = -1
+    if not roll_data.groups()[0]:
+        roll_count = 1
+    else:
+        roll_count = int(roll_data.groups()[0])
+
+    modifier = 0
+    if roll_data.groups()[2]:
+        modifier = int(roll_data.groups()[2])
+
+    die_range = (0, 0)
+    if roll_data.groups()[1].lower() == "f":
+        die_range = (-1, 1)
+    else:
+        die_max = int(roll_data.groups()[1])
+        if not die_max:
+            print("Invalid die roll: No max sides.")
+            sys.exit(1)
+        die_range = (1, die_max)
+
+    rolls = []
+    for _ in range(roll_count):
+        rolls.append(random.randint(die_range[0], die_range[1]))
+
+    roll_value = sum(rolls)
+    roll_value += modifier
+
+    if flag == "--basic":
+        print(roll_value)
+    else:
+        out = " + ".join([str(x) for x in rolls])
+        mod = ""
+        if modifier < 0:
+            mod = " - " + str(modifier * -1)
+        elif modifier > 0:
+            mod = " + " + str(modifier)
+        out = "[%s]%s = \033[1m%d\033[0m" % (out, mod, roll_value)
+        print(out)
+
+
+if __name__ == "__main__":
+    main()
+
