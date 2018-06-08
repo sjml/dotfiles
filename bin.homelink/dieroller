@@ -28,7 +28,7 @@ def main():
         print("Invalid die roll: Couldn't match.")
         sys.exit(1)
 
-    roll_count = -1
+    roll_count = 0
     if not roll_data.groups()[0]:
         roll_count = 1
     else:
@@ -48,9 +48,7 @@ def main():
             sys.exit(1)
         die_range = (1, die_max)
 
-    rolls = []
-    for _ in range(roll_count):
-        rolls.append(random.randint(die_range[0], die_range[1]))
+    rolls = [random.randint(die_range[0], die_range[1]) for _ in range(roll_count)]
 
     roll_value = sum(rolls)
     roll_value += modifier
