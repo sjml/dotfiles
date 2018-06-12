@@ -121,8 +121,7 @@ cask 'dotnet-sdk'
 cask 'mono-mdk'
 
 # artsy
-# cask 'unity'
-# cask 'unity-webgl-support-for-editor'
+cask 'unity-hub'
 cask 'blender'
 cask 'bfxr'
 cask 'twine'
