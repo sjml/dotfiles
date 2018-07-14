@@ -173,9 +173,11 @@ osascript 2>/dev/null <<EOD
   end tell
 EOD
 
+# set up default associations
+duti ~/.duti
+
 # Turn off unneeded menu bar items
 defaults -currentHost write dontAutoLoad -array-add "/System/Library/CoreServices/Menu Extras/Displays.menu"
-defaults -currentHost write dontAutoLoad -array-add "/System/Library/CoreServices/Menu Extras/TimeMachine.menu"
 defaults -currentHost write dontAutoLoad -array-add "/System/Library/CoreServices/Menu Extras/Volume.menu"
 defaults -currentHost write dontAutoLoad -array-add "/System/Library/CoreServices/Menu Extras/User.menu"
 

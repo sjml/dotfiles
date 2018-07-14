@@ -77,6 +77,7 @@ brew 'mkvtoolnix', args: ["with-qt", "with-gettext"]
 brew 'speedtest-cli'
 brew 'dieharder'
 brew 'dockutil'
+brew 'duti'
 brew 'trash'
 
 # amusements!
