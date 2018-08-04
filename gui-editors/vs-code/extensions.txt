@@ -1,5 +1,4 @@
 EditorConfig.EditorConfig
-LaurentTreguier.vscode-simple-icons
 Tobiah.unity-tools
 Tyriar.lorem-ipsum
 Unity.unity-debug
@@ -7,14 +6,19 @@ YclepticStudios.unity-snippets
 bibhasdn.unique-lines
 bungcip.better-toml
 dbaeumer.vscode-eslint
+deerawan.vscode-dash
 donjayamanne.githistory
+donjayamanne.jupyter
+eamodio.gitlens
 eg2.tslint
 eg2.vscode-npm-script
 hbenl.vscode-firefox-debug
+LaurentTreguier.vscode-simple-icons
 mrmlnc.vscode-apache
 ms-python.python
 ms-vscode.cpptools
 ms-vscode.csharp
+ms-vscode.Go
 msjsdiag.debugger-for-chrome
 rebornix.Ruby
 robinbentley.sass-indented

@@ -116,6 +116,7 @@ cask 'mactex'
 # development
 cask 'sublime-text'
 cask 'visual-studio-code'
+cask 'dash'
 cask 'macdown'
 cask 'processing'
 cask 'kaleidoscope'
