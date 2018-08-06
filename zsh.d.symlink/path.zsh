@@ -45,6 +45,7 @@ if [[ -a /usr/local/bin/rbenv ]]; then
 elif [[ -a $HOME/.rbenv/bin/rbenv ]]; then
   eval "$($HOME/.rbenv/bin/rbenv init --no-rehash -)"
   ($HOME/.rbenv/bin/rbenv rehash &) 2> /dev/null
+  myPath+=($HOME/.rbenv/bin)
 elif type ruby > /dev/null 2>&1; then
   myPath+=("$(ruby -rubygems -e 'puts Gem.user_dir')/bin")
 fi
@@ -56,6 +57,7 @@ if [[ -a /usr/local/bin/nodenv ]]; then
 elif [[ -a $HOME/.nodenv/bin/nodenv ]]; then
   eval "$($HOME/.nodenv/bin/nodenv init --no-rehash -)"
   ($HOME/.nodenv/bin/nodenv rehash &) 2> /dev/null
+  myPath+=($HOME/.nodenv/bin)
 elif type npm > /dev/null 2>&1; then
   myPath+=("$(npm bin -g)")
 fi
@@ -67,6 +69,7 @@ if [[ -a /usr/local/bin/pyenv ]]; then
 elif [[ -a $HOME/.pyenv/bin/pyenv ]]; then
   eval "$($HOME/.pyenv/bin/pyenv init --no-rehash -)"
   ($HOME/.pyenv/bin/pyenv rehash &) 2> /dev/null
+  myPath+=($HOME/.pyenv/bin)
 elif type python > /dev/null 2>&1; then
   myPath+=("$(python -m site --user-base)/bin")
 fi
