@@ -58,9 +58,6 @@ rm -rf $(brew --cache)
 
 timerData "POST-BREW"
 
-# done with sudo
-sudo -k
-
 # make sure we're running in a local git working copy
 #  (this hooks us in if we were set up from the bootstrap script)
 if [[ ! -d .git ]]; then

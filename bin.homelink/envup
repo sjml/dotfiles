@@ -63,7 +63,7 @@ brew_check() {
 
 brew_up() {
     /usr/local/bin/brew upgrade
-    /usr/local/bin/brew cleanup -s --force
+    /usr/local/bin/brew cleanup -s
     rm -rf $(/usr/local/bin/brew --cache)
     all_check # since this might have updated one of the envs
 }
@@ -90,8 +90,10 @@ cask_check() {
 }
 
 cask_up() {
+    echo "Cask might need sudo..."
+    sudo -v
     /usr/local/bin/brew cask upgrade
-    /usr/local/bin/brew cask cleanup
+    /usr/local/bin/brew cleanup
     rm -rf $(/usr/local/bin/brew --cache)
     echo "  ✅  Homebrew casks are up to date."
 }
