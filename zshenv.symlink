@@ -12,7 +12,9 @@ bindkey -v
 
 # Preferred editor for local and remote sessions
 export EDITOR="vim"
-export VISUAL="$HOME/bin/sublime-wait"
+if [ -f "$HOME/bin/sublime-wait" ]; then
+  export VISUAL="$HOME/bin/sublime-wait"
+fi
 
 ## homebrew setup
 # don't phone home
