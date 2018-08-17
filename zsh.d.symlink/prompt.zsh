@@ -228,7 +228,7 @@ function _sjml_buildPromptVars() {
   fi
 
   local snake="🐍"
-  if [[ -n $VSCODE_PID ]]; then
+  if [[ $TERM_PROGRAM == 'vscode' ]]; then
     snake="$snake "
   fi
 
