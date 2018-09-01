@@ -3,7 +3,7 @@ $dotPath = $homePath + "\.dotfiles"
 
 if (Test-Path -Path $dotPath) {
     Write-Warning "There's already a .dotfiles directory in $homePath. Aborting bootstrap."
-    Exit
+    Return
 }
 
 Set-ExecutionPolicy Bypass -Scope Process -Force
