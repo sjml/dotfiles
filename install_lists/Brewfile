@@ -135,9 +135,9 @@ cask 'vmware-fusion'
 cask 'docker'
 
 # entertainment
-cask 'steam'
-cask 'gog-galaxy'
 cask 'itch'
+cask 'gog-galaxy'
+cask 'steam'
 cask 'dwarf-fortress'
 cask 'minecraft'
 cask 'boxer'

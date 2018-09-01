@@ -1,4 +1,4 @@
-My dotfiles, to get a Mac or Linux computer running the way I like it. 
+My dotfiles, to get a computer running the way I like it. 
 
 ## Installation
 To get the whole repo: 
@@ -6,9 +6,14 @@ To get the whole repo:
 git clone https://github.com/sjml/dotfiles ~/.dotfiles
 ```
 
-To bootstrap onto a fresh computer (that may not have git, like Macs out of the box): 
+To bootstrap onto a fresh *nix computer (that may not have git, like Macs out of the box): 
 ```shell-script
 curl -fsSL https://raw.githubusercontent.com/sjml/dotfiles/master/bootstrap.sh | bash
+```
+
+Or on Windows:
+```powershell
+Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/sjml/dotfiles/master/bootstrap.ps1'))
 ```
 
 ## What it does
@@ -25,7 +30,7 @@ Running `provision-mac.sh` on a clean user account will:
   * Make a `~/Projects` directory and symlink the dotfiles there
   * Install a set of vim bundles, managed by [Vundle](https://github.com/VundleVim/Vundle.vim)
   * Install latest versions of Python 2 and 3 (3 as default) via [pyenv](https://github.com/pyenv/pyenv)
-  * Install all packages listed in `install_lists/python-packages.txt`
+  * Install all packages listed in `install_lists/python{2|3}-dev-packages.txt`
   * Install the latest version of Ruby via [rbenv](https://github.com/rbenv/rbenv)
   * Install the latest version of Node.js via [nodenv](https://github.com/nodenv/nodenv)
   * Install all Node-based programs listed in `install_lists/node-packages.txt`
@@ -42,6 +47,13 @@ machines I use, and tend to not have them quite as customized. All it does:
   * Install the vim bundles
   * Install pip, but not the Python packages
 
+The Windows version (`provision-windows.ps1`) is pretty experimental, but it attempts to:
+  * Install [Chocolatey](http://chocolatey.org/)
+  * Install all the packages listed in `install_lists/chocolatey-packages.config`
+  * Install all packages listed in `install_lists/python3-dev-packages.txt`
+  * Install all Node-based programs listed in `install_lists/node-packages.txt`
+  * Enable the Windows Subsystem for Linux
+  * Set a number of sensible Windows default options and remove a lot of installation cruft
 
 ## Custom ZSH prompt
 
