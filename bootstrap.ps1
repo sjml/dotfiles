@@ -6,6 +6,8 @@ if (Test-Path -Path $dotPath) {
     Exit
 }
 
+Set-ExecutionPolicy Bypass -Scope Process -Force
+
 Push-Location $homePath
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12

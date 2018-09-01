@@ -11,7 +11,7 @@ To bootstrap onto a fresh *nix computer (that may not have git, like Macs out of
 curl -fsSL https://raw.githubusercontent.com/sjml/dotfiles/master/bootstrap.sh | bash
 ```
 
-Or on Windows:
+Or on Windows, from an Administrator PowerShell:
 ```powershell
 Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/sjml/dotfiles/master/bootstrap.ps1'))
 ```
@@ -53,7 +53,8 @@ The Windows version (`provision-windows.ps1`) is pretty experimental, but it att
   * Install all packages listed in `install_lists/python3-dev-packages.txt`
   * Install all Node-based programs listed in `install_lists/node-packages.txt`
   * Enable the Windows Subsystem for Linux
-  * Set a number of sensible Windows default options and remove a lot of installation cruft
+  * Set a number of sensible Windows options 
+  * Remove installation cruft
 
 ## Custom ZSH prompt
 
