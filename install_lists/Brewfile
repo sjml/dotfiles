@@ -48,6 +48,7 @@ brew 'ctags'
 brew 'valgrind'
 brew 'qcachegrind'
 brew 'hub'
+brew 'libyaml'
 brew 'travis'
 brew 'ripgrep'
 
