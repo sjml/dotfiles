@@ -31,6 +31,7 @@ timerData "PRE-BREW"
 
 # install homebrew
 export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_AUTO_UPDATE=1
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # install zsh real quick so we can chsh to it while we still have sudo
@@ -55,6 +56,7 @@ echo "Cleaning up Homebrew..."
 brew cleanup -s --force
 brew cask cleanup
 rm -rf $(brew --cache)
+export HOMEBREW_NO_AUTO_UPDATE=0
 
 timerData "POST-BREW"
 
