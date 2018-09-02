@@ -19,6 +19,8 @@ fi
 ## homebrew setup
 # don't phone home
 export HOMEBREW_NO_ANALYTICS=1
+# relax
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 ## python setup
 # since we have our own plans for the prompt
