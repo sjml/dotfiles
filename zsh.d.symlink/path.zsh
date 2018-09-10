@@ -47,7 +47,7 @@ elif [[ -a $HOME/.rbenv/bin/rbenv ]]; then
   ($HOME/.rbenv/bin/rbenv rehash &) 2> /dev/null
   myPath+=($HOME/.rbenv/bin)
 elif type ruby > /dev/null 2>&1; then
-  myPath+=("$(ruby -rubygems -e 'puts Gem.user_dir')/bin")
+  myPath+=("$(ruby -r rubygems -e 'puts Gem.user_dir')/bin")
 fi
 
 ## Node.js, checking for nodenv first
