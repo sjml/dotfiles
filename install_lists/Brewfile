@@ -120,9 +120,13 @@ cask 'kaleidoscope'
 cask 'sourcetree'
 cask 'insomnia'
 cask 'robo-3t'
+
+# programming languages
 cask 'dotnet'
 cask 'dotnet-sdk'
 cask 'mono-mdk'
+cask 'r-app'
+cask 'rstudio'
 
 # artsy
 cask 'unity-hub'
