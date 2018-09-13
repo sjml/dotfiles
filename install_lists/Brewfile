@@ -101,7 +101,7 @@ cask 'backblaze'
 # internet
 cask 'firefox'
 cask 'google-chrome'
-cask 'torbrowser'
+cask 'tor-browser'
 cask 'transmit4'
 cask 'transmission'
 
