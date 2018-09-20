@@ -137,6 +137,7 @@ cask 'nodebox'
 
 # various virtualization thingies
 cask 'vmware-fusion'
+cask 'virtualbox'
 cask 'docker'
 
 # entertainment
@@ -200,7 +201,7 @@ mas 'GarageBand',         id: 682658836
 
 # utility
 mas 'GrandPerspective',   id: 1111570163
-mas 'Wunderlist',         id: 410628904
+mas 'TickTick',           id: 966085870
 
 # graphics and office
 mas 'Pixelmator',         id: 407963104
