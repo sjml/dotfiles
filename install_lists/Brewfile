@@ -122,7 +122,6 @@ cask 'insomnia'
 cask 'robo-3t'
 
 # programming languages
-cask 'dotnet'
 cask 'dotnet-sdk'
 cask 'mono-mdk'
 cask 'r-app'
