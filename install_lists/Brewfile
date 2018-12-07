@@ -109,6 +109,7 @@ cask 'transmission'
 cask 'scrivener'
 # cask 'libreoffice' # so long as I can use MS Office proper, don't need it
 cask 'mactex'
+cask 'anki'
 
 # development
 cask 'sublime-text'
@@ -142,6 +143,7 @@ cask 'docker'
 # entertainment
 cask 'itch'
 cask 'gog-galaxy'
+cask 'epic-games'
 cask 'steam'
 cask 'dwarf-fortress'
 cask 'handbrake'
