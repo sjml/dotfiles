@@ -158,7 +158,7 @@ cask 'hammerspoon'
 cask 'arq'
 cask 'the-unarchiver'
 cask 'selfcontrol'
-cask 'etcher'
+cask 'balenaetcher'
 cask 'unetbootin'
 
 # quicklook stuff
