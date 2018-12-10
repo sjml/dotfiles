@@ -1,6 +1,5 @@
 live-server
 browser-sync
-vorlon
 surge
 heroku
 ttf2woff
