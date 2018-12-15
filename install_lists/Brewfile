@@ -22,7 +22,6 @@ brew 'node-build'
 # brew 'rustup-init' # installed in provision-mac.sh
 
 # programming languages
-brew 'go'
 brew 'erlang'
 brew 'elixir'
 brew 'elm'
@@ -30,6 +29,7 @@ brew 'mit-scheme'
 brew 'ghc'
 brew 'cabal-install'
 brew 'haskell-stack'
+# brew 'go' # not really using anymore
 
 # network stuff
 brew 'wget'
