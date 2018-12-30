@@ -276,8 +276,7 @@ ruby_up() {
         $newGem update --system
         yes | $newGem update
         for i in $($oldGem list | awk '{ if ( $1 !~ /^$/ ) print $1}'); do
-            $newGem list "${i}" | grep "${i}" > /dev/null 2>&1
-            if [[ $? -ne 0 ]]; then
+            if [[ $($newGem list "${i}") != *"${i}"* ]]; then
                 $newGem install -f "${i}"
             fi
         done
