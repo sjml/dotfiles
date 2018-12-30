@@ -74,9 +74,8 @@ brew 'multimarkdown'
 brew 'lame'
 brew 'libdvdcss'
 brew 'youtube-dl'
-brew 'ffmpeg'
+brew 'ffmpeg', args: ["with-fdk-aac", "with-freetype", "with-libass"]
 brew 'libav'
-brew 'mkvtoolnix', args: ["with-qt", "with-gettext"]
 brew 'speedtest-cli'
 brew 'dieharder'
 brew 'dockutil'
@@ -161,6 +160,7 @@ cask 'the-unarchiver'
 cask 'selfcontrol'
 cask 'balenaetcher'
 cask 'unetbootin'
+cask 'mkvtoolnix-app'
 
 # quicklook stuff
 cask 'qlcolorcode'
