@@ -74,7 +74,7 @@ brew 'multimarkdown'
 brew 'lame'
 brew 'libdvdcss'
 brew 'youtube-dl'
-brew 'ffmpeg', args: ["with-fdk-aac", "with-freetype", "with-libass"]
+brew 'ffmpeg', args: ["with-fdk-aac", "with-freetype", "with-libass", "with-libbluray", "with-rubberband", "with-librsvg"]
 brew 'libav'
 brew 'speedtest-cli'
 brew 'dieharder'
