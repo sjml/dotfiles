@@ -35,26 +35,23 @@ for command in brewData:
 
 erred = False
 
-badDeps = {
-    "python": "Python",
-    "node"  : "Node.js",
-    "rust"  : "Rust",
-    "ruby"  : "Ruby"
-}
+badDeps = json.load(open("./bad-brew-dependencies.json"))
 
 if (DEEP_DEP_INTERROGATE):
-    for dep, name in badDeps.iteritems():
+    for badDep in badDeps:
         for pkg in packages.keys():
-            deps = subprocess.check_output(["/usr/local/bin/brew", "deps", pkg])
-            if (dep in deps.split("\n")):
-                sys.stderr.write("WARNING: package %s will result in Homebrew %s\n" % (pkg, name))
+            pkgDeps = subprocess.check_output(["/usr/local/bin/brew", "deps", pkg]).split("\n")
+            if (any([x in pkgDeps for x in badDep["brewDeps"]])):
+                sys.stderr.write("WARNING: package %s will result in Homebrew %s\n" % (pkg, badDep["name"]))
 else:
-    deps = subprocess.check_output(["/usr/local/bin/brew", "deps", "--union"] + packages.keys())
+    deps = subprocess.check_output(["/usr/local/bin/brew", "deps", "--union"] + packages.keys()).split("\n")
+    deps += packages.keys()
 
-    for dep in deps.split("\n"):
-        if dep in badDeps.keys():
-            sys.stderr.write("WARNING: this Brewfile will result in Homebrew %s.\n" % badDeps[dep])
-            erred = True
+    for dep in deps:
+        for badDep in badDeps:
+            if dep in badDep["brewDeps"]:
+                sys.stderr.write("WARNING: this Brewfile will result in Homebrew %s.\n" % badDep["name"])
+                erred = True
 
 FNULL = open(os.devnull, "w")
 for pkg, args in packages.iteritems():

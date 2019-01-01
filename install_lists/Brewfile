@@ -51,6 +51,7 @@ brew 'hub'
 brew 'libyaml'
 brew 'travis'
 brew 'ripgrep'
+brew 'jq'
 
 # cask tools
 tap 'vitorgalvao/tiny-scripts'

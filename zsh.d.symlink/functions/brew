@@ -25,7 +25,7 @@ brew() {
           continue
         fi
 
-        declare -a avoidances=(python python2 python@2 node rust)
+        declare -a avoidances=($(cat $HOME/.dotfiles/utility/bad-brew-dependencies.json | jq -r '[.[].brewDeps]|flatten|.[]'))
         local badPak=$(echo $pkg | grep -E "^(${(j:|:)avoidances})$")
         if [[ -n $badPak ]]; then
           echo "Cancelling installation; don't want to install $pkg from Homebrew." | fold -s -w $COLUMNS
