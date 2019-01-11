@@ -54,7 +54,7 @@ brew 'ripgrep'
 brew 'jq'
 
 # cask tools
-tap 'vitorgalvao/tiny-scripts'
+tap 'vitorgalvao/homebrew-tiny-scripts'
 brew 'cask-repair'
 
 # graphics tools
