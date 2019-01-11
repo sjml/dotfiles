@@ -201,7 +201,7 @@ python3_up() {
         return
     fi
 
-    pyenv install $newVersion
+    CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install $newVersion
     pyenv global $newVersion $version2
     pyenv rehash
 
@@ -233,7 +233,7 @@ python2_up() {
         return
     fi
 
-    pyenv install $newVersion
+    CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install $newVersion
     pyenv global $version3 $newVersion
     pyenv rehash
 
