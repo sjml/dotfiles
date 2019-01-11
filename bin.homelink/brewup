@@ -1,7 +1,0 @@
-#!/bin/sh
-
-/usr/local/bin/brew update
-/usr/local/bin/brew upgrade
-/usr/local/bin/brew cleanup -s --force
-/usr/local/bin/brew cask cleanup
-rm -rf $(/usr/local/bin/brew --cache)
