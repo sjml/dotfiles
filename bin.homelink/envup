@@ -201,7 +201,7 @@ python3_up() {
         return
     fi
 
-    CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install $newVersion
+    LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib" CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include" pyenv install $newVersion
     pyenv global $newVersion $version2
     pyenv rehash
 
@@ -233,7 +233,7 @@ python2_up() {
         return
     fi
 
-    CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install $newVersion
+    LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib" CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include" pyenv install $newVersion
     pyenv global $version3 $newVersion
     pyenv rehash
 

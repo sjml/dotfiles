@@ -52,6 +52,7 @@ brew 'libyaml'
 brew 'travis'
 brew 'ripgrep'
 brew 'jq'
+brew 'sqlite'
 
 # cask tools
 tap 'vitorgalvao/tiny-scripts'
