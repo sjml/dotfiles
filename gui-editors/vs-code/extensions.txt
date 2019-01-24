@@ -8,16 +8,14 @@ donjayamanne.githistory
 donjayamanne.jupyter
 eamodio.gitlens
 EditorConfig.EditorConfig
-eg2.tslint
 eg2.vscode-npm-script
 hbenl.vscode-firefox-debug
+HookyQR.beautify
 LaurentTreguier.vscode-simple-icons
 mechatroner.rainbow-csv
-mohsen1.prettify-json
 ms-python.python
 ms-vscode.cpptools
 ms-vscode.csharp
-ms-vscode.Go
 msjsdiag.debugger-for-chrome
 rebornix.ruby
 robinbentley.sass-indented
