@@ -5,3 +5,4 @@ heroku
 ttf2woff
 yo
 eslint
+@angular/cli
