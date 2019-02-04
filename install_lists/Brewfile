@@ -53,6 +53,7 @@ brew 'travis'
 brew 'ripgrep'
 brew 'jq'
 brew 'sqlite'
+brew 'flatbuffers'
 
 # cask tools
 tap 'vitorgalvao/tiny-scripts'
