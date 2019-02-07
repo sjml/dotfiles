@@ -3,6 +3,5 @@ browser-sync
 surge
 heroku
 ttf2woff
-yo
 eslint
 @angular/cli
