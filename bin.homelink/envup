@@ -90,8 +90,8 @@ cask_check() {
 }
 
 cask_up() {
-    echo "Cask might need sudo..."
-    sudo -v
+    # echo "Cask might need sudo..."
+    # sudo -v
     /usr/local/bin/brew cask upgrade
     /usr/local/bin/brew cleanup
     rm -rf $(/usr/local/bin/brew --cache)
