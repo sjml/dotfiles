@@ -133,6 +133,7 @@ cask 'rstudio'
 # artsy
 cask 'unity-hub'
 cask 'blender'
+cask 'texturepacker'
 cask 'bfxr'
 cask 'twine'
 cask 'nodebox'
