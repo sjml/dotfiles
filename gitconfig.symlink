@@ -8,6 +8,9 @@
 [push]
 	default = simple
 
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
