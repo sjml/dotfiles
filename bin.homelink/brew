@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
 # A simple wrapper on the homebrew command to check potential installations
-#  and make sure we don't accidentally pull in the homebrew version of Python
-#  or Node.js, which have the potential to mess up outside installations.
+#  and make sure we don't accidentally pull in the homebrew version of software
+#  ecosystems which have the potential to mess up outside installations.
 
 local _brew="/usr/local/bin/brew"
 
