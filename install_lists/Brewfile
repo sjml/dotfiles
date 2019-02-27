@@ -29,7 +29,7 @@ brew 'mit-scheme'
 brew 'ghc'
 brew 'cabal-install'
 brew 'haskell-stack'
-# brew 'go' # not really using anymore
+brew 'go'
 
 # network stuff
 brew 'wget'

@@ -9,11 +9,11 @@ fi
 
 local -a myPath=()
 
-## Go
-# if type go > /dev/null 2>&1; then
-#   export GOPATH="$HOME/go"
-#   myPath+=("$GOPATH/bin")
-# fi
+# Go
+if type go > /dev/null 2>&1; then
+  export GOPATH="$HOME/go"
+  myPath+=("$GOPATH/bin")
+fi
 
 ## Various paths to add if certain things are installed
 local -a addIfExists=(
