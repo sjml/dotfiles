@@ -12,7 +12,7 @@ if [[ " ${@[*]} " == *" --build-from-source "* ]]; then
   exit
 fi
 case "$1" in
-  instal|install|reinstall)
+  instal|install|reinstall|upgrade)
     for pkg in $@
     do
       # skip initial command
