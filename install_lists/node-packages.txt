@@ -1,7 +1,5 @@
 live-server
-browser-sync
 surge
 heroku
 ttf2woff
 eslint
-@angular/cli

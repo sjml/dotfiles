@@ -1,11 +1,10 @@
 Tyriar.lorem-ipsum
-YclepticStudios.unity-snippets
+alexcvzz.vscode-sqlite
 bibhasdn.unique-lines
 bungcip.better-toml
 dbaeumer.vscode-eslint
 deerawan.vscode-dash
 donjayamanne.githistory
-donjayamanne.jupyter
 eamodio.gitlens
 EditorConfig.EditorConfig
 eg2.vscode-npm-script
@@ -16,11 +15,11 @@ mechatroner.rainbow-csv
 ms-python.python
 ms-vscode.cpptools
 ms-vscode.csharp
+ms-vscode.Go
 msjsdiag.debugger-for-chrome
 rebornix.ruby
 robinbentley.sass-indented
 rust-lang.rust
 slevesque.shader
-Tobiah.unity-tools
 Unity.unity-debug
 wholroyd.jinja
