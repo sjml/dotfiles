@@ -164,7 +164,7 @@ cask 'the-unarchiver'
 cask 'selfcontrol'
 cask 'balenaetcher'
 cask 'unetbootin'
-cask 'mkvtoolnix-app'
+cask 'mkvtoolnix'
 cask 'keepingyouawake'
 
 # quicklook stuff
