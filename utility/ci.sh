@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# turning this off for now until re-evaluating how bad homebrew's Python is
+# if it's unlinked
+exit 0
+
+# real script starts here
 cd "$(dirname "$0")"
 
 echo "Setting homebrew taps..."

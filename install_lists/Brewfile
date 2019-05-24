@@ -30,6 +30,7 @@ brew 'ghc'
 brew 'cabal-install'
 brew 'haskell-stack'
 brew 'go'
+brew 'deno'
 
 # network stuff
 brew 'wget'
