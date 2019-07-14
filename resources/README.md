@@ -11,4 +11,7 @@ The file that gets appended to the end of my `~/.ssh/config` after a new key is
 added to it, so that servers without a corresponding key just ask for a password.
 
 ## Office Templates
-Templates for MS Office.
+Templates for MS Office. Set the location in Word's Preferences -> File Locations -> User Templates.
+
+## Xcode Templates
+Templates for Xcode. `ln -s ~/.dotfiles/resources/Xcode\ Templates ~/Library/Developer/Xcode/Templates/Custom`
