@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # -------------------------------------------------------------------------------------------------
 # Copyright (c) 2018 zsh-syntax-highlighting contributors
 # All rights reserved.
@@ -27,14 +28,12 @@
 # vim: ft=zsh sw=2 ts=2 et
 # -------------------------------------------------------------------------------------------------
 
-mkdir foo
-touch foo/bar
-BUFFER=": foo/bar $PWD/foo foo/b"
-ZSH_HIGHLIGHT_DIRS_BLACKLIST=($PWD/foo $PWD/bar)
+BUFFER=$': -$\'n\''
+
+touch ./-n
 
 expected_region_highlight=(
   '1 1 builtin' # :
-  '3 9 default' # foo/bar
-  "11 $(( 14 + $#PWD )) default" # $PWD/foo
-  "$(( 16 + $#PWD )) $(( 20 + $#PWD )) default" # foo/b
+  '3 7 single-hyphen-option' # -$'n'
+  '4 7 dollar-quoted-argument' # $'n'
 )

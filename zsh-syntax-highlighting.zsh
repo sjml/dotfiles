@@ -101,7 +101,7 @@ _zsh_highlight()
   typeset -r zsyh_user_options
 
   emulate -L zsh
-  setopt localoptions warncreateglobal
+  setopt localoptions warncreateglobal nobashrematch
   local REPLY # don't leak $REPLY into global scope
 
   # Do not highlight if there are more than 300 chars in the buffer. It's most
@@ -431,6 +431,12 @@ zmodload zsh/parameter 2>/dev/null || true
 
 # Initialize the array of active highlighters if needed.
 [[ $#ZSH_HIGHLIGHT_HIGHLIGHTERS -eq 0 ]] && ZSH_HIGHLIGHT_HIGHLIGHTERS=(main)
+
+if (( $+X_ZSH_HIGHLIGHT_DIRS_BLACKLIST )); then
+  print >&2 'zsh-syntax-highlighting: X_ZSH_HIGHLIGHT_DIRS_BLACKLIST is deprecated. Please use ZSH_HIGHLIGHT_DIRS_BLACKLIST.'
+  ZSH_HIGHLIGHT_DIRS_BLACKLIST=($X_ZSH_HIGHLIGHT_DIRS_BLACKLIST)
+  unset X_ZSH_HIGHLIGHT_DIRS_BLACKLIST
+fi
 
 # Restore the aliases we unned
 eval "$zsh_highlight__aliases"
