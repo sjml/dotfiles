@@ -1,5 +1,6 @@
+#!/usr/bin/env zsh
 # -------------------------------------------------------------------------------------------------
-# Copyright (c) 2018 zsh-syntax-highlighting contributors
+# Copyright (c) 2019 zsh-syntax-highlighting contributors
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted
@@ -27,14 +28,28 @@
 # vim: ft=zsh sw=2 ts=2 et
 # -------------------------------------------------------------------------------------------------
 
-mkdir foo
-touch foo/bar
-BUFFER=": foo/bar $PWD/foo foo/b"
-ZSH_HIGHLIGHT_DIRS_BLACKLIST=($PWD/foo $PWD/bar)
+# Test an external command that does not exist as a builtin.
+# The spaces in $BUFFER are to align precommand-type*.zsh test files.
+BUFFER=$'ls    ; builtin ls    ; builtin command ls    ; nice ls    '
+
+# Verify that the 'ls' command isn't shadowed.
+if [[ $(type -w ls) != "ls: command" ]]; then
+  echo >&2 "precommand-type3: error: the 'ls' command is shadowed (or possibly missing altogether)"
+fi
 
 expected_region_highlight=(
-  '1 1 builtin' # :
-  '3 9 default' # foo/bar
-  "11 $(( 14 + $#PWD )) default" # $PWD/foo
-  "$(( 16 + $#PWD )) $(( 20 + $#PWD )) default" # foo/b
+  '1 2 command' # ls
+  '7 7 commandseparator' # ;
+
+  '9 15 precommand' # builtin
+  '17 18 unknown-token "issue #608"' # ls
+  '23 23 commandseparator' # ;
+
+  '25 31 precommand' # builtin
+  '33 39 precommand' # command
+  '41 42 command' # ls
+  '47 47 commandseparator' # ;
+
+  '49 52 precommand' # nice
+  '54 55 command' # ls
 )
