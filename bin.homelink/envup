@@ -306,14 +306,14 @@ if [[ $sourced -ne 1 ]]; then
         if [[ $val != "all" ]]; then
             echo "INVALID ENVIRONMENT: $val"
             help
-            exit
+            exit 1
         fi
     fi
 
     if [[ ${cmds[(ie)$command]} -gt ${#cmds} ]]; then
         echo "INVALID COMMAND: $command"
         help
-        exit
+        exit 1
     fi
 
     ${val}_${command}
