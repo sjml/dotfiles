@@ -106,7 +106,7 @@ cask 'backblaze'
 cask 'firefox'
 cask 'google-chrome'
 cask 'tor-browser'
-cask 'transmit4'
+cask 'transmit'
 cask 'transmission'
 
 # writing and office
