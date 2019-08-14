@@ -108,6 +108,7 @@ $pyenv rehash
 $pyenv install miniconda3-latest
 $pyenv global $py3version $py2version miniconda3-latest
 $pyPath/conda update --all -y
+$pyPath/conda install anaconda-navigator -y
 
 eval "$($pyenv init -)"
 

@@ -1,7 +1,0 @@
-name: root
-channels:
-  - defaults
-
-dependencies:
-    - anaconda-navigator
-    - jupyter
