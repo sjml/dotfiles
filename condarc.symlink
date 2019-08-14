@@ -1,0 +1,18 @@
+channels:
+  - sjml
+  - r
+  - defaults
+ssl_verify: true
+
+create_default_packages:
+  - python
+  - pip
+  - ipython
+  - pytest
+  - pylint
+  - rope
+  - autopep8
+
+changeps1: False
+# always_yes: true
+# auto_update_conda: true

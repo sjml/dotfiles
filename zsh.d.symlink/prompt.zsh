@@ -231,6 +231,10 @@ function _sjml_buildPromptVars() {
   if [[ $TERM_PROGRAM == 'vscode' ]]; then
     snake="$snake "
   fi
+  local dragon="🐉" # ♻️
+  if [[ $TERM_PROGRAM == 'vscode' ]]; then
+    dragon="$dragon "
+  fi
 
   # this solution to measuring out the top line doesn't scale as I add more
   #  things like the virtualenv indicator, but since I don't have ambitions
@@ -239,6 +243,8 @@ function _sjml_buildPromptVars() {
   local scaffold="$topLt$sep()()$sep$topRt"
   if [[ -n $VIRTUAL_ENV ]]; then
     scaffold="$topLt$sep()[$snake]()$sep$topRt"
+  elif [[ $CONDA_SHLVL -gt 1 ]]; then
+    scaffold="$topLt$sep()[$dragon]()$sep$topRt"
   fi
   local prettyPath=$(rtab)
   local hostName=${(%):-%m}
@@ -272,6 +278,9 @@ function _sjml_buildPromptVars() {
   if [[ -n $VIRTUAL_ENV ]]; then
     local venv="[$fg[green]$snake$reset_color]"
     ltData=$ltData$venv
+  elif [[ $CONDA_SHLVL -gt 1 ]]; then
+    local condaenv="[$fg[green]$dragon$reset_color]"
+    ltData=$ltData$condaenv
   fi
   local rtData="($userData)$fg[$outlineColor]$sep$topRt$reset_color"
 

@@ -74,6 +74,12 @@ elif type python > /dev/null 2>&1; then
   myPath+=("$(python -m site --user-base)/bin")
 fi
 
+## Anaconda (miniconda, more specifically in my case) if it exists
+/usr/bin/which -s conda
+if [[ $? -eq 0 ]]; then
+  eval "$(conda shell.zsh hook)"
+fi
+
 path=($myPath $path)
 
 
