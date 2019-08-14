@@ -13,6 +13,6 @@ create_default_packages:
   - rope
   - autopep8
 
-changeps1: False
+changeps1: false
 # always_yes: true
 # auto_update_conda: true
