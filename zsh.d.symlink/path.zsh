@@ -62,6 +62,13 @@ elif type npm > /dev/null 2>&1; then
   myPath+=("$(npm bin -g)")
 fi
 
+## Check for conda first
+if [[ -a /usr/local/bin/conda ]]; then
+  eval "$(/usr/local/bin/conda shell.zsh hook)"
+elif [[ -a $HOME/.pyenv/bin/conda ]]; then
+  eval "$($HOME/.pyenv/bin/conda shell.zsh hook)"
+fi
+
 ## Python, checking for pyenv first
 if [[ -a /usr/local/bin/pyenv ]]; then
   eval "$(/usr/local/bin/pyenv init --no-rehash -)"
@@ -72,12 +79,6 @@ elif [[ -a $HOME/.pyenv/bin/pyenv ]]; then
   myPath+=($HOME/.pyenv/bin)
 elif type python > /dev/null 2>&1; then
   myPath+=("$(python -m site --user-base)/bin")
-fi
-
-## Anaconda (miniconda, more specifically in my case) if it exists
-/usr/bin/which -s conda
-if [[ $? -eq 0 ]]; then
-  eval "$(conda shell.zsh hook)"
 fi
 
 path=($myPath $path)
