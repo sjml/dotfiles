@@ -105,6 +105,10 @@ $pyPath/pip2 install --upgrade pip
 $pyPath/pip2 install -r install_lists/python2-dev-packages.txt
 $pyenv rehash
 
+$pyenv install miniconda3-latest
+$pyenv global $py3version $py2version miniconda3-latest
+$pyPath/conda update --all -y
+
 eval "$($pyenv init -)"
 
 timerData "POST-PYTHON"
