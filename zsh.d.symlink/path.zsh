@@ -62,9 +62,14 @@ elif type npm > /dev/null 2>&1; then
   myPath+=("$(npm bin -g)")
 fi
 
+
+##TODO: this could be smarter about how pyenv and conda potentially coexist
+
 ## Check for conda first
 if [[ -a /usr/local/bin/conda ]]; then
   eval "$(/usr/local/bin/conda shell.zsh hook)"
+elif [[ -a $HOME/.pyenv/versions/miniconda3-latest/bin/conda ]]; then
+  eval "$($HOME/.pyenv/versions/miniconda3-latest/bin/conda shell.zsh hook)"
 elif [[ -a $HOME/.pyenv/bin/conda ]]; then
   eval "$($HOME/.pyenv/bin/conda shell.zsh hook)"
 fi
