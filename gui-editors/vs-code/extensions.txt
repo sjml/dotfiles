@@ -19,4 +19,5 @@ robinbentley.sass-indented
 rust-lang.rust
 twxs.cmake
 Unity.unity-debug
+VisualStudioExptTeam.vscodeintellicode
 wholroyd.jinja
