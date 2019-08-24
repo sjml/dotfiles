@@ -3,7 +3,7 @@
 	email = shane@techie.net
 
 [core]
-	editor = vim
+	editor = sublime-wait
 	excludesfile = ~/.gitignore_global
 [push]
 	default = simple
