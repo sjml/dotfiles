@@ -112,8 +112,6 @@ cask 'transmission'
 # writing and office
 cask 'scrivener'
 cask 'microsoft-office'
-cask 'mactex'
-cask 'anki'
 
 # development
 cask 'sublime-text'
@@ -129,11 +127,11 @@ cask 'robo-3t'
 # programming languages
 cask 'dotnet-sdk'
 cask 'mono-mdk'
-cask 'r-app'
 cask 'rstudio'
 
 # artsy
 cask 'unity-hub'
+cask 'godot'
 cask 'blender'
 cask 'texturepacker'
 cask 'bfxr'
