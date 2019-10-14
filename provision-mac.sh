@@ -148,7 +148,6 @@ timerData "POST-NODE"
 
 # rust setup
 curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
-$HOME/.cargo/bin/rustup install nightly
 
 timerData "POST-RUST"
 
