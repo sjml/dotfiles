@@ -3,8 +3,9 @@
 # A single script that monitors each of the following for updates:
 #     Homebrew (command line programs)
 #     Homebrew's Casks (GUI apps)
-#     Mac App Store
+#     Mac App Store (flakily, as the mas tool struggles at times)
 #     Python 3/2, Node.js, and Ruby environments
+#     Stable branch of Rust toolchain
 #
 # Specifically does not monitor packages within script environments;
 #   those might be pinned to specific versions and need to be checked
