@@ -34,7 +34,7 @@ Running `provision-mac.sh` on a clean user account will:
   * Install the latest version of Ruby via [rbenv](https://github.com/rbenv/rbenv)
   * Install the latest version of Node.js via [nodenv](https://github.com/nodenv/nodenv)
   * Install all Node-based programs listed in `install_lists/node-packages.txt`
-  * Install Rust (stable and nightly; stable as default) via [rustup](https://www.rustup.rs/)
+  * Install the latest version of Rust via [rustup](https://www.rustup.rs/)
   * Set up appearance of Terminal.app
   * Various and sundry macOS GUI settings (Finder behaviors, Trackpad settings, etc.)
   * Set up the Dock
