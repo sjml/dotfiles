@@ -10,7 +10,7 @@
 #   those might be pinned to specific versions and need to be checked
 #   individually.
 
-local -a envs=(brew cask mas python3 python2 node ruby)
+local -a envs=(brew cask mas python3 python2 node ruby rust)
 local -a cmds=(check up)
 
 
@@ -134,8 +134,8 @@ env_locVer() {
 }
 
 env_check() {
-    remoteVersion=$( env_remVer $1 $2 )
-    localVersion=$( env_locVer $1 $2 )
+    local remoteVersion=$( env_remVer $1 $2 )
+    local localVersion=$( env_locVer $1 $2 )
 
     print_check $3 $localVersion $remoteVersion
 }
@@ -158,8 +158,8 @@ node_check() {
 }
 
 node_up() {
-    newVersion=$( env_remVer nodenv "" )
-    oldVersion=$( env_locVer nodenv "" )
+    local newVersion=$( env_remVer nodenv "" )
+    local oldVersion=$( env_locVer nodenv "" )
 
     if [[ $newVersion == $oldVersion ]]; then
         print_check "Node.js" $newVersion $newVersion
@@ -170,7 +170,7 @@ node_up() {
 
     trap env_migration_failed ERR
         local seed="$(date '+%Y%m%d%H%M%S').$$"
-        REQ_FILE="$HOME/node-npmfile.$seed.txt"
+        local REQ_FILE="$HOME/node-npmfile.$seed.txt"
         npm list --global --depth=0 \
             | tail -n +2 \
             | cut -d" " -f2 \
@@ -192,9 +192,9 @@ python3_check() {
 }
 
 python3_up() {
-    newVersion=$( env_remVer pyenv 3 )
-    oldVersion=$( env_locVer pyenv 3 )
-    version2=$( env_locVer pyenv 2)
+    local newVersion=$( env_remVer pyenv 3 )
+    local oldVersion=$( env_locVer pyenv 3 )
+    local version2=$( env_locVer pyenv 2)
 
     if [[ $newVersion == $oldVersion ]]; then
         print_check "Python 3" $newVersion $newVersion
@@ -207,7 +207,7 @@ python3_up() {
 
     trap env_migration_failed ERR
         local seed="$(date '+%Y%m%d%H%M%S').$$"
-        REQ_FILE="$HOME/python3.requirements.$seed.txt"
+        local REQ_FILE="$HOME/python3.requirements.$seed.txt"
         ~/.pyenv/versions/$oldVersion/bin/pip freeze | grep -v "^-e" > "$REQ_FILE"
         ~/.pyenv/versions/$newVersion/bin/pip install --upgrade pip
         ~/.pyenv/versions/$newVersion/bin/pip install -r "$REQ_FILE"
@@ -224,9 +224,9 @@ python2_check() {
 }
 
 python2_up() {
-    newVersion=$( env_remVer pyenv 2 )
-    oldVersion=$( env_locVer pyenv 2 )
-    version3=$( env_locVer pyenv 3)
+    local newVersion=$( env_remVer pyenv 2 )
+    local oldVersion=$( env_locVer pyenv 2 )
+    local version3=$( env_locVer pyenv 3)
 
     if [[ $newVersion == $oldVersion ]]; then
         print_check "Python 2" $newVersion $newVersion
@@ -239,7 +239,7 @@ python2_up() {
 
     trap env_migration_failed ERR
         local seed="$(date '+%Y%m%d%H%M%S').$$"
-        REQ_FILE="$HOME/python2-requirements.$seed.txt"
+        local REQ_FILE="$HOME/python2-requirements.$seed.txt"
         ~/.pyenv/versions/$oldVersion/bin/pip freeze | grep -v "^-e" > "$REQ_FILE"
         ~/.pyenv/versions/$newVersion/bin/pip install --upgrade pip
         ~/.pyenv/versions/$newVersion/bin/pip install -r "$REQ_FILE"
@@ -256,8 +256,8 @@ ruby_check() {
 }
 
 ruby_up() {
-    newVersion=$( env_remVer rbenv 2 )
-    oldVersion=$( env_locVer rbenv 2 )
+    local newVersion=$( env_remVer rbenv 2 )
+    local oldVersion=$( env_locVer rbenv 2 )
 
     if [[ $newVersion == $oldVersion ]]; then
         print_check "Ruby" $newVersion $newVersion
@@ -266,12 +266,12 @@ ruby_up() {
 
     rbenv install $newVersion
     rbenv global $newVersion
-    newGem=~/.rbenv/versions/$newVersion/bin/gem
-    oldGem=~/.rbenv/versions/$oldVersion/bin/gem
+    local newGem=~/.rbenv/versions/$newVersion/bin/gem
+    local oldGem=~/.rbenv/versions/$oldVersion/bin/gem
 
     trap env_migration_failed ERR
         local seed="$(date '+%Y%m%d%H%M%S').$$"
-        REQ_FILE="$HOME/ruby-gemfile.$seed.txt"
+        local REQ_FILE="$HOME/ruby-gemfile.$seed.txt"
         $oldGem list > "$REQ_FILE"
         $newGem update --system
         yes | $newGem update
@@ -289,8 +289,31 @@ ruby_up() {
 }
 
 
+rust_check() {
+    local rustStatus=$(rustup check | grep stable)
+    local currentVersion=$(echo $rustStatus | sed -n -E "s/^.*: ([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+).*$/\1/p")
+
+    local info=""
+    if echo $rustStatus | grep -q "Up to date"; then
+        info="  ✅  Rust is up to date. ($currentVersion)"
+    else
+        local newVersion=$(echo $rustStatus | sed -n -E "s/^.*-> ([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+).*$/\1/p")
+        info="  ⚠️   Rust latest version is $newVersion; installed is $currentVersion."
+    fi
+
+    echo ${info:0:$COLUMNS}
+}
+
+rust_up() {
+    rustup update stable
+    rust_check
+}
+
+
 [[ $ZSH_EVAL_CONTEXT =~ :file$ ]] && sourced=1 || sourced=0
 if [[ $sourced -ne 1 ]]; then
+    local val=""
+    local command=""
     if [[ $#@ -lt 2 ]]; then
         val="all"
     fi
