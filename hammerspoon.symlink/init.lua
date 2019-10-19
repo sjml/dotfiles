@@ -14,12 +14,14 @@ function reloadConfig(files)
     end
 end
 local configWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
-hs.alert.show("Hammerspoon Loaded")
 
 
 hyper = {"ctrl", "alt", "cmd"}
 hypershift = {"ctrl", "alt", "cmd", "shift"}
 
 require('position')
+require('move-window')
 require('mute-on-wake')
 require('hub-handler')
+
+hs.alert.show("Hammerspoon Loaded")
