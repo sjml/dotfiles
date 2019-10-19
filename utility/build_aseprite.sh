@@ -9,9 +9,17 @@ APP_PATH="/Applications/Aseprite.app"
 VERSION="1.2.15"
 GIT_COMMIT="2c9fe857487c940a8d08adc7de5c62fde3d49a24"
 
+pyVersion=$(python --version 2>&1)
+if [ $? -ne 0 ]; then
+  echo "<sigh>"
+  echo "Because of reasons, you need to make sure the \"python\" command"
+  echo "points to Python 2. Set your path and try again."
+  exit 1
+fi
+
 if [ ! -d "$APP_PATH" ]; then
   echo "First, install the trial version of Aseprite. https://www.aseprite.org/trial/."
-  echo "(If it's not 1.2.15, this might need to be updated.)"
+  echo "(If it's not version $VERSION, this script might  need to be updated.)"
   exit 1
 fi
 
@@ -30,9 +38,10 @@ fi
 mkdir -p temp-aseprite
 cd temp-aseprite
 
-git clone --recursive https://github.com/aseprite/aseprite.git
+git clone --no-checkout https://github.com/aseprite/aseprite.git
 cd aseprite
 git checkout $GIT_COMMIT
+git submodule update --init --recursive
 mkdir deps
 cd deps
 git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
@@ -65,4 +74,4 @@ cd ../../..
 rm -rf temp-aseprite
 
 echo
-echo "The .app bundle in /Applications has been patched."
+echo "The bundle at $APP_PATH has been patched."
