@@ -4,7 +4,7 @@
 #     Homebrew (command line programs)
 #     Homebrew's Casks (GUI apps)
 #     Mac App Store (flakily, as the mas tool struggles at times)
-#     Python 3/2, Node.js, and Ruby environments
+#     Python 3/2, Node.js LTS, and Ruby environments
 #     Stable branch of Rust toolchain
 #
 # Specifically does not monitor packages within script environments;
@@ -154,16 +154,16 @@ env_migration_failed() {
 
 node_check() {
     /usr/local/bin/nodenv update-version-defs > /dev/null 2>&1
-    env_check nodenv "" "Node.js"
+    env_check nodenv "\d*[02468]\." "Node.js LTS"
     /usr/local/bin/nodenv prune-version-defs > /dev/null 2>&1
 }
 
 node_up() {
-    local newVersion=$( env_remVer nodenv "" )
-    local oldVersion=$( env_locVer nodenv "" )
+    local newVersion=$( env_remVer nodenv "\d*[02468]\." )
+    local oldVersion=$( env_locVer nodenv "\d*[02468]\." )
 
     if [[ $newVersion == $oldVersion ]]; then
-        print_check "Node.js" $newVersion $newVersion
+        print_check "Node.js LTS" $newVersion $newVersion
         return
     fi
 
@@ -184,7 +184,7 @@ node_up() {
         nodenv uninstall -f $oldVersion
         nodenv rehash
         rm "$REQ_FILE"
-        print_check "Node.js" $newVersion $newVersion
+        print_check "Node.js LTS" $newVersion $newVersion
     trap - ERR
 }
 

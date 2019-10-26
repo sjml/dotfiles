@@ -3,3 +3,4 @@ surge
 heroku
 ttf2woff
 eslint
+uglify-es
