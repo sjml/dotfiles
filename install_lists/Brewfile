@@ -112,6 +112,7 @@ cask 'transmission'
 # writing and office
 cask 'scrivener'
 cask 'microsoft-office'
+cask 'zotero'
 
 # development
 cask 'sublime-text'

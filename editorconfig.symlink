@@ -31,6 +31,9 @@ indent_size = 2
 [*.lua]
 indent_size = 2
 
+[*.R]
+indent_size = 2
+
 [*.go]
 indent_style = tab
 
