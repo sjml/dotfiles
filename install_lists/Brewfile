@@ -14,7 +14,7 @@ brew 'unar'
 brew 'gnupg'
 brew 'xz'
 
-# meta environments
+# meta environments for my regularly used programming languages
 brew 'pyenv'
 brew 'rbenv'
 brew 'ruby-build'
@@ -22,7 +22,16 @@ brew 'nodenv'
 brew 'node-build'
 # brew 'rustup-init' # installed in provision-mac.sh
 
-# programming languages
+# other programming languages
+## ones I actually use
+brew 'go'
+brew 'r'
+
+## hoping these become a thing
+brew 'deno'
+brew 'zig'
+
+## ones I keep meaning to learn
 brew 'erlang'
 brew 'elixir'
 brew 'elm'
@@ -30,8 +39,6 @@ brew 'mit-scheme'
 brew 'ghc'
 brew 'cabal-install'
 brew 'haskell-stack'
-brew 'go'
-brew 'deno'
 
 # network stuff
 brew 'wget'
@@ -128,7 +135,6 @@ cask 'robo-3t'
 # programming languages
 cask 'dotnet-sdk'
 cask 'mono-mdk'
-cask 'r'
 cask 'rstudio'
 
 # artsy
