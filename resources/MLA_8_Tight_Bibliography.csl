@@ -3,19 +3,20 @@
   <info>
     <title>Modern Language Association 8th edition (Tight Bibliography)</title>
     <title-short>MLA</title-short>
-    <id>http://shaneliesegang.com/mla8-tight</id>
-    <link href="http://shaneliesegang.com/mla8-tight" rel="self"/>
+    <id>https://shaneliesegang.com/mla8-tight</id>
+    <link href="https://shaneliesegang.com/mla8-tight" rel="self"/>
     <link href="http://style.mla.org" rel="documentation"/>
     <author>
       <name>Sebastian Karcher</name>
+      <uri>http://www.zotero.org/styles/modern-language-association</uri>
     </author>
     <contributor>
       <name>Shane Liesegang</name>
     </contributor>
     <category citation-format="author"/>
     <category field="generic-base"/>
-    <summary>This style adheres to the MLA 8th edition handbook. Follows the structure of references as outlined in the MLA Manual closely, with the exception of producing a tighter bibliography (single-spaced entries with an empty line between)</summary>
-    <updated>2019-10-11T02:36:27+00:00</updated>
+    <summary>This style adheres to the MLA 8th edition handbook. Follows the structure of references as outlined in the MLA Manual closely, with the exception of producing a tighter bibliography (single-spaced entries with an empty line between). It was forked from the official Zotero style for MLA 8th edition.</summary>
+    <updated>2019-12-20T04:27:41+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
