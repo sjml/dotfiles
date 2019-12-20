@@ -26,17 +26,18 @@ cp resources/ssh_config.base ~/.ssh/config
 # Ask for the administrator password
 echo "Now we need sudo access to install homebrew, some GUI apps, and change the shell."
 sudo -v
+still_need_sudo=1
+while still_need_sudo; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 timerData "PRE-BREW"
 
 # install homebrew
 export HOMEBREW_NO_ANALYTICS=1
-export HOMEBREW_NO_AUTO_UPDATE=1
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# install zsh real quick so we can chsh to it while we still have sudo
-sudo -v
-brew install zsh
+# all the installations
+echo "Installing from the Brewfile..."
+brew bundle install --file=$DOTFILES_ROOT/install_lists/Brewfile
 
 # try to set zsh up as the shell
 targetZShell="/usr/local/bin/zsh"
@@ -44,17 +45,13 @@ targetZShell="/usr/local/bin/zsh"
 echo $targetZShell | sudo tee -a /etc/shells
 sudo chsh -s $targetZShell $USER
 
-# using a DIY replacement for `brew bundle` that handles permissions better
-echo "Installing from the Brewfile..."
-./utility/brewfile_diy.sh
-
-# the diy script does this internally, but just so it's explicit out here, too
+# no more sudo needed!
+still_need_sudo=0
 sudo -k
 
 # clean up after homebrew
 echo "Cleaning up Homebrew..."
-brew cleanup -s --force
-brew cask cleanup
+brew cleanup -s
 rm -rf $(brew --cache)
 export HOMEBREW_NO_AUTO_UPDATE=0
 

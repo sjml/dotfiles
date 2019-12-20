@@ -54,7 +54,7 @@ brew 'automake'
 brew 'clang-format'
 brew 'swig'
 brew 'ctags'
-brew 'valgrind'
+# brew 'valgrind' # doesn't work on latest macOS :(
 brew 'qcachegrind'
 brew 'hub'
 brew 'libyaml'
@@ -101,8 +101,8 @@ brew 'solarus'
 
 
 # now getting into full macOS apps
-tap 'caskroom/cask'
-tap 'caskroom/versions'
+tap 'homebrew/cask-cask'
+tap 'homebrew/cask-versions'
 
 # infrastructure
 cask '1password'
@@ -188,13 +188,13 @@ cask 'suspicious-package'
 
 # a few monospaced fonts from caskroom
 #   (others handled outside of script)
-tap  'caskroom/fonts'
+tap  'homebrew/cask-fonts'
 cask 'font-inconsolata'
 cask 'font-hack'
 
 
 # drivers
-tap  'caskroom/drivers'
+tap  'homebrew/cask-drivers'
 # cask 'xbox360-controller-driver-unofficial'
 
 
@@ -212,17 +212,17 @@ mas 'Tweetbot',           id: 557168941
 
 # media
 mas 'Kindle',             id: 405399194
-mas 'GarageBand',         id: 682658836
+# mas 'GarageBand',         id: 682658836
 
 # utility
 mas 'GrandPerspective',   id: 1111570163
-mas 'TickTick',           id: 966085870
+# mas 'TickTick',           id: 966085870
 
 # graphics and office
 # mas 'Pixelmator',         id: 407963104
 mas 'Pixelmator Pro',     id: 1289583905
 mas 'Affinity Designer',  id: 824171161
-mas 'Highland 2'          id: 1171820258
+# mas 'Highland 2',          id: 1171820258
 # mas 'Pages',              id: 409201541
 # mas 'Numbers',            id: 409203825
 mas 'Keynote',            id: 409183694
