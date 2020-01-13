@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 # -------------------------------------------------------------------------------------------------
-# Copyright (c) 2018 zsh-syntax-highlighting contributors
+# Copyright (c) 2019 zsh-syntax-highlighting contributors
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted
@@ -28,9 +28,13 @@
 # vim: ft=zsh sw=2 ts=2 et
 # -------------------------------------------------------------------------------------------------
 
-alias x=/
-BUFFER=$'x'
+BUFFER=$'time ls; nocorrect ls'
+alias time=':' nocorrect=':'
 
 expected_region_highlight=(
-  '1 1 unknown-token "issue #668"' # x (/)
+  '1 4 alias' # time
+  '6 7 default' # ls
+  '8 8 commandseparator' # ;
+  '10 18 alias' # nocorrect
+  '20 21 default' # ls
 )

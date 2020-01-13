@@ -1,6 +1,5 @@
-#!/usr/bin/env zsh
 # -------------------------------------------------------------------------------------------------
-# Copyright (c) 2018 zsh-syntax-highlighting contributors
+# Copyright (c) 2019 zsh-syntax-highlighting contributors
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted
@@ -28,9 +27,11 @@
 # vim: ft=zsh sw=2 ts=2 et
 # -------------------------------------------------------------------------------------------------
 
-alias x=/
-BUFFER=$'x'
+# Alias must be at least 4 characters to test the regression
+# cf. 139ea2b189819c43cc251825981c116959b15cc3
+alias foobar='echo "$(echo foobar)"'
+BUFFER='foobar'
 
 expected_region_highlight=(
-  '1 1 unknown-token "issue #668"' # x (/)
+  "1 6 alias" # foobar
 )

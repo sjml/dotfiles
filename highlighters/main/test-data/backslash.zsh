@@ -1,4 +1,3 @@
-#!/usr/bin/env zsh
 # -------------------------------------------------------------------------------------------------
 # Copyright (c) 2018 zsh-syntax-highlighting contributors
 # All rights reserved.
@@ -28,9 +27,8 @@
 # vim: ft=zsh sw=2 ts=2 et
 # -------------------------------------------------------------------------------------------------
 
-alias x=/
-BUFFER=$'x'
+BUFFER=$'\\'
 
 expected_region_highlight=(
-  '1 1 unknown-token "issue #668"' # x (/)
+  '1 1 unknown-token' # \\
 )

@@ -1,5 +1,5 @@
 # -------------------------------------------------------------------------------------------------
-# Copyright (c) 2010-2018 zsh-syntax-highlighting contributors
+# Copyright (c) 2010-2019 zsh-syntax-highlighting contributors
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted
@@ -188,7 +188,7 @@ _zsh_highlight_main__type() {
     elif {  [[ $1 != */* ]] || is-at-least 5.3 } &&
          # Add a subshell to avoid a zsh upstream bug; see issue #606.
          # ### Remove the subshell when we stop supporting zsh 5.7.1 (I assume 5.8 will have the bugfix).
-         ! (builtin type -w -- $1) >/dev/null 2>&1; then
+         ! (builtin type -w -- "$1") >/dev/null 2>&1; then
       REPLY=none
     fi
   fi
@@ -203,7 +203,7 @@ _zsh_highlight_main__type() {
     # starts with an arithmetic expression [«((…))» as the first thing inside
     # «$(…)»], which is area that has had some parsing bugs before 5.6
     # (approximately).
-    REPLY="${$(:; (( aliases_allowed )) || unalias -- $1 2>/dev/null; LC_ALL=C builtin type -w -- $1 2>/dev/null)##*: }"
+    REPLY="${$(:; (( aliases_allowed )) || unalias -- "$1" 2>/dev/null; LC_ALL=C builtin type -w -- "$1" 2>/dev/null)##*: }"
     if [[ $REPLY == 'alias' ]]; then
       may_cache=0
     fi
@@ -309,14 +309,20 @@ _zsh_highlight_highlighter_main_paint()
     'builtin' ''
     'command' :pvV
     'exec' a:cl
-    'nocorrect' ''
     'noglob' ''
+    # 'time' and 'nocorrect' shouldn't be added here; they're reserved words, not precommands.
 
     'doas' aCu:Lns # as of OpenBSD's doas(1) dated September 4, 2016
     'nice' n: # as of current POSIX spec
     'pkexec' '' # doesn't take short options; immune to #121 because it's usually not passed --option flags
     'sudo' Cgprtu:AEHKPSVbhiklnsv # as of sudo 1.8.21p2
     'stdbuf' ioe:
+    'eatmydata' ''
+    'catchsegv' ''
+    'nohup' ''
+    'setsid' :wc
+    # As of OpenSSH 8.1p1; -k is deliberately left out since it may not be followed by a command
+    'ssh-agent' aEPt:csDd
   )
 
   if [[ $zsyh_user_options[ignorebraces] == on || ${zsyh_user_options[ignoreclosebraces]:-off} == on ]]; then
@@ -388,9 +394,7 @@ _zsh_highlight_main_highlighter_highlight_list()
   # alias_style is the style to apply to an alias once in_alias=0
   #     Usually 'alias' but set to 'unknown-token' if any word expanded from
   #     the alias would be highlighted as unknown-token
-  # last_alias is the last alias arg (lhs) expanded (if in an alias).
-  #     This allows for expanding alias ls='ls -l' while avoiding loops.
-  local alias_style arg buf=$4 highlight_glob=true last_alias style
+  local alias_style arg buf=$4 highlight_glob=true style
   local in_array_assignment=false # true between 'a=(' and the matching ')'
   # in_alias is equal to the number of shifts needed until arg=args[1] pops an
   #     arg from BUFFER and not added by an alias.
@@ -430,12 +434,12 @@ _zsh_highlight_main_highlighter_highlight_list()
   #
   # When the kind of a word is not yet known, $this_word / $next_word may contain
   # multiple states.  For example, after "sudo -i", the next word may be either
-  # another --flag or a command name, hence the state would include both :start:
-  # and :sudo_opt:.
+  # another --flag or a command name, hence the state would include both ':start:'
+  # and ':sudo_opt:'.
   #
   # The tokens are always added with both leading and trailing colons to serve as
-  # word delimiters (an improvised array); [[ $x == *:foo:* ]] and x=${x//:foo:/}
-  # will DTRT regardless of how many elements or repetitions $x has..
+  # word delimiters (an improvised array); [[ $x == *':foo:'* ]] and x=${x//:foo:/}
+  # will DTRT regardless of how many elements or repetitions $x has.
   #
   # Handling of redirections: upon seeing a redirection token, we must stall
   # the current state --- that is, the value of $this_word --- for two iterations
@@ -468,7 +472,7 @@ _zsh_highlight_main_highlighter_highlight_list()
     if (( in_alias )); then
       (( in_alias-- ))
       if (( in_alias == 0 )); then
-        last_alias= seen_alias=()
+        seen_alias=()
         # start_pos and end_pos are of the alias (previous $arg) here
         _zsh_highlight_main_add_region_highlight $start_pos $end_pos $alias_style
       fi
@@ -540,20 +544,19 @@ _zsh_highlight_main_highlighter_highlight_list()
       continue
     fi
 
-    if [[ $this_word == *:start:* ]] && ! (( in_redirection )); then
+    if [[ $this_word == *':start:'* ]] && ! (( in_redirection )); then
       # Expand aliases.
-      _zsh_highlight_main__type "$arg"
+      # An alias is ineligible for expansion while it's being expanded (see #652/#653).
+      _zsh_highlight_main__type "$arg" "$(( ! ${+seen_alias[$arg]} ))"
       local res="$REPLY"
-      if [[ $res == "alias" ]] && [[ $last_alias != $arg ]]; then
-        # Avoid looping forever on alias a=b b=c c=b, but allow alias foo='foo bar'
-        # Also mark insane aliases as unknown-token (cf. #263).
-        if (( $+seen_alias[$arg] )) || [[ $arg == ?*=* ]]; then
+      if [[ $res == "alias" ]]; then
+        # Mark insane aliases as unknown-token (cf. #263).
+        if [[ $arg == ?*=* ]]; then
           (( in_alias == 0 )) && in_alias=1
           _zsh_highlight_main_add_region_highlight $start_pos $end_pos unknown-token
           continue
         fi
         seen_alias[$arg]=1
-        last_alias=$arg
         _zsh_highlight_main__resolve_alias $arg
         local -a alias_args
         # Elision is desired in case alias x=''
@@ -576,8 +579,7 @@ _zsh_highlight_main_highlighter_highlight_list()
         continue
       else
         _zsh_highlight_main_highlighter_expand_path $arg
-        arg=$REPLY
-        _zsh_highlight_main__type "$arg" 0
+        _zsh_highlight_main__type "$REPLY" 0
         res="$REPLY"
       fi
     fi
@@ -656,12 +658,12 @@ _zsh_highlight_main_highlighter_highlight_list()
         elif [[ -n $flags_sans_argument ]] &&
              [[ $arg == '-'[$flags_sans_argument]# ]]; then
           # Flag that requires no argument
-          this_word=:sudo_opt:
+          this_word=':sudo_opt:'
           next_word+=':start:'
           next_word+=':sudo_opt:'
         elif [[ $arg == '-'* ]]; then
           # Unknown flag
-          this_word=:sudo_opt:
+          this_word=':sudo_opt:'
           next_word+=':start:'
           next_word+=':sudo_opt:'
           _zsh_highlight_main_add_region_highlight $start_pos $end_pos unknown-token
@@ -718,6 +720,10 @@ _zsh_highlight_main_highlighter_highlight_list()
                         style=reserved-word
                         # Match braces and handle special cases.
                         case $arg in
+                          (time|nocorrect)
+                            next_word=${next_word//:regular:/}
+                            next_word+=':start:'
+                            ;;
                           ($'\x7b')
                             braces_stack='Y'"$braces_stack"
                             ;;
@@ -807,7 +813,7 @@ _zsh_highlight_main_highlighter_highlight_list()
                             # Discard  :start_of_pipeline:, if present, as '!' is not valid
                             # after assignments.
                             next_word+=':start:'
-                            if (( start_pos + i <= end_pos )); then
+                            if (( i <= $#arg )); then
                               () {
                                 local highlight_glob=false
                                 [[ $zsyh_user_options[globassign] == on ]] && highlight_glob=true
@@ -1030,7 +1036,7 @@ _zsh_highlight_main_highlighter_highlight_argument()
     '=')
       if [[ $arg[i+1] == $'\x28' ]]; then
         (( i += 2 ))
-        _zsh_highlight_main_highlighter_highlight_list $(( start_pos + i - 1 )) S $has_end $arg[i,end_pos]
+        _zsh_highlight_main_highlighter_highlight_list $(( start_pos + i - 1 )) S $has_end $arg[i,-1]
         ret=$?
         (( i += REPLY ))
         highlights+=(
@@ -1044,7 +1050,7 @@ _zsh_highlight_main_highlighter_highlight_argument()
       fi
   esac
 
-  for (( ; i <= end_pos - start_pos ; i += 1 )); do
+  for (( ; i <= $#arg ; i += 1 )); do
     case "$arg[$i]" in
       "\\") (( i += 1 )); continue;;
       "'")
@@ -1074,7 +1080,7 @@ _zsh_highlight_main_highlighter_highlight_argument()
        elif [[ $arg[i+1] == $'\x28' ]]; then
           start=$i
           (( i += 2 ))
-          _zsh_highlight_main_highlighter_highlight_list $(( start_pos + i - 1 )) S $has_end $arg[i,end_pos]
+          _zsh_highlight_main_highlighter_highlight_list $(( start_pos + i - 1 )) S $has_end $arg[i,-1]
           ret=$?
           (( i += REPLY ))
           highlights+=(
@@ -1097,7 +1103,7 @@ _zsh_highlight_main_highlighter_highlight_argument()
         if [[ $arg[i+1] == $'\x28' ]]; then # \x28 = open paren
           start=$i
           (( i += 2 ))
-          _zsh_highlight_main_highlighter_highlight_list $(( start_pos + i - 1 )) S $has_end $arg[i,end_pos]
+          _zsh_highlight_main_highlighter_highlight_list $(( start_pos + i - 1 )) S $has_end $arg[i,-1]
           ret=$?
           (( i += REPLY ))
           highlights+=(
@@ -1123,7 +1129,7 @@ _zsh_highlight_main_highlighter_highlight_argument()
     esac
   done
 
-  if (( path_eligible )) && _zsh_highlight_main_highlighter_check_path $arg[$1,end_pos]; then
+  if (( path_eligible )) && _zsh_highlight_main_highlighter_check_path $arg[$1,-1]; then
     base_style=$REPLY
     _zsh_highlight_main_highlighter_highlight_path_separators $base_style
     highlights+=($reply)
@@ -1175,7 +1181,7 @@ _zsh_highlight_main_highlighter_highlight_double_quote()
   local i j k ret style
   reply=()
 
-  for (( i = $1 + 1 ; i <= end_pos - start_pos ; i += 1 )) ; do
+  for (( i = $1 + 1 ; i <= $#arg ; i += 1 )) ; do
     (( j = i + start_pos - 1 ))
     (( k = j + 1 ))
     case "$arg[$i]" in
@@ -1206,7 +1212,7 @@ _zsh_highlight_main_highlighter_highlight_double_quote()
               breaks+=( $last_break $(( start_pos + i - 1 )) )
               (( i += 2 ))
               saved_reply=($reply)
-              _zsh_highlight_main_highlighter_highlight_list $(( start_pos + i - 1 )) S $has_end $arg[i,end_pos]
+              _zsh_highlight_main_highlighter_highlight_list $(( start_pos + i - 1 )) S $has_end $arg[i,-1]
               ret=$?
               (( i += REPLY ))
               last_break=$(( start_pos + i ))
@@ -1272,13 +1278,13 @@ _zsh_highlight_main_highlighter_highlight_dollar_quote()
   integer c
   reply=()
 
-  for (( i = $1 + 2 ; i <= end_pos - start_pos ; i += 1 )) ; do
+  for (( i = $1 + 2 ; i <= $#arg ; i += 1 )) ; do
     (( j = i + start_pos - 1 ))
     (( k = j + 1 ))
     case "$arg[$i]" in
       "'") break;;
       "\\") style=back-dollar-quoted-argument
-            for (( c = i + 1 ; c <= end_pos - start_pos ; c += 1 )); do
+            for (( c = i + 1 ; c <= $#arg ; c += 1 )); do
               [[ "$arg[$c]" != ([0-9xXuUa-fA-F]) ]] && break
             done
             AA=$arg[$i+1,$c-1]
@@ -1333,7 +1339,7 @@ _zsh_highlight_main_highlighter_highlight_backtick()
   last=$(( arg1 + 1 ))
   # Remove one layer of backslashes and find the end
   while i=$arg[(ib:i+1:)[\\\\\`]]; do # find the next \ or `
-    if (( i > end_pos - start_pos )); then
+    if (( i > $#arg )); then
       buf=$buf$arg[last,i]
       offsets[i-arg1-offset]='' # So we never index past the end
       (( i-- ))
