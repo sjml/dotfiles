@@ -44,4 +44,10 @@
       "restructuredtext",
       "text"
     ],
+    "cSpell.languageSettings": [
+      { "languageId": "markdown", "diagnosticLevel": "Error"}
+    ],
+    "cSpell.userWords": [
+      "liesegang"
+    ]
   }
