@@ -1,30 +1,47 @@
-// Place your settings in this file to overwrite the default settings
 {
-    "editor.fontSize": 14,
-    "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
-    "files.associations": {
-        "Brewfile": "ruby",
-        "*.plist": "xml",
-        "*.sublime-settings": "json",
-        ".localrc": "shellscript"
-    },
-    "workbench.activityBar.visible": true,
+    "git.enableSmartCommit": true,
     "git.confirmSync": false,
-    "window.zoomLevel": 0,
-    "python.linting.pylintEnabled": false,
-    "terminal.integrated.fontSize": 14,
-    "editor.renderWhitespace": "boundary",
-    "editor.snippetSuggestions": "top",
-    "editor.cursorBlinking": "smooth",
-    "editor.renderControlCharacters": true,
-    "files.insertFinalNewline": true,
-    "workbench.iconTheme": "simple-icons",
-    "editor.minimap.renderCharacters": false,
-    "editor.minimap.enabled": true,
-    "[csharp]": {
-        "editor.codeLens": false
+    "files.associations": {
+      "Brewfile": "ruby",
+      ".pylintrc": "ini"
     },
-    "python.linting.enabledWithoutWorkspace": false,
-    "jupyter.appendResults": false,
-    "workbench.colorTheme": "Atom One Dark"
-}
+    "workbench.startupEditor": "newUntitledFile",
+    "window.zoomLevel": 0,
+    "editor.fontSize": 18,
+    "editor.fontFamily": "Hack",
+    "window.restoreWindows": "all",
+    "editor.renderWhitespace": "all",
+    "workbench.iconTheme": "simple-icons",
+    "git.autofetch": true,
+    "diffEditor.renderSideBySide": true,
+    "terminal.integrated.fontSize": 16,
+    "[python]": {
+        "diffEditor.ignoreTrimWhitespace": false
+    },
+    "explorer.confirmDragAndDrop": false,
+    "terminal.integrated.shellArgs.osx": [
+      "-l"
+    ],
+    "jupyter.appendResults": true,
+    "gitlens.advanced.messages": {
+      "suppressShowKeyBindingsNotice": true
+    },
+    "gitlens.codeLens.enabled": false,
+    "python.terminal.activateEnvironment": false,
+    "explorer.confirmDelete": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.jediEnabled": false,
+    "explorer.incrementalNaming": "smart",
+    "window.openFoldersInNewWindow": "on",
+    "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+    "python.dataScience.askForKernelRestart": false,
+    "cSpell.enabledLanguageIds": [
+      "asciidoc",
+      "git-commit",
+      "markdown",
+      "plaintext",
+      "restructuredtext",
+      "text"
+    ],
+  }

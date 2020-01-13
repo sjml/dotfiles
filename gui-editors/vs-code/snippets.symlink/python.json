@@ -1,9 +1,0 @@
-{
-  "Print a garbage comment" : {
-    "prefix": "sjml",
-    "body": [
-      "# sjml"
-    ],
-    "description": "sign a comment"
-  }
-}
