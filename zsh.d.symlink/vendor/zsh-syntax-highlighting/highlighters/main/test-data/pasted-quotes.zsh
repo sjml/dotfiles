@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 # -------------------------------------------------------------------------------------------------
-# Copyright (c) 2018 zsh-syntax-highlighting contributors
+# Copyright (c) 2013 zsh-syntax-highlighting contributors
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted
@@ -28,9 +28,11 @@
 # vim: ft=zsh sw=2 ts=2 et
 # -------------------------------------------------------------------------------------------------
 
-alias x=/
-BUFFER=$'x'
+BUFFER=$': \'foo\'bar"baz"'
 
 expected_region_highlight=(
-  '1 1 unknown-token "issue #668"' # x (/)
+  '1 1 builtin' # :
+  '3 15 default' # \'foo\'bar"baz"
+  '3 7 single-quoted-argument' # \'foo\'
+  '11 15 double-quoted-argument' # "baz"
 )

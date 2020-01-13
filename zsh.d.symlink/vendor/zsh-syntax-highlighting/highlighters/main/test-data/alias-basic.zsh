@@ -1,6 +1,5 @@
-#!/usr/bin/env zsh
 # -------------------------------------------------------------------------------------------------
-# Copyright (c) 2018 zsh-syntax-highlighting contributors
+# Copyright (c) 2015 zsh-syntax-highlighting contributors
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted
@@ -28,9 +27,9 @@
 # vim: ft=zsh sw=2 ts=2 et
 # -------------------------------------------------------------------------------------------------
 
-alias x=/
-BUFFER=$'x'
+alias foo="echo hello world"
+BUFFER="foo"
 
-expected_region_highlight=(
-  '1 1 unknown-token "issue #668"' # x (/)
+expected_region_highlight+=(
+  "1 3 alias" # foo
 )
