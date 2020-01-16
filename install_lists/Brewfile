@@ -1,5 +1,6 @@
 # zsh and standard command line utilities
 brew 'zsh'
+brew 'bash'
 brew 'coreutils'
 brew 'tmux'
 brew 'reattach-to-user-namespace'
