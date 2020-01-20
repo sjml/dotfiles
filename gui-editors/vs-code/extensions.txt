@@ -1,4 +1,5 @@
 Tyriar.lorem-ipsum
+akamud.vscode-theme-onelight
 bibhasdn.unique-lines
 bungcip.better-toml
 dbaeumer.vscode-eslint
@@ -25,7 +26,6 @@ rebornix.ruby
 robinbentley.sass-indented
 rust-lang.rust
 slevesque.shader
-stkb.rewrap
 streetsidesoftware.code-spell-checker
 tiehuis.zig
 torn4dom4n.latex-support
