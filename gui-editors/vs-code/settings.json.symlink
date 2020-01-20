@@ -49,5 +49,7 @@
     ],
     "cSpell.userWords": [
       "liesegang"
-    ]
+    ],
+    "gitlens.currentLine.enabled": false,
+    "gitlens.hovers.currentLine.over": "line"
   }
