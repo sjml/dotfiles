@@ -13,6 +13,9 @@ local ETHERNET_PRODUCT = 33107
 
 log = hs.logger.new("menuEject", "debug")
 
+ejection = nil
+
+
 function checkIDs(vendorID, productID, data)
     if data["vendorID"] == vendorID and data["productID"] == productID then
         return true
@@ -47,33 +50,51 @@ function ejectionClicked()
 
     if allGone == true then
         ejection:removeFromMenuBar()
+        ejection:delete()
+        ejection = nil
     end
 end
 
-ejection = hs.menubar.new()
-if ejection then
-    ejection:setTitle("⏏")
-    ejection:setClickCallback(ejectionClicked)
-
-    -- check to see if the USB hub is already attached here at startup
-    local devices = hs.usb.attachedDevices()
-    local foundHub = false
-    for _, data in pairs(devices) do
-        if checkIDs(USB_VENDOR, USB_PRODUCT, data) then
-            foundHub = true
-        end
-    end
-    if not foundHub then
-        ejection:removeFromMenuBar()
-    end
+function manualCheck()
+  local devices = hs.usb.attachedDevices()
+  local foundHub = false
+  for _, data in pairs(devices) do
+      if checkIDs(USB_VENDOR, USB_PRODUCT, data) then
+          foundHub = true
+      end
+  end
+  if not foundHub then
+      ejection:removeFromMenuBar()
+      ejection:delete()
+      ejection = nil
+    else
+      ejection = makeEjection()
+  end
 end
+
+function makeEjection()
+  if ejection ~= nil then
+    return ejection
+  end
+  local ej = hs.menubar.new()
+  ej:setTitle("⏏")
+  ej:setClickCallback(ejectionClicked)
+  return ej
+end
+
+-- check to see if the USB hub is already attached here at startup
+manualCheck()
+
+
+
+
 
 
 function usbWatcherCallback(data)
     -- look for USB 3.0 hub
     if checkIDs(USB_VENDOR, USB_PRODUCT, data) then
         if data["eventType"] == "added" then
-            ejection:returnToMenuBar()
+            ejection = makeEjection()
         end
     end
 
@@ -98,6 +119,7 @@ usbWatcher:start()
 function toggleWatcher(eventType)
     if (eventType == hs.caffeinate.watcher.systemDidWake) then
         -- hs.execute("/usr/sbin/networksetup -setairportpower en0 on")
+        manualCheck(ejection)
         usbWatcher:start()
     elseif (eventType == hs.caffeinate.watcher.systemWillSleep) then
         -- hs.execute("/usr/sbin/networksetup -setairportpower en0 off")
