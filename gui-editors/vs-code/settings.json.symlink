@@ -51,5 +51,7 @@
       "liesegang"
     ],
     "gitlens.currentLine.enabled": false,
-    "gitlens.hovers.currentLine.over": "line"
+    "gitlens.hovers.currentLine.over": "line",
+    "rust.clippy_preference": "on",
+    "rust-client.enableMultiProjectSetup": true
   }
