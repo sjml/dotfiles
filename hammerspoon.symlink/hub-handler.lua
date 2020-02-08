@@ -64,9 +64,11 @@ function manualCheck()
       end
   end
   if not foundHub then
-      ejection:removeFromMenuBar()
-      ejection:delete()
-      ejection = nil
+      if ejection ~= nil then
+        ejection:removeFromMenuBar()
+        ejection:delete()
+        ejection = nil
+      end
     else
       ejection = makeEjection()
   end
