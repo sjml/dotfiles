@@ -263,7 +263,7 @@ ruby_up() {
         return
     fi
 
-    rbenv install $newVersion
+    RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)" rbenv install $newVersion
     rbenv global $newVersion
     local newGem=~/.rbenv/versions/$newVersion/bin/gem
     local oldGem=~/.rbenv/versions/$oldVersion/bin/gem
