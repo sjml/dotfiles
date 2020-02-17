@@ -59,7 +59,8 @@ brew_check() {
     else
         info="  ⚠️   Homebrew has $outCount outdated packages. ($outFmt)"
     fi
-    echo ${info:0:$COLUMNS}
+
+    echo ${info} | fold -s -w $COLUMNS
 }
 
 brew_up() {
@@ -87,7 +88,8 @@ cask_check() {
     else
         info="  ⚠️   Homebrew has $outCount outdated casks. ($outFmt)"
     fi
-    echo ${info:0:$COLUMNS}
+
+    echo ${info} | fold -s -w $COLUMNS
 }
 
 cask_up() {
@@ -111,7 +113,8 @@ mas_check() {
     else
         info="  ⚠️   Mac App Store has $outCount outdated apps. ($outFmt)"
     fi
-    echo ${info:0:$COLUMNS}
+
+    echo ${info} | fold -s -w $COLUMNS
 }
 
 mas_up() {
@@ -300,7 +303,7 @@ rust_check() {
         info="  ⚠️   Rust latest version is $newVersion; installed is $currentVersion."
     fi
 
-    echo ${info:0:$COLUMNS}
+    echo ${info} | fold -s -w $COLUMNS
 }
 
 rust_up() {
