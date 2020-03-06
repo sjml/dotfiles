@@ -110,7 +110,7 @@ tap 'homebrew/cask-versions'
 # infrastructure
 cask '1password'
 cask 'dropbox'
-cask 'backblaze'
+# cask 'backblaze' # don't use homebrew for this; upgrade will bork things
 
 # internet
 cask 'firefox'
