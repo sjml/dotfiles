@@ -53,5 +53,6 @@
     "gitlens.currentLine.enabled": false,
     "gitlens.hovers.currentLine.over": "line",
     "rust.clippy_preference": "on",
-    "rust-client.enableMultiProjectSetup": true
+    "rust-client.enableMultiProjectSetup": true,
+    "editor.minimap.size": "fit"
   }

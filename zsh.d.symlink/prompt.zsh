@@ -228,13 +228,7 @@ function _sjml_buildPromptVars() {
   fi
 
   local snake="🐍"
-  if [[ $TERM_PROGRAM == 'vscode' ]]; then
-    snake="$snake "
-  fi
   local dragon="🐉" # ♻️
-  if [[ $TERM_PROGRAM == 'vscode' ]]; then
-    dragon="$dragon "
-  fi
 
   # this solution to measuring out the top line doesn't scale as I add more
   #  things like the virtualenv indicator, but since I don't have ambitions
