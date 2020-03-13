@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# cleans up the turds left behind by the Finder on external drives
+#   (useful for plugging media drives into TVs which don't know
+#    what do to with said files)
+
+BASEDIR="/Volumes/"
+SKIPS=("Time Machine" "Macintosh HD" "com.apple.TimeMachine.localsnapshots")
+
+VOLS=()
+for v in $BASEDIR*; do
+    if [[ ! " ${SKIPS[@]} " =~ " ${v:${#BASEDIR}} " ]]; then
+        VOLS+=(${v:${#BASEDIR}})
+    fi
+done
+
+echo "Choose a drive to clean up:"
+select vol in ${VOLS[@]}
+do
+    volpath=$BASEDIR$vol
+    echo $volpath
+    pushd $volpath
+        dot_clean -m $volpath
+        find . -name '*.DS_Store' -type f -delete
+        find . -name '.Trashes' -type d -delete
+    popd
+    exit
+done
+
