@@ -110,6 +110,7 @@ tap 'homebrew/cask-versions'
 # infrastructure
 cask '1password'
 cask 'dropbox'
+cask 'google-backup-and-sync'
 # cask 'backblaze' # don't use homebrew for this; upgrade will bork things
 
 # internet
@@ -118,6 +119,11 @@ cask 'google-chrome'
 cask 'tor-browser'
 cask 'transmit'
 cask 'transmission'
+cask 'whatsapp'
+cask 'skype'
+cask 'slack'
+cask 'zoomus'
+cask 'discord'
 
 # writing and office
 cask 'scrivener'
@@ -135,11 +141,15 @@ cask 'kaleidoscope'
 cask 'sourcetree'
 cask 'insomnia'
 cask 'robo-3t'
+cask 'github'
+cask 'zerobranestudio'
 
 # programming languages
 cask 'dotnet-sdk'
 cask 'mono-mdk'
+cask 'r-app'
 cask 'rstudio'
+cask 'java'
 
 # artsy
 cask 'unity-hub'
@@ -159,15 +169,16 @@ cask 'docker'
 cask 'itch'
 cask 'gog-galaxy'
 cask 'epic-games'
-cask 'discord'
 cask 'steam'
 cask 'dwarf-fortress'
+cask 'minecraft'
 cask 'handbrake'
 cask 'vlc'
 cask 'mpv'
 cask 'amazon-music'
 cask 'calibre'
 cask 'cloudlibrary'
+cask 'adobe-digital-editions'
 
 # utilities
 cask 'hammerspoon'
@@ -178,6 +189,7 @@ cask 'balenaetcher'
 cask 'unetbootin'
 cask 'mkvtoolnix'
 cask 'keepingyouawake'
+cask 'a-better-finder-rename'
 
 # quicklook stuff
 cask 'qlcolorcode'
