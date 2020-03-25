@@ -26,6 +26,11 @@ else
   BUILD_B=$2
 fi
 
+if [ $BUILD_A = $BUILD_B ]; then
+  echo "Comparing $BUILD_A to itself? Nah."
+  exit 1
+fi
+
 # download A
 mkdir -p $(printf "hugo_%s" $BUILD_A)
 URL_A=$(printf $REL_PATTERN $BUILD_A $BUILD_A $MAC_SUFFIX)
