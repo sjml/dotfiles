@@ -6,10 +6,11 @@
 # download itself. It also requires cmake and ninja to already be installed.
 
 APP_PATH="/Applications/Aseprite.app"
-VERSION="1.2.15"
-GIT_COMMIT="2c9fe857487c940a8d08adc7de5c62fde3d49a24"
+VERSION="1.2.17"
+GIT_COMMIT="23d41e73409dd15cd8681094503740436c5e0c1d"
+SKIA_BRANCH="aseprite-m81"
 
-pyVersion=$(python --version 2>&1)
+python --version 2>&1 | grep "Python 2"
 if [ $? -ne 0 ]; then
   echo "<sigh>"
   echo "Because of reasons, you need to make sure the \"python\" command"
@@ -34,6 +35,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+set -e
 
 mkdir -p temp-aseprite
 cd temp-aseprite
@@ -45,12 +47,12 @@ git submodule update --init --recursive
 mkdir deps
 cd deps
 git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
-git clone -b aseprite-m71 https://github.com/aseprite/skia.git
+git clone -b $SKIA_BRANCH https://github.com/aseprite/skia.git
 export PATH="${PWD}/depot_tools:${PATH}"
 cd skia
 python tools/git-sync-deps
-gn gen out/Release --args="is_official_build=true skia_use_system_expat=false skia_use_system_icu=false skia_use_libjpeg_turbo=false skia_use_system_libpng=false skia_use_libwebp=false skia_use_system_zlib=false extra_cflags_cc=[\"-frtti\"]"
-ninja -C out/Release skia
+gn gen out/Release --args="is_debug=false is_official_build=true skia_use_system_expat=false skia_use_system_icu=false skia_use_system_libjpeg_turbo=false skia_use_system_libpng=false skia_use_system_libwebp=false skia_use_system_zlib=false skia_use_sfntly=false skia_use_freetype=true skia_use_harfbuzz=true skia_pdf_subset_harfbuzz=true skia_use_system_freetype2=false skia_use_system_harfbuzz=false target_cpu=\"x64\" extra_cflags=[\"-stdlib=libc++\", \"-mmacosx-version-min=10.9\"] extra_cflags_cc=[\"-frtti\"]"
+ninja -C out/Release skia modules
 
 cd ../..
 mkdir build
@@ -62,7 +64,7 @@ cmake \
   -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk \
   -DLAF_OS_BACKEND=skia \
   -DSKIA_DIR="${PWD}/../deps/skia" \
-  -DSKIA_OUT_DIR="${PWD}/../deps/skia/out/Release" \
+  -DSKIA_LIBRARY_DIR="${PWD}/../deps/skia/out/Release" \
   -G Ninja \
   ..
 ninja aseprite
