@@ -17,7 +17,7 @@ REL_PATTERN="https://github.com/gohugoio/hugo/releases/download/v%s/hugo_extende
 if [[ $# -lt 2 ]]; then
   echo "Determining versions to check..."
   CURRENT_VERSION=$(hugo version | sed -n -E "s/^Hugo Static Site Generator v([^\/]*).*$/\1/p")
-  BREW_VERSION=$(brew info hugo | grep "hugo: stable" | sed -n -E "s/hugo: stable ([^[:space:]]*).*$/\1/p")
+  BREW_VERSION=$(brew info hugo --json | jq -r ".[0].versions.stable")
 
   BUILD_A=$CURRENT_VERSION
   BUILD_B=$BREW_VERSION
