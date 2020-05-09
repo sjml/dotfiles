@@ -1,3 +1,4 @@
+yarn
 live-server
 surge
 heroku
