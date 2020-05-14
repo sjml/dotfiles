@@ -50,7 +50,9 @@ brew 'elinks'
 # dev tools
 brew 'git'
 brew 'git-lfs'
+brew 'mercurial'
 brew 'cmake'
+brew 'scons'
 brew 'automake'
 brew 'clang-format'
 brew 'swig'
@@ -147,7 +149,6 @@ cask 'zerobranestudio'
 # programming languages
 cask 'dotnet-sdk'
 cask 'mono-mdk'
-cask 'r-app'
 cask 'rstudio'
 cask 'java'
 
@@ -211,7 +212,7 @@ cask 'font-hack'
 
 
 # drivers
-tap  'homebrew/cask-drivers'
+# tap  'homebrew/cask-drivers'
 # cask 'xbox360-controller-driver-unofficial'
 
 

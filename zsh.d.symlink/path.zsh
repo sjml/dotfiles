@@ -17,6 +17,9 @@ fi
 
 ## Various paths to add if certain things are installed
 local -a addIfExists=(
+  # Poetry
+  $HOME/.poetry/bin
+
   # Rust
   $HOME/.cargo/bin
 

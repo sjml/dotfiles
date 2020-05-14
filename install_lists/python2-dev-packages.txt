@@ -2,4 +2,3 @@ setuptools
 virtualenv
 pipenv
 pylint
-mercurial

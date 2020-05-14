@@ -109,6 +109,9 @@ $pyPath/conda install anaconda-navigator -y
 
 eval "$($pyenv init -)"
 
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $pyPath/python
+$HOME/.poetry/bin/poetry config virtualenvs.in-project true
+
 timerData "POST-PYTHON"
 
 # ruby setup
@@ -332,17 +335,13 @@ declare -a dockList=(\
   App\ Store\
   Mail\
   Firefox\
-  Tweetbot\
   Messages\
   iTunes\
   Photos\
-  Steam\
-  itch\
+  Pixelmator\ Pro\
   Affinity\ Designer\
-  Pixelmator\
   Sublime\ Text\
   Visual\ Studio\ Code\
-  Unity/Unity\
   Xcode\
   Utilities/Terminal\
   System\ Preferences\
