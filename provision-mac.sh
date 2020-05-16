@@ -33,7 +33,7 @@ timerData "PRE-BREW"
 
 # install homebrew
 export HOMEBREW_NO_ANALYTICS=1
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 # all the installations
 echo "Installing from the Brewfile..."
