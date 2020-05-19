@@ -124,7 +124,7 @@ mas_up() {
 
 
 env_remVer() {
-    $1 install -l \
+    $1 install -l 2>&1 \
         | grep -vE "\s*[a-zA-Z-]" \
         | sort -V \
         | grep "^\s*$2" \
@@ -148,7 +148,7 @@ env_migration_failed() {
         echo "MIGRATION FAILED"
         echo
         echo "Inspect the requirements file: $REQ_FILE"
-    } 1>&2
+    } 2>&1
     exit
 }
 
