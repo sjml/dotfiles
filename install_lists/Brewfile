@@ -152,7 +152,7 @@ cask 'mono-mdk'
 cask 'rstudio'
 cask 'java'
 
-# artsy
+# artsy/media
 cask 'unity-hub'
 cask 'godot'
 cask 'blender'
@@ -160,6 +160,7 @@ cask 'texturepacker'
 cask 'bfxr'
 cask 'twine'
 cask 'nodebox'
+cask 'obs'
 
 # various virtualization thingies
 cask 'vmware-fusion'
