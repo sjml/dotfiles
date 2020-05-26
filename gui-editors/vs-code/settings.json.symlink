@@ -3,7 +3,8 @@
     "git.confirmSync": false,
     "files.associations": {
       "Brewfile": "ruby",
-      ".pylintrc": "ini"
+      ".pylintrc": "ini",
+      "*.html": "html"
     },
     "workbench.startupEditor": "newUntitledFile",
     "window.zoomLevel": 0,
