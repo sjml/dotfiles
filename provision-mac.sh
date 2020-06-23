@@ -63,8 +63,8 @@ if [[ ! -d .git ]]; then
   git init
   git remote add origin https://github.com/sjml/dotfiles.git
   git fetch
-  git reset origin/master
-  git branch --set-upstream-to=origin/master master
+  git reset origin/main
+  git branch --set-upstream-to=origin/main main
   git checkout .
 fi
 # swap to ssh; credentials can get added later

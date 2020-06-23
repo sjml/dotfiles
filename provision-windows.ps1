@@ -39,8 +39,8 @@ if (!(Test-Path -Path ".git")) {
     git init
     git remote add origin https://github.com/sjml/dotfiles.git
     git fetch
-    git reset origin/master
-    git branch --set-upstream-to=origin/master master
+    git reset origin/main
+    git branch --set-upstream-to=origin/main main
     git checkout .
 }
 git remote set-url origin git@github.com:sjml/dotfiles.git

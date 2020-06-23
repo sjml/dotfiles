@@ -8,12 +8,12 @@ git clone https://github.com/sjml/dotfiles ~/.dotfiles
 
 To bootstrap onto a fresh *nix computer (that may not have git, like Macs out of the box): 
 ```shell-script
-curl -fsSL https://raw.githubusercontent.com/sjml/dotfiles/master/bootstrap.sh | bash
+curl -fsSL https://raw.githubusercontent.com/sjml/dotfiles/main/bootstrap.sh | bash
 ```
 
 Or on Windows, from an Administrator PowerShell:
 ```powershell
-Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/sjml/dotfiles/master/bootstrap.ps1'))
+Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/sjml/dotfiles/main/bootstrap.ps1'))
 ```
 
 ## What it does
