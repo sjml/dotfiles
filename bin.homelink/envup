@@ -235,7 +235,7 @@ python2_up() {
         return
     fi
 
-    LDFLAGS="-L/usr/local/ssl/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib" CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include" pyenv install $newVersion
+    LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib" CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include" pyenv install $newVersion
     pyenv global $version3 $newVersion miniconda3-latest
     pyenv rehash
 
