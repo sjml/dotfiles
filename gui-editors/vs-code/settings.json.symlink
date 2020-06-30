@@ -55,5 +55,9 @@
     "gitlens.hovers.currentLine.over": "line",
     "rust.clippy_preference": "on",
     "rust-client.enableMultiProjectSetup": true,
-    "editor.minimap.size": "fit"
+    "editor.minimap.size": "fit",
+    "python.languageServer": "Microsoft",
+    "[plaintext]": {
+        "editor.wordWrap": "on"
+    }
   }
