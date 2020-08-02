@@ -2,6 +2,9 @@
 	name = Shane Liesegang
 	email = shane@techie.net
 
+[init]
+	defaultBranch = main
+
 [core]
 	editor = sublime-wait
 	excludesfile = ~/.gitignore_global
