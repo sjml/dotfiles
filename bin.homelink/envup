@@ -48,7 +48,7 @@ brew_check() {
         echo "  ❌  Couldn’t check Homebrew packages. Internet down?"
         return
     fi
-    local outBrew=$(/usr/local/bin/brew outdated --quiet)
+    local outBrew=$(/usr/local/bin/brew outdated --formula --quiet)
     local outFmt=$(echo $outBrew | xargs | sed -e "s/ /, /g")
     local outCount=$(echo $outBrew | wc -l | xargs)
     local info=""
@@ -77,7 +77,7 @@ cask_check() {
         echo "  ❌  Couldn’t check Homebrew casks. Internet down?"
         return
     fi
-    local outCask=$(/usr/local/bin/brew cask outdated --quiet)
+    local outCask=$(/usr/local/bin/brew outdated --cask --quiet)
     local outFmt=$(echo $outCask | xargs | sed -e "s/ /, /g")
     local outCount=$(echo $outCask | wc -l | xargs)
     local info=""
