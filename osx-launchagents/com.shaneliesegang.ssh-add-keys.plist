@@ -11,5 +11,9 @@
     </array>
    <key>RunAtLoad</key>
    <true/>
+   <key>StandardOutPath</key>
+   <string>/tmp/ssh-add-keys.out</string>
+   <key>StandardErrorPath</key>
+   <string>/tmp/ssh-add-keys.err</string>
 </dict>
 </plist>

@@ -3,3 +3,5 @@
 Host *
   PasswordAuthentication yes
   PubkeyAuthentication no
+  UseKeychain yes
+  AddKeysToAgent yes
