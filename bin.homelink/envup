@@ -64,7 +64,7 @@ brew_check() {
 }
 
 brew_up() {
-    HOMEBREW_NO_AUTO_UPDATE=1 /usr/local/bin/brew upgrade
+    HOMEBREW_NO_AUTO_UPDATE=1 /usr/local/bin/brew upgrade --formula
     # /usr/local/bin/brew cleanup -s
     rm -rf $(/usr/local/bin/brew --cache)
     all_check # since this might have updated one of the envs
@@ -93,7 +93,7 @@ cask_check() {
 }
 
 cask_up() {
-    HOMEBREW_NO_AUTO_UPDATE=1 /usr/local/bin/brew cask upgrade
+    HOMEBREW_NO_AUTO_UPDATE=1 /usr/local/bin/brew upgrade --cask
     # /usr/local/bin/brew cleanup
     rm -rf $(/usr/local/bin/brew --cache)
     echo "  ✅  Homebrew casks are up to date."
