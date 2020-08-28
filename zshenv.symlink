@@ -21,6 +21,8 @@ fi
 export HOMEBREW_NO_ANALYTICS=1
 # relax
 export HOMEBREW_AUTO_UPDATE_SECS="86400"
+# don't build from scratch if a bottle download fails
+export HOMEBREW_NO_BOTTLE_SOURCE_FALLBACK=1
 
 ## python setup
 # since we have our own plans for the prompt
