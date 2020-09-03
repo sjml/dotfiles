@@ -14,11 +14,7 @@
     "editor.renderWhitespace": "all",
     "workbench.iconTheme": "simple-icons",
     "git.autofetch": true,
-    "diffEditor.renderSideBySide": true,
     "terminal.integrated.fontSize": 16,
-    "[python]": {
-        "diffEditor.ignoreTrimWhitespace": false
-    },
     "explorer.confirmDragAndDrop": false,
     "terminal.integrated.shellArgs.osx": [
       "-l"
@@ -57,7 +53,15 @@
     "rust-client.enableMultiProjectSetup": true,
     "editor.minimap.size": "fit",
     "python.languageServer": "Microsoft",
+    "diffEditor.renderSideBySide": true,
+    "[python]": {
+        "diffEditor.ignoreTrimWhitespace": false
+    },
     "[plaintext]": {
-        "editor.wordWrap": "on"
+        "editor.wordWrap": "on",
+        "diffEditor.renderSideBySide": false
+    },
+    "[markdown]": {
+        "diffEditor.renderSideBySide": false
     }
   }
