@@ -333,10 +333,11 @@ defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 dockutil --remove all --no-restart
 declare -a dockList=(\
   App\ Store\
-  Mail\
   Firefox\
+  Mail\
   Messages\
-  iTunes\
+  WhatsApp\
+  Music\
   Photos\
   Pixelmator\ Pro\
   Affinity\ Designer\
