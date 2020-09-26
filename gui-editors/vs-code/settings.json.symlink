@@ -52,8 +52,9 @@
     "rust.clippy_preference": "on",
     "rust-client.enableMultiProjectSetup": true,
     "editor.minimap.size": "fit",
-    "python.languageServer": "Microsoft",
     "diffEditor.renderSideBySide": true,
+    "python.languageServer": "Microsoft",
+    "python.showStartPage": false,
     "[python]": {
         "diffEditor.ignoreTrimWhitespace": false
     },
