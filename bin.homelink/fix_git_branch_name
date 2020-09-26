@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
 # This is a script to automate changing the name of the
 #   default branch of your git repository from "master"
