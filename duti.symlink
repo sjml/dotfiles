@@ -1,7 +1,7 @@
 com.sublimetext.3           public.plain-text   all
 com.sublimetext.3           public.source-code  all
 com.apple.Preview           .pdf                all
-org.videolan.vlc            public.movie        all
+io.mpv                      public.movie        all
 com.apple.quicktimeplayerx  public.audio        viewer
 org.m0k.transmission        .torrent            all
 org.mozilla.firefox         public.xhtml        viewer
