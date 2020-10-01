@@ -1,5 +1,6 @@
-# zsh and standard command line utilities
+# shells and standard command line utilities
 brew 'zsh'
+brew 'fish'
 brew 'bash'
 brew 'coreutils'
 brew 'tmux'
@@ -40,6 +41,7 @@ brew 'mit-scheme'
 brew 'ghc'
 brew 'cabal-install'
 brew 'haskell-stack'
+brew 'haxe'
 
 # network stuff
 brew 'wget'
@@ -122,20 +124,25 @@ cask 'tor-browser'
 cask 'transmit'
 cask 'transmission'
 cask 'whatsapp'
+cask 'telegram'
 cask 'skype'
 cask 'slack'
 cask 'zoomus'
+cask 'microsoft-teams'
 cask 'discord'
+cask 'mullvadvpn'
 
 # writing and office
 cask 'scrivener'
 cask 'microsoft-office'
 cask 'zotero'
 cask 'basictex'
+cask 'anki'
 
 # development
 cask 'sublime-text'
 cask 'visual-studio-code'
+cask 'visual-studio'
 cask 'dash'
 cask 'macdown'
 cask 'processing'
@@ -145,6 +152,7 @@ cask 'insomnia'
 cask 'robo-3t'
 cask 'github'
 cask 'zerobranestudio'
+cask 'sf-symbols'
 
 # programming languages
 cask 'dotnet-sdk'
@@ -172,13 +180,18 @@ cask 'itch'
 cask 'gog-galaxy'
 cask 'epic-games'
 cask 'steam'
+cask 'nvidia-geforce-now'
 cask 'dwarf-fortress'
 cask 'minecraft'
 cask 'handbrake'
 cask 'vlc'
+cask 'iina'
 cask 'mpv'
 cask 'amazon-music'
 cask 'calibre'
+cask 'kindle'
+cask 'kindle-previewer'
+cask 'yacreader'
 cask 'cloudlibrary'
 cask 'adobe-digital-editions'
 
@@ -228,22 +241,23 @@ mas 'Calca',              id: 635758264
 
 # internet
 mas 'Tweetbot',           id: 557168941
+mas 'Messenger',          id: 1480068668
 
 # media
-mas 'Kindle',             id: 405399194
+# mas 'Kindle',             id: 405399194 # (installed with cask instead)
 # mas 'GarageBand',         id: 682658836
 
 # utility
 mas 'GrandPerspective',   id: 1111570163
-# mas 'TickTick',           id: 966085870
+mas 'Menu World Time',    id: 1446377255
 
 # graphics and office
 # mas 'Pixelmator',         id: 407963104
 mas 'Pixelmator Pro',     id: 1289583905
 mas 'Affinity Designer',  id: 824171161
-# mas 'Highland 2',          id: 1171820258
-# mas 'Pages',              id: 409201541
-# mas 'Numbers',            id: 409203825
+mas 'Highland 2',          id: 1171820258
+mas 'Pages',              id: 409201541
+mas 'Numbers',            id: 409203825
 mas 'Keynote',            id: 409183694
 mas 'GIF Brewery 3',      id: 1081413713
 mas 'GIPHY Capture',      id: 668208984

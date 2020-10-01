@@ -5,3 +5,5 @@ Mercurial indicator in zsh prompt is slow
 Modify Tor script to check for available network connections (with networksetup + ifconfig)
   - if there's only one active, just use it
   - if more than one, take choice from command line? allow user to choose from menu?
+Think about switching to fish
+Set up auto install of DotfileWatcher, DualCam (could just be my own cask tap?)
