@@ -206,6 +206,7 @@ cask 'unetbootin'
 cask 'mkvtoolnix'
 cask 'keepingyouawake'
 cask 'a-better-finder-rename'
+cask 'pastebot'
 
 # quicklook stuff
 cask 'qlstephen'
