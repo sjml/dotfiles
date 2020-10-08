@@ -246,7 +246,8 @@ mas 'Messenger',          id: 1480068668
 
 # media
 # mas 'Kindle',             id: 405399194 # (installed with cask instead)
-# mas 'GarageBand',         id: 682658836
+# mas 'GarageBand',         id: 682658836 # (takes up too much space)
+mas 'iMovie',             id: 408981434
 
 # utility
 mas 'GrandPerspective',   id: 1111570163
@@ -256,9 +257,9 @@ mas 'Menu World Time',    id: 1446377255
 # mas 'Pixelmator',         id: 407963104
 mas 'Pixelmator Pro',     id: 1289583905
 mas 'Affinity Designer',  id: 824171161
-mas 'Highland 2',          id: 1171820258
+mas 'GIF Brewery 3',      id: 1081413713
+mas 'GIPHY Capture',      id: 668208984
 mas 'Pages',              id: 409201541
 mas 'Numbers',            id: 409203825
 mas 'Keynote',            id: 409183694
-mas 'GIF Brewery 3',      id: 1081413713
-mas 'GIPHY Capture',      id: 668208984
+mas 'Highland 2',          id: 1171820258
