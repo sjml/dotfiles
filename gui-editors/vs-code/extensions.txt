@@ -3,6 +3,7 @@ Tyriar.lorem-ipsum
 akamud.vscode-theme-onelight
 bibhasdn.unique-lines
 bungcip.better-toml
+CoenraadS.bracket-pair-colorizer-2
 dbaeumer.vscode-eslint
 deerawan.vscode-dash
 donjayamanne.githistory

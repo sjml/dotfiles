@@ -66,5 +66,9 @@
     },
     "[markdown]": {
         "diffEditor.renderSideBySide": false
-    }
+    },
+    "bracket-pair-colorizer-2.excludedLanguages": [
+      "*.html",
+      "*.md"
+    ]
   }
