@@ -5,5 +5,7 @@ Mercurial indicator in zsh prompt is slow
 Modify Tor script to check for available network connections (with networksetup + ifconfig)
   - if there's only one active, just use it
   - if more than one, take choice from command line? allow user to choose from menu?
+Add command to excerpt from YouTube
+    - example: ffmpeg $(youtube-dl -f 22 -g 'https://www.youtube.com/watch?v=yh5hpd1osKo' | sed "s/.*/-ss 00:05 -i &/") -t 01:00 -c copy train.mp4
 Think about switching to fish
 Set up auto install of DotfileWatcher, DualCam (could just be my own cask tap?)
