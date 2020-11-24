@@ -19,5 +19,7 @@ if [[ $OSTYPE == darwin* ]]; then
   if type hub > /dev/null; then
     alias git="hub"
   fi
+
+  alias cdot="code ~/.dotfiles"
 fi
 

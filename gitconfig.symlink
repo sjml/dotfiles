@@ -10,6 +10,8 @@
 	excludesfile = ~/.gitignore_global
 [push]
 	default = simple
+[pull]
+	rebase = false
 
 [url "git@github.com:"]
 	insteadOf = https://github.com/

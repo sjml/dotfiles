@@ -329,6 +329,9 @@ defaults write com.apple.commerce AutoUpdate -bool false
 # Install System data files & security updates
 defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 
+# Set archive utility to not open a new window when it extracts things
+defaults write com.apple.archiveutility dearchive-reveal-after -int 0
+
 # set up Dock
 dockutil --remove all --no-restart
 declare -a dockList=(\
