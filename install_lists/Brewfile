@@ -68,6 +68,7 @@ brew 'ripgrep'
 brew 'jq'
 brew 'sqlite'
 brew 'flatbuffers'
+brew 'podman'
 
 # cask tools
 tap 'vitorgalvao/tiny-scripts'
