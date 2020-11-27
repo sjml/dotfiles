@@ -53,6 +53,7 @@ brew 'elinks'
 # dev tools
 brew 'git'
 brew 'git-lfs'
+brew 'bfg'
 brew 'mercurial'
 brew 'cmake'
 brew 'scons'
@@ -69,6 +70,7 @@ brew 'jq'
 brew 'sqlite'
 brew 'flatbuffers'
 brew 'podman'
+brew 'doctl'
 
 # cask tools
 tap 'vitorgalvao/tiny-scripts'
