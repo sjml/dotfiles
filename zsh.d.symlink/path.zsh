@@ -25,6 +25,9 @@ local -a addIfExists=(
 
   # itch.io
   $HOME/Library/Application\ Support/itch/bin
+
+  # Postgres using the app
+  /Applications/Postgres.app/Contents/Versions/12/bin/
 )
 for maybePath in "${addIfExists[@]}"; do
   if [[ -d $maybePath ]]; then
