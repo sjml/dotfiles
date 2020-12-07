@@ -35,7 +35,6 @@ brew 'deno'
 brew 'zig'
 
 ## don't really use, but needed for other things
-brew 'java'
 brew 'openjdk'
 
 ## ones I keep meaning to learn
