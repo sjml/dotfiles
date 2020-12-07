@@ -1,7 +1,6 @@
 yarn
 live-server
 surge
-heroku
 ttf2woff
 eslint
 uglify-es
