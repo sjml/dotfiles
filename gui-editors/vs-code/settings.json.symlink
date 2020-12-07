@@ -66,6 +66,9 @@
     "[markdown]": {
         "diffEditor.renderSideBySide": false
     },
+    "[Log]": {
+        "editor.wordWrap": "on"
+    },
     "bracket-pair-colorizer-2.excludedLanguages": [
       "*.html",
       "*.md"
@@ -80,5 +83,15 @@
     },
     "[javascript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
-  }
+    },
+    "workbench.editorAssociations": [
+      {
+        "viewType": "jupyter.notebook.ipynb",
+        "filenamePattern": "*.ipynb"
+      }
+    ],
+    "code-runner.enableAppInsights": false,
+    "terminal.integrated.commandsToSkipShell": [
+      "language-julia.interrupt"
+    ]
+}
