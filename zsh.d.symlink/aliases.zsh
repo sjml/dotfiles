@@ -16,6 +16,6 @@ alias mkdir="mkdir -p"
 
 # Mac-specific aliases
 if [[ $OSTYPE == darwin* ]]; then
-  alias cdot="code ~/.dotfiles"
+  alias edot="code ~/.dotfiles"
 fi
 
