@@ -28,7 +28,6 @@ brew 'node-build'
 ## ones I actually use
 brew 'go'
 brew 'r'
-# brew 'julia' # moved to cask :-/
 
 ## hoping these become a thing
 brew 'deno'
