@@ -2,6 +2,7 @@
 
 Host *
   PasswordAuthentication yes
-  PubkeyAuthentication no
+  # PubkeyAuthentication no
+  IgnoreUnknown UseKeychain
   UseKeychain yes
   AddKeysToAgent yes

@@ -87,7 +87,9 @@ pyPath="$HOME/.pyenv/shims"
 pyenv="/usr/local/bin/pyenv"
 
 py3version=$(env_remVer pyenv 3)
-$pyenv install $py3version
+LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib" \
+  CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include" \
+  $pyenv install $py3version
 $pyenv global $py3version
 $pyenv rehash
 $pyPath/pip3 install --upgrade pip
@@ -95,7 +97,9 @@ $pyPath/pip3 install -r install_lists/python3-dev-packages.txt
 $pyenv rehash
 
 py2version=$(env_remVer pyenv 2)
-$pyenv install $py2version
+LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib" \
+  CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include" \
+  $pyenv install $py2version
 $pyenv global $py3version $py2version
 $pyenv rehash
 $pyPath/pip2 install --upgrade pip
@@ -175,6 +179,11 @@ osascript 2>/dev/null <<EOD
     end repeat
   end tell
 EOD
+
+# let QuickLook stuff run without Gatekeeper complaining
+xattr -cr ~/Library/QuickLook/*
+qlmanage -r
+qlmanage -r cache
 
 # set up default associations
 duti ~/.duti
@@ -333,6 +342,9 @@ defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 defaults write com.apple.archiveutility dearchive-reveal-after -int 0
 
 # set up Dock
+# NB: paths to system applications won't work in Big Sur;
+# remember to update this list when getting a new machine
+# (not planning on going Big Sur until then)
 dockutil --remove all --no-restart
 declare -a dockList=(\
   App\ Store\
