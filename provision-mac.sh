@@ -83,8 +83,10 @@ vim +PluginInstall +qall
 source "$HOME/bin/envup"
 
 # python setup
+git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
+git clone https://github.com/pyenv/pyenv-update.git $HOME/.pyenv/plugins/pyenv-update
 pyPath="$HOME/.pyenv/shims"
-pyenv="/usr/local/bin/pyenv"
+pyenv="$HOME/.pyenv/bin/pyenv"
 
 py3version=$(env_remVer pyenv 3)
 LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib" \

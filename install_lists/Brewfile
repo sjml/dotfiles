@@ -17,7 +17,7 @@ brew 'gnupg'
 brew 'xz'
 
 # meta environments for my regularly used programming languages
-brew 'pyenv'
+# brew 'pyenv' # installed in provision-mac.sh so it can update more regularly
 brew 'rbenv'
 brew 'ruby-build'
 brew 'nodenv'
