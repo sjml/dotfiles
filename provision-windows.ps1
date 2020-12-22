@@ -24,36 +24,36 @@ if (!$isElevated) {
 
 Set-ExecutionPolicy Bypass -Scope Process -Force
 
-# Install Chocolatey and its list of packages
-Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-Update-Environment
+# # Install Chocolatey and its list of packages
+# Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+# Update-Environment
 
-choco feature enable -n allowGlobalConfirmation
-choco install .\install_lists\chocolatey-packages.config
+# choco feature enable -n allowGlobalConfirmation
+# choco install .\install_lists\chocolatey-packages.config
 
-# Make sure the path is up to date
-Update-Environment
+# # Make sure the path is up to date
+# Update-Environment
 
-# set up the git stuff
-if (!(Test-Path -Path ".git")) {
-    git init
-    git remote add origin https://github.com/sjml/dotfiles.git
-    git fetch
-    git reset origin/main
-    git branch --set-upstream-to=origin/main main
-    git checkout .
-}
-git remote set-url origin git@github.com:sjml/dotfiles.git
+# # set up the git stuff
+# if (!(Test-Path -Path ".git")) {
+#     git init
+#     git remote add origin https://github.com/sjml/dotfiles.git
+#     git fetch
+#     git reset origin/main
+#     git branch --set-upstream-to=origin/main main
+#     git checkout .
+# }
+# git remote set-url origin git@github.com:sjml/dotfiles.git
 
-# TODO: install vim plugins
+# # TODO: install vim plugins
 
-# Python 3 packages
-pip install --upgrade pip
-pip install -r .\install_lists\python3-dev-packages.txt
+# # Python 3 packages
+# pip install --upgrade pip
+# pip install -r .\install_lists\python3-dev-packages.txt
 
-# Node.js packages
-npm install -g npm
-npm install -g (Get-Content .\install_lists\node-packages.txt)
+# # Node.js packages
+# npm install -g npm
+# npm install -g (Get-Content .\install_lists\node-packages.txt)
 
 # Windows Subsystem for Linux and an Ubuntu to go with it
 Enable-WindowsOptionalFeature -Online -NoRestart -FeatureName Microsoft-Windows-Subsystem-Linux
