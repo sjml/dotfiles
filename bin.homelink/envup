@@ -5,13 +5,13 @@
 #     Homebrew's Casks (GUI apps)
 #     Mac App Store (flakily, as the mas tool struggles at times)
 #     Python 3/2, Node.js LTS, and Ruby environments
-#     # Stable branch of Rust toolchain
+#     Stable branch of Rust toolchain
 #
 # Specifically does not monitor packages within script environments;
 #   those might be pinned to specific versions and need to be checked
 #   individually.
 
-local -a envs=(brew cask mas python3 python2 node ruby) # rust)
+local -a envs=(brew cask mas python3 python2 node ruby rust)
 local -a cmds=(check up)
 
 
@@ -291,25 +291,25 @@ ruby_up() {
 }
 
 
-# rust_check() {
-#     local rustStatus=$(rustup check | grep stable)
-#     local currentVersion=$(echo $rustStatus | sed -n -E "s/^.*: ([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+).*$/\1/p")
+rust_check() {
+    local rustStatus=$(rustup check | grep stable)
+    local currentVersion=$(echo $rustStatus | sed -n -E "s/^.*: ([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+).*$/\1/p")
 
-#     local info=""
-#     if echo $rustStatus | grep -q "Up to date"; then
-#         info="  ✅  Rust is up to date. ($currentVersion)"
-#     else
-#         local newVersion=$(echo $rustStatus | sed -n -E "s/^.*-> ([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+).*$/\1/p")
-#         info="  ⚠️   Rust latest version is $newVersion; installed is $currentVersion."
-#     fi
+    local info=""
+    if echo $rustStatus | grep -q "Up to date"; then
+        info="  ✅  Rust is up to date. ($currentVersion)"
+    else
+        local newVersion=$(echo $rustStatus | sed -n -E "s/^.*-> ([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+).*$/\1/p")
+        info="  ⚠️   Rust latest version is $newVersion; installed is $currentVersion."
+    fi
 
-#     echo ${info} | fold -s -w $COLUMNS
-# }
+    echo ${info} | fold -s -w $COLUMNS
+}
 
-# rust_up() {
-#     rustup update stable
-#     rust_check
-# }
+rust_up() {
+    rustup update stable
+    rust_check
+}
 
 
 [[ $ZSH_EVAL_CONTEXT =~ :file$ ]] && sourced=1 || sourced=0

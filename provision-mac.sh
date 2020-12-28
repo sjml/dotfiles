@@ -153,7 +153,7 @@ $nodePath/npm install -g $(cat install_lists/node-packages.txt)
 timerData "POST-NODE"
 
 # rust setup
-curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path --profile=complete
+curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
 
 timerData "POST-RUST"
 
