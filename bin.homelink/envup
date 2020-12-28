@@ -190,6 +190,7 @@ node_up() {
 }
 
 python3_check() {
+    pyenv update > /dev/null 2>&1
     env_check pyenv 3 "Python 3"
 }
 
@@ -222,6 +223,7 @@ python3_up() {
 
 
 python2_check() {
+    # > /dev/null 2>&1  # no need to check
     env_check pyenv 2 "Python 2"
 }
 
