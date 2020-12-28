@@ -54,7 +54,6 @@
     "diffEditor.renderSideBySide": true,
     "julia.execution.resultType": "both",
     "julia.enableTelemetry": true,
-    "python.languageServer": "Microsoft",
     "python.showStartPage": false,
     "[python]": {
         "diffEditor.ignoreTrimWhitespace": false
@@ -93,5 +92,6 @@
     "code-runner.enableAppInsights": false,
     "terminal.integrated.commandsToSkipShell": [
       "language-julia.interrupt"
-    ]
+    ],
+    "python.languageServer": "Pylance"
 }
