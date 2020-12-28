@@ -229,8 +229,7 @@ cask 'suspicious-package'
 # a few monospaced fonts from caskroom
 #   (others handled outside of script)
 tap  'homebrew/cask-fonts'
-cask 'font-inconsolata'
-cask 'font-hack'
+cask 'font-fira-code'
 cask 'font-juliamono'
 
 

@@ -9,17 +9,17 @@
     "workbench.startupEditor": "newUntitledFile",
     "window.zoomLevel": 0,
     "editor.fontSize": 14,
-    "editor.fontFamily": "Hack",
+    "debug.console.fontSize": 14,
+    "terminal.integrated.fontSize": 16,
+    "editor.fontFamily": "Fira Code Retina",
     "window.restoreWindows": "all",
     "editor.renderWhitespace": "all",
     "workbench.iconTheme": "simple-icons",
     "git.autofetch": true,
-    "terminal.integrated.fontSize": 16,
     "explorer.confirmDragAndDrop": false,
     "terminal.integrated.shellArgs.osx": [
       "-l"
     ],
-    "jupyter.appendResults": true,
     "gitlens.advanced.messages": {
       "suppressShowKeyBindingsNotice": true
     },
@@ -27,25 +27,9 @@
     "python.terminal.activateEnvironment": false,
     "explorer.confirmDelete": false,
     "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "python.jediEnabled": false,
     "explorer.incrementalNaming": "smart",
     "window.openFoldersInNewWindow": "on",
     "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
-    "cSpell.enabledLanguageIds": [
-      "asciidoc",
-      "git-commit",
-      "markdown",
-      "plaintext",
-      "restructuredtext",
-      "text"
-    ],
-    "cSpell.languageSettings": [
-      { "languageId": "markdown", "diagnosticLevel": "Error"}
-    ],
-    "cSpell.userWords": [
-      "liesegang"
-    ],
     "gitlens.currentLine.enabled": false,
     "gitlens.hovers.currentLine.over": "line",
     "rust.clippy_preference": "on",
@@ -93,5 +77,6 @@
     "terminal.integrated.commandsToSkipShell": [
       "language-julia.interrupt"
     ],
-    "python.languageServer": "Pylance"
+    "python.languageServer": "Pylance",
+    "workbench.colorTheme": "One Dark Pro"
 }

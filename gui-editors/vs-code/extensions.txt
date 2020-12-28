@@ -23,6 +23,7 @@ LaurentTreguier.vscode-simple-icons
 mechatroner.rainbow-csv
 ms-dotnettools.csharp
 ms-python.python
+ms-python.vscode-pylance
 ms-toolsai.jupyter
 ms-vscode.cpptools
 ms-vscode.hexeditor
@@ -34,9 +35,12 @@ rebornix.ruby
 robinbentley.sass-indented
 ronnidc.nunjucks
 rust-lang.rust
+skyapps.fish-vscode
+slevesque.shader
 tiehuis.zig
 torn4dom4n.latex-support
 twxs.cmake
 Unity.unity-debug
 wholroyd.jinja
 wingrunr21.vscode-ruby
+zhuangtongfa.material-theme
