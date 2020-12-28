@@ -214,6 +214,7 @@ cask 'mkvtoolnix'
 cask 'keepingyouawake'
 cask 'a-better-finder-rename'
 cask 'pastebot'
+cask 'crunch'
 
 # quicklook stuff
 cask 'qlstephen'
@@ -222,8 +223,6 @@ cask 'quicklook-json'
 cask 'qlprettypatch'
 cask 'quicklook-csv'
 cask 'suspicious-package'
-# cask 'qlcolorcode'
-# cask 'qlimagesize'
 
 
 # a few monospaced fonts from caskroom
@@ -231,11 +230,6 @@ cask 'suspicious-package'
 tap  'homebrew/cask-fonts'
 cask 'font-fira-code'
 cask 'font-juliamono'
-
-
-# drivers
-# tap  'homebrew/cask-drivers'
-# cask 'xbox360-controller-driver-unofficial'
 
 
 # and finally, stuff from the Mac App Store
@@ -253,7 +247,6 @@ mas 'Tweetbot',           id: 557168941
 mas 'Messenger',          id: 1480068668
 
 # media
-# mas 'Kindle',             id: 405399194 # (installed with cask instead)
 # mas 'GarageBand',         id: 682658836 # (takes up too much space)
 mas 'iMovie',             id: 408981434
 
@@ -262,7 +255,6 @@ mas 'GrandPerspective',   id: 1111570163
 mas 'Menu World Time',    id: 1446377255
 
 # graphics and office
-# mas 'Pixelmator',         id: 407963104
 mas 'Pixelmator Pro',     id: 1289583905
 mas 'Affinity Designer',  id: 824171161
 mas 'GIF Brewery 3',      id: 1081413713
