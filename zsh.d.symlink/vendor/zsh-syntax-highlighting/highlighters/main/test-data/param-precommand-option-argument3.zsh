@@ -29,14 +29,14 @@
 # -------------------------------------------------------------------------------------------------
 
 # See also alias-precommand-option-argument3.zsh
-local -a sudo_u=(sudo -u)
+local -a sudo_u; sudo_u=(sudo -u)
 sudo(){}
 
 BUFFER='$sudo_u phy1729 ls foo'
 
 expected_region_highlight=(
   '1 7 precommand' # sudo_u
-  '9 15 default "issue #674"' # phy1729
-  '17 18 command "issue #674"' # ls
+  '9 15 default' # phy1729
+  '17 18 command' # ls
   '20 22 default' # foo
 )

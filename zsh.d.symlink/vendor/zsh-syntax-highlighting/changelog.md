@@ -1,6 +1,207 @@
-# Changes in version 0.7.0
+# Changes in HEAD
 
-**Version 0.7.0 has not been released.  This changelog is a work in progress.**
+
+## Changes fixed as part of the switch to zle-line-pre-redraw
+
+The changes in this section were fixed by switching to a `zle-line-pre-redraw`-based
+implementation.
+
+Note: The new implementation will only be used on future zsh releases,
+numbered 5.8.0.3 and newer, due to interoperability issues with other plugins
+(issues #418 and #579).  The underlying zsh feature has been available since
+zsh 5.2.
+
+Whilst under development, the new implementation was known as the
+"feature/redrawhook" topic branch.
+
+- Fixed: Highlighting not triggered after popping a buffer from the buffer stack
+  (using the `push-line` widget, default binding: `M-q`)
+  [#40]
+
+- Fixed: Invoking completion when there were no matches removed highlighting
+  [#90, #470]
+
+- Fixed: Two successive deletes followed by a yank only yanked the latest
+  delete, rather than both of them
+  [#150, #151, #160; cf. #183]
+
+- Presumed fixed: Completing `$(xsel)` results in an error message from `xsel`,
+  with pre-2017 versions of `xsel`.  (For 2017 vintage and newer, see the issue
+  for details.)
+  [#154]
+
+- Fixed: When the standard `bracketed-paste-magic` widget is in use, pastes were slow
+  [#295]
+
+- Fixed: No way to prevent a widget from being wrapped
+  [#324]
+
+- Fixed: No highlighting while cycling menu completion
+  [#375]
+
+- Fixed: Does not coexist with the `IGNORE_EOF` option
+  [#377]
+
+- Fixed: The `undefined-key` widget was wrapped
+  [#421]
+
+- Fixed: Does not coexist with the standard `surround` family of widgets
+  [#520]
+
+- Fixed: First completed filename doesn't get `path` highlighting
+  [#632]
+
+
+## Other changes
+
+- Add issue #712 to the previous release's changelog (hereinafter).
+
+
+# Changes in 0.8.0-alpha1-pre-redrawhook
+
+## Notice about an improbable-but-not-impossible forward incompatibility
+
+Everyone can probably skip this section.
+
+The `master` branch of zsh-syntax-highlighting uses a zsh feature that has not
+yet appeared in a zsh release: the `memo=` feature, added to zsh in commit
+zsh-5.8-172-gdd6e702ee (after zsh 5.8, before zsh 5.9).  In the unlikely event
+that this zsh feature should change in an incompatible way before the next
+stable zsh release, set `zsh_highlight__memo_feature=0` in your .zshrc files to
+disable use of the new feature.
+
+z-sy-h dogfoods the new, unreleased zsh feature because that feature was
+added to zsh at z-sy-h's initiative.  The new feature is used in the fix
+to issue #418.
+
+
+## Incompatible changes:
+
+- An unsuccessful completion (a <kbd>⮀ Tab</kbd> press that doesn't change the
+  command line) no longer causes highlighting to be lost.  Visual feedback can
+  alternatively be achieved by setting the `format` zstyle under the `warnings`
+  tag, for example,
+
+        zstyle ':completion:*:warnings' format '%F{red}No matches%f'
+
+    Refer to the [description of the `format` style in `zshcompsys(1)`]
+    [zshcompsys-Standard-Styles-format].
+
+    (#90, part of #245 (feature/redrawhook))
+
+[zshcompsys-Standard-Styles]: http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Standard-Styles
+[zshcompsys-Standard-Styles-format]: http://zsh.sourceforge.net/Doc/Release/Completion-System.html#index-format_002c-completion-style
+  
+
+
+## Other changes:
+
+- Document `$ZSH_HIGHLIGHT_MAXLENGTH`.
+  [#698]
+
+- Optimize highlighting unquoted words (words that are not in single quotes, double quotes, backticks, or dollar-single-quotes)
+  [#730]
+
+- Redirection operators (e.g., `<` and `>`) are now highlighted by default
+  [#646]
+
+- Propertly terminate `noglob` scope in try/always blocks
+  [#577]
+
+- Don't error out when `KSH_ARRAYS` is set in the calling scope
+  [#622, #689]
+
+- Literal semicolons in array assignments (`foo=( bar ; baz )`) are now
+  highlighted as errors.
+  [3ca93f864fb6]
+
+- Command separators in array assignments (`foo=( bar | baz )`) are now
+  highlighted as errors.
+  [#651, 81267ca3130c]
+
+- Support parameter elision in command position (e.g., `$foo ls` where `$foo` is unset or empty)
+  [#667]
+
+- Don't consider the filename in `sudo -e /path/to/file` to be a command position
+  [#678]
+
+- Don't look up absolute directory names in $cdpath
+  [2cc2583f8f12, part of #669]
+
+- Fix `exec 2>&1;` being highlighted as an error.
+  [#676]
+
+- Fix `: $(<*)` being highlighted as globbing.
+  [#582]
+
+- Fix `cat < *` being highlighting as globbing when the `MULTIOS` option is unset.
+  [#583]
+
+- Fix `echo >&2` highlighting the `2` as a filename if a file by that name happened to exist
+  [#694, part of #645]
+
+- Fix `echo >&-` highlighting the `-` as a filename if a file by that name happened to exist
+  [part of #645]
+
+- Fix `echo >&p` highlighting the `p` as a filename if a file by that name happened to exist
+  [part of #645]
+
+- Fix wrong highlighting of unquoted parameter expansions under zsh 5.2 and older
+  [e165f18c758e]
+
+- Highlight global aliases
+  [#700]
+
+- Highlight `: =nosuchcommand' as an error (when the `EQUALS` option hasn't been unset).
+  [#430]
+
+- Highlight reserved word after assignments as errors (e.g., `foo=bar (ls;)`)
+  [#461]
+
+- Correctly highlight `[[ foo && bar || baz ]]`.
+
+- Highlight non-executable files in command position correctly (e.g., `% /etc/passwd`)
+  [#202, #669]
+
+- Highlight directories in command position correctly, including `AUTO_CD` support
+  [#669]
+
+- Recognize `env` as a precommand (e.g., `env FOO=bar ls`)
+
+- Recognize `strace` as a precommand
+
+- Fix an error message on stderr before every prompt when the `WARN_NESTED_VAR` zsh option is set:
+  `_zsh_highlight_main__precmd_hook:1: array parameter _zsh_highlight_main__command_type_cache set in enclosing scope in function _zsh_highlight_main__precmd_hook`
+  [#727, #731, #732, #733]
+
+- Fix highlighting of alias whose definitions use a simple command terminator
+  (such as `;`, `|`, `&&`) before a newline
+  [#677; had regressed in 0.7.0]
+
+- Highlight arithmetic expansions (e.g., `$(( 42 ))`)
+  [#607 #649 #704]
+
+- Highlight the parentheses of array assignments as reserved words (`foo=( bar )`).
+  The `assign` style remains supported and has precedence.
+  [#585]
+
+- Fix interoperability issue with other plugins that use highlighting.  The fix
+  requires zsh 5.8.0.3 or newer.  (zsh 5.8.0.2-dev from the `master` branch,
+  revision zsh-5.8-172-gdd6e702ee or newer is also fine.)
+  [#418, https://github.com/okapia/zsh-viexchange/issues/1]
+
+- Improve performance of the `brackets` highlighter.
+
+- Fix highlighting of pre-command redirections (e.g., the `$fn` in `<$fn cat`)
+  [#712]
+
+
+# Changes in version 0.7.1
+
+- Remove out-of-date information from the 0.7.0 changelog.
+
+
+# Changes in version 0.7.0
 
 This is a stable bugfix and feature release.  Major new features and changes include:
 
@@ -32,7 +233,7 @@ This is a stable bugfix and feature release.  Major new features and changes inc
 
 - Highlight numeric globs (e.g., `echo /lib<->`)
 
-- Assorted improvement to aliases highlighting
+- Assorted improvements to aliases highlighting
   (e.g.,
    `alias sudo_u='sudo -u'; sudo_u jrandom ls`,
    `alias x=y y=z z=nosuchcommand; x`,
@@ -62,6 +263,15 @@ Selected bugfixes include:
 
 - The 'yank-pop' widget is not wrapped
   [#183]
+
+
+Known issues include:
+
+- A multiline alias that uses a simple command terminator (such as `;`, `|`, `&&`)
+  before a newline will incorrectly be highlighted as an error.  See issue #677
+  for examples and workarounds.
+  [#677]
+  [UPDATE: Fixed in 0.8.0]
 
 
 # Changes in version 0.6.0
