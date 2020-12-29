@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+# Format Clipboard
+#
+# Runs Prettier on text in the clipboard and pastes it back in.
+# Requires: prettier (duh) and jq
+#
+
+PRETTIER=$(which prettier)
+JQ=$(which jq)
+
+if [[ ${#JQ} -eq 0 ]] || [[ ${#PRETTIER} -eq 0 ]]; then
+    echo "fclip requires prettier and jq to be available."
+    exit 1
+fi
+
+usage() {
+    echo "Usage: fclip <language>"
+    echo "       <language> must be something supported by a"
+    echo "       Prettier parser. (https://prettier.io/)"
+    echo
+    echo "       Supported parsers:"
+    parsers=$($PRETTIER --support-info | $JQ --raw-output '[.languages[].parsers | add] | unique | join(" ") | @text')
+    echo $parsers | fold -s -w 50 | sed -e "s|^|           |g"
+}
+
+if [[ $# -eq 0 ]]; then
+    usage
+    exit 1
+fi
+
+output=$(pbpaste | $PRETTIER --loglevel silent --parser $1)
+err=$?
+if [[ $err -ne 0 ]]; then
+    if [[ $err -eq 1 ]]; then
+        echo "ERROR: Invalid parser '$1'"
+    fi
+    if [[ $err -eq 2 ]]; then
+        echo "ERROR: '$1' parser couldn't read clipboard content."
+    fi
+    echo
+    usage
+    exit 1
+fi
+
+echo "$output" | pbcopy
