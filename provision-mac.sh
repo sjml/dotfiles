@@ -37,7 +37,11 @@ export HOMEBREW_NO_ANALYTICS=1
 
 # all the installations
 echo "Installing from the Brewfile..."
-brew bundle install --no-lock --file=$DOTFILES_ROOT/install_lists/Brewfile
+
+# Turning off quarantine for casks; assuming I trust any apps that
+#   made it into the Brewfile. *slightly* perilous, though.
+HOMEBREW_CASK_OPTS="--no-quarantine" \
+  brew bundle install --no-lock --file=$DOTFILES_ROOT/install_lists/Brewfile
 
 # try to set zsh up as the shell
 targetZShell="/usr/local/bin/zsh"

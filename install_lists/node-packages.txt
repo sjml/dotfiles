@@ -4,3 +4,7 @@ surge
 ttf2woff
 eslint
 uglify-es
+prettier
+prettier-plugin-toml
+@prettier/plugin-ruby
+@prettier/plugin-xml
