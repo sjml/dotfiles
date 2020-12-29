@@ -172,7 +172,7 @@ osascript 2>/dev/null <<EOD
 
     set initialOpenedWindows to id of every window
 
-    do shell script "open './SJML.terminal'"
+    do shell script "open './resources/SJML.terminal'"
     delay 1
     set default settings to settings set "SJML"
 

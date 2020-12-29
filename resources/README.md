@@ -22,6 +22,10 @@ does not. So this is a version of the font's Retina weight with the GSUB table c
 out so it can't do any replacements. (I could have also just changed to a different
 terminal emulator, but one change at a time.)
 
+## Terminal.app Profile
+`SJML.terminal` sets up the macOS Terminal.app to my liking, and uses the hacked version
+of Fira Code in this directory.
+
 ## Office Templates
 Templates for MS Office. Set the location in Word's Preferences -> File Locations -> User Templates.
 
