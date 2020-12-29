@@ -3,10 +3,9 @@
 
 local _brew="/usr/local/bin/brew"
 
-# I grew weary of homebrew's pedantry regarding
-#   the search command
-if [[ "$1" == "cask" && "$2" == "search" ]]; then
-    $_brew search --casks $@[3,-1]
+# I grew weary of homebrew's pedantry
+if [[ "$1" == "cask" ]]; then
+    $_brew $2 --cask $@[3,-1]
 else
     $_brew $@
 fi
