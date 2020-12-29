@@ -64,12 +64,17 @@ timerData "POST-BREW"
 # make sure we're running in a local git working copy
 #  (this hooks us in if we were set up from the bootstrap script)
 if [[ ! -d .git ]]; then
-  git init
-  git remote add origin https://github.com/sjml/dotfiles.git
-  git fetch
-  git reset origin/main
-  git branch --set-upstream-to=origin/main main
-  git checkout .
+  (
+    # don't look at the ~/.gitconfig
+    unset HOME
+
+    git init
+    git remote add origin https://github.com/sjml/dotfiles.git
+    git fetch
+    git reset origin/main
+    git branch --set-upstream-to=origin/main main
+    git checkout .
+  )
 fi
 # swap to ssh; credentials can get added later
 git remote set-url origin git@github.com:sjml/dotfiles.git
