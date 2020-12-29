@@ -232,6 +232,12 @@ cask 'font-fira-code'
 cask 'font-juliamono'
 
 
+# my own apps
+tap  'sjml/sjml'
+cask 'dotfile-watcher'
+cask 'dualcam'
+
+
 # and finally, stuff from the Mac App Store
 brew 'mas'
 
