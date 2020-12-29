@@ -43,4 +43,3 @@ twxs.cmake
 Unity.unity-debug
 wholroyd.jinja
 wingrunr21.vscode-ruby
-zhuangtongfa.material-theme
