@@ -37,7 +37,7 @@ export HOMEBREW_NO_ANALYTICS=1
 
 # all the installations
 echo "Installing from the Brewfile..."
-brew bundle install --file=$DOTFILES_ROOT/install_lists/Brewfile
+brew bundle install --no-lock --file=$DOTFILES_ROOT/install_lists/Brewfile
 
 # try to set zsh up as the shell
 targetZShell="/usr/local/bin/zsh"
