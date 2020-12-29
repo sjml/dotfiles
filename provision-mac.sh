@@ -158,6 +158,8 @@ curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
 timerData "POST-RUST"
 
 # set up Terminal
+cp ./resources/FiraMod-Retina.ttf $HOME/Library/Fonts/
+
 osascript 2>/dev/null <<EOD
   tell application "Terminal"
     local allOpenedWindows
