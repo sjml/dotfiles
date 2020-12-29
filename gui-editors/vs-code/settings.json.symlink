@@ -8,22 +8,29 @@
     },
     "workbench.startupEditor": "newUntitledFile",
     "workbench.colorTheme": "Atom One Dark",
-    "workbench.colorCustomizations": {
-      "[Atom One Dark]": {
-        // My poor eyes need a little more contrast
-        "editor.foreground": "#e6e6e6",
-        "terminal.foreground": "#e6e6e6",
-        "terminal.background": "#1D2026",
-        "statusBar.background": "#2b6dd1",
-        "statusBarItem.hoverBackground": "#3a81ea",
-        "statusBar.foreground": "#e6e6e6",
-        "statusBar.noFolderBackground": "#6b488e",
-        "activityBarBadge.background": "#2b6dd1",
-        "activityBarBadge.foreground": "#e6e6e6",
-        "badge.background": "#2b6dd1",
-        "badge.foreground": "#e6e6e6"
-      }
-    },
+
+    // My poor eyes need a little more contrast
+      "workbench.colorCustomizations": {
+        "[Atom One Dark]": {
+          "editor.foreground": "#e6e6e6",
+          "terminal.foreground": "#e6e6e6",
+          "terminal.background": "#1D2026",
+          "statusBar.background": "#2b6dd1",
+          "statusBarItem.hoverBackground": "#3a81ea",
+          "statusBar.foreground": "#e6e6e6",
+          "statusBar.noFolderBackground": "#6b488e",
+          "activityBarBadge.background": "#2b6dd1",
+          "activityBarBadge.foreground": "#e6e6e6",
+          "badge.background": "#2b6dd1",
+          "badge.foreground": "#e6e6e6"
+        }
+      },
+      "editor.tokenColorCustomizations": {
+        "[Atom One Dark]": {
+          "comments": "#929292"
+        }
+      },
+
     "window.zoomLevel": 0,
     "editor.fontSize": 15,
     "debug.console.fontSize": 14,
