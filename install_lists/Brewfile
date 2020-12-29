@@ -75,10 +75,6 @@ brew 'flatbuffers'
 brew 'podman'
 brew 'doctl'
 
-# cask tools
-tap 'vitorgalvao/tiny-scripts'
-brew 'cask-repair'
-
 # graphics tools
 brew 'imagemagick'
 brew 'ghostscript'
