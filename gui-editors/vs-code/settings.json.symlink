@@ -13,8 +13,13 @@
       "workbench.colorCustomizations": {
         "[Atom One Dark]": {
           "editor.foreground": "#e6e6e6",
+          "editor.selectionBackground": "#5374bbb7",
+          "editor.lineHighlightBackground": "#99bbff1a",
+          "editor.wordHighlightBackground": "#ff0000",
           "terminal.foreground": "#e6e6e6",
           "terminal.background": "#1D2026",
+          "sideBar.border": "#333842",
+          "sideBar.background": "#1D2026",
           "statusBar.background": "#2b6dd1",
           "statusBarItem.hoverBackground": "#3a81ea",
           "statusBar.foreground": "#e6e6e6",
