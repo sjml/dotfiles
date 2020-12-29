@@ -20,7 +20,7 @@ usage() {
     echo "       Prettier parser. (https://prettier.io/)"
     echo
     echo "       Supported parsers:"
-    parsers=$($PRETTIER --support-info | $JQ --raw-output '[.languages[].parsers | add] | unique | join(" ") | @text')
+    parsers=$($PRETTIER --support-info | $JQ --raw-output '[.languages[].parsers] | flatten | unique | join(" ") | @text')
     echo $parsers | fold -s -w 50 | sed -e "s|^|           |g"
 }
 
