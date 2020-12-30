@@ -23,7 +23,7 @@ Running `provision-mac.sh` on a clean user account will:
     prepended with a `.`
   * Symlink files in `osx-launchagents` to ~/Library/LaunchAgents
   * Install [homebrew](http://brew.sh) with analytics turned off
-  * Attempt to change the default shell to zsh
+  * Attempt to change the default shell to fish
   * Install all the packages and GUI apps listed in the `install_lists/Brewfile`
   * Install Inconsolata and Hack fonts
   * Attempt to install Mac App Store stuff from the mas section of the Brewfile
@@ -41,11 +41,10 @@ Running `provision-mac.sh` on a clean user account will:
 
 The `provision-linux.sh` is much simpler because I don't have root on most Linux
 machines I use, and tend to not have them quite as customized. All it does:
-  * Attempt to change the default shell to zsh
   * Symlink the designated dotfiles
   * Symlink this to ~/Projects/dotfiles
   * Install the vim bundles
-  * Install pip, but not the Python packages
+  * Install pyenv, but nothing else
 
 The Windows version (`provision-windows.ps1`) is pretty experimental, but it attempts to:
   * Install [Chocolatey](http://chocolatey.org/)
@@ -55,36 +54,3 @@ The Windows version (`provision-windows.ps1`) is pretty experimental, but it att
   * Enable the Windows Subsystem for Linux
   * Set a number of sensible Windows options 
   * Remove installation cruft
-
-## Custom ZSH prompt
-
-My tweaked setup for ZSH includes a prompt that does some fun things. 
-
-![Basic](http://shaneliesegang.com/prompt-shots/suggestions.png)
-
-It's a double-tall prompt (controversial, but I like being able to easily skim for inputs). It shows your current working directory, username, machine name, and time. It does simple syntax coloring and suggestions based on previous inputs. 
-***
-![Suggestions](http://shaneliesegang.com/prompt-shots/brew-cleanup.png) 
-
-This is particular handy for commands that are kinda wonky but you may execute periodically. 
-***
-![Path Shortening](http://shaneliesegang.com/prompt-shots/path-shortening.png)
-
-It does clever shortening to get as much relevant information into the heads-up display as possible. Each path component is shortened as much as it can be without becoming ambiguous.
-***
-![Root Warning](http://shaneliesegang.com/prompt-shots/root-prompt.png)
-
-It dramatically changes when you're working with root privileges so you're less likely to accidentally screw something up. 
-***
-![Virtual Environment](http://shaneliesegang.com/prompt-shots/virtualenv.png)
-
-A cute little snake appears when you've activated a Python virtual environment. 
-***
-![Git Statuses](http://shaneliesegang.com/prompt-shots/git-statuses.png)
-
-The indicator at the right changes when you're in a git repo, showing if there are uncommitted or unpushed changes. (Mercurial code is there but disabled because it's slow. 😫)
-***
-![Status Messages](http://shaneliesegang.com/prompt-shots/messages.png)
-
-The prompt can also expand to give status messages about detached tmux sessions, long execution times, and error codes. 
-***

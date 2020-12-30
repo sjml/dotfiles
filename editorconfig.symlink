@@ -22,7 +22,7 @@ quote_type = single
 [{Gemfile*,Rakefile,Brewfile,*.rb}]
 indent_size = 2
 
-[{*.sh,*.zsh,*.bash}]
+[{*.sh,*.zsh,*.bash,*.fish}]
 indent_size = 2
 
 [*.yml]

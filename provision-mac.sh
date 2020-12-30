@@ -43,11 +43,10 @@ echo "Installing from the Brewfile..."
 HOMEBREW_CASK_OPTS="--no-quarantine" \
   brew bundle install --no-lock --file=$DOTFILES_ROOT/install_lists/Brewfile
 
-# try to set zsh up as the shell
-targetZShell="/usr/local/bin/zsh"
-# targetZShell=$(grep /zsh$ /etc/shells | tail -1)
-echo $targetZShell | sudo tee -a /etc/shells
-sudo chsh -s $targetZShell $USER
+# try to set fish up as the shell
+targetShell="/usr/local/bin/fish"
+echo $targetShell | sudo tee -a /etc/shells
+sudo chsh -s $targetShell $USER
 
 # no more sudo needed!
 still_need_sudo=0
