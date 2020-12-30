@@ -240,30 +240,30 @@ cask 'dualcam'
 brew 'mas'
 
 # development
-mas 'Xcode',              id: 497799835
-mas 'Base',               id: 402383384
-mas 'Soulver',            id: 413965349
-mas 'Calca',              id: 635758264
-mas 'Ultra Character Map' id: 520265986
+mas 'Xcode',               id: 497799835
+mas 'Base',                id: 402383384
+mas 'Soulver',             id: 413965349
+mas 'Calca',               id: 635758264
+mas 'Ultra Character Map', id: 520265986
 
 # internet
-mas 'Tweetbot',           id: 557168941
-mas 'Messenger',          id: 1480068668
+mas 'Tweetbot',            id: 557168941
+mas 'Messenger',           id: 1480068668
 
 # media
-# mas 'GarageBand',         id: 682658836 # (takes up too much space)
-mas 'iMovie',             id: 408981434
+# mas 'GarageBand',          id: 682658836 # (takes up too much space)
+mas 'iMovie',              id: 408981434
 
 # utility
-mas 'GrandPerspective',   id: 1111570163
-mas 'Menu World Time',    id: 1446377255
+mas 'GrandPerspective',    id: 1111570163
+mas 'Menu World Time',     id: 1446377255
 
 # graphics and office
-mas 'Pixelmator Pro',     id: 1289583905
-mas 'Affinity Designer',  id: 824171161
-mas 'GIF Brewery 3',      id: 1081413713
-mas 'GIPHY Capture',      id: 668208984
-mas 'Pages',              id: 409201541
-mas 'Numbers',            id: 409203825
-mas 'Keynote',            id: 409183694
+mas 'Pixelmator Pro',      id: 1289583905
+mas 'Affinity Designer',   id: 824171161
+mas 'GIF Brewery 3',       id: 1081413713
+mas 'GIPHY Capture',       id: 668208984
+mas 'Pages',               id: 409201541
+mas 'Numbers',             id: 409203825
+mas 'Keynote',             id: 409183694
 mas 'Highland 2',          id: 1171820258
