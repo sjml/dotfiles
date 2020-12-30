@@ -1,8 +1,17 @@
 #!/usr/bin/env bash
 
+# Note: This script is designed to only be run once, on a completely
+#       fresh Mac. If you've already done some setup, it might break
+#       things. It's not idempotent -- not even a little.
+#       If you're stumbling across this from elsewhere, don't blindly
+#       run it without understanding what it does.
+
 function timerData() {
   echo $1: $SECONDS >> provision_timing.txt
 }
+
+# die on errors
+set -e
 
 # set up input
 exec </dev/tty >/dev/tty
@@ -15,11 +24,9 @@ date >> provision_timing.txt
 timerData "START"
 
 # copy dotfiles
-echo "Linking dotfiles..."
 ./install_symlinks.sh
 
 # ssh config
-echo "Creating SSH configuration..."
 mkdir -p ~/.ssh
 cp resources/ssh_config.base ~/.ssh/config
 
@@ -33,10 +40,7 @@ timerData "PRE-BREW"
 
 # install homebrew
 export HOMEBREW_NO_ANALYTICS=1
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-
-# all the installations
-echo "Installing from the Brewfile..."
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Turning off quarantine for casks; assuming I trust any apps that
 #   made it into the Brewfile. *slightly* perilous, though.
@@ -53,7 +57,6 @@ still_need_sudo=0
 sudo -k
 
 # clean up after homebrew
-echo "Cleaning up Homebrew..."
 brew cleanup -s
 rm -rf $(brew --cache)
 export HOMEBREW_NO_AUTO_UPDATE=0
@@ -67,7 +70,7 @@ if [[ ! -d .git ]]; then
     # don't look at the ~/.gitconfig
     unset HOME
 
-    git init
+    git init --initial-branch=main
     git remote add origin https://github.com/sjml/dotfiles.git
     git fetch
     git reset origin/main
@@ -80,15 +83,28 @@ git remote set-url origin git@github.com:sjml/dotfiles.git
 
 # Projects folder is where most code stuff lives; link this there, too,
 #  because otherwise I'll forget where it is
-mkdir -p ~/Projects
-ln -s $DOTFILES_ROOT ~/Projects/dotfiles
+if [[ ! -d ~/Projects/dotfiles ]]; then
+  mkdir -p ~/Projects
+  ln -s $DOTFILES_ROOT ~/Projects/dotfiles
+fi
 
 # any vim bundles
-vim +PluginInstall +qall
+(
+  # forget about the gitconfig for now
+  unset HOME
+  vim +PluginInstall +qall
+)
 
 
-# pull in environment check functions
-source "$HOME/bin/envup"
+# copying version check from envup
+env_remVer() {
+    $1 install -l 2>&1 \
+        | grep -vE "\s*[a-zA-Z-]" \
+        | sort -V \
+        | grep "^\s*$2" \
+        | tail -1 \
+        | xargs
+}
 
 # python setup
 git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
@@ -96,7 +112,7 @@ git clone https://github.com/pyenv/pyenv-update.git $HOME/.pyenv/plugins/pyenv-u
 pyPath="$HOME/.pyenv/shims"
 pyenv="$HOME/.pyenv/bin/pyenv"
 
-py3version=$(env_remVer pyenv 3)
+py3version=$(env_remVer $pyenv 3)
 LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib" \
   CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include" \
   $pyenv install $py3version
@@ -106,7 +122,7 @@ $pyPath/pip3 install --upgrade pip
 $pyPath/pip3 install -r install_lists/python3-dev-packages.txt
 $pyenv rehash
 
-py2version=$(env_remVer pyenv 2)
+py2version=$(env_remVer $pyenv 2)
 LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib" \
   CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include" \
   $pyenv install $py2version
@@ -131,7 +147,7 @@ timerData "POST-PYTHON"
 # ruby setup
 rbPath="$HOME/.rbenv/shims"
 rbenv="/usr/local/bin/rbenv"
-rbversion=$(env_remVer rbenv)
+rbversion=$(env_remVer $rbenv)
 $rbenv install $rbversion
 
 $rbenv global $rbversion
@@ -149,7 +165,7 @@ nodePath="$HOME/.nodenv/shims"
 nodenv="/usr/local/bin/nodenv"
 git clone https://github.com/nodenv/node-build-update-defs.git "$(nodenv root)"/plugins/node-build-update-defs
 $nodenv update-version-defs
-nodeversion=$(env_remVer nodenv)
+nodeversion=$(env_remVer $nodenv "\d*[02468]\.")
 $nodenv install $nodeversion
 
 $nodenv global $nodeversion
@@ -200,6 +216,10 @@ qlmanage -r cache
 # set up default associations
 duti ~/.duti
 
+# this will pop a permissions window, but no way around it
+#   (this is a good thing to have security around, I will agree)
+defaultbrowser firefox
+
 # Turn off unneeded menu bar items
 defaults -currentHost write dontAutoLoad -array-add "/System/Library/CoreServices/Menu Extras/Displays.menu"
 defaults -currentHost write dontAutoLoad -array-add "/System/Library/CoreServices/Menu Extras/Volume.menu"
@@ -222,7 +242,7 @@ defaults write com.apple.finder FinderSpawnTab -bool false
 defaults write com.apple.finder NewWindowTarget -string "PfHm"
 defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME/"
 
-# Show icons for external hard drives, servers, and removable media on the desktop
+# Only show icons for *external* hard drives, servers, and removable media on the desktop
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
@@ -252,6 +272,7 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 # Show the ~/Library folder
+xattr -d com.apple.FinderInfo ~/Library
 chflags nohidden ~/Library
 
 # Expand save and print panels by default
@@ -303,8 +324,10 @@ defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -float 300.0
 
 # Set screen saver to Shell with visible clock
-defaults -currentHost write com.apple.screensaver modulePath -string "/System/Library/Screen Savers/Shell.saver"
-defaults -currentHost write com.apple.screensaver moduleName -string "Shell"
+defaults -currentHost write com.apple.screensaver modulePath -string "/System/Library/Screen Savers/Drift.saver"
+defaults -currentHost write com.apple.screensaver moduleName -string "Drift"
+defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName "Drift" path "/System/Library/Screen Savers/Drift.saver" type 0
+defaults -currentHost write com.apple.ScreenSaver.Drift ColorScheme -string "blues"
 defaults -currentHost write com.apple.screensaver showClock -bool true
 
 # Disable shadow in screenshots
@@ -321,6 +344,9 @@ defaults write com.apple.dock tilesize -int 128
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
+
+# Don't show recent apps in the Dock
+defaults write com.apple.dock show-recents -bool false
 
 # Turn off Dock magnification
 defaults write com.apple.dock magnification -bool false
@@ -344,7 +370,7 @@ defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 # Download newly available updates in background
 defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
 
-# Don't automatically update apps
+# Do not automatically update apps
 defaults write com.apple.commerce AutoUpdate -bool false
 
 # Install System data files & security updates
@@ -354,36 +380,35 @@ defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 defaults write com.apple.archiveutility dearchive-reveal-after -int 0
 
 # set up Dock
-# NB: paths to system applications won't work in Big Sur;
-# remember to update this list when getting a new machine
-# (not planning on going Big Sur until then)
 dockutil --remove all --no-restart
 declare -a dockList=(\
-  App\ Store\
-  Firefox\
-  Mail\
-  Messages\
-  WhatsApp\
-  Music\
-  Photos\
-  Pixelmator\ Pro\
-  Affinity\ Designer\
-  Sublime\ Text\
-  Visual\ Studio\ Code\
-  Xcode\
-  Utilities/Terminal\
-  System\ Preferences\
+  /System/Applications/App\ Store.app \
+  /Applications/Firefox.app \
+  /System/Applications/Mail.app \
+  /System/Applications/Messages.app \
+  /Applications/WhatsApp.app \
+  /System/Applications/Music.app \
+  /System/Applications/Photos.app \
+  /Applications/Pixelmator\ Pro.app \
+  /Applications/Affinity\ Designer.app \
+  /Applications/Sublime\ Text.app \
+  /Applications/Visual\ Studio\ Code.app \
+  /Applications/Xcode.app \
+  /System/Applications/Utilities/Terminal.app \
+  /System/Applications/System\ Preferences.app \
 )
 for app in "${dockList[@]}"; do
-  dockutil --add "/Applications/$app.app" --no-restart
+  dockutil --add "$app" --no-restart
 done
 dockutil --add "~/Downloads" --section others --view grid --display stack --no-restart
 
-killall cfprefsd
-killall SystemUIServer
-killall Finder
-killall Dock
-killall Mail
+# killall complains if there's no instances running, so ignore it
+#   (and don't error)
+killall cfprefsd 2> /dev/null || true
+killall SystemUIServer 2> /dev/null || true
+killall Finder 2> /dev/null || true
+killall Dock 2> /dev/null || true
+killall Mail 2> /dev/null || true
 
 timerData "POST-GUI"
 
@@ -392,4 +417,6 @@ timerData "POST-GUI"
 timerData "DONE"
 
 cd ~
+echo
+echo
 echo "And that's it! You're good to go, but restarting might be wise."

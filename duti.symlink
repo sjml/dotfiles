@@ -4,5 +4,8 @@ com.apple.Preview           .pdf                all
 com.colliderli.iina         public.movie        all
 com.apple.quicktimeplayerx  public.audio        viewer
 org.m0k.transmission        .torrent            all
-org.mozilla.firefox         public.xhtml        viewer
-org.mozilla.firefox         public.html         viewer
+
+## <sigh> macOS doesn't let you set default browser from
+##   the command line any more
+# org.mozilla.firefox         public.xhtml        viewer
+# org.mozilla.firefox         public.html         viewer

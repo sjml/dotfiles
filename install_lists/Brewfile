@@ -99,6 +99,7 @@ brew 'libav'
 brew 'speedtest-cli'
 brew 'dieharder'
 brew 'dockutil'
+brew 'defaultbrowser'
 brew 'duti'
 brew 'trash'
 
