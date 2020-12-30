@@ -1,33 +1,35 @@
+## Because of how path additions work, this file is in reverse order of importance
+
 set --local -a myPath
 
 # Go
 if test -f /usr/local/bin/go
   set GOPATH "$HOME/go"
-  set -a myPath "$GOPATH/bin"
+  set -p myPath "$GOPATH/bin"
 end
 
 ## Various paths to add if certain things are installed
 set -a addIfExists
 # Poetry
-set -a addIfExists $HOME/.poetry/bin
+set -p addIfExists $HOME/.poetry/bin
 # Rust
-set -a addIfExists $HOME/.cargo/bin
+set -p addIfExists $HOME/.cargo/bin
 # itch.io
-set -a addIfExists $HOME/Library/Application\ Support/itch/bin
+set -p addIfExists $HOME/Library/Application\ Support/itch/bin
 # Postgres using the app
-set -a addIfExists /Applications/Postgres.app/Contents/Versions/12/bin/
+set -p addIfExists /Applications/Postgres.app/Contents/Versions/12/bin/
 # pyenv installed outside Homebrew
-set -a addIfExists $HOME/.pyenv/bin
+set -p addIfExists $HOME/.pyenv/bin
 
 for maybePath in $addIfExists
   if test -d $maybePath
-    set -a myPath $maybePath
+    set -p myPath $maybePath
   end
 end
 
 ## Installed stuff (mostly from Homebrew)
-set -p myPath /usr/local/bin
-set -p myPath /usr/local/sbin
+set -a myPath /usr/local/bin
+set -a myPath /usr/local/sbin
 set PATH $myPath $PATH
 set -e myPath
 set -a myPath
@@ -40,10 +42,11 @@ else if test -f $HOME/.rbenv/bin/rbenv
   status --is-interactive; and source ($HOME/.rbenv/bin/rbenv init --no-rehash -|psub)
   $HOME/.rbenv/bin/rbenv rehash 2> /dev/null &
 else if type -q ruby
-  # this causes problems on systems that have old Ruby's, and
-  #   honestly, if I'm forced to use the system Ruby I probably
-  #   am not caring about having its gem binaries in my path.
-  # set -a myPath (ruby -r rubygems -e 'puts Gem.user_dir')/bin
+  # this causes problems on systems that have old Ruby versions,
+  #   and honestly, if I'm forced to use the system Ruby I
+  #   probably am not caring about having its gem binaries
+  #   in my path.
+  # set -p myPath (ruby -r rubygems -e 'puts Gem.user_dir')/bin
 end
 
 ## Node.js, checking for nodenv first
@@ -55,7 +58,7 @@ else if test -f $HOME/.nodenv/bin/nodenv
   $HOME/.nodenv/bin/nodenv rehash 2> /dev/null &
 else if type -q npm
   echo "no nodenv..."
-  set -a myPath (npm bin -g)
+  set -p myPath (npm bin -g)
 end
 
 
@@ -78,7 +81,7 @@ else if test -f $HOME/.pyenv/bin/pyenv
   status --is-interactive; and source ($HOME/.pyenv/bin/pyenv init --no-rehash -|psub)
   $HOME/.pyenv/bin/pyenv rehash 2> /dev/null &
 else if type -q python
-  set -a myPath (python -m site --user-base)/bin
+  set -p myPath (python -m site --user-base)/bin
 end
 
 set PATH $myPath $PATH
