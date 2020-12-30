@@ -1,4 +1,4 @@
-#!/bin/bash
+ #!/bin/bash
 
 # scriptPath=.
 scriptPath=$HOME
@@ -15,10 +15,10 @@ tar -xzf dotfiles.tar.gz
 rm $scriptPath/dotfiles.tar.gz
 mv $scriptPath/$pathName $scriptPath/.dotfiles
 
-cd $scriptPath/.dotfiles
-if [[ $OSTYPE == darwin* ]]; then
-  ./provision-mac.sh
-else
-  ./provision-linux.sh
-fi
+# cd $scriptPath/.dotfiles
+# if [[ $OSTYPE == darwin* ]]; then
+#   ./provision-mac.sh
+# else
+#   ./provision-linux.sh
+# fi
 
