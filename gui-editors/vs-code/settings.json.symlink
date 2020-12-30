@@ -40,6 +40,7 @@
     "editor.fontSize": 15,
     "debug.console.fontSize": 14,
     "terminal.integrated.fontSize": 16,
+    "terminal.integrated.lineHeight": 1.05
     "editor.fontFamily": "Fira Code Retina",
     "editor.fontLigatures": false,
     "window.restoreWindows": "all",
