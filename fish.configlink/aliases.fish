@@ -12,6 +12,7 @@ else
 end
 
 alias mkdir="mkdir -p"
+alias vim="nvim"
 
 # platform-specific aliases
 switch (uname)

@@ -52,6 +52,7 @@ brew 'tor'
 brew 'elinks'
 
 # dev tools
+brew 'neovim'
 brew 'git'
 brew 'git-lfs'
 brew 'bfg'
