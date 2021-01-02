@@ -1,12 +1,10 @@
+## This should probably hook into fish_user_paths, but how that slots into the
+##  ordering of the full path seemed a little mysterious and this is "ain't broke"
+##  territory.
+
 ## Because of how path additions work, this file is in reverse order of importance
 
 set --local -a myPath
-
-# Go
-if test -f /usr/local/bin/go
-  set GOPATH "$HOME/go"
-  set -p myPath "$GOPATH/bin"
-end
 
 ## Various paths to add if certain things are installed
 set -a addIfExists
@@ -25,6 +23,12 @@ for maybePath in $addIfExists
   if test -d $maybePath
     set -p myPath $maybePath
   end
+end
+
+# Go
+if test -f /usr/local/bin/go
+  set -x GOPATH "$HOME/go"
+  set -p myPath "$GOPATH/bin"
 end
 
 ## Installed stuff (mostly from Homebrew)

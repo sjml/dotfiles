@@ -6,8 +6,8 @@
 # download itself. It also requires cmake and ninja to already be installed.
 
 APP_PATH="/Applications/Aseprite.app"
-VERSION="1.2.17"
-GIT_COMMIT="23d41e73409dd15cd8681094503740436c5e0c1d"
+VERSION="1.2.25"
+GIT_COMMIT="f44aad06db9d7a7efe9beb0038df37140ac9c2ba"
 SKIA_BRANCH="aseprite-m81"
 
 python --version 2>&1 | grep "Python 2"
@@ -20,7 +20,7 @@ fi
 
 if [ ! -d "$APP_PATH" ]; then
   echo "First, install the trial version of Aseprite. https://www.aseprite.org/trial/."
-  echo "(If it's not version $VERSION, this script might  need to be updated.)"
+  echo "(If it's not version $VERSION, this script might need to be updated.)"
   exit 1
 fi
 

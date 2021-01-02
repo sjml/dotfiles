@@ -1,6 +1,3 @@
-# todo:
-    # test remote/root functionality
-    # test conda flag
 
 # not the most obvious place for this
 #  function, but its need came from
@@ -25,17 +22,18 @@ function _sjml_errcode_data -a errCode colorize
 end
 
 function _sjml_tmux_data -a colorize
-  if string match 'screen*' $TERM
-    echo -n "nothing"
+  if not test -z (string match 'screen*' $TERM)
     return
   end
   set icon "⛶" #"⛚" #"⚄" #"▢" #"[]"
   set tmcount (command tmux list-sessions 2>/dev/null| grep -cv 'attached')
+  set tmnames (command tmux list-sessions 2>/dev/null | sed -e "s/^\([^:]*\):.*/\1/" | string join ", ")
   if test $tmcount -ne 0
     echo -n "$icon $tmcount detached tmux session"
     if test $tmcount -gt 1
       echo -n "s"
     end
+    echo -n " ($tmnames)"
   end
 end
 

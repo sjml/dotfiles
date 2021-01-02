@@ -20,8 +20,9 @@ specification, forked from the [official Zotero one](http://www.zotero.org/style
 ligatures. Most applications let you turn them off, but macOS's Terminal.app, inexplicably,
 does not. So this is a version of the font with the GSUB table cleared out so it can't do 
 any replacements. (I could have also just changed to a different terminal emulator, but 
-one change at a time.) (I am also aware of the original ligature-lessFira Mono, but want 
-to retain the otherwise-nice box drawing characters and other things from Fira Code.)
+one change at a time.) (I am also aware of the ligature-less nature of the original 
+Fira Mono, but want to retain the otherwise-nice box-drawing characters and other things 
+from Fira Code.)
 
 ## Terminal.app Profile
 `SJML.terminal` sets up the macOS Terminal.app to my liking, and uses the hacked version

@@ -257,6 +257,9 @@ defaults write com.apple.finder ShowStatusBar -bool true
 # Finder: show path bar
 defaults write com.apple.finder ShowPathbar -bool true
 
+# Finder: turn off delay on proxy icon display (Big Sur only)
+defaults write com.apple.Finder NSToolbarTitleViewRolloverDelay -float 0
+
 # When performing a search, search the current folder by default
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
@@ -323,7 +326,7 @@ defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -float 300.0
 
-# Set screen saver to Shell with visible clock
+# Set screen saver to Drift (blue) with visible clock
 defaults -currentHost write com.apple.screensaver modulePath -string "/System/Library/Screen Savers/Drift.saver"
 defaults -currentHost write com.apple.screensaver moduleName -string "Drift"
 defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName "Drift" path "/System/Library/Screen Savers/Drift.saver" type 0

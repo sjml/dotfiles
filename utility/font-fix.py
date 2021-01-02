@@ -25,7 +25,7 @@ for base in base_fonts:
     for lookup in bf.gsub_lookups:
         bf.removeLookup(lookup)
 
-    for attr_name in ["copyright", "familyname", "fullname", "fontname"]:
+    for attr_name in ["familyname", "fullname", "fontname"]:
         attr = getattr(bf, attr_name)
         modattr = attr
         for s in swaps:
@@ -55,3 +55,4 @@ for base in base_fonts:
         bf.appendSFNTName(*n)
 
     bf.generate(os.path.join(OUTPUT_DIR, base.replace(BASE_FONT_NAME, MODDED_NAME)))
+    bf.close()

@@ -1,9 +1,0 @@
-#!/usr/bin/env zsh
-
-# Run tmux attach, putting in a session name if provided
-
-if [[ -n $1 ]]; then
-  tmux attach-session -t $1
-else
-  tmux attach-session
-fi

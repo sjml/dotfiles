@@ -1,9 +1,0 @@
-#!/usr/bin/env zsh
-
-# Create a named tmux session
-
-if [[ -n $1 ]]; then
-  tmux new-session -s $1
-else
-  tmux
-fi

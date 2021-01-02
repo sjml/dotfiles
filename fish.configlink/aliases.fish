@@ -17,6 +17,10 @@ alias vim="nvim"
 # platform-specific aliases
 switch (uname)
   case Darwin
+    alias c="code ."
     alias edot="code ~/.dotfiles"
+
+    function o;open -a $argv;end
+    complete -c o -a (basename -s .app /Applications{,/Utilities}/*.app|awk '{printf "\"%s\" ", $0 }')
 end
 
