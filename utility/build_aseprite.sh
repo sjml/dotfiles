@@ -75,5 +75,8 @@ cp -R bin/data "$APP_PATH/Contents/Resources"
 cd ../../..
 rm -rf temp-aseprite
 
+# don't *need* to do this, per se
+xattr -dr com.apple.quarantine $APP_PATH
+
 echo
 echo "The bundle at $APP_PATH has been patched."
