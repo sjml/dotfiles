@@ -101,7 +101,7 @@ function fish_prompt
   set incUser    true
   set incHost    true
 
-  set scaffold "$topLt$sep()(@)$sep$topRt"
+  set scaffold "$topLt$sep<> @ $sep$topRt"
   if test -n "$VIRTUAL_ENV"
     set scaffold "$scaffold\[$snake\]"
   else if test -n "$CONDA_SHLVL"
@@ -165,7 +165,7 @@ function fish_prompt
   set_color $outlineColor
   echo -n (string repeat -n (math $COLUMNS - $lcount - $rcount) $sep)
   set_color normal
-  echo -n "("
+  echo -n " "
   if $incUser; and $incHost;
     set_color $userColor
     echo -n $USER
@@ -183,7 +183,7 @@ function fish_prompt
     echo -n "@"
   end
   set_color normal
-  echo -n ")"
+  echo -n " "
   set_color $outlineColor
   echo $sep$topRt
 

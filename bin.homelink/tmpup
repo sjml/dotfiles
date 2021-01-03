@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+# Uploads a file to a remote directory and copies the
+#   resulting URL to the clipboard.
+
+# Example config file (expected at ~/.config/tmpup.json):
+# {
+#   "site-one.com": {
+#     "path": "public_html/temp",
+#     "user": "alpha-one",
+#     "clip": "https://site-one.com/temp/%s"
+#   },
+#   "site-two.org": {
+#     "path": "public_html/secret-files",
+#     "user": "alpha-two",
+#     "clip": "https://site-two.org/secret-files/%s"
+#   }
+# }
+
+
+CONFIG_FILE=~/.config/tmpup.json
+
+SFTP=$(which sftp)
+JQ=$(which jq)
+
+if [[ ! -f $CONFIG_FILE ]]; then
+    echo "no $CONFIG_FILE file!"
+    exit 1
+fi
+
+if [[ ${#JQ} -eq 0 ]] || [[ ${#SFTP} -eq 0 ]]; then
+    echo "tmpup requires sftp and jq to be available."
+    exit 1
+fi
+
+servers=($($JQ --raw-output 'keys | @sh' $CONFIG_FILE))
+if [[ ${#servers[@]} -lt 1 ]]; then
+    echo "no servers listed in config file"
+    exit 1
+fi
+
+server=""
+if [[ ${#servers[@]} -lt 2 ]]; then
+    server=${servers[0]}
+else
+    echo "Where to upload?"
+    select s in ${servers[@]}; do
+        server=$s
+        break
+    done
+fi
+server=$(echo $server | sed "s/'/\"/g")
+
+remote_path=$($JQ --raw-output ".[$server].path" $CONFIG_FILE)
+remote_user=$($JQ --raw-output ".[$server].user" $CONFIG_FILE)
+remote_clip=$($JQ --raw-output ".[$server].clip" $CONFIG_FILE)
+
+lastUpped=""
+for f in "${@:1:$(($#))}"; do
+    if [[ -f $f ]]; then
+        printf "progress\nput $f" | sftp -b- $REMOTE_USERNAME@$REMOTE_SERVER:$REMOTE_PATH || exit 1
+        lastUpped=$f
+    fi
+done
+url=$(printf $remote_clip $f)
+echo $url | pbcopy
+echo "Uploaded to <$url>. (Already in clipboard.)"
