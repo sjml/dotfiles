@@ -61,7 +61,6 @@ else if test -f $HOME/.nodenv/bin/nodenv
   status --is-interactive; and source ($HOME/.nodenv/bin/nodenv init --no-rehash -|psub)
   $HOME/.nodenv/bin/nodenv rehash 2> /dev/null &
 else if type -q npm
-  echo "no nodenv..."
   set -p myPath (npm bin -g)
 end
 

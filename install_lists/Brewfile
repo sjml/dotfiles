@@ -10,7 +10,6 @@ brew 'tree'
 brew 'htop'
 brew 'p7zip'
 brew 'lbzip2'
-brew 'unrar'
 brew 'unar'
 brew 'gnupg'
 brew 'xz'
@@ -65,6 +64,7 @@ brew 'swig'
 brew 'ctags'
 # brew 'valgrind' # doesn't work on latest macOS :(
 brew 'qcachegrind'
+brew 'qemu'
 brew 'hub'
 brew 'gh'
 brew 'libyaml'
@@ -116,9 +116,9 @@ tap 'homebrew/cask-versions'
 
 # infrastructure
 cask '1password'
-cask 'dropbox'
-cask 'google-backup-and-sync'
 # cask 'backblaze' # don't use homebrew for this; upgrade will bork things
+cask 'little-snitch4'
+cask 'mullvadvpn'
 
 # internet
 cask 'firefox'
@@ -133,7 +133,6 @@ cask 'slack'
 cask 'zoom'
 cask 'microsoft-teams'
 cask 'discord'
-cask 'mullvadvpn'
 
 # writing and office
 cask 'scrivener'
@@ -141,6 +140,7 @@ cask 'microsoft-office'
 cask 'zotero'
 cask 'basictex'
 cask 'anki'
+cask 'skim'
 
 # development
 cask 'sublime-text'
@@ -167,8 +167,10 @@ cask 'julia'
 
 # artsy/media
 cask 'unity-hub'
-cask 'godot'
+# cask 'godot' # manually install godot to control versioning
+# cask 'godot-mono'
 cask 'blender'
+cask 'inkscape'
 cask 'texturepacker'
 cask 'bfxr'
 cask 'twine'

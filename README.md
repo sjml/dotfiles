@@ -1,11 +1,6 @@
 My dotfiles, to get a computer running the way I like it. 
 
 ## Installation
-To get the whole repo: 
-```shell-script
-git clone https://github.com/sjml/dotfiles ~/.dotfiles
-```
-
 To bootstrap onto a fresh *nix computer (that may not have git, like Macs out of the box): 
 ```shell-script
 curl -fsSL https://raw.githubusercontent.com/sjml/dotfiles/main/bootstrap.sh | bash
@@ -17,16 +12,19 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw
 ```
 
 ## What it does
-Running `provision-mac.sh` on a clean user account will:
+Running `provision-mac.sh` on a fresh Mac will:
   * Take everything in this directory that ends with `.symlink` and make a
-    symbolic link to it in the home directory, minus the `.symlink` and
-    prepended with a `.`
-  * Symlink files in `osx-launchagents` to ~/Library/LaunchAgents
+    symbolic link to it in the current user's home directory, minus the 
+    `.symlink` and prepended with a `.`
+    * Similarly, anything with `.configlink` gets linked into `.config`
+      without a prepended `.`
+    * `.homelink` gets the same treatment, but into `~`
+  * Symlink files in `osx-launchagents` to `~/Library/LaunchAgents`
   * Install [homebrew](http://brew.sh) with analytics turned off
-  * Attempt to change the default shell to fish
   * Install all the packages and GUI apps listed in the `install_lists/Brewfile`
-  * Install Inconsolata and Hack fonts
-  * Attempt to install Mac App Store stuff from the mas section of the Brewfile
+  * Change the default shell to [fish](https://fishshell.com/)
+  * Set Homebrew's version of OpenJDK to be used instead of system's
+  * Sets up the directory to be a proper git repository if it was pulled during a bootstrap
   * Make a `~/Projects` directory and symlink the dotfiles there
   * Install a set of vim bundles, managed by [Vundle](https://github.com/VundleVim/Vundle.vim)
   * Install latest versions of Python 2 and 3 (3 as default) via [pyenv](https://github.com/pyenv/pyenv)
@@ -36,6 +34,7 @@ Running `provision-mac.sh` on a clean user account will:
   * Install all Node-based programs listed in `install_lists/node-packages.txt`
   * Install the latest version of Rust via [rustup](https://www.rustup.rs/)
   * Set up appearance of Terminal.app
+  * Set default browser to Firefox
   * Various and sundry macOS GUI settings (Finder behaviors, Trackpad settings, etc.)
   * Set up the Dock
 
@@ -46,11 +45,6 @@ machines I use, and tend to not have them quite as customized. All it does:
   * Install the vim bundles
   * Install pyenv, but nothing else
 
-The Windows version (`provision-windows.ps1`) is pretty experimental, but it attempts to:
-  * Install [Chocolatey](http://chocolatey.org/)
-  * Install all the packages listed in `install_lists/chocolatey-packages.config`
-  * Install all packages listed in `install_lists/python3-dev-packages.txt`
-  * Install all Node-based programs listed in `install_lists/node-packages.txt`
-  * Enable the Windows Subsystem for Linux
-  * Set a number of sensible Windows options 
-  * Remove installation cruft
+The Windows version (`provision-windows.ps1`) is pretty sparse. Used to use
+[Chocolatey](http://chocolatey.org/), but want to shift it to use [WinGet](https://github.com/microsoft/winget-cli) before I set up another Windows machine. 
+

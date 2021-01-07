@@ -1,10 +1,9 @@
  #!/bin/bash
 
-# scriptPath=.
 scriptPath=$HOME
 cd $scriptPath
 
-if [[ -d $HOME/.dotfiles ]]; then
+if [[ -d $scriptPath/.dotfiles ]]; then
   echo "There's already a .dotfiles directory in $scriptPath. Aborting bootstrap."
   exit 1
 fi

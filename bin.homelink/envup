@@ -65,7 +65,7 @@ brew_check() {
 
 brew_up() {
     HOMEBREW_NO_AUTO_UPDATE=1 /usr/local/bin/brew upgrade --formula
-    # /usr/local/bin/brew cleanup -s
+    /usr/local/bin/brew cleanup -s
     rm -rf $(/usr/local/bin/brew --cache)
     all_check # since this might have updated one of the envs
 }
@@ -260,12 +260,12 @@ python2_up() {
 
 
 ruby_check() {
-    env_check rbenv 2 "Ruby"
+    env_check rbenv 3 "Ruby"
 }
 
 ruby_up() {
-    local newVersion=$( env_remVer rbenv 2 )
-    local oldVersion=$( env_locVer rbenv 2 )
+    local newVersion=$( env_remVer rbenv 3 )
+    local oldVersion=$( env_locVer rbenv 3 )
 
     if [[ $newVersion == $oldVersion ]]; then
         print_check "Ruby" $newVersion $newVersion

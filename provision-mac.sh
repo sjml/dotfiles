@@ -47,10 +47,13 @@ export HOMEBREW_NO_ANALYTICS=1
 HOMEBREW_CASK_OPTS="--no-quarantine" \
   brew bundle install --no-lock --file=$DOTFILES_ROOT/install_lists/Brewfile
 
-# try to set fish up as the shell
+# set fish as user shell
 targetShell="/usr/local/bin/fish"
 echo $targetShell | sudo tee -a /etc/shells
 sudo chsh -s $targetShell $USER
+
+# homebrew doesn't link OpenJDK by default; do it while we still have sudo
+sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 
 # no more sudo needed!
 still_need_sudo=0
@@ -147,9 +150,9 @@ timerData "POST-PYTHON"
 # ruby setup
 rbPath="$HOME/.rbenv/shims"
 rbenv="/usr/local/bin/rbenv"
-rbversion=$(env_remVer $rbenv)
-$rbenv install $rbversion
-
+rbversion=$(env_remVer $rbenv 3)
+RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)" \
+  $rbenv install $rbversion
 $rbenv global $rbversion
 eval "$($rbenv init -)"
 

@@ -21,7 +21,7 @@ usage() {
     echo
     echo "       Supported parsers:"
     parsers=$($PRETTIER --support-info | $JQ --raw-output '[.languages[].parsers] | flatten | unique | join(" ") | @text')
-    echo $parsers | fold -s -w 50 | sed -e "s|^|           |g"
+    echo $parsers | fold -s -w 50 | sed -e "s/^/           /g"
 }
 
 if [[ $# -eq 0 ]]; then

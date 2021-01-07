@@ -26,3 +26,7 @@ set __fish_git_prompt_showstashstate true
 
 ## turn off greeting
 set fish_greeting
+
+## let the terminal emulator handle the titling
+function fish_title
+end
