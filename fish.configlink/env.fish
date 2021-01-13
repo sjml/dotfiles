@@ -18,6 +18,12 @@ set -x HOMEBREW_NO_ANALYTICS 1
 set -x HOMEBREW_AUTO_UPDATE_SECS "86400"
 # don't build from scratch if a bottle download fails
 set -x HOMEBREW_NO_BOTTLE_SOURCE_FALLBACK 1
+# Cask otherwise adds their own quarantine flag that
+#   can break things. Figure anything I'm installing
+#   via cask is something I either trust or will be
+#   removing the flag so I can run it anyway, so it's
+#   kind of pointless.
+set -x HOMEBREW_CASK_OPTS "--no-quarantine"
 
 ## python setup
 # since we have our own plans for the prompt
