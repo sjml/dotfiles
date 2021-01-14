@@ -1,6 +1,9 @@
 #!/usr/bin/env zsh
 
-baseName=${1:r}
+for font in $@; do
+    baseName=${font:r}
 
-woff2_compress $1
-ttf2woff $1 ${baseName}.woff
+    woff2_compress $font
+    ttf2woff $font ${baseName}.woff
+done
+
