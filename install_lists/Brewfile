@@ -89,6 +89,7 @@ brew 'gifski'
 
 # various and sundry
 brew 'hugo'
+brew 'zola'
 brew 'pandoc'
 brew 'multimarkdown'
 brew 'lame'
