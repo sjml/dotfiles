@@ -58,7 +58,6 @@ brew 'automake'
 brew 'clang-format'
 brew 'swig'
 brew 'ctags'
-# brew 'valgrind' # doesn't work on latest macOS :(
 brew 'qcachegrind'
 brew 'qemu'
 brew 'hub'
@@ -70,6 +69,10 @@ brew 'sqlite'
 brew 'flatbuffers'
 brew 'podman'
 brew 'doctl'
+
+# regular valgrind doesn't work on latest macOS :(
+tap  'LouisBrunner/valgrind'
+brew 'LouisBrunner/valgrind/valgrind', args: ['HEAD']
 
 # graphics tools
 brew 'imagemagick'
