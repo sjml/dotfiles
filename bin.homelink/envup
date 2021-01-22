@@ -14,6 +14,11 @@
 local -a envs=(brew cask mas python3 python2 node ruby rust)
 local -a cmds=(check up)
 
+if [[ $(uname -m) == 'arm64' ]]; then
+  bindir=/opt/homebrew/bin
+else
+  bindir=/usr/local/bin
+fi
 
 help() {
     echo "Usage: envup [check|up] [environment]"
@@ -43,12 +48,12 @@ print_check() {
 
 
 brew_check() {
-    /usr/local/bin/brew update > /dev/null 2>&1
+    $bindir/brew update > /dev/null 2>&1
     if [[ $? -ne 0 ]]; then
         echo "  ❌  Couldn’t check Homebrew packages. Internet down?"
         return
     fi
-    local outBrew=$(/usr/local/bin/brew outdated --formula --quiet)
+    local outBrew=$($bindir/brew outdated --formula --quiet)
     local outFmt=$(echo $outBrew | xargs | sed -e "s/ /, /g")
     local outCount=$(echo $outBrew | wc -l | xargs)
     local info=""
@@ -64,20 +69,20 @@ brew_check() {
 }
 
 brew_up() {
-    HOMEBREW_NO_AUTO_UPDATE=1 /usr/local/bin/brew upgrade --formula
-    /usr/local/bin/brew cleanup -s
-    rm -rf $(/usr/local/bin/brew --cache)
-    all_check # since this might have updated one of the envs
+    HOMEBREW_NO_AUTO_UPDATE=1 $bindir/brew upgrade --formula
+    $bindir/brew cleanup -s
+    rm -rf $($bindir/brew --cache)
+    brew_check
 }
 
 
 cask_check() {
-    /usr/local/bin/brew update > /dev/null 2>&1
+    $bindir/brew update > /dev/null 2>&1
     if [[ $? -ne 0 ]]; then
         echo "  ❌  Couldn’t check Homebrew casks. Internet down?"
         return
     fi
-    local outCask=$(/usr/local/bin/brew outdated --cask --quiet)
+    local outCask=$($bindir/brew outdated --cask --quiet)
     local outFmt=$(echo $outCask | xargs | sed -e "s/ /, /g")
     local outCount=$(echo $outCask | wc -l | xargs)
     local info=""
@@ -93,16 +98,16 @@ cask_check() {
 }
 
 cask_up() {
-    HOMEBREW_NO_AUTO_UPDATE=1 /usr/local/bin/brew upgrade --cask
-    # /usr/local/bin/brew cleanup
-    rm -rf $(/usr/local/bin/brew --cache)
+    HOMEBREW_NO_AUTO_UPDATE=1 $bindir/brew upgrade --cask
+    # $bindir/brew cleanup
+    rm -rf $($bindir/brew --cache)
     echo "  ✅  Homebrew casks are up to date."
 }
 
 
 mas_check() {
     # <sigh> no "--quiet" modifier for mas :-/
-    local outMas=$(/usr/local/bin/mas outdated | sed -E 's/^[0-9]+[[:space:]]+(.*)[[:space:]]+\([0-9.]*[[:space:]]+->[[:space:]]+[0-9.]*\)$/\1/')
+    local outMas=$($bindir/mas outdated | sed -E 's/^[0-9]+[[:space:]]+(.*)[[:space:]]+\([0-9.]*[[:space:]]+->[[:space:]]+[0-9.]*\)$/\1/')
     local outFmt=$(echo $outMas | paste -d🐼 -s - | sed -e "s/🐼/, /g")
     local outCount=$(echo $outMas | wc -l | xargs)
     local info=""
@@ -118,13 +123,13 @@ mas_check() {
 }
 
 mas_up() {
-    /usr/local/bin/mas upgrade
+    $bindir/mas upgrade
     echo "  ✅  Mac App Store apps are up to date."
 }
 
 
 env_remVer() {
-    $1 install -l 2>&1 \
+    asdf list all $1 2>&1 \
         | grep -vE "\s*[a-zA-Z-]" \
         | sort -V \
         | grep "^\s*$2" \
@@ -132,7 +137,7 @@ env_remVer() {
         | xargs
 }
 env_locVer() {
-    $1 global | grep "^$2"
+    asdf list $1 | grep "^\s*$2" | xargs
 }
 
 env_check() {
@@ -154,50 +159,50 @@ env_migration_failed() {
 
 
 node_check() {
-    /usr/local/bin/nodenv update-version-defs > /dev/null 2>&1
-    env_check nodenv "\d*[02468]\." "Node.js LTS"
-    /usr/local/bin/nodenv prune-version-defs > /dev/null 2>&1
+    asdf plugin update nodejs > /dev/null 2>&1
+    env_check nodejs "\d*[02468]\." "Node.js LTS"
 }
 
 node_up() {
-    local newVersion=$( env_remVer nodenv "\d*[02468]\." )
-    local oldVersion=$( env_locVer nodenv "\d*[02468]\." )
+    local newVersion=$( env_remVer nodejs "\d*[02468]\." )
+    local oldVersion=$( env_locVer nodejs "\d*[02468]\." )
 
     if [[ $newVersion == $oldVersion ]]; then
         print_check "Node.js LTS" $newVersion $newVersion
         return
     fi
 
-    nodenv install $newVersion
+    NODEJS_CHECK_SIGNATURES="no" asdf install nodejs $newVersion
+    asdf global nodejs $newVersion
+    asdf reshim nodejs
 
     trap env_migration_failed ERR
         local seed="$(date '+%Y%m%d%H%M%S').$$"
         local REQ_FILE="$HOME/node-npmfile.$seed.txt"
-        npm list --global --depth=0 \
+        ~/.asdf/installs/nodejs/$oldVersion/bin/npm list --global --depth=0 \
             | tail -n +2 \
             | cut -d" " -f2 \
             | grep -v "npm@" \
             > "$REQ_FILE"
-        nodenv global $newVersion
-        npm install --global npm
-        npm install --global $(cat "$REQ_FILE")
 
-        nodenv uninstall -f $oldVersion
-        nodenv rehash
+        ASDF_SKIP_RESHIM=1 ~/.asdf/installs/nodejs/$newVersion/bin/npm install --global npm
+        ASDF_SKIP_RESHIM=1 ~/.asdf/installs/nodejs/$newVersion/bin/npm install --global $(cat "$REQ_FILE")
+        asdf uninstall nodejs $oldVersion
+        asdf reshim nodejs
         rm "$REQ_FILE"
         print_check "Node.js LTS" $newVersion $newVersion
     trap - ERR
 }
 
 python3_check() {
-    pyenv update > /dev/null 2>&1
-    env_check pyenv 3 "Python 3"
+    asdf plugin update python > /dev/null 2>&1
+    env_check python 3 "Python 3"
 }
 
 python3_up() {
-    local newVersion=$( env_remVer pyenv 3 )
-    local oldVersion=$( env_locVer pyenv 3 )
-    local version2=$( env_locVer pyenv 2)
+    local newVersion=$( env_remVer python 3 )
+    local oldVersion=$( env_locVer python 3 )
+    local version2=$( env_locVer python 2)
 
     if [[ $newVersion == $oldVersion ]]; then
         print_check "Python 3" $newVersion $newVersion
@@ -206,18 +211,19 @@ python3_up() {
 
     LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib" \
         CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include" \
-        pyenv install $newVersion
-    pyenv global $newVersion $version2 miniconda3-latest
-    pyenv rehash
+        asdf install python $newVersion
+    asdf global python $newVersion $version2 miniconda3-latest
+    asdf reshim python
 
     trap env_migration_failed ERR
         local seed="$(date '+%Y%m%d%H%M%S').$$"
         local REQ_FILE="$HOME/python3.requirements.$seed.txt"
-        ~/.pyenv/versions/$oldVersion/bin/pip freeze | grep -v "^-e" > "$REQ_FILE"
-        ~/.pyenv/versions/$newVersion/bin/pip install --upgrade pip
-        ~/.pyenv/versions/$newVersion/bin/pip install -r "$REQ_FILE"
-        pyenv uninstall -f $oldVersion
-        pyenv rehash
+        ~/.asdf/installs/python/$oldVersion/bin/pip freeze | grep -v "^-e" > "$REQ_FILE"
+        ~/.asdf/installs/python/$newVersion/bin/pip install --upgrade pip
+        ~/.asdf/installs/python/$newVersion/bin/pip install wheel
+        ~/.asdf/installs/python/$newVersion/bin/pip install -r "$REQ_FILE"
+        asdf uninstall python $oldVersion
+        asdf reshim python
         rm "$REQ_FILE"
         print_check "Python 3" $newVersion $newVersion
     trap - ERR
@@ -225,14 +231,14 @@ python3_up() {
 
 
 python2_check() {
-    # > /dev/null 2>&1  # no need to check
-    env_check pyenv 2 "Python 2"
+    # asdf plugin update python > /dev/null 2>&1 # no need to check
+    env_check python 2 "Python 2"
 }
 
 python2_up() {
-    local newVersion=$( env_remVer pyenv 2 )
-    local oldVersion=$( env_locVer pyenv 2 )
-    local version3=$( env_locVer pyenv 3)
+    local newVersion=$( env_remVer python 2 )
+    local oldVersion=$( env_locVer python 2 )
+    local version3=$( env_locVer python 3)
 
     if [[ $newVersion == $oldVersion ]]; then
         print_check "Python 2" $newVersion $newVersion
@@ -241,18 +247,19 @@ python2_up() {
 
     LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib" \
         CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include" \
-        pyenv install $newVersion
-    pyenv global $version3 $newVersion miniconda3-latest
-    pyenv rehash
+        asdf install python $newVersion
+    asdf global python $version3 $newVersion miniconda3-latest
+    asdf reshim python
 
     trap env_migration_failed ERR
         local seed="$(date '+%Y%m%d%H%M%S').$$"
         local REQ_FILE="$HOME/python2-requirements.$seed.txt"
-        ~/.pyenv/versions/$oldVersion/bin/pip freeze | grep -v "^-e" > "$REQ_FILE"
-        ~/.pyenv/versions/$newVersion/bin/pip install --upgrade pip
-        ~/.pyenv/versions/$newVersion/bin/pip install -r "$REQ_FILE"
-        pyenv uninstall -f $oldVersion
-        pyenv rehash
+        ~/.asdf/installs/python/$oldVersion/bin/pip freeze | grep -v "^-e" > "$REQ_FILE"
+        ~/.asdf/installs/python/$newVersion/bin/pip install --upgrade pip
+        ~/.asdf/installs/python/$newVersion/bin/pip install wheel
+        ~/.asdf/installs/python/$newVersion/bin/pip install -r "$REQ_FILE"
+        asdf uninstall python $oldVersion
+        asdf reshim python
         rm "$REQ_FILE"
         print_check "Python 2" $newVersion $newVersion
     trap - ERR
@@ -260,22 +267,26 @@ python2_up() {
 
 
 ruby_check() {
-    env_check rbenv 3 "Ruby"
+    asdf plugin update ruby > /dev/null 2>&1
+    env_check ruby 3 "Ruby"
 }
 
 ruby_up() {
-    local newVersion=$( env_remVer rbenv 3 )
-    local oldVersion=$( env_locVer rbenv 3 )
+    local newVersion=$( env_remVer ruby 3 )
+    local oldVersion=$( env_locVer ruby 3 )
 
     if [[ $newVersion == $oldVersion ]]; then
         print_check "Ruby" $newVersion $newVersion
         return
     fi
 
-    RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)" rbenv install $newVersion
-    rbenv global $newVersion
-    local newGem=~/.rbenv/versions/$newVersion/bin/gem
-    local oldGem=~/.rbenv/versions/$oldVersion/bin/gem
+    RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)" \
+        asdf install ruby $newVersion
+    asdf global ruby $newVersion
+    asdf reshim ruby
+
+    local newGem=~/.asdf/installs/ruby/$newVersion/bin/gem
+    local oldGem=~/.asdf/installs/ruby/$oldVersion/bin/gem
 
     trap env_migration_failed ERR
         local seed="$(date '+%Y%m%d%H%M%S').$$"
@@ -289,8 +300,8 @@ ruby_up() {
             fi
         done
 
-        rbenv uninstall -f $oldVersion
-        rbenv rehash
+        asdf uninstall ruby $oldVersion
+        asdf reshim ruby
         rm "$REQ_FILE"
         print_check "Ruby" $newVersion $newVersion
     trap - ERR

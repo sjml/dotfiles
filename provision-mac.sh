@@ -31,12 +31,22 @@ mkdir -p ~/.ssh
 cp resources/ssh_config.base ~/.ssh/config
 
 # Ask for the administrator password
-echo "Now we need sudo access to install homebrew, some GUI apps, and change the shell."
+echo "Now we need sudo access to install {(Rosetta),Homebrew,some GUI apps} and change the shell."
 sudo -v
 still_need_sudo=1
-while still_need_sudo; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+while [ $still_need_sudo -ne 0 ]; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-timerData "PRE-BREW"
+if [[ $(uname -m) == 'arm64' ]]; then
+  hbbin=/opt/homebrew/bin
+
+  timerData "PRE-ROSETTA"
+  /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+  timerData "POST-ROSETTA"
+else
+  hbbin=/usr/local/bin
+
+  timerData "PRE-BREW"
+fi
 
 # install homebrew
 export HOMEBREW_NO_ANALYTICS=1
@@ -48,7 +58,7 @@ HOMEBREW_CASK_OPTS="--no-quarantine" \
   brew bundle install --no-lock --file=$DOTFILES_ROOT/install_lists/Brewfile
 
 # set fish as user shell
-targetShell="/usr/local/bin/fish"
+targetShell="$hbbin/fish"
 echo $targetShell | sudo tee -a /etc/shells
 sudo chsh -s $targetShell $USER
 
@@ -98,10 +108,16 @@ fi
   vim +PluginInstall +qall
 )
 
+# setup asdf
+source $(brew --prefix asdf)/asdf.sh
+shimPath="$HOME/.asdf/shims"
+asdf plugin add python
+asdf plugin add nodejs
+asdf plugin add ruby
 
 # copying version check from envup
 env_remVer() {
-    $1 install -l 2>&1 \
+    asdf list all $1 2>&1 \
         | grep -vE "\s*[a-zA-Z-]" \
         | sort -V \
         | grep "^\s*$2" \
@@ -110,72 +126,62 @@ env_remVer() {
 }
 
 # python setup
-git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
-git clone https://github.com/pyenv/pyenv-update.git $HOME/.pyenv/plugins/pyenv-update
-pyPath="$HOME/.pyenv/shims"
-pyenv="$HOME/.pyenv/bin/pyenv"
-
-py3version=$(env_remVer $pyenv 3)
+py3version=$(env_remVer python 3)
 LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib" \
   CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include" \
-  $pyenv install $py3version
-$pyenv global $py3version
-$pyenv rehash
-$pyPath/pip3 install --upgrade pip
-$pyPath/pip3 install -r install_lists/python3-dev-packages.txt
-$pyenv rehash
+  asdf install python $py3version
 
-py2version=$(env_remVer $pyenv 2)
+asdf global python $py3version
+asdf reshim python
+$shimPath/pip3 install --upgrade pip
+$shimPath/pip3 install wheel
+$shimPath/pip3 install -r install_lists/python3-dev-packages.txt
+asdf reshim python
+
+py2version=$(env_remVer python 2)
 LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib" \
   CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include" \
-  $pyenv install $py2version
-$pyenv global $py3version $py2version
-$pyenv rehash
-$pyPath/pip2 install --upgrade pip
-$pyPath/pip2 install -r install_lists/python2-dev-packages.txt
-$pyenv rehash
+  asdf install python $py2version
+asdf global python $py3version $py2version
+asdf reshim python
+$shimPath/pip2 install --upgrade pip
+$shimPath/pip2 install wheel
+$shimPath/pip2 install -r install_lists/python2-dev-packages.txt
+asdf reshim python
 
-$pyenv install miniconda3-latest
-$pyenv global $py3version $py2version miniconda3-latest
-$pyPath/conda update --all -y
-$pyPath/conda install anaconda-navigator -y
+asdf install python miniconda3-latest
+asdf global python $py3version $py2version miniconda3-latest
+$shimPath/conda update --all -y
+$shimPath/conda install anaconda-navigator -y
 
-eval "$($pyenv init -)"
-
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $pyPath/python
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $shimPath/python
 $HOME/.poetry/bin/poetry config virtualenvs.in-project true
 
 timerData "POST-PYTHON"
 
 # ruby setup
-rbPath="$HOME/.rbenv/shims"
-rbenv="/usr/local/bin/rbenv"
-rbversion=$(env_remVer $rbenv 3)
+rbversion=$(env_remVer ruby 3)
 RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)" \
-  $rbenv install $rbversion
-$rbenv global $rbversion
-eval "$($rbenv init -)"
+  asdf install ruby $rbversion
+asdf global ruby $rbversion
+asdf reshim ruby
 
-$rbPath/gem update --system
-yes | $rbPath/gem update
-yes | $rbPath/gem install bundler
-$rbPath/gem cleanup
+$shimPath/gem update --system
+yes | $shimPath/gem update
+yes | $shimPath/gem install bundler
+$shimPath/gem cleanup
 
 timerData "POST-RUBY"
 
 # node setup
-nodePath="$HOME/.nodenv/shims"
-nodenv="/usr/local/bin/nodenv"
-git clone https://github.com/nodenv/node-build-update-defs.git "$(nodenv root)"/plugins/node-build-update-defs
-$nodenv update-version-defs
-nodeversion=$(env_remVer $nodenv "\d*[02468]\.")
-$nodenv install $nodeversion
+nodeversion=$(env_remVer nodejs "\d*[02468]\.")
+NODEJS_CHECK_SIGNATURES="no" asdf install nodejs $nodeversion
 
-$nodenv global $nodeversion
-eval "$($nodenv init -)"
+asdf global nodejs $nodeversion
+asdf reshim nodejs
 
-$nodePath/npm install -g npm
-$nodePath/npm install -g $(cat install_lists/node-packages.txt)
+ASDF_SKIP_RESHIM=1 $shimPath/npm install -g npm
+ASDF_SKIP_RESHIM=1 $shimPath/npm install -g $(cat install_lists/node-packages.txt)
 
 timerData "POST-NODE"
 

@@ -1,7 +1,11 @@
 #!/usr/bin/env zsh
 
 
-local _brew="/usr/local/bin/brew"
+if [[ $(uname -m) == 'arm64' ]]; then
+  _brew="/opt/homebrew/bin/brew"
+else
+  _brew="/usr/local/bin/brew"
+fi
 
 # I grew weary of homebrew's pedantry
 if [[ "$1" == "cask" ]]; then

@@ -1,12 +1,14 @@
 #!/usr/bin/env zsh
 
 # Only run pip normally if we're currently running it from
-#  a virtual environment. If there's a pyenv install, make
-#  sure stuff gets put there. Otherwise only let it install to
-#  the local user directory.
+#  a virtual environment. If there's an asdf or  pyenv install,
+#  make sure stuff gets put there. Otherwise only let it
+#  install to the local user directory.
 
 if [[ -n $VIRTUAL_ENV ]]; then
   $VIRTUAL_ENV/bin/pip "$@"
+elif [[ -a $HOME/.asdf/shims/pip ]]; then
+  $HOME/.asdf/shims/pip "$@"
 elif [[ -a $HOME/.pyenv/shims/pip ]]; then
   $HOME/.pyenv/shims/pip "$@"
 else
