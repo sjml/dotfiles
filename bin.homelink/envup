@@ -27,9 +27,9 @@ help() {
 
 
 all_check() {
-    for env in "${envs[@]}"; do
-        ${env}_check
-    done
+    $bindir/brew update > /dev/null 2>&1
+    source $(which env_parallel.zsh)
+    env_parallel --keep-order {}_check all ::: ${envs[@]}
 }
 
 all_up() {
@@ -48,7 +48,9 @@ print_check() {
 
 
 brew_check() {
-    $bindir/brew update > /dev/null 2>&1
+    if [[ $1 != "all" ]]; then
+        $bindir/brew update > /dev/null 2>&1
+    fi
     if [[ $? -ne 0 ]]; then
         echo "  ❌  Couldn’t check Homebrew packages. Internet down?"
         return
@@ -77,7 +79,9 @@ brew_up() {
 
 
 cask_check() {
-    $bindir/brew update > /dev/null 2>&1
+    if [[ $1 != "all" ]]; then
+        $bindir/brew update > /dev/null 2>&1
+    fi
     if [[ $? -ne 0 ]]; then
         echo "  ❌  Couldn’t check Homebrew casks. Internet down?"
         return

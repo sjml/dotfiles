@@ -108,6 +108,9 @@ fi
   vim +PluginInstall +qall
 )
 
+# make parallel chill
+yes 'will cite' | parallel --citation
+
 # setup asdf
 source $(brew --prefix asdf)/asdf.sh
 shimPath="$HOME/.asdf/shims"
