@@ -54,14 +54,15 @@ server=$(echo $server | sed "s/'/\"/g")
 remote_path=$($JQ --raw-output ".[$server].path" $CONFIG_FILE)
 remote_user=$($JQ --raw-output ".[$server].user" $CONFIG_FILE)
 remote_clip=$($JQ --raw-output ".[$server].clip" $CONFIG_FILE)
+server=$(echo $server | sed "s/\"//g")
 
 lastUpped=""
 for f in "${@:1:$(($#))}"; do
     if [[ -f $f ]]; then
-        printf "progress\nput $f" | sftp -b- $REMOTE_USERNAME@$REMOTE_SERVER:$REMOTE_PATH || exit 1
+        printf "progress\nput $f" | sftp -b- $remote_user@$server:$remote_path || exit 1
         lastUpped=$f
     fi
 done
 url=$(printf $remote_clip $f)
-echo $url | pbcopy
+echo -n $url | pbcopy
 echo "Uploaded to <$url>. (Already in clipboard.)"
