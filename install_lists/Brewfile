@@ -71,10 +71,6 @@ brew 'flatbuffers'
 brew 'podman'
 brew 'doctl'
 
-# regular valgrind doesn't work on latest macOS :(
-tap  'LouisBrunner/valgrind'
-brew 'LouisBrunner/valgrind/valgrind', args: ['HEAD']
-
 # graphics tools
 brew 'imagemagick'
 brew 'ghostscript'
