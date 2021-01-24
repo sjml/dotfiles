@@ -1,3 +1,10 @@
+# Inspired by https://github.com/derf/zsh/blob/master/etc/functions/rtab
+
+# Shortens a path so that each element shows just enough to disambiguate it.
+# (^$HOME is replaced with ~ and the last element of the path is always fully expanded.)
+#
+# So /Users/shane/Documents/papers/final -> ~/Doc/p/final
+
 function shorten_path -a full_directory replace_tilde expand_final
   set fullPath ""
   set result ""
@@ -11,6 +18,8 @@ function shorten_path -a full_directory replace_tilde expand_final
       break
     end
 
+    # build up the string for the directory until there
+    #   is only one possible completion
     set part ""
     for c in (string split '' $dir);
       set part $part$c
@@ -29,6 +38,8 @@ function shorten_path -a full_directory replace_tilde expand_final
     set tree $tree[2..-1]
   end
 
+  # if we did this replacement earlier, fish would run into problems trying to
+  #   do the glob completion above
   if test $replace_tilde -eq 1; and string match -r "^$HOME" $fullPath > /dev/null;
     set short_home (shorten_path $HOME 0 0)
     set result (string replace $short_home "~" $result)
