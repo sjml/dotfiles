@@ -19,6 +19,8 @@ switch (uname)
   case Darwin
     alias c="code ."
     alias edot="code ~/.dotfiles"
+    alias codei="code-insiders"
+    alias ci="code-insiders ."
 
     function o;open -a $argv;end
     complete -c o -a (basename -s .app /Applications{,/Utilities}/*.app|awk '{printf "\"%s\" ", $0 }')

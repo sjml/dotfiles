@@ -142,6 +142,7 @@ cask 'skim'
 # development
 cask 'sublime-text'
 cask 'visual-studio-code'
+cask 'visual-studio-code-insiders'
 cask 'visual-studio'
 cask 'dash'
 cask 'macdown'
