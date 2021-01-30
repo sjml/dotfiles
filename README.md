@@ -27,11 +27,9 @@ Running `provision-mac.sh` on a fresh Mac will:
   * Sets up the directory to be a proper git repository if it was pulled during a bootstrap
   * Make a `~/Projects` directory and symlink the dotfiles there
   * Install a set of vim bundles, managed by [Vundle](https://github.com/VundleVim/Vundle.vim)
-  * Install latest versions of Python 2 and 3 (3 as default) via [pyenv](https://github.com/pyenv/pyenv)
-  * Install all packages listed in `install_lists/python{2|3}-dev-packages.txt`
-  * Install the latest version of Ruby via [rbenv](https://github.com/rbenv/rbenv)
-  * Install the latest version of Node.js via [nodenv](https://github.com/nodenv/nodenv)
-  * Install all Node-based programs listed in `install_lists/node-packages.txt`
+  * Install latest versions of Python 2 and 3 (3 as default), Ruby, and Node.js via [asdf](https://asdf-vm.com/)
+  * Install Python packages listed in `install_lists/python{2|3}-dev-packages.txt`
+  * Install Node-based programs listed in `install_lists/node-packages.txt`
   * Install the latest version of Rust via [rustup](https://www.rustup.rs/)
   * Set up appearance of Terminal.app
   * Set default browser to Firefox
