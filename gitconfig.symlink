@@ -36,3 +36,4 @@
 	prompt = false
 [diff]
 	tool = Kaleidoscope
+	renameLimit = 2000

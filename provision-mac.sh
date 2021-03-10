@@ -373,6 +373,9 @@ defaults write com.apple.dock slow-motion-allowed -bool true
 defaults write com.apple.dock wvous-bl-corner -int 5
 defaults write com.apple.dock wvous-bl-modifier -int 0
 
+# Don't rearrange spaces based on my random ⌘-tabbing around
+defaults write com.apple.dock mru-spaces -bool false
+
 # Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app
 defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\U21a9"
 
