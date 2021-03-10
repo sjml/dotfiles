@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# plays a sound when a command finishes indicating whether
+#  it succeeded or not
+# (useful for long-running tests or the like)
+
+dink="afplay /System/Library/Sounds/Glass.aiff"
+donk="afplay /System/Library/Sounds/Basso.aiff"
+
+
+"$@"
+
+
+if [ $? = 0 ]; then
+  $dink &
+else
+  $donk &
+fi
