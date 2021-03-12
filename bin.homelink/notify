@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
 
-# plays a sound when a command finishes indicating whether
-#  it succeeded or not
+# plays a sound and pops a notification banner when a
+#  command finishes, indicating whether it succeeded or not
 # (useful for long-running tests or the like)
 
-dink="afplay /System/Library/Sounds/Glass.aiff"
-donk="afplay /System/Library/Sounds/Basso.aiff"
 
-
+# actually run the wrapped command
 "$@"
 
-
+# report on how it went
+## (using afplay since terminal-notifier's sound flag is flaky across OS versions)
 if [ $? = 0 ]; then
-  $dink &
+  afplay /System/Library/Sounds/Glass.aiff &
+  terminal-notifier -message "$(echo ${@})" -title "Success" -appIcon ~/.dotfiles/resources/notification-images/success.png
 else
-  $donk &
+  afplay /System/Library/Sounds/Basso.aiff &
+  terminal-notifier -message "$(echo ${@})" -title "ERROR" -appIcon ~/.dotfiles/resources/notification-images/failure.png
 fi
