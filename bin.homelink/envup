@@ -177,8 +177,6 @@ node_up() {
     fi
 
     NODEJS_CHECK_SIGNATURES="no" asdf install nodejs $newVersion
-    asdf global nodejs $newVersion
-    asdf reshim nodejs
 
     trap env_migration_failed ERR
         local seed="$(date '+%Y%m%d%H%M%S').$$"
@@ -189,10 +187,11 @@ node_up() {
             | grep -v "npm@" \
             > "$REQ_FILE"
 
+        asdf global nodejs $newVersion
         ASDF_SKIP_RESHIM=1 ~/.asdf/installs/nodejs/$newVersion/bin/npm install --global npm
         ASDF_SKIP_RESHIM=1 ~/.asdf/installs/nodejs/$newVersion/bin/npm install --global $(cat "$REQ_FILE")
-        asdf uninstall nodejs $oldVersion
         asdf reshim nodejs
+        asdf uninstall nodejs $oldVersion
         rm "$REQ_FILE"
         print_check "Node.js LTS" $newVersion $newVersion
     trap - ERR
