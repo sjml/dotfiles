@@ -45,14 +45,19 @@ brew 'haxe'
 brew 'wget'
 brew 'nmap'
 brew 'tor'
+brew 'croc'
 brew 'elinks'
 
 # dev tools
 brew 'neovim'
+
 brew 'git'
 brew 'git-lfs'
+brew 'hub'
+brew 'gh'
 brew 'bfg'
 brew 'mercurial'
+
 brew 'cmake'
 brew 'scons'
 brew 'automake'
@@ -60,16 +65,17 @@ brew 'clang-format'
 brew 'swig'
 brew 'ctags'
 brew 'qcachegrind'
-brew 'qemu'
-brew 'hub'
-brew 'gh'
+
 brew 'libyaml'
+brew 'flatbuffers'
+
+brew 'qemu'
+brew 'podman'
+brew 'doctl'
+
 brew 'ripgrep'
 brew 'jq'
 brew 'sqlite'
-brew 'flatbuffers'
-brew 'podman'
-brew 'doctl'
 
 # graphics tools
 brew 'imagemagick'
@@ -115,7 +121,7 @@ tap 'homebrew/cask-versions'
 # infrastructure
 cask '1password'
 # cask 'backblaze' # don't use homebrew for this; upgrade will bork things
-cask 'little-snitch4'
+cask 'little-snitch'
 cask 'mullvadvpn'
 
 # internet
@@ -129,8 +135,10 @@ cask 'telegram'
 cask 'skype'
 cask 'slack'
 cask 'zoom'
+cask 'webex'
 cask 'microsoft-teams'
 cask 'discord'
+cask 'signal'
 
 # writing and office
 cask 'scrivener'
@@ -143,7 +151,6 @@ cask 'skim'
 # development
 cask 'sublime-text'
 cask 'visual-studio-code'
-cask 'visual-studio-code-insiders'
 cask 'visual-studio'
 cask 'dash'
 cask 'macdown'
@@ -173,6 +180,7 @@ cask 'inkscape'
 cask 'texturepacker'
 cask 'bfxr'
 cask 'twine'
+cask 'inky'
 cask 'nodebox'
 cask 'obs'
 
@@ -222,6 +230,9 @@ cask 'quicklook-json'
 cask 'qlprettypatch'
 cask 'quicklook-csv'
 cask 'suspicious-package'
+cask 'qlcolorcode'
+cask 'qlimagesize'
+cask 'apparency'
 
 
 # a few monospaced fonts from caskroom
@@ -248,7 +259,7 @@ mas 'Calca',               id: 635758264
 mas 'Ultra Character Map', id: 520265986
 
 # internet
-mas 'Tweetbot',            id: 557168941
+# mas 'Tweetbot',            id: 557168941 # (kinda just use the website now, if at all)
 mas 'Messenger',           id: 1480068668
 
 # media
