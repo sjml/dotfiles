@@ -45,11 +45,10 @@ ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 )
 
 # Install pyenv
-(
-  unset HOME
-  git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
-  git clone https://github.com/pyenv/pyenv-update.git $HOME/.pyenv/plugins/pyenv-update
-)
+mv $HOME/.gitconfig $HOME/gifconfig.bak
+git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
+git clone https://github.com/pyenv/pyenv-update.git $HOME/.pyenv/plugins/pyenv-update
+mv $HOME/gifconfig.bak $HOME/.gitconfig 
 
 cd ~
 echo "And that's it! You're good to go."
