@@ -22,7 +22,7 @@ if [[ ! -d .git ]]; then
   (
     # don't look at the ~/.gitconfig
     unset HOME
-    git init
+    git init --initial-branch=main
     git remote add origin https://github.com/sjml/dotfiles.git
     git fetch
     git reset origin/main
