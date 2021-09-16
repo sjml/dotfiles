@@ -25,8 +25,8 @@ if [[ ! -d .git ]]; then
     git init
     git remote add origin https://github.com/sjml/dotfiles.git
     git fetch
-    git reset origin/master
-    git branch --set-upstream-to=origin/master master
+    git reset origin/main
+    git branch --set-upstream-to=origin/main main
     git checkout .
   )
 fi
@@ -39,11 +39,17 @@ mkdir -p ~/Projects
 ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 
 # any vim bundles
-vim +PluginInstall +qall
+(
+  unset HOME
+  vim +PluginInstall +qall
+)
 
 # Install pyenv
-git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
-git clone https://github.com/pyenv/pyenv-update.git $HOME/.pyenv/plugins/pyenv-update
+(
+  unset HOME
+  git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
+  git clone https://github.com/pyenv/pyenv-update.git $HOME/.pyenv/plugins/pyenv-update
+)
 
 cd ~
 echo "And that's it! You're good to go."
