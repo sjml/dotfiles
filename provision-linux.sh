@@ -22,7 +22,8 @@ if [[ ! -d .git ]]; then
   (
     # don't look at the ~/.gitconfig
     unset HOME
-    git init --initial-branch=main
+    git init
+    git checkout -b main
     git remote add origin https://github.com/sjml/dotfiles.git
     git fetch
     git reset origin/main
@@ -45,10 +46,10 @@ ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 )
 
 # Install pyenv
-mv $HOME/.gitconfig $HOME/gifconfig.bak
+mv $HOME/.gitconfig $HOME/gitconfig.bak
 git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
 git clone https://github.com/pyenv/pyenv-update.git $HOME/.pyenv/plugins/pyenv-update
-mv $HOME/gifconfig.bak $HOME/.gitconfig 
+mv $HOME/gitconfig.bak $HOME/.gitconfig 
 
 cd ~
 echo "And that's it! You're good to go."
