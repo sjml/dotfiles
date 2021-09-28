@@ -94,6 +94,7 @@ brew 'gifski'
 brew 'hugo'
 brew 'zola'
 brew 'pandoc'
+brew 'pandoc-citeproc'
 brew 'multimarkdown'
 brew 'lame'
 brew 'libdvdcss'
@@ -144,6 +145,7 @@ cask 'signal'
 cask 'scrivener'
 cask 'microsoft-office'
 cask 'zotero'
+cask 'zettlr'
 cask 'basictex'
 cask 'anki'
 cask 'skim'
@@ -254,7 +256,6 @@ brew 'mas'
 # development
 mas 'Xcode',               id: 497799835
 mas 'Base',                id: 402383384
-mas 'Soulver',             id: 413965349
 mas 'Calca',               id: 635758264
 mas 'Ultra Character Map', id: 520265986
 
