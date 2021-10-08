@@ -4,7 +4,6 @@ akamud.vscode-theme-onedark
 akamud.vscode-theme-onelight
 bibhasdn.unique-lines
 bungcip.better-toml
-CoenraadS.bracket-pair-colorizer
 dbaeumer.vscode-eslint
 deerawan.vscode-dash
 donjayamanne.githistory

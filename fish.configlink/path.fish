@@ -38,15 +38,20 @@ set PATH $myPath $PATH
 set -e myPath
 set -a myPath
 
+set --local haveFish 0
 if test -f /usr/local/opt/asdf/asdf.fish;
   source /usr/local/opt/asdf/asdf.fish
+  set haveFish 1
 else if test -f $HOME/.asdf/asdf.fish
   source $HOME/.asdf/asdf.fish
+  set haveFish 1
 end
 
-for asdf_plugin in (asdf plugin list)
-  # fish can't really do backgrounding for this kind of thing :-/
-  bash -c "asdf reshim $asdf_plugin &"
+if test $haveFish -eq 1
+  for asdf_plugin in (asdf plugin list)
+    # fish can't really do backgrounding for this kind of thing :-/
+    bash -c "asdf reshim $asdf_plugin &"
+  end
 end
 
 ## Any custom programs come first
