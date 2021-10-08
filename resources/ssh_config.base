@@ -6,3 +6,6 @@ Host *
   IgnoreUnknown UseKeychain
   UseKeychain yes
   AddKeysToAgent yes
+
+# General Options
+ServerAliveInterval 60
