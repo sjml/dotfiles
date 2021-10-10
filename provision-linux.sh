@@ -7,6 +7,14 @@ exec </dev/tty >/dev/tty
 cd "$(dirname "$0")"
 DOTFILES_ROOT=$(pwd -P)
 
+# check that we've installed the basics
+GIT=$(which git)
+VIM=$(which vim)
+if [[ ${#GIT} -eq 0 ]] || [[ ${#VIM} -eq 0 ]]; then
+  echo "Install git and vim first, then run provision-linux.sh again."
+  exit 1
+fi
+
 # symlink the designated dotfiles
 echo "Linking dotfiles; hang out for a second to answer potential prompts about overwriting..."
 ./install_symlinks.sh
