@@ -55,8 +55,7 @@ ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 
 # Install pyenv
 mv $HOME/.gitconfig $HOME/gitconfig.bak
-git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
-git clone https://github.com/pyenv/pyenv-update.git $HOME/.pyenv/plugins/pyenv-update
+curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 mv $HOME/gitconfig.bak $HOME/.gitconfig 
 
 cd ~
