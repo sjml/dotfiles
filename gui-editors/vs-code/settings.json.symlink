@@ -4,7 +4,8 @@
     "files.associations": {
       "Brewfile": "ruby",
       ".pylintrc": "ini",
-      "*.html": "html"
+      "*.html": "html",
+      "*.babylon": "json"
     },
     "workbench.startupEditor": "newUntitledFile",
     "workbench.colorTheme": "Atom One Dark",
@@ -34,8 +35,6 @@
           "comments": "#929292"
         }
       },
-
-    "window.zoomLevel": 0,
     "editor.fontSize": 15,
     "debug.console.fontSize": 14,
     "terminal.integrated.fontSize": 16,
@@ -98,15 +97,18 @@
     "[javascript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "workbench.editorAssociations": [
-      {
-        "viewType": "jupyter.notebook.ipynb",
-        "filenamePattern": "*.ipynb"
-      }
-    ],
+    "workbench.editorAssociations": {
+      "*.ipynb": "jupyter.notebook.ipynb"
+    },
     "code-runner.enableAppInsights": false,
     "terminal.integrated.commandsToSkipShell": [
       "language-julia.interrupt"
     ],
-    "python.languageServer": "Pylance"
+    "python.languageServer": "Pylance",
+    "emmet.includeLanguages": {
+      "nunjucks": "html"
+    },
+    "workbench.editor.untitled.hint": "hidden",
+    "svg.preview.transparencyGrid": false,
+    "svg.preview.boundingBox": true
 }
