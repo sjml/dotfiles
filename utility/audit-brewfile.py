@@ -71,7 +71,7 @@ else:
 formula_list = [f['name'] for f in json.loads(formulae_json)]
 cask_list = [c['token'] for c in json.loads(cask_json)]
 
-print(f"Checking Brewfile against {len(formula_list)} formulae and {len(cask_list)} casks...")
+print(f"🕵️  Checking Brewfile against {len(formula_list)} formulae and {len(cask_list)} casks...")
 
 errs = []
 
@@ -88,7 +88,7 @@ for c in casks:
     if c not in cask_list and not check_allowed(c):
         errs.append(["cask", c])
 
-print(f"Checking {len(mapps)} app listings against the Mac App Store...")
+print(f"🕵️  Checking {len(mapps)} app listings against the Mac App Store...")
 for a in mapps:
     results_json = get_url("itunes.apple.com", f"/lookup?id={a[1]}")
     results = json.loads(results_json)

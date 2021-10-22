@@ -23,7 +23,7 @@ do
 done
 
 while read extension; do
-  code --install-extension $extension
+  code --install-extension --force $extension
 done <extensions.txt
 
 
