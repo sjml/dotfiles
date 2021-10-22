@@ -10,8 +10,8 @@ DOTFILES_ROOT=$(pwd -P)
 # check that we've installed the basics
 GIT=$(which git)
 VIM=$(which vim)
-if [[ ${#GIT} -eq 0 ]] || [[ ${#VIM} -eq 0 ]]; then
-  echo "Install git and vim first, then run provision-linux.sh again."
+if [[ ${#GIT} -eq 0 ]]; then
+  echo "Install git first, then run provision-linux.sh again."
   exit 1
 fi
 
@@ -30,13 +30,13 @@ if [[ ! -d .git ]]; then
   (
     # don't look at the ~/.gitconfig
     unset HOME
-    git init
-    git checkout -b main
-    git remote add origin https://github.com/sjml/dotfiles.git
-    git fetch
-    git reset origin/main
-    git branch --set-upstream-to=origin/main main
-    git checkout .
+    $GIT init
+    $GIT checkout -b main
+    $GIT remote add origin https://github.com/sjml/dotfiles.git
+    $GIT fetch
+    $GIT reset origin/main
+    $GIT branch --set-upstream-to=origin/main main
+    $GIT checkout .
   )
 fi
 # swap to ssh; credentials can get added later
@@ -47,15 +47,18 @@ git remote set-url origin git@github.com:sjml/dotfiles.git
 mkdir -p ~/Projects
 ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 
+mv $HOME/.gitconfig $HOME/gitconfig.bak
+
 # any vim bundles
-(
-  unset HOME
+if [[ ${#VIM} -eq 0 ]]; then
+  echo "vim is not available, so skipping plugin installation."
+else
   vim +PluginInstall +qall
-)
+fi
 
 # Install pyenv
-mv $HOME/.gitconfig $HOME/gitconfig.bak
 curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+
 mv $HOME/gitconfig.bak $HOME/.gitconfig 
 
 cd ~
