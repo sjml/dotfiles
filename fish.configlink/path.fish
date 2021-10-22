@@ -38,20 +38,26 @@ set PATH $myPath $PATH
 set -e myPath
 set -a myPath
 
-set --local haveFish 0
+set --local haveASDF 0
+set --local havePyenv 0
 if test -f /usr/local/opt/asdf/asdf.fish;
   source /usr/local/opt/asdf/asdf.fish
-  set haveFish 1
+  set haveASDF 1
 else if test -f $HOME/.asdf/asdf.fish
   source $HOME/.asdf/asdf.fish
-  set haveFish 1
+  set haveASDF 1
+else if test -f $HOME/.pyenv/bin/pyenv
+  set PATH $HOME/.pyenv/bin $PATH
+  set havePyenv 1
 end
 
-if test $haveFish -eq 1
+if test $haveASDF -eq 1
   for asdf_plugin in (asdf plugin list)
     # fish can't really do backgrounding for this kind of thing :-/
     bash -c "asdf reshim $asdf_plugin &"
   end
+else if test $havePyenv -eq 1
+  status is-interactive; and pyenv init --path | source
 end
 
 ## Any custom programs come first
