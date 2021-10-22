@@ -110,5 +110,7 @@
     },
     "workbench.editor.untitled.hint": "hidden",
     "svg.preview.transparencyGrid": false,
-    "svg.preview.boundingBox": true
+    "svg.preview.boundingBox": true,
+    "C_Cpp.autoAddFileAssociations": false,
+    "git.allowForcePush": true
 }
