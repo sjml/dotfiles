@@ -1,6 +1,10 @@
 name: Check Brewfile Validity
 
-on: [push]
+on:
+  push:
+  schedule:
+    # every Sunday at 3:23am
+    - '23 3 * * 0'
 
 jobs:
   brewfile-check:
