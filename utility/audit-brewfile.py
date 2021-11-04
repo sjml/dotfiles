@@ -71,7 +71,7 @@ else:
 formula_list = [f['name'] for f in json.loads(formulae_json)]
 cask_list = [c['token'] for c in json.loads(cask_json)]
 
-print(f"🕵️  Checking Brewfile against {len(formula_list)} formulae and {len(cask_list)} casks...")
+print(f"🕵️  Checking Brewfile with {len(brews)} formulae and {len(casks)} casks...")
 
 errs = []
 
