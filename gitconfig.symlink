@@ -13,8 +13,10 @@
 [pull]
 	rebase = false
 
-[url "git@github.com:"]
-	insteadOf = https://github.com/
+## handy to always be working off SSH access,
+##   but this was causing more problems than it solved
+# [url "git@github.com:"]
+# 	insteadOf = https://github.com/
 
 [filter "lfs"]
 	required = true

@@ -26,17 +26,13 @@ if [[ ! -d .git ]]; then
   if [[ ${#GIT} -eq 0 ]]; then
     echo "git is not available, so skipping repo-ization"
   else
-    (
-      # don't look at the ~/.gitconfig
-      unset HOME
-      $GIT init
-      $GIT checkout -b main
-      $GIT remote add origin https://github.com/sjml/dotfiles.git
-      $GIT fetch
-      $GIT reset origin/main
-      $GIT branch --set-upstream-to=origin/main main
-      $GIT checkout .
-    )
+    $GIT init
+    $GIT checkout -b main
+    $GIT remote add origin https://github.com/sjml/dotfiles.git
+    $GIT fetch
+    $GIT reset origin/main
+    $GIT branch --set-upstream-to=origin/main main
+    $GIT checkout .
   fi
 fi
 # swap to ssh; credentials can get added later
@@ -47,8 +43,6 @@ $GIT remote set-url origin git@github.com:sjml/dotfiles.git
 mkdir -p ~/Projects
 ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 
-mv $HOME/.gitconfig $HOME/gitconfig.bak
-
 # any vim bundles
 if [[ ${#VIM} -eq 0 ]]; then
   echo "vim is not available, so skipping plugin installation."
@@ -58,8 +52,6 @@ fi
 
 # Install pyenv
 curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-
-mv $HOME/gitconfig.bak $HOME/.gitconfig 
 
 cd ~
 echo "And that's it! You're good to go."

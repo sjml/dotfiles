@@ -79,17 +79,12 @@ timerData "POST-BREW"
 # make sure we're running in a local git working copy
 #  (this hooks us in if we were set up from the bootstrap script)
 if [[ ! -d .git ]]; then
-  (
-    # don't look at the ~/.gitconfig
-    unset HOME
-
-    git init --initial-branch=main
-    git remote add origin https://github.com/sjml/dotfiles.git
-    git fetch
-    git reset origin/main
-    git branch --set-upstream-to=origin/main main
-    git checkout .
-  )
+  git init --initial-branch=main
+  git remote add origin https://github.com/sjml/dotfiles.git
+  git fetch
+  git reset origin/main
+  git branch --set-upstream-to=origin/main main
+  git checkout .
 fi
 # swap to ssh; credentials can get added later
 git remote set-url origin git@github.com:sjml/dotfiles.git
@@ -102,11 +97,7 @@ if [[ ! -d ~/Projects/dotfiles ]]; then
 fi
 
 # any vim bundles
-(
-  # forget about the gitconfig for now
-  unset HOME
-  vim +PluginInstall +qall
-)
+vim +PluginInstall +qall
 
 # make parallel chill
 yes 'will cite' | parallel --citation
