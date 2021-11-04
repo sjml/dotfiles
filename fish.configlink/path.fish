@@ -58,6 +58,7 @@ if test $haveASDF -eq 1
   end
 else if test $havePyenv -eq 1
   status is-interactive; and pyenv init --path | source
+  pyenv init - | source
 end
 
 ## Any custom programs come first
