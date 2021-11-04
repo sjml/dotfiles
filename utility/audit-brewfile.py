@@ -1,5 +1,5 @@
 # processes the brewfile and checks it against the public Homebrew API
-#   to see if any of the formulae have been dropped. 
+#   to see if any of the formulae have been dropped.
 
 
 import os

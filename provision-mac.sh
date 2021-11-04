@@ -251,6 +251,9 @@ defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
+# Don't bug me about using new hard drives for Time Machine
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool "true"
+
 # Finder: show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
@@ -260,8 +263,11 @@ defaults write com.apple.finder ShowStatusBar -bool true
 # Finder: show path bar
 defaults write com.apple.finder ShowPathbar -bool true
 
-# Finder: turn off delay on proxy icon display (Big Sur only)
+# Finder: turn off delay on proxy icon display (>= Big Sur)
 defaults write com.apple.Finder NSToolbarTitleViewRolloverDelay -float 0
+
+# Finder: show proxy icons all the time (>= Monterey)
+defaults write com.apple.universalaccess showWindowTitlebarIcons -bool "true"
 
 # When performing a search, search the current folder by default
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"

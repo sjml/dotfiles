@@ -35,7 +35,7 @@ brew 'openjdk'
 brew 'erlang'
 brew 'elixir'
 brew 'elm'
-brew 'mit-scheme'
+# brew 'mit-scheme' # no support on arm :(
 brew 'ghc'
 brew 'cabal-install'
 brew 'haskell-stack'
@@ -112,6 +112,9 @@ brew 'terminal-notifier'
 brew 'nethack'
 brew 'frotz'
 brew 'solarus'
+brew 'marathon'
+brew 'marathon2'
+brew 'marathon-infinity'
 
 
 # now getting into full macOS apps
