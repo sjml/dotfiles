@@ -125,44 +125,48 @@ cask 'mullvadvpn'
 
 # internet
 cask 'firefox'
+cask 'chromium'
 cask 'google-chrome'
 cask 'tor-browser'
+
 cask 'transmit'
 cask 'transmission'
+
 cask 'whatsapp'
 cask 'telegram'
+cask 'signal'
 cask 'skype'
-cask 'slack'
 cask 'zoom'
 cask 'webex'
-cask 'microsoft-teams'
 cask 'discord'
-cask 'signal'
+cask 'slack'
+cask 'microsoft-teams'
 
 # writing and office
 cask 'scrivener'
 cask 'microsoft-office'
 cask 'zotero'
-cask 'zettlr'
 cask 'basictex'
 cask 'anki'
 cask 'skim'
 
 # development
-cask 'sublime-text'
 cask 'visual-studio-code'
+cask 'sublime-text'
 cask 'visual-studio'
-cask 'dash'
-cask 'macdown'
+cask 'zerobranestudio'
 cask 'processing'
-cask 'kaleidoscope'
+
+cask 'github'
 cask 'sourcetree'
+
+cask 'dash'
+cask 'kaleidoscope'
 cask 'hex-fiend'
 cask 'insomnia'
 cask 'robo-3t'
+
 cask 'postgres-unofficial'
-cask 'github'
-cask 'zerobranestudio'
 cask 'sf-symbols'
 
 # programming languages
@@ -198,11 +202,13 @@ cask 'gog-galaxy'
 cask 'epic-games'
 cask 'steam'
 cask 'nvidia-geforce-now'
+
 cask 'dwarf-fortress'
 cask 'minecraft'
 cask 'marathon'
 cask 'marathon2'
 cask 'marathon-infinity'
+
 cask 'handbrake'
 cask 'vlc'
 cask 'iina'
