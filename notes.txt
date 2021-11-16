@@ -2,53 +2,10 @@ TODO:
 Add command to excerpt from YouTube
     - example: ffmpeg $(youtube-dl -f 22 -g 'https://www.youtube.com/watch?v=yh5hpd1osKo' | sed "s/.*/-ss 00:05 -i &/") -t 01:00 -c copy train.mp4
 lscolors+fish theme
+would be nice if envup could check which evergreen casks do not currently match their uploaded version, or haven't been launched in a while
+consider custom build of chromium including the codecs but not the google stuff
+some way to have an install list for itch stuff? there's a bunch of productivity tools in there now...
+    - same note for steam, epic, :-/
 
-Stuff to install on Windows:
-    (commented lines have no entry in winget)
-    subsystem for linux
-    - ubuntu
-    Python.Python
-    OpenJS.NodeJS
-    Golang.go
-    //zig
-    //neovim
-    Git.Git
-    GitHub.GitLFS
-    Kitware.CMake
-    //scons
-    //swig
-    //hub
-    GitHub.cli
-
-    Mozilla.Firefox
-    Google.Chrome
-    TorProject.TorBrowser
-    NVAccess.NVDA
-    Transmission.Transmission
-    WhatsApp.WhatsApp
-    Microsoft.Teams
-    Discord.Discord
-    SublimeHQ.SublimeText
-    GitHub.GitHubDesktop
-    Microsoft.VisualStudioCode
-    Microsoft.VisualStudio.Community
-    UnityTechnologies.UnityHub
-    OBSProject.OBSStudio
-    VMware.WorkstationPlayer
-    Oracle.VirtualBox
-    Docker.DockerDesktop
-    //itch
-    GOG.Galaxy
-    EpicGames.EpicGamesLauncher
-    Valve.Steam
-    Nvidia.GeForceNow
-    Mojang.MinecraftLauncher
-    VideoLAN.VLC
-    TheHandBrakeTeam.HandBrake
-    AgileBits.1Password
-    MullvadVPN.MullvadVPN
-    WinMerge.WinMerge
-    //paint.net
-    Adobe.AdobeAcrobatReaderDC
-    WinSCP.WinSCP
-    WinDirStat.WinDirStat
+NOT A TODO, MORE OF A COMMENT:
+Windows provisioning stuff is such a mess -- winget, scoop, and chocolatey all suck in different ways :(
