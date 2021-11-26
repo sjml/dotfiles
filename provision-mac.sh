@@ -176,6 +176,7 @@ asdf reshim nodejs
 
 ASDF_SKIP_RESHIM=1 $shimPath/npm install -g npm
 ASDF_SKIP_RESHIM=1 $shimPath/npm install -g $(cat install_lists/node-packages.txt)
+asdf reshim nodejs
 
 timerData "POST-NODE"
 
