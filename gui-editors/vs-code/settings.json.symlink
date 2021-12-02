@@ -112,5 +112,8 @@
     "svg.preview.transparencyGrid": false,
     "svg.preview.boundingBox": true,
     "C_Cpp.autoAddFileAssociations": false,
-    "git.allowForcePush": true
+    "git.allowForcePush": true,
+    "julia.symbolCacheDownload": true,
+    "breadcrumbs.enabled": false,
+    "notebook.lineNumbers": "on"
 }
