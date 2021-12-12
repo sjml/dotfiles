@@ -1,6 +1,5 @@
 *.swp
 vim.symlink/bundle/
-provision_timing.txt
 ipython.symlink/profile_default/history.sqlite
 ipython.symlink/profile_default/db/*
 resources/Office Templates/~$*

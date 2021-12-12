@@ -27,7 +27,7 @@ timerData "START"
 ./install_symlinks.sh
 
 # ssh config
-mkdir -p ~/.ssh
+mkdir -p -m 700 ~/.ssh
 cp resources/ssh_config.base ~/.ssh/config
 
 # Ask for the administrator password
@@ -92,7 +92,7 @@ git remote set-url origin git@github.com:sjml/dotfiles.git
 # Projects folder is where most code stuff lives; link this there, too,
 #  because otherwise I'll forget where it is
 if [[ ! -d ~/Projects/dotfiles ]]; then
-  mkdir -p ~/Projects
+  mkdir -p -m 700 ~/Projects
   ln -s $DOTFILES_ROOT ~/Projects/dotfiles
 fi
 
@@ -417,6 +417,9 @@ for app in "${dockList[@]}"; do
   dockutil --add "$app" --no-restart
 done
 dockutil --add "~/Downloads" --section others --view grid --display stack --no-restart
+
+# make iCloud Drive documents somewhat findable from the command line
+ln -s $HOME/Library/Mobile\ Documents/com~apple~CloudDocs $HOME/iCloudDocs
 
 # killall complains if there's no instances running, so ignore it
 #   (and don't error)

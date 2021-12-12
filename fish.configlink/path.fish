@@ -62,4 +62,4 @@ else if test $havePyenv -eq 1
 end
 
 ## Any custom programs come first
-set PATH $HOME/bin $PATH
+set PATH $HOME/bin $HOME/local/bin $PATH

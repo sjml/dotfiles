@@ -49,6 +49,7 @@ brew 'croc'
 brew 'elinks'
 
 # dev tools
+brew 'vim'
 brew 'neovim'
 
 brew 'git'
@@ -195,6 +196,7 @@ cask 'obs'
 # various virtualization thingies
 cask 'vmware-fusion'
 cask 'virtualbox'
+cask 'crossover'
 # cask 'docker' # slow and bulky; probably don't need locally
 
 # entertainment
@@ -204,7 +206,6 @@ cask 'epic-games'
 cask 'steam'
 cask 'battle-net'
 cask 'nvidia-geforce-now'
-cask 'crossover'
 
 cask 'dwarf-fortress'
 cask 'minecraft'
@@ -222,6 +223,7 @@ cask 'calibre'
 cask 'kindle'
 cask 'yacreader'
 cask 'adobe-digital-editions'
+cask 'adobe-air'
 
 # utilities
 cask 'hammerspoon'

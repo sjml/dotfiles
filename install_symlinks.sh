@@ -37,7 +37,7 @@ install_homefiles
 install_configfiles () {
   local overwrite_all=false backup_all=false skip_all=false
 
-  mkdir -p $HOME/.config
+  mkdir -p -m 700 $HOME/.config
   for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.configlink' -not -path '*.git*')
   do
     dst="$HOME/.config/$(basename "${src%.*}")"
