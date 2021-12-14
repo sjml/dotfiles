@@ -151,8 +151,8 @@ asdf global python $py3version $py2version miniconda3-latest
 $shimPath/conda update --all -y
 $shimPath/conda install anaconda-navigator -y
 
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $shimPath/python
-$HOME/.poetry/bin/poetry config virtualenvs.in-project true
+# curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $shimPath/python
+# $HOME/.poetry/bin/poetry config virtualenvs.in-project true
 
 timerData "POST-PYTHON"
 
