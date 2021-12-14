@@ -50,12 +50,12 @@ fi
 
 # install homebrew
 export HOMEBREW_NO_ANALYTICS=1
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Turning off quarantine for casks; assuming I trust any apps that
 #   made it into the Brewfile. *slightly* perilous, though.
 HOMEBREW_CASK_OPTS="--no-quarantine" \
-  brew bundle install --no-lock --file=$DOTFILES_ROOT/install_lists/Brewfile
+  $hbbin/brew bundle install --no-lock --file=$DOTFILES_ROOT/install_lists/Brewfile
 
 # set fish as user shell
 targetShell="$hbbin/fish"
@@ -70,8 +70,8 @@ still_need_sudo=0
 sudo -k
 
 # clean up after homebrew
-brew cleanup -s
-rm -rf $(brew --cache)
+$hbbin/brew cleanup -s
+rm -rf $($hbbin/brew --cache)
 export HOMEBREW_NO_AUTO_UPDATE=0
 
 timerData "POST-BREW"
@@ -103,7 +103,7 @@ vim +PluginInstall +qall
 yes 'will cite' | parallel --citation
 
 # setup asdf
-source $(brew --prefix asdf)/asdf.sh
+source $($hbbin/brew --prefix asdf)/asdf.sh
 shimPath="$HOME/.asdf/shims"
 asdf plugin add python
 asdf plugin add nodejs
@@ -155,7 +155,7 @@ timerData "POST-PYTHON"
 
 # ruby setup
 rbversion=$(env_remVer ruby 3)
-RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)" \
+RUBY_CONFIGURE_OPTS="--with-openssl-dir=$($hbbin/brew --prefix openssl@1.1)" \
   asdf install ruby $rbversion
 asdf global ruby $rbversion
 asdf reshim ruby
