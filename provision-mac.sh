@@ -37,44 +37,44 @@ still_need_sudo=1
 while [ $still_need_sudo -ne 0 ]; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 if [[ $(uname -m) == 'arm64' ]]; then
-  hbbin=/opt/homebrew/bin
+  HBBASE=/opt/homebrew
 
   timerData "PRE-ROSETTA"
   /usr/sbin/softwareupdate --install-rosetta --agree-to-license
   timerData "POST-ROSETTA"
 else
-  hbbin=/usr/local/bin
+  HBBASE=/usr/local
 
   timerData "PRE-BREW"
 fi
 
+HBBIN=$HBBASE/bin
+
 # install homebrew
 export HOMEBREW_NO_ANALYTICS=1
 echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# Homebrew continues to be tiresome
-PATH=$PATH:$hbbin
+eval $($HBBIN/brew shellenv)
 
 # Turning off quarantine for casks; assuming I trust any apps that
 #   made it into the Brewfile. *slightly* perilous, though.
 HOMEBREW_CASK_OPTS="--no-quarantine" \
-  $hbbin/brew bundle install --no-lock --file=$DOTFILES_ROOT/install_lists/Brewfile
+  $HBBIN/brew bundle install --no-lock --file=$DOTFILES_ROOT/install_lists/Brewfile
 
 # set fish as user shell
-targetShell="$hbbin/fish"
+targetShell="$HBBIN/fish"
 echo $targetShell | sudo tee -a /etc/shells
 sudo chsh -s $targetShell $USER
 
 # homebrew doesn't link OpenJDK by default; do it while we still have sudo
-sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+sudo ln -sfn $HBBASE/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 
 # no more sudo needed!
 still_need_sudo=0
 sudo -k
 
 # clean up after homebrew
-$hbbin/brew cleanup -s
-rm -rf $($hbbin/brew --cache)
+$HBBIN/brew cleanup -s
+rm -rf $($HBBIN/brew --cache)
 export HOMEBREW_NO_AUTO_UPDATE=0
 
 timerData "POST-BREW"
@@ -103,10 +103,11 @@ fi
 vim +PluginInstall +qall
 
 # make parallel chill
-yes 'will cite' | parallel --citation
+mkdir -p $HOME/.parallel
+touch $HOME/.parallel/will-cite
 
 # setup asdf
-source $($hbbin/brew --prefix asdf)/asdf.sh
+source $($HBBIN/brew --prefix asdf)/asdf.sh
 shimPath="$HOME/.asdf/shims"
 asdf plugin add python
 asdf plugin add nodejs
@@ -124,8 +125,8 @@ env_remVer() {
 
 # python setup
 py3version=$(env_remVer python 3)
-LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib" \
-  CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include" \
+LDFLAGS="-L$HBBASE/opt/zlib/lib -L$HBBASE/opt/sqlite/lib" \
+  CPPFLAGS="-I$HBBASE/opt/zlib/include -I$HBBASE/opt/sqlite/include" \
   asdf install python $py3version
 
 asdf global python $py3version
@@ -136,8 +137,8 @@ $shimPath/pip3 install -r install_lists/python3-dev-packages.txt
 asdf reshim python
 
 py2version=$(env_remVer python 2)
-LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib" \
-  CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include" \
+LDFLAGS="-L$HBBASE/opt/zlib/lib -L$HBBASE/opt/sqlite/lib" \
+  CPPFLAGS="-I$HBBASE/opt/zlib/include -I$HBBASE/opt/sqlite/include" \
   asdf install python $py2version
 asdf global python $py3version $py2version
 asdf reshim python
@@ -149,16 +150,16 @@ asdf reshim python
 asdf install python miniconda3-latest
 asdf global python $py3version $py2version miniconda3-latest
 $shimPath/conda update --all -y
-$shimPath/conda install anaconda-navigator -y
 
 # curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $shimPath/python
+# source $HOME/.poetry/env
 # $HOME/.poetry/bin/poetry config virtualenvs.in-project true
 
 timerData "POST-PYTHON"
 
 # ruby setup
 rbversion=$(env_remVer ruby 3)
-RUBY_CONFIGURE_OPTS="--with-openssl-dir=$($hbbin/brew --prefix openssl@1.1)" \
+RUBY_CONFIGURE_OPTS="--with-openssl-dir=$($HBBIN/brew --prefix openssl@1.1)" \
   asdf install ruby $rbversion
 asdf global ruby $rbversion
 asdf reshim ruby
