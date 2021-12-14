@@ -195,7 +195,7 @@ cask 'obs'
 
 # various virtualization thingies
 cask 'vmware-fusion'
-cask 'virtualbox'
+# cask 'virtualbox' # no arm support
 cask 'crossover'
 # cask 'docker' # slow and bulky; probably don't need locally
 
@@ -218,7 +218,6 @@ cask 'handbrake'
 cask 'iina'
 cask 'vlc'
 cask 'mpv'
-cask 'amazon-music'
 cask 'calibre'
 cask 'kindle'
 cask 'yacreader'
@@ -227,7 +226,7 @@ cask 'adobe-air'
 
 # utilities
 cask 'hammerspoon'
-cask 'arq'
+# cask 'arq' # kinda aggro; look again later
 cask 'the-unarchiver'
 cask 'selfcontrol'
 cask 'time-out'

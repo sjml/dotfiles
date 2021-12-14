@@ -52,6 +52,9 @@ fi
 export HOMEBREW_NO_ANALYTICS=1
 echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+# Homebrew continues to be tiresome
+PATH=$PATH:$hbbin
+
 # Turning off quarantine for casks; assuming I trust any apps that
 #   made it into the Brewfile. *slightly* perilous, though.
 HOMEBREW_CASK_OPTS="--no-quarantine" \
