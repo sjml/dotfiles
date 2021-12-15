@@ -40,7 +40,7 @@
     "terminal.integrated.fontSize": 16,
     "terminal.integrated.lineHeight": 1.05,
     "workbench.tree.indent": 15,
-    "editor.fontFamily": "Fira Code Retina",
+    "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": false,
     "window.restoreWindows": "all",
     "editor.renderWhitespace": "all",

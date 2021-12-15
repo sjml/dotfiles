@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 
 # make sure we're in the right place...
@@ -23,7 +23,7 @@ do
 done
 
 while read extension; do
-  code --install-extension --force $extension
+  code --install-extension $extension
 done <extensions.txt
 
 
