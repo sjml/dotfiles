@@ -1,0 +1,11 @@
+Tue Dec 14 15:28:02 EST 2021
+START: 0
+PRE-ROSETTA: 10
+POST-ROSETTA: 12
+POST-BREW: 8567
+POST-PYTHON: 8764
+POST-RUBY: 8999
+POST-NODE: 9026
+POST-RUST: 9042
+
+(errored out and rest run manually, but it ran in < 1 second)
