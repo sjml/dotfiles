@@ -16,6 +16,8 @@ end
 set -x HOMEBREW_NO_ANALYTICS 1
 # relax
 set -x HOMEBREW_AUTO_UPDATE_SECS "86400"
+# let it do its business
+set -x HOMEBREW_NO_ENV_HINTS 1
 # don't build from scratch if a bottle download fails
 set -x HOMEBREW_NO_BOTTLE_SOURCE_FALLBACK 1
 # Cask otherwise adds their own quarantine flag that
