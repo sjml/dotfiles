@@ -1,0 +1,15 @@
+[
+  // insert a tab character even when set to indent with spaces, chording from cmd/ctrl-k tab
+  {
+    "key": "cmd+k tab",
+    "command": "type",
+    "args": { "text": "\t" },
+    "when": "editorTextFocus && isMac"
+  },
+  {
+    "key": "ctrl+k tab",
+    "command": "type",
+    "args": { "text": "\t" },
+    "when": "editorTextFocus && !isMac"
+  }
+]
