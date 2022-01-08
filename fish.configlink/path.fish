@@ -8,8 +8,8 @@ set --local -a myPath
 
 ## Various paths to add if certain things are installed
 set -a addIfExists
-# Poetry
-set -p addIfExists $HOME/.poetry/bin
+# Poetry (and maybe other things?)
+set -p addIfExists $HOME/.local/bin
 # Rust
 set -p addIfExists $HOME/.cargo/bin
 # itch.io

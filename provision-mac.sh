@@ -151,9 +151,8 @@ asdf install python miniconda3-latest
 asdf global python $py3version $py2version miniconda3-latest
 $shimPath/conda update --all -y
 
-# curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $shimPath/python
-# source $HOME/.poetry/env
-# $HOME/.poetry/bin/poetry config virtualenvs.in-project true
+curl -sSL https://install.python-poetry.org/ | $shimPath/python -
+$HOME/.local/bin/poetry config virtualenvs.in-project true
 
 timerData "POST-PYTHON"
 
