@@ -401,7 +401,6 @@ defaults write com.apple.archiveutility dearchive-reveal-after -int 0
 # set up Dock
 dockutil --remove all --no-restart
 declare -a dockList=(\
-  /System/Applications/App\ Store.app \
   /Applications/Firefox.app \
   /System/Applications/Mail.app \
   /System/Applications/Messages.app \
