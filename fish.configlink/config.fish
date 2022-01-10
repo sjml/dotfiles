@@ -2,10 +2,10 @@ set --local FISHDIR ~/.config/fish
 
 source $FISHDIR/env.fish
 
-## put any machine-specific environment variables in .local.fish
+## put any machine-specific environment variables in ~/.local/config/config.fish
 ##   (NB that file is not in source control)
-if test -e "$HOME/.local.fish";
-  source $HOME/.local.fish
+if test -e "$HOME/.local/config/config.fish";
+  source $HOME/.local/config/config.fish
 end
 
 ## load up aliases

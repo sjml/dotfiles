@@ -114,5 +114,6 @@
     "git.allowForcePush": true,
     "julia.symbolCacheDownload": true,
     "breadcrumbs.enabled": false,
-    "notebook.lineNumbers": "on"
+    "notebook.lineNumbers": "on",
+    "sshfs.configpaths": ["/Users/shane/.local/config/sshfs_configs.json"]
 }
