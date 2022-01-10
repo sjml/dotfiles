@@ -43,14 +43,14 @@ ssh-keygen -t rsa -b $byteSize -C $email -N $pass1 -f $privateKey
 
 if [[ $OSTYPE == darwin* ]]; then
     if type expect > /dev/null; then
-        expect -c "spawn ssh-add -K $privateKey
+        expect -c "spawn ssh-add --apple-use-keychain $privateKey
                    expect \"Enter passphrase for $privateKey:\" {
                      send \"$pass1\n\"
                      interact
                    }"
     else
         echo "Key is made, but we need its passphrase once more to add it to the keychain."
-        ssh-add -K $privateKey
+        ssh-add --apple-use-keychain $privateKey
     fi
 fi
 
