@@ -5,16 +5,18 @@
 
 SOCKET_PATH=/tmp/ssh-temp-proxy
 
-ssh -f -N -D 9090 $1 -o ControlMaster=yes -o ControlPath=$SOCKET_PATH -S $SOCKET_PATH
+connection_id=$1
+
+ssh -f -N -D 9090 $connection_id -o ControlMaster=yes -o ControlPath=$SOCKET_PATH -S $SOCKET_PATH
 networksetup -setsocksfirewallproxy "Wi-Fi" localhost 9090
 networksetup -setsocksfirewallproxystate "Wi-Fi" on
 
 cleanup() {
     echo
     echo "Cleaning up!"
-    networksetup -setsocksfirewallproxystate "Wi-Fi" on
+    networksetup -setsocksfirewallproxystate "Wi-Fi" off
     networksetup -setsocksfirewallproxy "Wi-Fi" "" ""
-    ssh -S $SOCKET_PATH -O exit $1
+    ssh -S $SOCKET_PATH -O exit $connection_id
     exit 0
 }
 
