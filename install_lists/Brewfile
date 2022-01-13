@@ -24,6 +24,7 @@ brew 'asdf' # handles python, nodejs, and ruby
 ## ones I actually use
 brew 'go'
 brew 'r'
+brew 'php' # look, i'm not proud of it, but
 
 ## hoping these become a thing
 brew 'deno'
