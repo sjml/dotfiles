@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never" page-range-format="minimal-two">
   <info>
-    <title>Modern Language Association 8th edition (Tight Bibliography)</title>
+    <title>Modern Language Association 9th edition (Tight Bibliography)</title>
     <title-short>MLA</title-short>
-    <id>https://shaneliesegang.com/mla8-tight</id>
-    <link href="https://shaneliesegang.com/mla8-tight" rel="self"/>
+    <id>https://shaneliesegang.com/mla9-tight</id>
+    <link href="https://shaneliesegang.com/mla9-tight" rel="self"/>
     <link href="http://style.mla.org" rel="documentation"/>
     <author>
       <name>Sebastian Karcher</name>
@@ -12,11 +12,12 @@
     </author>
     <contributor>
       <name>Shane Liesegang</name>
+      <uri>https://shaneliesegang.com</uri>
     </contributor>
     <category citation-format="author"/>
     <category field="generic-base"/>
-    <summary>This style adheres to the MLA 8th edition handbook. Follows the structure of references as outlined in the MLA Manual closely, with the exception of producing a tighter bibliography (single-spaced entries with an empty line between). It was forked from the official Zotero style for MLA 8th edition.</summary>
-    <updated>2019-12-20T04:27:41+00:00</updated>
+    <summary>This style adheres to the MLA 9th edition handbook. Follows the structure of references as outlined in the MLA Manual closely, with the exception of producing a tighter bibliography (single-spaced entries with an empty line between). It was forked from the official Zotero style for MLA 9th edition.</summary>
+    <updated>2022-01-15T14:31:47+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
@@ -93,26 +94,40 @@
     <text variable="container-title" font-style="italic" text-case="title"/>
   </macro>
   <macro name="other-contributors">
-    <group delimiter=", ">
-      <choose>
-        <if variable="container-title" match="any">
-          <names variable="container-author editor illustrator interviewer translator" delimiter=", ">
+    <choose>
+      <if variable="container-title" match="any">
+        <group delimiter=", ">
+          <names variable="container-author" delimiter=", ">
             <label form="verb" suffix=" "/>
             <name and="text"/>
           </names>
-        </if>
-        <else>
-          <names variable="container-author editor illustrator interviewer translator" delimiter=", ">
+          <names variable="editor translator" delimiter=", ">
+            <label form="verb" suffix=" "/>
+            <name and="text"/>
+          </names>
+          <names variable="director illustrator interviewer" delimiter=", ">
+            <label form="verb" suffix=" "/>
+            <name and="text"/>
+          </names>
+        </group>
+      </if>
+      <else>
+        <group delimiter=", ">
+          <names variable="container-author" delimiter=", ">
             <label form="verb" suffix=" " text-case="capitalize-first"/>
             <name and="text"/>
           </names>
-        </else>
-      </choose>
-      <names variable="director">
-        <label form="verb" suffix=" " text-case="capitalize-first"/>
-        <name and="text"/>
-      </names>
-    </group>
+          <names variable="editor translator" delimiter=", ">
+            <label form="verb" suffix=" " text-case="capitalize-first"/>
+            <name and="text"/>
+          </names>
+          <names variable="director illustrator interviewer" delimiter=", ">
+            <label form="verb" suffix=" " text-case="capitalize-first"/>
+            <name and="text"/>
+          </names>
+        </group>
+      </else>
+    </choose>
   </macro>
   <macro name="version">
     <group delimiter=", ">
@@ -128,6 +143,7 @@
         </else>
       </choose>
       <text variable="version"/>
+      <text variable="medium"/>
     </group>
   </macro>
   <macro name="volume-lowercase">
@@ -242,7 +258,7 @@
   <macro name="URI">
     <choose>
       <if variable="DOI">
-        <text variable="DOI" prefix="doi:"/>
+        <text variable="DOI" prefix="https://doi.org/"/>
       </if>
       <else>
         <text variable="URL"/>
