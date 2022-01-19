@@ -147,9 +147,9 @@ $shimPath/pip2 install wheel
 $shimPath/pip2 install -r install_lists/python2-dev-packages.txt
 asdf reshim python
 
-asdf install python miniconda3-latest
-asdf global python $py3version $py2version miniconda3-latest
-$shimPath/conda update --all -y
+# asdf install python miniconda3-latest
+# asdf global python $py3version $py2version miniconda3-latest
+# $shimPath/conda update --all -y
 
 curl -sSL https://install.python-poetry.org/ | $shimPath/python -
 $HOME/.local/bin/poetry config virtualenvs.in-project true
