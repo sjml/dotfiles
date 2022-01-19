@@ -81,6 +81,7 @@ brew 'doctl'
 
 brew 'ripgrep'
 brew 'jq'
+brew 'yq'
 brew 'sqlite'
 
 # graphics tools
@@ -88,6 +89,7 @@ brew 'imagemagick'
 brew 'ghostscript'
 brew 'pdf2svg'
 brew 'svg2png'
+brew 'librsvg'
 brew 'woff2'
 brew 'pngcrush'
 brew 'pngquant'
