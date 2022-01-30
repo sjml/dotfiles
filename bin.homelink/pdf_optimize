@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+usage="usage: pdf_optimize INPUT_FILE [OUTPUT_FILE]"
+
+if [[ ${#1} -eq 0 ]]; then
+  echo "No input file given."
+  echo "$usage"
+  exit 1
+fi
+
+if [[ ! -f $1 ]]; then
+  echo "File '$1' does not exist."
+  echo "$usage"
+  exit 1
+fi
+
+# look at first four characters, removing null if needed
+## (LC_ALL=C because otherwise tr only expects utf-8?)
+header=$(head -c 4 $1 | LC_ALL=C tr -d '\0')
+if [[ $header != "%PDF" ]]; then
+  echo "File '$1' is not a PDF."
+  echo "$usage"
+  exit 1
+fi
+
+if [[ ${#2} -eq 0 ]]; then
+  fname=$(basename "$1")
+  dir=$(dirname "$1")
+  basename="${fname%.*}"
+  extension="${fname##*.}"
+  if [[ $extension == $basename ]]; then
+    extension=""
+  fi
+  out_fname="${basename}_opt"
+  if [[ ${#extension} -gt 0 ]]; then
+    out_fname="${out_fname}.${extension}"
+  fi
+  out_fname="${dir}/${out_fname}"
+else
+  out_fname="$2"
+fi
+
+gs \
+  -sDEVICE=pdfwrite \
+  -dCompatibilityLevel=1.4 \
+  -dPDFSETTINGS=/ebook \
+  -dNOPAUSE \
+  -dBATCH \
+  -dColorImageResolution=150 \
+  -sOutputFile="$out_fname" \
+  "$1"
