@@ -47,12 +47,6 @@
     "workbench.iconTheme": "simple-icons",
     "git.autofetch": true,
     "explorer.confirmDragAndDrop": false,
-    "terminal.integrated.shellArgs.osx": [
-      "-l"
-    ],
-    "gitlens.advanced.messages": {
-      "suppressShowKeyBindingsNotice": true
-    },
     "gitlens.codeLens.enabled": false,
     "python.terminal.activateEnvironment": false,
     "explorer.confirmDelete": false,
@@ -67,7 +61,6 @@
     "diffEditor.renderSideBySide": true,
     "julia.execution.resultType": "both",
     "julia.enableTelemetry": true,
-    "python.showStartPage": false,
     "[python]": {
         "diffEditor.ignoreTrimWhitespace": false
     },
@@ -81,21 +74,11 @@
     "[Log]": {
         "editor.wordWrap": "on"
     },
-    "bracket-pair-colorizer-2.excludedLanguages": [
-      "*.html",
-      "*.md"
-    ],
     "jupyter.askForKernelRestart": false,
     "omnisharp.useGlobalMono": "always",
     "explorer.compactFolders": false,
     "output.smartScroll.enabled": false,
     "terminal.integrated.showExitAlert": false,
-    "[jsonc]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[javascript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
     "workbench.editorAssociations": {
       "*.ipynb": "jupyter.notebook.ipynb"
     },
@@ -108,12 +91,15 @@
       "nunjucks": "html"
     },
     "workbench.editor.untitled.hint": "hidden",
-    "svg.preview.transparencyGrid": false,
-    "svg.preview.boundingBox": true,
     "C_Cpp.autoAddFileAssociations": false,
     "git.allowForcePush": true,
     "julia.symbolCacheDownload": true,
     "breadcrumbs.enabled": false,
     "notebook.lineNumbers": "on",
-    "sshfs.configpaths": ["/Users/shane/.local/config/sshfs_configs.json"]
+    "sshfs.configpaths": [
+      "/Users/shane/.local/config/sshfs_configs.json"
+    ],
+    "diffEditor.ignoreTrimWhitespace": false,
+    "svelte.enable-ts-plugin": true,
+    "terminal.integrated.confirmOnExit": "hasChildProcesses"
 }
