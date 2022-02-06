@@ -8,6 +8,7 @@
 
 PRETTIER=$(which prettier)
 JQ=$(which jq)
+PRETTIER_OPTS="--print-width 100"
 
 if [[ ${#JQ} -eq 0 ]] || [[ ${#PRETTIER} -eq 0 ]]; then
     echo "fclip requires prettier and jq to be available."
@@ -29,7 +30,7 @@ if [[ $# -eq 0 ]]; then
     exit 1
 fi
 
-output=$(pbpaste | $PRETTIER --loglevel silent --parser $1)
+output=$(pbpaste | $PRETTIER --loglevel silent --parser $1 $PRETTIER_OPTS)
 err=$?
 if [[ $err -ne 0 ]]; then
     if [[ $err -eq 1 ]]; then
