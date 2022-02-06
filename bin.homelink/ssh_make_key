@@ -32,14 +32,19 @@ while [[ $finished -eq 0 ]]; do
         echo "Passphrases don't match. Try again!" >&2
         continue
     fi
-    if [[ ${#pass1} -lt 5 ]]; then
-        echo "Passphrase is too short. Try again!" >&2
-        continue
-    fi
+    # if [[ ${#pass1} -lt 5 ]]; then
+    #     echo "Passphrase is too short. Try again!" >&2
+    #     continue
+    # fi
     finished=1
 done
 
-ssh-keygen -t rsa -b $byteSize -C $email -N $pass1 -f $privateKey
+if [[ ${#pass1} -gt 0 ]]; then
+    pass_param="-N $pass1"
+else
+    pass_param=""
+fi
+ssh-keygen -t rsa -b $byteSize -C $email $pass_param -f $privateKey
 
 if [[ $OSTYPE == darwin* ]]; then
     if type expect > /dev/null; then
