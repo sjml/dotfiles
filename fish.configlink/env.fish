@@ -27,6 +27,8 @@ set -x HOMEBREW_NO_BOTTLE_SOURCE_FALLBACK 1
 #   kind of pointless.
 set -x HOMEBREW_CASK_OPTS "--no-quarantine"
 
+set -x DYLD_FALLBACK_LIBRARY_PATH /opt/homebrew/lib
+
 ## asdf shenanigans
 # asdf-nodejs insists on checking signatures by default.
 #   not a bad idea, but it's alone in trying to do this
