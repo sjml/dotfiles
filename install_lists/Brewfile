@@ -284,6 +284,7 @@ mas 'Messenger',           id: 1480068668
 # media
 # mas 'GarageBand',          id: 682658836 # (takes up too much space)
 mas 'iMovie',              id: 408981434
+mas 'Overcast',            id: 888422857
 
 # utility
 mas 'GrandPerspective',    id: 1111570163
