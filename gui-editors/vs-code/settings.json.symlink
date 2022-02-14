@@ -87,6 +87,7 @@
       "language-julia.interrupt"
     ],
     "python.languageServer": "Pylance",
+    "python.analysis.autoImportCompletions": false,
     "emmet.includeLanguages": {
       "nunjucks": "html"
     },
