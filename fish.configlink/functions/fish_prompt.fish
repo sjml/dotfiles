@@ -148,11 +148,11 @@ function fish_prompt
   set lcount (math $lcount + 2 + (string length $prettyPath))
   if test -n "$VIRTUAL_ENV"
     echo -n "[$snake]"
-    set lcount (math $lcount + 2 + (string length $snake))
+    set lcount (math $lcount + 3 + (string length $snake))
   else if test -n "$CONDA_SHLVL"
     if test $CONDA_SHLVL -gt 1
       echo -n "[$dragon]"
-      set lcount (math $lcount + 2 + (string length $dragon))
+      set lcount (math $lcount + 3 + (string length $dragon))
     end
   end
   set rcount 6

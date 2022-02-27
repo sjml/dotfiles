@@ -1,9 +1,10 @@
 # shells and standard command line utilities
-brew 'zsh'
 brew 'fish'
+brew 'zsh'
 brew 'bash'
 brew 'coreutils'
 brew 'parallel'
+brew 'direnv'
 brew 'tmux'
 brew 'reattach-to-user-namespace'
 brew 'readline'
@@ -83,6 +84,7 @@ brew 'ripgrep'
 brew 'jq'
 brew 'yq'
 brew 'sqlite'
+brew 'sqlite-utils'
 
 # graphics tools
 brew 'imagemagick'

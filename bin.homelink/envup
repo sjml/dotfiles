@@ -224,7 +224,7 @@ python3_up() {
         local seed="$(date '+%Y%m%d%H%M%S').$$"
         local REQ_FILE="$HOME/python3.requirements.$seed.txt"
         ~/.asdf/installs/python/$oldVersion/bin/pip freeze | grep -v "^-e" > "$REQ_FILE"
-        ~/.asdf/installs/python/$newVersion/bin/pip install --upgrade pip
+        ~/.asdf/installs/python/$newVersion/bin/python -m pip install --upgrade pip
         ~/.asdf/installs/python/$newVersion/bin/pip install wheel
         ~/.asdf/installs/python/$newVersion/bin/pip install -r "$REQ_FILE"
         asdf uninstall python $oldVersion

@@ -30,3 +30,6 @@ set fish_greeting
 ## let the terminal emulator handle the titling
 function fish_title
 end
+
+## set up direnv
+direnv hook fish | source
