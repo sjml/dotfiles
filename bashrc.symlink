@@ -1,0 +1,12 @@
+# Minimal bash configuration for those times I drop into it, 
+#   or on remote servers where I haven't done the whole song
+#   and dance to get fish and friends set up.
+
+HISTCONTROL=ignoreboth
+shopt -s histappend
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
