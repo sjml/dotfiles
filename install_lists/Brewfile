@@ -78,6 +78,8 @@ brew 'flatbuffers'
 
 brew 'qemu'
 brew 'podman'
+brew 'docker'
+brew 'colima'
 brew 'doctl'
 
 brew 'ripgrep'
@@ -190,6 +192,7 @@ cask 'blender'
 cask 'dust3d'
 cask 'inkscape'
 cask 'fontforge'
+cask 'krita'
 cask 'texturepacker'
 cask 'tiled'
 cask 'pixelorama'
@@ -201,9 +204,10 @@ cask 'obs'
 
 # various virtualization thingies
 cask 'vmware-fusion'
+cask 'multipass'
 # cask 'virtualbox' # no arm support
-cask 'crossover'
-# cask 'docker' # slow and bulky; probably don't need locally
+# cask 'crossover' # mostly have windows machines to do windows things
+# cask 'docker' # slow and bulky; probably don't need the desktop version
 
 # entertainment
 cask 'itch'
