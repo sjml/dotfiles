@@ -5,7 +5,8 @@
       "Brewfile": "ruby",
       ".pylintrc": "ini",
       "*.html": "html",
-      "*.babylon": "json"
+      "*.babylon": "json",
+      "SCsub": "python"
     },
     "workbench.startupEditor": "newUntitledFile",
     "workbench.colorTheme": "Atom One Dark",
@@ -102,5 +103,8 @@
     ],
     "diffEditor.ignoreTrimWhitespace": false,
     "svelte.enable-ts-plugin": true,
-    "terminal.integrated.confirmOnExit": "hasChildProcesses"
+    "terminal.integrated.confirmOnExit": "hasChildProcesses",
+    "redhat.telemetry.enabled": false,
+    "terminal.integrated.scrollback": 10000,
+    "julia.enableCrashReporter": false
 }

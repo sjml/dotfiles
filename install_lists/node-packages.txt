@@ -1,10 +1,7 @@
 yarn
 live-server
-sirv-cli
-surge
 ttf2woff
 eslint
-uglify-es
 prettier
 prettier-plugin-toml
 @prettier/plugin-ruby

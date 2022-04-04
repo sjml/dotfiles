@@ -4,6 +4,7 @@ brew 'zsh'
 brew 'bash'
 brew 'coreutils'
 brew 'parallel'
+brew 'pv'
 brew 'direnv'
 brew 'tmux'
 brew 'reattach-to-user-namespace'
@@ -16,6 +17,7 @@ brew 'lbzip2'
 brew 'unar'
 brew 'gnupg'
 brew 'xz'
+brew 'pigz'
 
 # meta environments for my regularly used programming languages
 brew 'asdf' # handles python, nodejs, and ruby
@@ -72,6 +74,7 @@ brew 'clang-format'
 brew 'swig'
 brew 'ctags'
 brew 'qcachegrind'
+brew 'yasm'
 
 brew 'libyaml'
 brew 'flatbuffers'
@@ -79,6 +82,7 @@ brew 'flatbuffers'
 brew 'qemu'
 brew 'podman'
 brew 'docker'
+brew 'mingw-w64'
 brew 'colima'
 brew 'doctl'
 
@@ -205,6 +209,7 @@ cask 'obs'
 # various virtualization thingies
 cask 'vmware-fusion'
 cask 'multipass'
+cask 'utm'
 # cask 'virtualbox' # no arm support
 # cask 'crossover' # mostly have windows machines to do windows things
 # cask 'docker' # slow and bulky; probably don't need the desktop version
