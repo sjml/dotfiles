@@ -6,12 +6,14 @@ brew 'coreutils'
 brew 'parallel'
 brew 'pv'
 brew 'direnv'
+brew 'tree'
 brew 'tmux'
 brew 'reattach-to-user-namespace'
 brew 'readline'
-brew 'zlib'
-brew 'tree'
 brew 'htop'
+
+# compression stuffs
+brew 'zlib'
 brew 'p7zip'
 brew 'lbzip2'
 brew 'unar'
@@ -49,14 +51,20 @@ brew 'haxe'
 # network stuff
 brew 'wget'
 brew 'nmap'
+brew 'tcptraceroute'
 brew 'tor'
 brew 'croc'
 brew 'elinks'
 
 # dev tools
+## text editors
 brew 'vim'
 brew 'neovim'
+brew 'nano'
+brew 'emacs'
+brew 'micro'
 
+## source control
 brew 'git'
 brew 'git-lfs'
 brew 'hub'
@@ -65,32 +73,34 @@ brew 'bfg'
 brew 'mercurial'
 brew 'subversion'
 
+## build systems and tools
 brew 'cmake'
 brew 'scons'
 brew 'meson'
 brew 'ninja'
 brew 'automake'
+brew 'mingw-w64'
 brew 'clang-format'
 brew 'swig'
 brew 'ctags'
 brew 'qcachegrind'
 brew 'yasm'
-
-brew 'libyaml'
 brew 'flatbuffers'
 
+## virualization
 brew 'qemu'
 brew 'podman'
 brew 'docker'
-brew 'mingw-w64'
 brew 'colima'
 brew 'doctl'
 
+## search and store
 brew 'ripgrep'
 brew 'jq'
 brew 'yq'
 brew 'sqlite'
 brew 'sqlite-utils'
+brew 'testdisk'
 
 # graphics tools
 brew 'imagemagick'
@@ -201,6 +211,7 @@ cask 'texturepacker'
 cask 'tiled'
 cask 'pixelorama'
 cask 'bfxr'
+cask 'audacity'
 cask 'twine'
 cask 'inky'
 cask 'nodebox'
