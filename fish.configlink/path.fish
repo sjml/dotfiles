@@ -44,6 +44,7 @@ if test -f /usr/local/opt/asdf/asdf.fish;
   source /usr/local/opt/asdf/asdf.fish
   set haveASDF 1
 else if test -f /opt/homebrew/opt/asdf/asdf.fish
+  set -x ASDF_DIR /opt/homebrew/opt/asdf/libexec
   source /opt/homebrew/opt/asdf/asdf.fish
   set haveASDF 1
 else if test -f $HOME/.asdf/asdf.fish
