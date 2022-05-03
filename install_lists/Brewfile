@@ -55,6 +55,7 @@ brew 'tcptraceroute'
 brew 'tor'
 brew 'croc'
 brew 'elinks'
+brew 'openconnect'
 
 # dev tools
 ## text editors
@@ -93,6 +94,7 @@ brew 'podman'
 brew 'docker'
 brew 'colima'
 brew 'doctl'
+brew 'flyctl'
 
 ## search and store
 brew 'ripgrep'
@@ -142,6 +144,7 @@ tap 'homebrew/cask-versions'
 
 # infrastructure
 cask '1password'
+cask '1password-cli'
 # cask 'backblaze' # don't use homebrew for this; upgrade will bork things
 cask 'little-snitch'
 cask 'mullvadvpn'
@@ -230,7 +233,6 @@ cask 'itch'
 cask 'gog-galaxy'
 cask 'epic-games'
 cask 'steam'
-cask 'battle-net'
 cask 'nvidia-geforce-now'
 
 cask 'dwarf-fortress'
@@ -311,6 +313,7 @@ mas 'Overcast',            id: 888422857
 # utility
 mas 'GrandPerspective',    id: 1111570163
 mas 'Menu World Time',     id: 1446377255
+mas 'EasyRes',             id: 688211836
 
 # graphics and office
 mas 'Pixelmator Pro',      id: 1289583905

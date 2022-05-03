@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# exec </dev/tty >/dev/tty
+
+# eval $(op signin)
+# bcpw=$(op item get "Boston College" --format=json |  jq --raw-output '.fields[] | select(.id=="password").value')
+# echo "Need sudo password:"
+# sudo -v
+# echo $bcpw | sudo openconnect eaglevpn.bc.edu --config=$HOME/.local/bcvpn.conf --passwd-on-stdin
+
+### <sigh> the above doesn't work because of the Duo 2FA requirement :(
+###   so, we'll just enter everyhing manually. BOOO.
+
+sudo openconnect eaglevpn.bc.edu
