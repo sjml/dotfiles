@@ -331,7 +331,7 @@ defaults write com.apple.dock showDesktopGestureEnabled -bool true
 # disable Launchpad gesture
 defaults write com.apple.dock showLaunchpadGestureEnabled -bool false
 
-# Enable Control-Scroll to zoom screen
+# Enable ⌃-Scroll to zoom screen
 defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
 defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 
@@ -369,6 +369,9 @@ defaults write com.apple.dock magnification -bool false
 
 # Allow slow-motion minimize effects when holding down shift (relic from old OS X :D)
 defaults write com.apple.dock slow-motion-allowed -bool true
+
+# Move windows with ⌘-⌃-click anywhere in them
+defaults write -g NSWindowShouldDragOnGesture -bool true
 
 # Hot corner, bottom-left: Start screen saver
 defaults write com.apple.dock wvous-bl-corner -int 5
