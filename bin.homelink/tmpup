@@ -59,10 +59,10 @@ server=$(echo $server | sed "s/\"//g")
 lastUpped=""
 for f in "${@:1:$(($#))}"; do
     if [[ -f $f ]]; then
-        printf "progress\nput $f" | sftp -b- $remote_user@$server:$remote_path || exit 1
+        printf "progress\nput \"$f\"" | sftp -b- $remote_user@$server:$remote_path || exit 1
         lastUpped=$f
     fi
 done
-url=$(printf $remote_clip $f)
+url=$(printf $remote_clip "$f")
 echo -n $url | pbcopy
 echo "Uploaded to <$url>. (Already in clipboard.)"
