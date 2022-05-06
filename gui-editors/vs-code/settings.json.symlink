@@ -106,5 +106,6 @@
     "terminal.integrated.confirmOnExit": "hasChildProcesses",
     "redhat.telemetry.enabled": false,
     "terminal.integrated.scrollback": 10000,
-    "julia.enableCrashReporter": false
+    "julia.enableCrashReporter": false,
+    "github.gitProtocol": "ssh"
 }
