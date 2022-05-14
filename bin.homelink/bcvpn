@@ -1,14 +1,32 @@
 #!/usr/bin/env bash
 
-# exec </dev/tty >/dev/tty
+# Boston College requires an AnyConnect VPN to access certain services.
+#   I don't like extra VPN software running, so I use the OpenConnect
+#   command line program instead.
+# This scripts the access, snagging my password from the 1Password CLI
+#   and requesting a 2FA prompt from Duo. So all I need to do is run
+#   this script, authenticate with my TouchID, and I'm good to go!
+# (NB to use TouchID with sudo:
+#   https://sixcolors.com/post/2020/11/quick-tip-enable-touch-id-for-sudo/ )
 
-# eval $(op signin)
-# bcpw=$(op item get "Boston College" --format=json |  jq --raw-output '.fields[] | select(.id=="password").value')
-# echo "Need sudo password:"
-# sudo -v
-# echo $bcpw | sudo openconnect eaglevpn.bc.edu --config=$HOME/.local/bcvpn.conf --passwd-on-stdin
+sudocheck=$(sudo -nv 2>&1)
+if [ $? -ne 0 ]; then
+    echo "Need sudo password:"
+    sudo -v
+fi
 
-### <sigh> the above doesn't work because of the Duo 2FA requirement :(
-###   so, we'll just enter everyhing manually. BOOO.
+set -e
 
-sudo openconnect eaglevpn.bc.edu
+echo "Getting BC password from 1Password..."
+eval $(op signin)
+bcpw=$(op item get "Boston College" --format=json |  jq --raw-output '.fields[] | select(.id=="password").value')
+
+echo "Starting up VPN..."
+sudo expect -c "
+    spawn sudo openconnect eaglevpn.bc.edu --config=$HOME/.local/bcvpn.conf
+    expect \"Password:\"
+    send \"$bcpw\n\"
+    expect \"Response:\"
+    send \"1\n\"
+    interact
+"
