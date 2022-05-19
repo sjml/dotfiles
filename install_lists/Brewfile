@@ -2,6 +2,7 @@
 brew 'fish'
 brew 'zsh'
 brew 'bash'
+brew 'powershell'
 brew 'coreutils'
 brew 'parallel'
 brew 'pv'
@@ -56,6 +57,7 @@ brew 'tor'
 brew 'croc'
 brew 'elinks'
 brew 'openconnect'
+brew 'xxhash'
 
 # dev tools
 ## text editors
@@ -73,6 +75,7 @@ brew 'gh'
 brew 'bfg'
 brew 'mercurial'
 brew 'subversion'
+brew 'fossil'
 
 ## build systems and tools
 brew 'cmake'
@@ -117,6 +120,7 @@ brew 'zopfli'
 brew 'guetzli'
 brew 'mozjpeg'
 brew 'gifski'
+brew 'svgo'
 
 # various and sundry
 brew 'pandoc'
