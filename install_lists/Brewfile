@@ -2,7 +2,6 @@
 brew 'fish'
 brew 'zsh'
 brew 'bash'
-brew 'powershell'
 brew 'coreutils'
 brew 'parallel'
 brew 'pv'
@@ -204,6 +203,7 @@ cask 'dotnet-sdk'
 cask 'mono-mdk'
 cask 'rstudio'
 cask 'julia'
+cask 'powershell'
 
 # artsy/media
 cask 'unity-hub'
