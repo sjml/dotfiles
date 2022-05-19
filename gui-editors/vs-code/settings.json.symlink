@@ -107,5 +107,8 @@
     "redhat.telemetry.enabled": false,
     "terminal.integrated.scrollback": 10000,
     "julia.enableCrashReporter": false,
-    "github.gitProtocol": "ssh"
+    "github.gitProtocol": "ssh",
+    "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "editor.copyWithSyntaxHighlighting": false
 }
