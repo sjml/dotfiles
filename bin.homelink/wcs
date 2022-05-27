@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+
+if len(sys.argv) < 2:
+    print("Pass a file to analyze.")
+    sys.exit(1)
+
+if not os.path.exists(sys.argv[1]):
+    print("File does not exist.")
+    sys.exit(1)
+
+try:
+    text = open(sys.argv[1], "r").read()
+except UnicodeDecodeError:
+    print("File does not appear to be text.")
+    sys.exit(1)
+
+paragraphs = text.split("\n\n")
+word_counts = [len(p.split()) for p in paragraphs]
+total_word_count = sum(word_counts)
+
+print(f"{len(paragraphs)} paragraphs, averaging {total_word_count / len(paragraphs):.2f} words each.")
+print(f"Longest: {max(word_counts)} words; Shortest: {min(word_counts)} words.")
+print(f"Total word count is {sum(word_counts)}.")
+

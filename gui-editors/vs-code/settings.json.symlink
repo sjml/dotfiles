@@ -67,10 +67,20 @@
     },
     "[plaintext]": {
         "editor.wordWrap": "on",
-        "diffEditor.renderSideBySide": false
+        "diffEditor.renderSideBySide": false,
+        "editor.quickSuggestions": {
+          "other": "off",
+          "comments": "off",
+          "strings": "off"
+        }
     },
     "[markdown]": {
-        "diffEditor.renderSideBySide": false
+        "diffEditor.renderSideBySide": false,
+        "editor.quickSuggestions": {
+          "other": "off",
+          "comments": "off",
+          "strings": "off"
+        }
     },
     "[Log]": {
         "editor.wordWrap": "on"
@@ -110,5 +120,10 @@
     "github.gitProtocol": "ssh",
     "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
     "terminal.integrated.enableMultiLinePasteWarning": false,
-    "editor.copyWithSyntaxHighlighting": false
+    "editor.copyWithSyntaxHighlighting": false,
+    "csl-json-citation-picker.libraryPath": "~/Documents/Zotero_Library.json",
+    "cSpell.userWords": [
+      "Fordham",
+      "Liesegang",
+    ],
 }
