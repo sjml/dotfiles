@@ -7,7 +7,7 @@
 #   and requesting a 2FA prompt from Duo. So all I need to do is run
 #   this script, authenticate with my TouchID, and I'm good to go!
 # (NB to use TouchID with sudo:
-#   https://sixcolors.com/post/2020/11/quick-tip-enable-touch-id-for-sudo/ )
+#   https://web.archive.org/web/20210905125725/https://sixcolors.com/post/2020/11/quick-tip-enable-touch-id-for-sudo/ )
 
 sudocheck=$(sudo -nv 2>&1)
 if [ $? -ne 0 ]; then
