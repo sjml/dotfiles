@@ -8,6 +8,9 @@ indent_size = 4
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+[*.tsv]
+trim_trailing_whitespace = false
+
 [*.md]
 max_line_length = 0
 trim_trailing_whitespace = false
