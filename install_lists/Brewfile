@@ -182,7 +182,7 @@ cask 'skim'
 # development
 cask 'visual-studio-code'
 cask 'sublime-text'
-# cask 'visual-studio' # wait until the 2022 release when it's native
+cask 'visual-studio'
 cask 'zerobranestudio'
 cask 'processing'
 
@@ -200,7 +200,6 @@ cask 'sf-symbols'
 
 # programming languages
 cask 'dotnet-sdk'
-cask 'mono-mdk'
 cask 'rstudio'
 cask 'julia'
 cask 'powershell'
