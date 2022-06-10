@@ -84,13 +84,14 @@ brew 'ninja'
 brew 'automake'
 brew 'mingw-w64'
 brew 'clang-format'
+brew 'stylua'
 brew 'swig'
 brew 'ctags'
 brew 'qcachegrind'
 brew 'yasm'
 brew 'flatbuffers'
 
-## virualization
+## virtualization
 brew 'qemu'
 brew 'podman'
 brew 'docker'
@@ -135,6 +136,7 @@ brew 'defaultbrowser'
 brew 'duti'
 brew 'trash'
 brew 'terminal-notifier'
+brew 'entr'
 
 # amusements!
 brew 'nethack'
@@ -303,6 +305,7 @@ mas 'Xcode',               id: 497799835
 mas 'Base',                id: 402383384
 mas 'Calca',               id: 635758264
 mas 'Ultra Character Map', id: 520265986
+mas 'WorldWideWeb',        id: 1621370168
 
 # internet
 # mas 'Tweetbot',            id: 557168941 # (kinda just use the website now, if at all)
@@ -317,6 +320,7 @@ mas 'Overcast',            id: 888422857
 mas 'GrandPerspective',    id: 1111570163
 mas 'Menu World Time',     id: 1446377255
 mas 'EasyRes',             id: 688211836
+mas 'Shareful',            id: 1522267256
 
 # graphics and office
 mas 'Pixelmator Pro',      id: 1289583905

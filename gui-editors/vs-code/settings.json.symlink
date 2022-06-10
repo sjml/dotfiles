@@ -126,4 +126,10 @@
       "Fordham",
       "Liesegang",
     ],
+    "markdown.extension.italic.indicator": "_",
+    "gitlens.advanced.messages": {
+      "suppressCreatePullRequestPrompt": true,
+      "suppressGitDisabledWarning": true,
+      "suppressGitMissingWarning": true
+    },
 }

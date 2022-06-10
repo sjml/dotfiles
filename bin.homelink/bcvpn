@@ -23,7 +23,7 @@ bcpw=$(op item get "Boston College" --format=json |  jq --raw-output '.fields[] 
 
 echo "Starting up VPN..."
 sudo expect -c "
-    spawn sudo openconnect eaglevpn.bc.edu --config=$HOME/.local/bcvpn.conf
+    spawn sudo openconnect eaglevpn.bc.edu --config=$HOME/.config/bcvpn.conf
     expect \"Password:\"
     send \"$bcpw\n\"
     expect \"Response:\"
