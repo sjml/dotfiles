@@ -1,137 +1,188 @@
 {
-    "git.enableSmartCommit": true,
-    "git.confirmSync": false,
-    "files.associations": {
-      "Brewfile": "ruby",
-      ".pylintrc": "ini",
-      "*.html": "html",
-      "*.babylon": "json",
-      "SCsub": "python"
-    },
-    "workbench.startupEditor": "newUntitledFile",
-    "workbench.colorTheme": "Atom One Dark",
+  // startup behaviors
+  //// on startup, just show a blank file instead of all of
+  ////   the "welcome!" rigamarole
+  "workbench.startupEditor": "newUntitledFile",
+  //// *super* useful to have the app remember what I was doing
+  "window.restoreWindows": "all",
+  //// but don't mess up existing workspaces with extra folders
+  "window.openFoldersInNewWindow": "on",
+  //// but don't nag me about empty files in windows
+  "workbench.editor.untitled.hint": "hidden",
 
-    // My poor eyes need a little more contrast
-      "workbench.colorCustomizations": {
-        "[Atom One Dark]": {
-          "editor.foreground": "#e6e6e6",
-          "editor.selectionBackground": "#5374bbb7",
-          "editor.lineHighlightBackground": "#99bbff1a",
-          "terminal.foreground": "#e6e6e6",
-          "terminal.background": "#1D2026",
-          "sideBar.border": "#333842",
-          "sideBar.background": "#1D2026",
-          "statusBar.background": "#2b6dd1",
-          "statusBarItem.hoverBackground": "#3a81ea",
-          "statusBar.foreground": "#e6e6e6",
-          "statusBar.noFolderBackground": "#6b488e",
-          "activityBarBadge.background": "#2b6dd1",
-          "activityBarBadge.foreground": "#e6e6e6",
-          "badge.background": "#2b6dd1",
-          "badge.foreground": "#e6e6e6"
-        }
-      },
-      "editor.tokenColorCustomizations": {
-        "[Atom One Dark]": {
-          "comments": "#929292"
-        }
-      },
-    "editor.fontSize": 15,
-    "debug.console.fontSize": 14,
-    "terminal.integrated.fontSize": 16,
-    "terminal.integrated.lineHeight": 1.05,
-    "workbench.tree.indent": 15,
-    "editor.fontFamily": "Fira Code",
-    "editor.fontLigatures": false,
-    "window.restoreWindows": "all",
-    "editor.renderWhitespace": "all",
-    "workbench.iconTheme": "simple-icons",
-    "git.autofetch": true,
-    "explorer.confirmDragAndDrop": false,
-    "gitlens.codeLens.enabled": false,
-    "python.terminal.activateEnvironment": false,
-    "explorer.confirmDelete": false,
-    "editor.suggestSelection": "first",
-    "explorer.incrementalNaming": "smart",
-    "window.openFoldersInNewWindow": "on",
-    "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
-    "gitlens.currentLine.enabled": false,
-    "gitlens.hovers.currentLine.over": "line",
-    "rust.clippy_preference": "on",
-    "editor.minimap.size": "fit",
-    "diffEditor.renderSideBySide": true,
-    "julia.execution.resultType": "both",
-    "julia.enableTelemetry": true,
-    "[python]": {
-        "diffEditor.ignoreTrimWhitespace": false
-    },
-    "[plaintext]": {
-        "editor.wordWrap": "on",
-        "diffEditor.renderSideBySide": false,
-        "editor.quickSuggestions": {
-          "other": "off",
-          "comments": "off",
-          "strings": "off"
-        }
-    },
-    "[markdown]": {
-        "diffEditor.renderSideBySide": false,
-        "editor.quickSuggestions": {
-          "other": "off",
-          "comments": "off",
-          "strings": "off"
-        }
-    },
-    "[Log]": {
-        "editor.wordWrap": "on"
-    },
-    "jupyter.askForKernelRestart": false,
-    "omnisharp.useGlobalMono": "always",
-    "explorer.compactFolders": false,
-    "output.smartScroll.enabled": false,
-    "terminal.integrated.showExitAlert": false,
-    "workbench.editorAssociations": {
-      "*.ipynb": "jupyter.notebook.ipynb"
-    },
-    "code-runner.enableAppInsights": false,
-    "terminal.integrated.commandsToSkipShell": [
-      "language-julia.interrupt"
-    ],
-    "python.languageServer": "Pylance",
-    "python.analysis.autoImportCompletions": false,
-    "emmet.includeLanguages": {
-      "nunjucks": "html"
-    },
-    "workbench.editor.untitled.hint": "hidden",
-    "C_Cpp.autoAddFileAssociations": false,
-    "git.allowForcePush": true,
-    "julia.symbolCacheDownload": true,
-    "breadcrumbs.enabled": false,
-    "notebook.lineNumbers": "on",
-    "sshfs.configpaths": [
-      "/Users/shane/.local/config/sshfs_configs.json"
-    ],
-    "diffEditor.ignoreTrimWhitespace": false,
-    "svelte.enable-ts-plugin": true,
-    "terminal.integrated.confirmOnExit": "hasChildProcesses",
-    "redhat.telemetry.enabled": false,
-    "terminal.integrated.scrollback": 10000,
-    "julia.enableCrashReporter": false,
-    "github.gitProtocol": "ssh",
-    "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
-    "terminal.integrated.enableMultiLinePasteWarning": false,
-    "editor.copyWithSyntaxHighlighting": false,
-    "csl-json-citation-picker.libraryPath": "~/Documents/Zotero_Library.json",
-    "cSpell.userWords": [
-      "Fordham",
-      "Liesegang",
-    ],
-    "markdown.extension.italic.indicator": "_",
-    "markdown.extension.toc.unorderedList.marker": "*",
-    "markdown.extension.toc.levels": "2..6",
-    "gitlens.advanced.messages": {
-      "suppressCreatePullRequestPrompt": true,
-      "suppressGitDisabledWarning": true,
-      "suppressGitMissingWarning": true
-    },
+  // integrated terminal stuff
+  "terminal.integrated.showExitAlert": false,
+  "terminal.integrated.confirmOnExit": "hasChildProcesses",
+  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+
+  // and the other output tab things
+  "output.smartScroll.enabled": false,
+
+  // appearances
+  //// I like Fira Code, but code ligatures are gross to my eyes
+  ////   (I know that the original Fira Mono has no ligatures, but
+  ////    Fira Code has better line-drawing characters.)
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": false,
+
+  //// my own fork of an obsoleted icon set because
+  ////   I am a king of tastemaking
+  "workbench.iconTheme": "simple-icons",
+
+  //// in general, keep things a little bigger than default for my poor eyes
+  "editor.fontSize": 15,
+  "debug.console.fontSize": 14,
+  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.lineHeight": 1.05,
+  "workbench.tree.indent": 15,
+
+  //// for the most part, I like the Atom One Dark theme,
+  ////   but more contrast (again, for my poor eyes)
+  "workbench.colorTheme": "Atom One Dark",
+  "workbench.colorCustomizations": {
+    "[Atom One Dark]": {
+      "editor.foreground": "#e6e6e6",
+      "editor.selectionBackground": "#5374bbb7",
+      "editor.lineHighlightBackground": "#99bbff1a",
+      "terminal.foreground": "#e6e6e6",
+      "terminal.background": "#1D2026",
+      "sideBar.border": "#333842",
+      "sideBar.background": "#1D2026",
+      "statusBar.background": "#2b6dd1",
+      "statusBarItem.hoverBackground": "#3a81ea",
+      "statusBar.foreground": "#e6e6e6",
+      "statusBar.noFolderBackground": "#6b488e",
+      "activityBarBadge.background": "#2b6dd1",
+      "activityBarBadge.foreground": "#e6e6e6",
+      "badge.background": "#2b6dd1",
+      "badge.foreground": "#e6e6e6"
+    }
+  },
+  "editor.tokenColorCustomizations": {
+    "[Atom One Dark]": {
+      "comments": "#929292"
+    }
+  },
+
+  //// all these themes are great but I have literally
+  ////   *never* wanted the syntax highlighting in my
+  ////   clipboard.
+  "editor.copyWithSyntaxHighlighting": false,
+
+  //// I like to make sure that tab characters don't sneak
+  ////   in unless I invite them
+  "editor.renderWhitespace": "all",
+
+  "editor.minimap.size": "fit",
+  "editor.suggestSelection": "first",
+
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "explorer.incrementalNaming": "smart",
+  "explorer.compactFolders": false,
+
+  "breadcrumbs.enabled": false,
+
+  "diffEditor.renderSideBySide": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+
+  // associatin' files all about
+  "files.associations": {
+    "Brewfile": "ruby",
+    ".pylintrc": "ini",
+    "*.html": "html",
+    "*.babylon": "json",
+    "SCsub": "python"
+  },
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "emmet.includeLanguages": {
+    "nunjucks": "html"
+  },
+
+  // git and pals
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "git.allowForcePush": true,
+
+  "gitlens.codeLens.enabled": false,
+  "gitlens.advanced.messages": {
+    "suppressCreatePullRequestPrompt": true,
+    "suppressGitDisabledWarning": true,
+    "suppressGitMissingWarning": true
+  },
+  "gitlens.currentLine.enabled": false,
+  "gitlens.hovers.currentLine.over": "line",
+
+  "github.gitProtocol": "ssh",
+
+
+  // language-specific settings
+  //// first text-y things
+  "[plaintext]": {
+    "editor.wordWrap": "on",
+    "diffEditor.renderSideBySide": false,
+    "editor.quickSuggestions": {
+      "other": "off",
+      "comments": "off",
+      "strings": "off"
+    }
+  },
+
+  "[markdown]": {
+    "diffEditor.renderSideBySide": false,
+    "editor.quickSuggestions": {
+      "other": "off",
+      "comments": "off",
+      "strings": "off"
+    }
+  },
+  "markdown.extension.italic.indicator": "_",
+  "markdown.extension.toc.unorderedList.marker": "*",
+  "markdown.extension.toc.levels": "2..6",
+
+  "[Log]": {
+    "editor.wordWrap": "on"
+  },
+
+  //// then programming languages
+  "C_Cpp.autoAddFileAssociations": false,
+
+  "[python]": {
+    "diffEditor.ignoreTrimWhitespace": false
+  },
+  "python.terminal.activateEnvironment": false,
+  "python.languageServer": "Pylance",
+  "python.analysis.autoImportCompletions": false,
+
+  "julia.execution.resultType": "both",
+  "julia.enableTelemetry": true,
+  "julia.symbolCacheDownload": true,
+  "julia.enableCrashReporter": false,
+
+  "jupyter.askForKernelRestart": false,
+  "notebook.lineNumbers": "on",
+
+  "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+
+  // extension-specific settings
+  "cSpell.userWords": [
+    "Fordham",
+    "Liesegang",
+  ],
+  "csl-json-citation-picker.libraryPath": "~/Documents/Zotero_Library.json",
+  "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+  "svelte.enable-ts-plugin": true,
+  "sshfs.configpaths": [
+    "/Users/shane/.local/config/sshfs_configs.json"
+  ],
+
+  // anti-telemetry settings. am I paranoid? maybe.
+  "code-runner.enableAppInsights": false,
+  "redhat.telemetry.enabled": false,
+
+  // things I haven't sorted yet will be down here.
 }
