@@ -50,6 +50,7 @@ brew 'haxe'
 
 # network stuff
 brew 'wget'
+brew 'aria2'
 brew 'nmap'
 brew 'tcptraceroute'
 brew 'tor'
@@ -96,8 +97,12 @@ brew 'qemu'
 brew 'podman'
 brew 'docker'
 brew 'colima'
+
+# remote service apis
 brew 'doctl'
 brew 'flyctl'
+brew 'azure-cli'
+brew 'netlify-cli'
 
 ## search and store
 brew 'ripgrep'
@@ -321,6 +326,7 @@ mas 'GrandPerspective',    id: 1111570163
 mas 'Menu World Time',     id: 1446377255
 mas 'EasyRes',             id: 688211836
 mas 'Shareful',            id: 1522267256
+mas 'Discovery',           id: 1381004916
 
 # graphics and office
 mas 'Pixelmator Pro',      id: 1289583905

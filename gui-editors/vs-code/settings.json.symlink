@@ -133,6 +133,7 @@
   },
 
   "[markdown]": {
+    "editor.wordWrap": "on",
     "diffEditor.renderSideBySide": false,
     "editor.quickSuggestions": {
       "other": "off",
@@ -169,10 +170,12 @@
   "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
 
   // extension-specific settings
+  "cSpell.enabled": false, // turn it on manually for workspaces where I want it
   "cSpell.userWords": [
     "Fordham",
     "Liesegang",
   ],
+
   "csl-json-citation-picker.libraryPath": "~/Documents/Zotero_Library.json",
   "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
   "svelte.enable-ts-plugin": true,
