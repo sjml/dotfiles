@@ -15,6 +15,20 @@ if [ $? -ne 0 ]; then
     sudo -v
 fi
 
+mullvad_connected=0
+MULLVAD=$(which mullvad)
+if [[ ${#MULLVAD} -ne 0 ]]; then
+    mullvad_status=$($MULLVAD status)
+    if [[ $mullvad_status == Connected* ]]; then
+        mullvad_connected=1
+    fi
+fi
+
+if [[ $mullvad_connected -eq 1 ]]; then
+    echo "Temporarily disconnecting from Mullvad VPN..."
+    mullvad disconnect
+fi
+
 set -e
 
 echo "Getting BC password from 1Password..."
@@ -30,3 +44,8 @@ sudo expect -c "
     send \"1\n\"
     interact
 "
+
+if [[ $mullvad_connected -eq 1 ]]; then
+    echo "Reconnecting to Mullvad VPN..."
+    mullvad connect
+fi
