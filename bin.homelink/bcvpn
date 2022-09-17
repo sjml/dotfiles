@@ -27,6 +27,7 @@ fi
 if [[ $mullvad_connected -eq 1 ]]; then
     echo "Temporarily disconnecting from Mullvad VPN..."
     mullvad disconnect
+    echo "Waiting for Mullvad disconnection to settle..."
     sleep 5
 fi
 
@@ -47,7 +48,8 @@ sudo expect -c "
 "
 
 if [[ $mullvad_connected -eq 1 ]]; then
-    echo "Reconnecting to Mullvad VPN..."
+    echo "Waiting for OpenConnect disconnection to settle..."
     sleep 5
+    echo "Reconnecting to Mullvad VPN..."
     mullvad connect
 fi

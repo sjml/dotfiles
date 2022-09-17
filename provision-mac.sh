@@ -411,6 +411,7 @@ declare -a dockList=(\
   /System/Applications/Mail.app \
   /System/Applications/Messages.app \
   /Applications/WhatsApp.app \
+  /System/Applications/Calendar.app \
   /Applications/Overcast.app \
   /System/Applications/Music.app \
   /System/Applications/Photos.app \

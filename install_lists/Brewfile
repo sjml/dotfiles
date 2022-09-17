@@ -130,6 +130,7 @@ brew 'svgo'
 # various and sundry
 brew 'pandoc'
 brew 'multimarkdown'
+brew 'ocrmypdf'
 brew 'lame'
 brew 'libdvdcss'
 brew 'youtube-dl'

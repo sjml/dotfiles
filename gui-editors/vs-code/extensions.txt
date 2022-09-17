@@ -22,6 +22,7 @@ gaborv.flatbuffers
 geequlim.godot-tools
 golang.go
 hbenl.vscode-test-explorer
+idleberg.applescript
 JakeBecker.elixir-ls
 julialang.language-julia
 Kelvin.vscode-sshfs
@@ -42,7 +43,7 @@ rebornix.ruby
 redhat.vscode-yaml
 REditorSupport.r
 ronnidc.nunjucks
-rust-lang.rust
+rust-lang.rust-analyzer
 ShaneLiesegang.csl-json-citation-picker
 ShaneLiesegang.vscode-simple-icons-rev
 skyapps.fish-vscode
