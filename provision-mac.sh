@@ -417,6 +417,7 @@ declare -a dockList=(\
   /System/Applications/Photos.app \
   /Applications/Pixelmator\ Pro.app \
   /Applications/Affinity\ Designer.app \
+  /Applications/Zotero.app \
   /Applications/Sublime\ Text.app \
   /Applications/Visual\ Studio\ Code.app \
   /Applications/Xcode.app \
