@@ -219,6 +219,7 @@ cask 'unity-hub'
 cask 'blender'
 cask 'dust3d'
 cask 'freecad'
+cask 'affinity-designer'
 cask 'inkscape'
 cask 'fontforge'
 cask 'krita'
@@ -332,7 +333,6 @@ mas 'Discovery',           id: 1381004916
 
 # graphics and office
 mas 'Pixelmator Pro',      id: 1289583905
-mas 'Affinity Designer',   id: 824171161
 # mas 'GIF Brewery 3',       id: 1081413713 # discontinued? :(
 mas 'GIPHY Capture',       id: 668208984
 mas 'Pages',               id: 409201541
