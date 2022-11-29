@@ -334,6 +334,9 @@ defaults write com.apple.dock showDesktopGestureEnabled -bool true
 # disable Launchpad gesture
 defaults write com.apple.dock showLaunchpadGestureEnabled -bool false
 
+# show the app switcher on every monitor
+defaults write com.apple.dock appswitcher-all-displays -bool true
+
 # Enable ⌃-Scroll to zoom screen
 defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
 defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
