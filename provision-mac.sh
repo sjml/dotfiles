@@ -407,6 +407,9 @@ defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 # Set archive utility to not open a new window when it extracts things
 defaults write com.apple.archiveutility dearchive-reveal-after -int 0
 
+# UGH ads in Xcode? the very name of this setting should be a source of shame to someone at Apple
+defaults write com.apple.dt.Xcode XcodeCloudUpsellPromptEnabled -bool false
+
 # set up Dock
 dockutil --remove all --no-restart
 declare -a dockList=(\
