@@ -125,6 +125,7 @@ brew 'zopfli'
 brew 'guetzli'
 brew 'mozjpeg'
 brew 'gifski'
+brew 'gifsicle'
 brew 'svgo'
 
 # various and sundry
@@ -143,6 +144,7 @@ brew 'duti'
 brew 'trash'
 brew 'terminal-notifier'
 brew 'entr'
+brew 'molten-vk'
 
 # amusements!
 brew 'nethack'
@@ -217,6 +219,7 @@ cask 'unity-hub'
 # cask 'godot' # manually install godot to control versioning
 # cask 'godot-mono'
 cask 'blender'
+cask 'blockbench'
 cask 'dust3d'
 cask 'freecad'
 cask 'affinity-designer'
@@ -228,6 +231,7 @@ cask 'tiled'
 cask 'pixelorama'
 cask 'bfxr'
 cask 'audacity'
+cask 'losslesscut'
 cask 'twine'
 cask 'inky'
 cask 'nodebox'
@@ -334,6 +338,7 @@ mas 'Discovery',           id: 1381004916
 # graphics and office
 mas 'Pixelmator Pro',      id: 1289583905
 # mas 'GIF Brewery 3',       id: 1081413713 # discontinued? :(
+mas 'Gifski',              id: 1351639930
 mas 'GIPHY Capture',       id: 668208984
 mas 'Pages',               id: 409201541
 mas 'Numbers',             id: 409203825
