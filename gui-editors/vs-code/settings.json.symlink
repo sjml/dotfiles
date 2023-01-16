@@ -172,7 +172,6 @@
   // extension-specific settings
   "cSpell.enabled": false, // turn it on manually for workspaces where I want it
   "cSpell.userWords": [
-    "Fordham",
     "Liesegang",
   ],
 
@@ -186,6 +185,16 @@
   // anti-telemetry settings. am I paranoid? maybe.
   "code-runner.enableAppInsights": false,
   "redhat.telemetry.enabled": false,
+  "svelte.plugin.svelte.note-new-transformation": false,
+  "terminal.integrated.commandsToSkipShell": [
+    "language-julia.interrupt"
+  ],
+  "cSpell.enableFiletypes": [
+    "!python",
+    "!rust"
+  ],
+  "debug.allowBreakpointsEverywhere": true,
+  "go.toolsManagement.autoUpdate": true,
 
   // things I haven't sorted yet will be down here.
 }
