@@ -17,8 +17,7 @@ brewfile_contents = open("../install_lists/Brewfile", "r").read()
 #   nobody got time for that and I only use a few non-standard taps
 allow = [
     r"^font-*",
-    r"^dotfile-watcher$",
-    r"^dualcam$",
+    r"^sjml/sjml/*",
 ]
 
 brews = []

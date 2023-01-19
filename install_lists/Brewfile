@@ -151,6 +151,11 @@ brew 'nethack'
 brew 'frotz'
 brew 'solarus'
 
+# my own tools
+brew 'sjml/sjml/beschi'
+brew 'sjml/sjml/paper'
+
+
 # now getting into full macOS apps
 tap 'homebrew/cask'
 tap 'homebrew/cask-versions'
@@ -304,9 +309,8 @@ cask 'font-juliamono'
 
 
 # my own apps
-tap  'sjml/sjml'
-cask 'dotfile-watcher'
-cask 'dualcam'
+cask 'sjml/sjml/dotfile-watcher'
+cask 'sjml/sjml/dualcam'
 
 
 # and finally, stuff from the Mac App Store
