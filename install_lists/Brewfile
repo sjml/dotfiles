@@ -55,7 +55,7 @@ brew 'nmap'
 brew 'tcptraceroute'
 brew 'tor'
 brew 'croc'
-brew 'elinks'
+brew 'felinks'
 brew 'openconnect'
 brew 'xxhash'
 
