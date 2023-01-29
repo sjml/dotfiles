@@ -4,14 +4,14 @@
 #     Homebrew (command line programs)
 #     Homebrew's Casks (GUI apps)
 #     Mac App Store (flakily, as the mas tool struggles at times)
-#     Python 3/2, Node.js LTS, and Ruby environments
+#     Python, Node.js LTS, and Ruby environments
 #     Stable branch of Rust toolchain
 #
 # Specifically does not monitor packages within script environments;
 #   those might be pinned to specific versions and need to be checked
 #   individually.
 
-local -a envs=(brew cask mas python3 python2 node ruby rust)
+local -a envs=(brew cask mas python node ruby rust)
 local -a cmds=(check up)
 
 if [[ $(uname -m) == 'arm64' ]]; then
@@ -142,7 +142,10 @@ env_remVer() {
         | xargs
 }
 env_locVer() {
-    asdf list $1 | grep "^\s*$2" | xargs
+    asdf list $1 \
+        | grep "^\s*\*$2" \
+        | xargs \
+        | sed 's/^\**//g'
 }
 
 env_check() {
@@ -198,18 +201,17 @@ node_up() {
     trap - ERR
 }
 
-python3_check() {
+python_check() {
     asdf plugin update python > /dev/null 2>&1
-    env_check python 3 "Python 3"
+    env_check python 3 "Python"
 }
 
-python3_up() {
+python_up() {
     local newVersion=$( env_remVer python 3 )
     local oldVersion=$( env_locVer python 3 )
-    local version2=$( env_locVer python 2)
 
     if [[ $newVersion == $oldVersion ]]; then
-        print_check "Python 3" $newVersion $newVersion
+        print_check "Python" $newVersion $newVersion
         return
     fi
 
@@ -217,7 +219,7 @@ python3_up() {
         CPPFLAGS="-I$hbdir/opt/zlib/include -I$hbdir/opt/sqlite/include" \
         PYTHON_CONFIGURE_OPTS="--enable-shared" \
         asdf install python $newVersion
-    asdf global python $newVersion $version2
+    asdf global python $newVersion
     asdf reshim python
 
     trap env_migration_failed ERR
@@ -231,43 +233,6 @@ python3_up() {
         asdf reshim python
         rm "$REQ_FILE"
         print_check "Python 3" $newVersion $newVersion
-    trap - ERR
-}
-
-
-python2_check() {
-    # asdf plugin update python > /dev/null 2>&1 # no need to check
-    env_check python 2 "Python 2"
-}
-
-python2_up() {
-    local newVersion=$( env_remVer python 2 )
-    local oldVersion=$( env_locVer python 2 )
-    local version3=$( env_locVer python 3)
-
-    if [[ $newVersion == $oldVersion ]]; then
-        print_check "Python 2" $newVersion $newVersion
-        return
-    fi
-
-    LDFLAGS="-L$hbdir/opt/zlib/lib -L$hbdir/opt/sqlite/lib" \
-        CPPFLAGS="-I$hbdir/opt/zlib/include -I$hbdir/opt/sqlite/include" \
-        PYTHON_CONFIGURE_OPTS="--enable-shared" \
-        asdf install python $newVersion
-    asdf global python $version3 $newVersion
-    asdf reshim python
-
-    trap env_migration_failed ERR
-        local seed="$(date '+%Y%m%d%H%M%S').$$"
-        local REQ_FILE="$HOME/python2-requirements.$seed.txt"
-        ~/.asdf/installs/python/$oldVersion/bin/pip freeze | grep -v "^-e" > "$REQ_FILE"
-        ~/.asdf/installs/python/$newVersion/bin/pip install --upgrade pip
-        ~/.asdf/installs/python/$newVersion/bin/pip install wheel
-        ~/.asdf/installs/python/$newVersion/bin/pip install -r "$REQ_FILE"
-        asdf uninstall python $oldVersion
-        asdf reshim python
-        rm "$REQ_FILE"
-        print_check "Python 2" $newVersion $newVersion
     trap - ERR
 }
 

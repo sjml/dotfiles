@@ -131,20 +131,9 @@ LDFLAGS="-L$HBBASE/opt/zlib/lib -L$HBBASE/opt/sqlite/lib" \
 
 asdf global python $py3version
 asdf reshim python
-$shimPath/pip3 install --upgrade pip
+$shimPath/python3 -m pip install --upgrade pip
 $shimPath/pip3 install wheel
 $shimPath/pip3 install -r install_lists/python3-dev-packages.txt
-asdf reshim python
-
-py2version=$(env_remVer python 2)
-LDFLAGS="-L$HBBASE/opt/zlib/lib -L$HBBASE/opt/sqlite/lib" \
-  CPPFLAGS="-I$HBBASE/opt/zlib/include -I$HBBASE/opt/sqlite/include" \
-  asdf install python $py2version
-asdf global python $py3version $py2version
-asdf reshim python
-$shimPath/pip2 install --upgrade pip
-$shimPath/pip2 install wheel
-$shimPath/pip2 install -r install_lists/python2-dev-packages.txt
 asdf reshim python
 
 # asdf install python miniconda3-latest
