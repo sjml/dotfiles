@@ -35,7 +35,7 @@ set -e
 
 echo "Getting BC password from 1Password..."
 eval $(op signin)
-bcpw=$(op item get "Boston College" --format=json |  jq --raw-output '.fields[] | select(.id=="password").value')
+bcpw=$(op item get "Boston College" --format=json | jq --raw-output '.fields[] | select(.id=="password").value')
 
 echo "Starting up VPN..."
 sudo expect -c "

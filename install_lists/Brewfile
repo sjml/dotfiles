@@ -91,6 +91,7 @@ brew 'ctags'
 brew 'qcachegrind'
 brew 'yasm'
 brew 'flatbuffers'
+brew 'cloc'
 
 ## virtualization
 brew 'qemu'
@@ -288,6 +289,7 @@ cask 'a-better-finder-rename'
 cask 'pastebot'
 cask 'bartender'
 cask 'crunch'
+cask 'sloth'
 
 # quicklook stuff
 cask 'qlstephen'
