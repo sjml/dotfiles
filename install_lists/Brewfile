@@ -138,7 +138,7 @@ brew 'libdvdcss'
 brew 'youtube-dl'
 brew 'ffmpeg'
 brew 'speedtest-cli'
-brew 'dieharder'
+# brew 'dieharder'  # removed from homebrew? :(
 brew 'dockutil'
 brew 'defaultbrowser'
 brew 'duti'
