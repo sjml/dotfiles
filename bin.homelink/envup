@@ -302,6 +302,12 @@ rust_up() {
 
 [[ $ZSH_EVAL_CONTEXT =~ :file$ ]] && sourced=1 || sourced=0
 if [[ $sourced -ne 1 ]]; then
+    nc -z www.apple.com 80 -G1 2> /dev/null
+    if [ $? -ne 0 ]; then
+        echo "  😣 Doesn't look like there's a connection to the internet right now..."
+        exit 1
+    fi
+
     local val=""
     local command=""
     if [[ $#@ -lt 2 ]]; then
