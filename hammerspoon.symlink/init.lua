@@ -22,6 +22,7 @@ hypershift = {"ctrl", "alt", "cmd", "shift"}
 require('position')
 require('move-window')
 require('mute-on-unlock')
-require('hub-handler')
+-- require('hub-handler')
+require('pseudo-kvm')
 
 hs.alert.show("Hammerspoon Loaded")
