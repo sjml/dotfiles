@@ -1,0 +1,6 @@
+# when we have multiple options, stick with h264
+## not actually using all the time, but here for documentation
+# --format "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best"
+
+# keep filenames from getting too long
+--output "%(title).150B.%(ext)s"
