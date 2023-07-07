@@ -1,5 +1,4 @@
 yarn
-live-server
 ttf2woff
 eslint
 prettier
