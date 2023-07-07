@@ -29,15 +29,19 @@ Kelvin.vscode-sshfs
 mechatroner.rainbow-csv
 mhutchie.git-graph
 Mrmomo.meson-build
+ms-python.isort
 ms-python.python
 ms-python.vscode-pylance
 ms-toolsai.jupyter
 ms-toolsai.jupyter-keymap
 ms-toolsai.jupyter-renderers
+ms-toolsai.vscode-jupyter-cell-tags
+ms-toolsai.vscode-jupyter-slideshow
 ms-vscode.cpptools
 ms-vscode.hexeditor
 ms-vscode.mono-debug
 ms-vscode.test-adapter-converter
+ms-vscode.wordcount
 nisargjhaveri.ios-debug
 rebornix.ruby
 redhat.vscode-yaml
@@ -52,7 +56,7 @@ sswg.swift-lang
 stevensona.shader-toy
 streetsidesoftware.code-spell-checker
 svelte.svelte-vscode
-tiehuis.zig
+tomoki1207.pdf
 torn4dom4n.latex-support
 twxs.cmake
 Tyriar.lorem-ipsum
@@ -61,3 +65,4 @@ wholroyd.jinja
 wingrunr21.vscode-ruby
 xdebug.php-debug
 yzhang.markdown-all-in-one
+ziglang.vscode-zig

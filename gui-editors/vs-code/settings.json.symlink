@@ -15,6 +15,9 @@
   "terminal.integrated.confirmOnExit": "hasChildProcesses",
   "terminal.integrated.scrollback": 10000,
   "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.commandsToSkipShell": [
+    "language-julia.interrupt"
+  ],
 
   // and the other output tab things
   "output.smartScroll.enabled": false,
@@ -107,6 +110,7 @@
   "git.confirmSync": false,
   "git.autofetch": true,
   "git.allowForcePush": true,
+  "git.openRepositoryInParentFolders": "never",
 
   "gitlens.codeLens.enabled": false,
   "gitlens.advanced.messages": {
@@ -153,7 +157,8 @@
   "C_Cpp.autoAddFileAssociations": false,
 
   "[python]": {
-    "diffEditor.ignoreTrimWhitespace": false
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.formatOnType": true
   },
   "python.terminal.activateEnvironment": false,
   "python.languageServer": "Pylance",
@@ -171,9 +176,18 @@
 
   // extension-specific settings
   "cSpell.enabled": false, // turn it on manually for workspaces where I want it
-  "cSpell.userWords": [
-    "Liesegang",
+  "cSpell.enableFiletypes": [
+    "!python",
+    "!rust"
   ],
+  "cSpell.customDictionaries": { // storing my custom words out of here
+    "sjml-words": {
+      "name": "sjml-words",
+      "path": "~/.dotfiles/cspell-words.txt",
+      "description": "Shane's custom dictionary",
+      "addWords": true
+    },
+  },
 
   "csl-json-citation-picker.libraryPath": "~/Documents/Zotero_Library.json",
   "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
@@ -185,16 +199,9 @@
   // anti-telemetry settings. am I paranoid? maybe.
   "code-runner.enableAppInsights": false,
   "redhat.telemetry.enabled": false,
-  "svelte.plugin.svelte.note-new-transformation": false,
-  "terminal.integrated.commandsToSkipShell": [
-    "language-julia.interrupt"
-  ],
-  "cSpell.enableFiletypes": [
-    "!python",
-    "!rust"
-  ],
+
+  // things I haven't sorted yet will be down here.
   "debug.allowBreakpointsEverywhere": true,
   "go.toolsManagement.autoUpdate": true,
 
-  // things I haven't sorted yet will be down here.
 }
