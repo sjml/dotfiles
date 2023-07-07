@@ -1,7 +1,9 @@
 -- Inspired by https://github.com/haimgel/display-switch, which
 --   sadly does not work on Apple Silicon at the moment. :(
 --   Makes use of a compiled version of https://github.com/waydabber/m1ddc
---   that needs to exist on the PATH.
+--   that is also in this repo (the bin.homelink that ends up symlinked to
+--   ~/bin). I probably should have found another home for a compiled tool,
+--   given that the rest of that directory are scripts, but this'll do.
 
 local log = hs.logger.new("pseudo-kvm", "debug")
 
@@ -11,8 +13,7 @@ local USB_SWITCH_VENDOR = 0x1a40
 local USB_SWITCH_PRODUCT = 0x0101
 
 
--- look for the USB switch that connects my keyboard and mouse to both
---    the docking station for my Mac and directly to my desktop PC.
+-- look for the the docking station for my Mac
 local function isDocked()
   for _, data in pairs(hs.usb.attachedDevices()) do
     if data["vendorID"] == DOCKING_STATION_VENDOR and data["productID"] == DOCKING_STATION_PRODUCT then
@@ -41,7 +42,7 @@ local usbWatcher = hs.usb.watcher.new(usbWatcherCallback)
 usbWatcher:start()
 
 
--- macOS > High Sierra gets finicky waking from sleep with USB watching active,
+-- macOS >= High Sierra gets finicky waking from sleep with USB watching active,
 --   for some reason. Shut off watching when we're about to sleep and
 --   turn it back on when we wake up.
 local function toggleWatcher(eventType)
