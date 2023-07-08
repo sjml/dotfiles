@@ -1,9 +1,7 @@
 -- Inspired by https://github.com/haimgel/display-switch, which
 --   sadly does not work on Apple Silicon at the moment. :(
 --   Makes use of a compiled version of https://github.com/waydabber/m1ddc
---   that is also in this repo (the bin.homelink that ends up symlinked to
---   ~/bin). I probably should have found another home for a compiled tool,
---   given that the rest of that directory are scripts, but this'll do.
+--   installed via Homebrew.
 
 local log = hs.logger.new("pseudo-kvm", "debug")
 
@@ -30,10 +28,10 @@ local function usbWatcherCallback(data)
   if data["vendorID"] == USB_SWITCH_VENDOR and data["productID"] == USB_SWITCH_PRODUCT then
     if data["eventType"] == "added" then
       -- change to DisplayPort 1 (input 15)
-      local output, status, _type, rc = hs.execute("~/bin/m1ddc set input 15")
+      local output, status, _type, rc = hs.execute("/opt/homebrew/bin/m1ddc set input 15")
     elseif data["eventType"] == "removed" then
       -- change to HDMI 1 (input 17)
-      local output, status, _type, rc = hs.execute("~/bin/m1ddc set input 17")
+      local output, status, _type, rc = hs.execute("/opt/homebrew/bin/m1ddc set input 17")
     end
   end
 end

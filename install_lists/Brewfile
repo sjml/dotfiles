@@ -146,6 +146,7 @@ brew 'trash'
 brew 'terminal-notifier'
 brew 'entr'
 brew 'molten-vk'
+brew 'm1ddc'
 
 # amusements!
 brew 'nethack'
