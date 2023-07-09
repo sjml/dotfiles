@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# The mullvad daemon has a lot of trouble waking from sleep.
+# It's either this or restart the computer.
+# (This only started happening about a year ago; Mullvad
+#    support is mystified and not super helpful, which is a bummer.)
+
+# need sudo to do the killing
+sudo -v
+
+# first kill the GUI app
+killall "Mullvad VPN"
+sleep 1 # give it a bit
+
+# now the daemon (will automatically restart)
+sudo pkill mullvad-daemon
+sleep 1 # give it a bit
+
+# restart the GUI
+open -a "Mullvad VPN"
