@@ -24,5 +24,6 @@ require('move-window')
 require('mute-on-unlock')
 -- require('hub-handler')
 require('pseudo-kvm')
+require('monitor-standby')
 
 hs.alert.show("Hammerspoon Loaded")
