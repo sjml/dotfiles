@@ -22,8 +22,15 @@ hypershift = {"ctrl", "alt", "cmd", "shift"}
 require('position')
 require('move-window')
 require('mute-on-unlock')
--- require('hub-handler')
 require('pseudo-kvm')
 require('monitor-standby')
+-- require('DISABLED_drive-handler')
 
-hs.alert.show("Hammerspoon Loaded")
+local initialAlertStyle = {
+  fillColor = {white = 1, alpha = 0.9},
+  textColor = {black = 1},
+  strokeColor = {black = 1},
+  fadeInDuration = 1.0,
+  fadeOutDuration = 1.0,
+}
+hs.alert.show("🔨 Hammerspoon Loaded 🥄", initialAlertStyle)

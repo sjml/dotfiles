@@ -6,6 +6,7 @@ mute_on_unlock.log = hs.logger.new("mute-on-unlock", "debug")
 local function muteOnUnlock(eventType)
   -- mute_on_unlock.log.i("mute-on-unlock watcher event")
   if util.isDocked() then
+    -- we're at home; be as loud as we want
     return
   end
   -- mute_on_unlock.log.i("mute-on-unlock not docked")

@@ -16,21 +16,28 @@ local WIN_INPUT_ID = "17"
 
 local function usbWatcherCallback(data)
   -- pseudo_kvm.log.i("pseudo-kvm watcher event")
-  if not util.isDocked() then
-    return
-  end
-  -- pseudo_kvm.log.i("pseudo-kvm not docked")
-  if data["vendorID"] == USB_SWITCH_VENDOR and data["productID"] == USB_SWITCH_PRODUCT then
-    if data["eventType"] == "added" then
-      -- switch showed up on this machine; move to our input
-      -- pseudo_kvm.log.i("pseudo-kvm switch added")
-      local output, status, _type, rc = hs.execute(M1DDC_PATH .. " set input " .. MAC_INPUT_ID)
-    elseif data["eventType"] == "removed" then
-      -- switch was removed from this machine; move to other input
-      -- pseudo_kvm.log.i("pseudo-kvm switch removed")
-      local output, status, _type, rc = hs.execute(M1DDC_PATH .. " set input " .. WIN_INPUT_ID)
+
+  -- delay added because we don't know the order stuff will be removed if we're undocking
+  --    it *should* remove the switch first and then the dock, but seems to get kerfuffled
+  --    at times. hopefully .1 seconds is enough time to deal with it without delaying
+  --    the switch too much?
+  hs.timer.doAfter(0.1, function()
+    if not util.isDocked() then
+      return
     end
-  end
+    -- pseudo_kvm.log.i("pseudo-kvm not docked")
+    if data["vendorID"] == USB_SWITCH_VENDOR and data["productID"] == USB_SWITCH_PRODUCT then
+      if data["eventType"] == "added" then
+        -- switch showed up on this machine; move to our input
+        -- pseudo_kvm.log.i("pseudo-kvm switch added")
+        local output, status, _type, rc = hs.execute(M1DDC_PATH .. " set input " .. MAC_INPUT_ID)
+      elseif data["eventType"] == "removed" then
+        -- switch was removed from this machine; move to other input
+        -- pseudo_kvm.log.i("pseudo-kvm switch removed")
+        local output, status, _type, rc = hs.execute(M1DDC_PATH .. " set input " .. WIN_INPUT_ID)
+      end
+    end
+  end)
 end
 
 pseudo_kvm.usbWatcher = hs.usb.watcher.new(usbWatcherCallback)
