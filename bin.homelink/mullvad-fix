@@ -13,7 +13,7 @@ killall "Mullvad VPN"
 sleep 1 # give it a bit
 
 # now the daemon (will automatically restart)
-sudo pkill mullvad-daemon
+sudo pkill -9 mullvad-daemon
 sleep 1 # give it a bit
 
 # restart the GUI
