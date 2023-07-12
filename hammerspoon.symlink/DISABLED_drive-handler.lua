@@ -2,6 +2,9 @@
   -- seems like Time Machine stuff is hard, even using command line
   --   drive lists as "synthesized" in `diskutil list` and doesn't show up
   --   if I have it mount the physical disk :-/
+  --
+  -- explore: https://talk.macpowerusers.com/t/any-way-to-automate-a-time-machine-backup-mount-backup-unmount/16758/9
+  --    (archive: https://archive.ph/zLY0r, post partway down the page)
 
 -- Handles hard drives when I'm docked.
 --   1. Adds an icon to the menubar to make ejecting them easy.
