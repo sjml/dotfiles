@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+##########
+### Doesn't work anymore; BC seems to have borked something on their
+###   Cisco setup so you can't access it with openconnect any more. >:(
+### Leaving here for now as a reference.
+##########
+
+
 # Boston College requires an AnyConnect VPN to access certain services.
 #   I don't like extra VPN software running, so I use the OpenConnect
 #   command line program instead.

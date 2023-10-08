@@ -4,7 +4,8 @@
   --   if I have it mount the physical disk :-/
   --
   -- explore: https://talk.macpowerusers.com/t/any-way-to-automate-a-time-machine-backup-mount-backup-unmount/16758/9
-  --    (archive: https://archive.ph/zLY0r, post partway down the page)
+  --    (archives: https://archive.ph/zLY0r, https://web.archive.org/web/20210512170352/https://talk.macpowerusers.com/t/any-way-to-automate-a-time-machine-backup-mount-backup-unmount/16758/10
+  --    post partway down the page)
 
 -- Handles hard drives when I'm docked.
 --   1. Adds an icon to the menubar to make ejecting them easy.
@@ -18,9 +19,9 @@ drive_handler.log = hs.logger.new("drive-handler", "debug")
 
 drive_handler.ejection = nil
 
-function ejectionClicked()
+local function ejectionClicked()
   -- drive_handler.log.i("ejection clicked!")
-  drive_handler.ejection:setTitle("⏳")
+  drive_handler.ejection:setTitle("👀")
 
   -- without the delay, the title never gets set
   hs.timer.doAfter(0.05, function()
@@ -42,17 +43,19 @@ function ejectionClicked()
 
     if allGone then
       destroyEjection()
+    else
+      drive_handler.ejection:setTitle("⏏")
     end
   end)
 end
 
-function destroyEjection()
+local function destroyEjection()
   drive_handler.ejection:removeFromMenuBar()
   drive_handler.ejection:delete()
   drive_handler.ejection = nil
 end
 
-function makeEjection()
+local function makeEjection()
   if drive_handler.ejection ~= nil then
     return drive_handler.ejection
   end
@@ -62,7 +65,7 @@ function makeEjection()
   return ej
 end
 
-function manualCheck()
+local function manualCheck()
   if not util.isDocked() then
     if drive_handler.ejection ~= nil then
       destroyEjection()
@@ -76,7 +79,7 @@ end
 -- check to see if the USB hub is already attached here at startup
 manualCheck()
 
-local tmpVols = hs.fs.volume.allVolumes(true)
-for mountPath, volInfo in pairs(tmpVols) do
-  drive_handler.log.i("mp: " .. mountPath)
-end
+-- local tmpVols = hs.fs.volume.allVolumes(true)
+-- for mountPath, volInfo in pairs(tmpVols) do
+--   drive_handler.log.i("mp: " .. mountPath)
+-- end

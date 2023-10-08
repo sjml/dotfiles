@@ -14,6 +14,7 @@ local MAC_INPUT_ID = "15"
 local WIN_INPUT_ID = "17"
 
 
+
 local function usbWatcherCallback(data)
   -- pseudo_kvm.log.i("pseudo-kvm watcher event")
 
@@ -51,6 +52,13 @@ local function toggleWatcher(eventType)
   if (eventType == hs.caffeinate.watcher.systemDidWake) then
       -- pseudo_kvm.log.i("pseudo-kvm wake event turning OFF usb watcher")
       pseudo_kvm.usbWatcher:start()
+      -- if we're waking up and docked, we probably want to be switched here
+      --    (seems like sleeping sometimes triggers the switch? hrm.)
+      hs.timer.doAfter(0.5, function()
+        if util.isDocked() then
+          local output, status, _type, rc = hs.execute(M1DDC_PATH .. " set input " .. MAC_INPUT_ID)
+        end
+      end)
     elseif (eventType == hs.caffeinate.watcher.systemWillSleep) then
       -- pseudo_kvm.log.i("pseudo-kvm wake event turning ON usb watcher")
       pseudo_kvm.usbWatcher:stop()
