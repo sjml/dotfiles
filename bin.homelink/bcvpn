@@ -1,20 +1,8 @@
 #!/usr/bin/env bash
 
-##########
-### Doesn't work anymore; BC seems to have borked something on their
-###   Cisco setup so you can't access it with openconnect any more. >:(
-### Leaving here for now as a reference.
-##########
-
-
 # Boston College requires an AnyConnect VPN to access certain services.
 #   I don't like extra VPN software running, so I use the OpenConnect
 #   command line program instead.
-# This scripts the access, snagging my password from the 1Password CLI
-#   and requesting a 2FA prompt from Duo. So all I need to do is run
-#   this script, authenticate with my TouchID, and I'm good to go!
-# (NB to use TouchID with sudo:
-#   https://web.archive.org/web/20210905125725/https://sixcolors.com/post/2020/11/quick-tip-enable-touch-id-for-sudo/ )
 
 sudocheck=$(sudo -nv 2>&1)
 if [ $? -ne 0 ]; then
@@ -40,19 +28,28 @@ fi
 
 set -e
 
+# used to be able to do an expect script that would also request 2FA
+#   validation from Duo, but BC changed the backend and I can't get it
+#   to properly interact anymore.
+# not quite as automated as it used to be, but at least now I just paste
+#   and manually request the 2FA instead of having to dig out the password.
 echo "Getting BC password from 1Password..."
 eval $(op signin)
 bcpw=$(op item get "Boston College" --format=json | jq --raw-output '.fields[] | select(.id=="password").value')
+echo $bcpw | pbcopy
+
+clear_pb_in_30 () {
+    sleep 30
+    echo "" | pbcopy
+}
 
 echo "Starting up VPN..."
-sudo expect -c "
-    spawn sudo openconnect eaglevpn.bc.edu --config=$HOME/.config/bcvpn.conf
-    expect \"Password:\"
-    send \"$bcpw\n\"
-    expect \"Response:\"
-    send \"1\n\"
-    interact
-"
+echo "(Password is in clipboard! Will clear in 30 seconds.)"
+clear_pb_in_30 &
+
+# *could* pipe the password through stdin, but then can't request the 2FA because
+#   the TTY isn't interactive. :(
+sudo openconnect eaglevpn.bc.edu --config=$HOME/.config/bcvpn.conf --useragent='AnyConnect'
 
 if [[ $mullvad_connected -eq 1 ]]; then
     echo "Waiting for OpenConnect disconnection to settle..."
