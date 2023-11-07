@@ -155,6 +155,7 @@ brew 'solarus'
 # my own tools
 brew 'sjml/sjml/beschi'
 brew 'sjml/sjml/paper'
+brew 'sjml/sjml/secure-pbcopy'
 
 
 # now getting into full macOS apps

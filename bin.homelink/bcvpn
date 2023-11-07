@@ -36,11 +36,11 @@ set -e
 echo "Getting BC password from 1Password..."
 eval $(op signin)
 bcpw=$(op item get "Boston College" --format=json | jq --raw-output '.fields[] | select(.id=="password").value')
-echo $bcpw | pbcopy
+echo $bcpw | secure-pbcopy
 
 clear_pb_in_30 () {
     sleep 30
-    echo "" | pbcopy
+    echo "" | secure-pbcopy
 }
 
 echo "Starting up VPN..."
