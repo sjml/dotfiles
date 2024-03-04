@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# useful when trying to resize a video file to fit
+#   on a FAT32 formatted volume
+
+FAT32MAX=4294967295
+
+duration=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$1")
+Bps=$(echo "scale=1; $FAT32MAX/$duration" | bc)
+kbps=$(echo "scale=1; $Bps/1024*8" | bc)
+echo $kbps kilobits/sec total budget

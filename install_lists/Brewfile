@@ -296,6 +296,7 @@ cask 'quicklook-csv'
 cask 'suspicious-package'
 cask 'qlcolorcode'
 cask 'qlimagesize'
+cask 'qlvideo'
 cask 'apparency'
 
 

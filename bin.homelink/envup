@@ -305,7 +305,7 @@ if [[ $sourced -ne 1 ]]; then
     ic_output=$(nc -z www.apple.com 80 -G1 2>&1); ic_status=$?
     if [ $ic_status -ne 0 ]; then
         echo "  😣 Doesn't look like there's a connection to the internet right now..."
-        echo "     Error: $ic_output"
+        echo "     Error: ($ic_status) - $ic_output"
         exit 1
     fi
 
