@@ -10,12 +10,12 @@ SKIPS=("Time Machine" "Macintosh HD" "com.apple.TimeMachine.localsnapshots")
 VOLS=()
 for v in $BASEDIR*; do
     if [[ ! " ${SKIPS[@]} " =~ " ${v:${#BASEDIR}} " ]]; then
-        VOLS+=(${v:${#BASEDIR}})
+        VOLS+=("${v:${#BASEDIR}}")
     fi
 done
 
 echo "Choose a drive to clean up:"
-select vol in ${VOLS[@]}
+select vol in "${VOLS[@]}"
 do
     volpath=$BASEDIR$vol
     echo $volpath
