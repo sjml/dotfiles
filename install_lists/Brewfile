@@ -265,7 +265,7 @@ cask 'marathon-infinity'
 cask 'handbrake'
 cask 'iina'
 cask 'vlc'
-cask 'mpv'
+# cask 'mpv' # renamed to something scary, but not really using anyway
 cask 'calibre'
 cask 'kindle'
 cask 'yacreader'
