@@ -63,6 +63,7 @@ for f in "${@:1:$(($#))}"; do
         lastUpped=$f
     fi
 done
-url=$(printf $remote_clip "$f")
+filename=$(basename "$f")
+url=$(printf $remote_clip "$filename")
 echo -n $url | pbcopy
 echo "Uploaded to <$url>. (Already in clipboard.)"
