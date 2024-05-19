@@ -18,9 +18,10 @@ alias mkdir="mkdir -p"
 switch (uname)
   case Darwin
     alias c="code ."
+    alias o="open ."
     alias edot="code ~/.dotfiles"
 
-    function o;open -a $argv;end
-    complete -c o -a (basename -s .app /Applications{,/Utilities}/*.app|awk '{printf "\"%s\" ", $0 }')
+    function oapp;open -a $argv;end
+    complete -c oapp -a (basename -s .app /Applications{,/Utilities}/*.app|awk '{printf "\"%s\" ", $0 }')
 end
 
