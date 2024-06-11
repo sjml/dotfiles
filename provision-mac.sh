@@ -365,6 +365,10 @@ defaults write com.apple.dock magnification -bool false
 # Allow slow-motion minimize effects when holding down shift (relic from old OS X :D)
 defaults write com.apple.dock slow-motion-allowed -bool true
 
+# Tighten up the graphics on level three... er... the menu bar
+defaults -currentHost write -globalDomain NSStatusItemSpacing -int 6
+defaults -currentHost write -globalDomain NSStatusItemSelectionPadding -int 3
+
 # Move windows with ⌘-⌃-click anywhere in them
 defaults write -g NSWindowShouldDragOnGesture -bool true
 

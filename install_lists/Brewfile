@@ -282,7 +282,6 @@ cask 'mkvtoolnix'
 cask 'keepingyouawake'
 cask 'a-better-finder-rename'
 cask 'pastebot'
-cask 'bartender'
 cask 'crunch'
 cask 'sloth'
 
