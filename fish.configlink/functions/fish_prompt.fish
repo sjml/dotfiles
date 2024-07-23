@@ -211,6 +211,20 @@ function fish_prompt
     end
   end
 
+  if test $cmdDur -gt 10000
+    if ! string match --quiet " *" $history[1]
+      if test $__CFBundleIdentifier != (mdls -name kMDItemCFBundleIdentifier -r (get-frontmost))
+        if test $errStatus -eq 0
+          afplay /System/Library/Sounds/Glass.aiff &
+          terminal-notifier -message $history[1] -title "Success"
+        else
+          afplay /System/Library/Sounds/Basso.aiff &
+          terminal-notifier -message $history[1] -title "ERROR"
+        end
+      end
+    end
+  end
+
   set_color $outlineColor
   echo -n $botLt$sep
   set_color normal
