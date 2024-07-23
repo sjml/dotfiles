@@ -68,6 +68,10 @@ sudo chsh -s $targetShell $USER
 # homebrew doesn't link OpenJDK by default; do it while we still have sudo
 sudo ln -sfn $HBBASE/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 
+# allow Touch ID to enable sudo on the command line
+sudo cp /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local
+sudo sed -i "" "s/#auth/auth/" /etc/pam.d/sudo_local
+
 # no more sudo needed!
 still_need_sudo=0
 sudo -k
