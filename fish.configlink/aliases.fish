@@ -1,15 +1,9 @@
 
-if type -q gls
-  alias ls="gls -F --color"
-  alias ll="gls -lh --color"
-  alias la="gls -FA --color"
-  alias lla="gls -lhA --color"
-else
-  alias ls="ls -F --color"
-  alias ll="ls -lh --color"
-  alias la="ls -FA --color"
-  alias lla="ls -lhA --color"
-end
+alias ls="eza -F"
+alias ll="eza -lGh -F --git"
+alias llm="eza -lGh -F --git --sort=modified --reverse"
+alias la="eza -a -F"
+alias lla="eza -lGha -F --git"
 
 alias mkdir="mkdir -p"
 # alias vim="nvim" # nvim starup is slow and I'm not really using the fanciness

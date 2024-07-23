@@ -9,6 +9,7 @@ consider custom build of chromium including the codecs but not the google stuff
 some way to have an install list for itch stuff? there's a bunch of productivity tools in there now...
     - same note for steam, epic, :-/
 fish prompt gets "string repeat: Invalid count value '-1'" when directory name is long enough to overrun width -- easy fix, just do it, tho
+add automatic notifier for long command: https://adrian-philipp.com/post/cmd-duration-fish-shell
 
 NOT A TODO, MORE OF A COMMENT:
 Windows provisioning stuff is such a mess -- winget, scoop, and chocolatey all suck in different ways :(

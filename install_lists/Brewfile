@@ -11,6 +11,7 @@ brew 'tmux'
 brew 'reattach-to-user-namespace'
 brew 'readline'
 brew 'htop'
+brew 'eza'
 
 # compression stuffs
 brew 'zlib'
