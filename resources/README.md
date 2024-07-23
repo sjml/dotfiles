@@ -20,18 +20,26 @@ with a less expansive bibliography style.
 [Fira Code](https://github.com/tonsky/FiraCode) is nice, but I'm not a fan of programming
 ligatures. Most applications let you turn them off, but macOS's Terminal.app, inexplicably,
 does not. So this is a version of the font with the all contextual alternate characters
-removed. It's generated from [a minimal fork of the original repo](https://github.com/sjml/FiraCode). (I could have also just changed to a different terminal emulator, but one change at a time.) 
-(I am also aware of the ligature-less nature of the original Fira Mono, but want to retain the otherwise-nice box-drawing characters and other things from Fira Code.)
+removed. It's generated from [a minimal fork of the original repo](https://github.com/sjml/FiraCode). (I could have also just changed to a different terminal emulator, but one change 
+at a time.) 
+
+There's also a [Nerd Font](https://www.nerdfonts.com/) patched version of Fira Mod here,
+for people who like that sort of thing (still no ligatures).
+
+(I am also aware of the ligature-less nature of [the original Fira Mono](http://mozilla.github.io/Fira/), 
+but want to retain the otherwise-nice box-drawing characters and other things from Fira Code.)
 
 ## Terminal.app Profile
-`SJML.terminal` sets up the macOS Terminal.app to my liking, and uses the hacked version
-of Fira Code in this directory.
+`SJML.terminal` sets up the macOS Terminal.app to my liking, and uses Fira Mode from 
+this directory.
 
 ## Office Templates
-Templates for MS Office. Set the location in Word's Preferences -> File Locations -> User Templates.
+Templates for MS Office. Set the location in Word's Preferences -> File Locations -> User 
+Templates.
 
 ## Xcode Templates
 Templates for Xcode. `ln -s ~/.dotfiles/resources/Xcode\ Templates ~/Library/Developer/Xcode/Templates/Custom`
 
 ## notification-images
-Used in the notification banners for [my little wrapper that reports on long-running command-line stuff](../bin.homelink/notify). Just swiped from Apple's standard emojis.
+Used in the notification banners for [my little wrapper that reports on long-running command-line stuff](../bin.homelink/notify). 
+Just swiped from Apple's standard emojis.
