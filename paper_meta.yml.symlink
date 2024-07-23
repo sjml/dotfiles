@@ -1,0 +1,10 @@
+---
+sources: ["~/Documents/Zotero_Library.json"]
+data:
+  author: "Shane Liesegang"
+sentinels:
+  - '[['
+  - ']]'
+  - 'TODO:'
+  - 'FIXME:'
+---
