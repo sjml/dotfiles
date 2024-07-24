@@ -39,7 +39,3 @@ Templates.
 
 ## Xcode Templates
 Templates for Xcode. `ln -s ~/.dotfiles/resources/Xcode\ Templates ~/Library/Developer/Xcode/Templates/Custom`
-
-## notification-images
-Used in the notification banners for [my little wrapper that reports on long-running command-line stuff](../bin.homelink/notify). 
-Just swiped from Apple's standard emojis.

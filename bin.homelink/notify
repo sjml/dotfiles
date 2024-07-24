@@ -4,16 +4,15 @@
 #  command finishes, indicating whether it succeeded or not
 # (useful for long-running tests or the like)
 
+# now uses my own Teller app(s): https://github.com/sjml/Teller
+
 
 # actually run the wrapped command
 "$@"
 
 # report on how it went
-## (using afplay since terminal-notifier's sound flag is flaky across OS versions)
 if [ $? = 0 ]; then
-  afplay /System/Library/Sounds/Glass.aiff &
-  terminal-notifier -message "$(echo ${@})" -title "Success" -appIcon ~/.dotfiles/resources/notification-images/success.png
+  teller success  --message "$(echo ${@})" --title "Success" --sound Glass
 else
-  afplay /System/Library/Sounds/Basso.aiff &
-  terminal-notifier -message "$(echo ${@})" -title "ERROR" -appIcon ~/.dotfiles/resources/notification-images/failure.png
+  teller failure --message "$(echo ${@})" --title "ERROR" --sound Basso
 fi

@@ -215,11 +215,9 @@ function fish_prompt
     if ! string match --quiet " *" $history[1]
       if test $__CFBundleIdentifier != (mdls -name kMDItemCFBundleIdentifier -r (get-frontmost))
         if test $errStatus -eq 0
-          afplay /System/Library/Sounds/Glass.aiff &
-          terminal-notifier -message $history[1] -title "Success"
+          teller success --message $history[1] --title Success --sound Glass
         else
-          afplay /System/Library/Sounds/Basso.aiff &
-          terminal-notifier -message $history[1] -title "ERROR"
+          teller failure --message $history[1] --title ERROR --sound Basso
         end
       end
     end
