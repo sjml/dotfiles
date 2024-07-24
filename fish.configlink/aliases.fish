@@ -1,9 +1,9 @@
 
 alias ls="eza -F --icons --no-quotes"
-alias ll="eza -lGh -F --icons --no-quotes --git"
-alias llm="eza -lGh -F --icons --no-quotes --git --sort=modified --reverse"
+alias ll="eza -lh -F --icons --no-quotes --git"
+alias llm="eza -lh -F --icons --no-quotes --git --sort=modified --reverse"
 alias la="eza -a -F --icons --no-quotes"
-alias lla="eza -lGha -F --icons --no-quotes --git"
+alias lla="eza -lha -F --icons --no-quotes --git"
 
 alias mkdir="mkdir -p"
 # alias vim="nvim" # nvim starup is slow and I'm not really using the fanciness
