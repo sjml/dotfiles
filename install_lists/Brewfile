@@ -20,6 +20,7 @@ brew 'lbzip2'
 brew 'unar'
 brew 'gnupg'
 brew 'xz'
+brew 'brotli'
 brew 'pigz'
 
 # meta environments for my regularly used programming languages
@@ -29,11 +30,9 @@ brew 'asdf' # handles python, nodejs, and ruby
 # other programming languages
 ## ones I actually use
 brew 'go'
+brew 'zig'
 brew 'r'
 brew 'php' # look, i'm not proud of it, but
-
-## hoping this becomes a thing
-brew 'zig'
 
 ## don't really use, but needed for other things
 brew 'openjdk'
@@ -82,7 +81,10 @@ brew 'meson'
 brew 'ninja'
 brew 'automake'
 brew 'mingw-w64'
+brew 'emscripten'
 brew 'clang-format'
+brew 'swiftformat'
+brew 'swift-format'
 brew 'cocoapods'
 brew 'stylua'
 brew 'swig'
@@ -97,12 +99,6 @@ brew 'qemu'
 brew 'podman'
 brew 'docker'
 brew 'colima'
-
-# remote service apis
-brew 'doctl'
-brew 'flyctl'
-brew 'azure-cli'
-brew 'netlify-cli'
 
 ## search and store
 brew 'ripgrep'
@@ -121,6 +117,7 @@ brew 'librsvg'
 brew 'woff2'
 brew 'pngcrush'
 brew 'pngquant'
+brew 'jpegoptim'
 brew 'zopfli'
 brew 'guetzli'
 brew 'mozjpeg'
@@ -145,6 +142,7 @@ brew 'trash'
 brew 'entr'
 brew 'molten-vk'
 brew 'm1ddc'
+brew 'hyperfine'
 
 # amusements!
 brew 'nethack'
@@ -165,6 +163,7 @@ tap 'homebrew/cask-versions'
 cask '1password'
 cask '1password-cli'
 # cask 'backblaze' # don't use homebrew for this; upgrade will bork things
+cask 'backblaze-downloader'
 cask 'little-snitch'
 cask 'mullvadvpn'
 
@@ -207,7 +206,7 @@ cask 'sourcetree'
 cask 'dash'
 cask 'kaleidoscope'
 cask 'hex-fiend'
-cask 'robo-3t'
+cask 'httpie'
 
 cask 'postgres-unofficial'
 cask 'sf-symbols'

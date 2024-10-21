@@ -10,7 +10,7 @@ fi
 # I grew weary of homebrew's pedantry
 if [[ "$1" == "cask" ]]; then
     args=($@)
-    $_brew $2 --cask ${args[@]:2}
+    exec $_brew $2 --cask ${args[@]:2}
 else
-    $_brew $@
+    exec $_brew $@
 fi

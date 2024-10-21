@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# work around sandboxing issues if we call ebook-viewer as a symlink
+# https://bugs.launchpad.net/calibre/+bug/1857377
+
+/Applications/calibre.app/Contents/MacOS/ebook-viewer $@

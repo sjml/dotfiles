@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# wraps the `live-server` crate to default to port 3000 but find an open one somewhere above it
+
+EXE="$HOME/.cargo/bin/live-server"
+
+# could take this as an argument or something but I am being lazy
+STARTING_PORT=3000
+
+PORT=$STARTING_PORT
+
+while true; do
+  if ! nc -z localhost $PORT &>/dev/null; then
+    break # nc returning error indicates port is available (because it couldn't connect to it)
+  fi
+  PORT=$((PORT + 1))
+done
+
+exec $EXE --port $PORT "$@"

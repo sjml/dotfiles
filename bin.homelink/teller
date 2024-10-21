@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# wrapper script for [Teller](https://github.com/sjml/Teller)
+#   so it's easier to invoke from the command line
+
 args=("$@")
 
 if [[ "$1" == -* ]]; then

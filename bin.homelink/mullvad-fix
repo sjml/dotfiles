@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+#####
+#####
+#  Realizing I haven't run this in months, so maybe the
+#    bug was fixed? Keeping around just in case I need
+#    it again someday.
+#####
+#####
+
 # The mullvad daemon has a lot of trouble waking from sleep.
 # It's either this or restart the computer.
 # (This only started happening about a year ago; Mullvad

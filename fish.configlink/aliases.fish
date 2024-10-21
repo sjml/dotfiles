@@ -8,11 +8,14 @@ alias lla="eza -lha -F --icons --no-quotes --git"
 alias mkdir="mkdir -p"
 # alias vim="nvim" # nvim starup is slow and I'm not really using the fanciness
 
+alias ghwatch='gh run watch --exit-status $(gh run list -L 1 --json databaseId | jq ".[].databaseId")'
+
+
 # platform-specific aliases
 switch (uname)
   case Darwin
-    alias c="code ."
-    alias o="open ."
+    function c;if test (count $argv) -eq 0;code .;else;code $argv;end;end
+    function o;if test (count $argv) -eq 0;open .;else;open $argv;end;end
     alias edot="code ~/.dotfiles"
 
     function oapp;open -a $argv;end
