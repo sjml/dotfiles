@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-# wraps the `live-server` crate to default to port 3000 but find an open one somewhere above it
+# (https://crates.io/crates/live-server)
+# wraps the `live-server` crate to :
+#    - default to port 3000 but find an open one somewhere above it
+#    - automatically show an index page if there is no `index.html`
 
 EXE="$HOME/.cargo/bin/live-server"
 
@@ -16,4 +19,4 @@ while true; do
   PORT=$((PORT + 1))
 done
 
-exec $EXE --port $PORT "$@"
+exec $EXE --port $PORT --index "$@"

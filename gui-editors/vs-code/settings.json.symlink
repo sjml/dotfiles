@@ -7,8 +7,6 @@
   "window.restoreWindows": "all",
   //// but don't mess up existing workspaces with extra folders
   "window.openFoldersInNewWindow": "on",
-  //// but don't nag me about empty files in windows
-  "workbench.editor.untitled.hint": "hidden",
 
   // integrated terminal stuff
   "terminal.integrated.showExitAlert": false,
@@ -26,7 +24,7 @@
   //// I like Fira Code, but code ligatures are gross to my eyes
   ////   (I know that the original Fira Mono has no ligatures, but
   ////    Fira Code has better line-drawing characters.)
-  "editor.fontFamily": "Fira Code",
+  "editor.fontFamily": "FiraMod NF",
   "editor.fontLigatures": false,
 
   //// my own fork of an obsoleted icon set because
@@ -88,7 +86,7 @@
   "breadcrumbs.enabled": false,
 
   "diffEditor.renderSideBySide": true,
-  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.ignoreTrimWhitespace": true,
 
   // associatin' files all about
   "files.associations": {
@@ -96,7 +94,9 @@
     ".pylintrc": "ini",
     "*.html": "html",
     "*.babylon": "json",
-    "SCsub": "python"
+    "SCsub": "python",
+    "*.tmj": "json",
+    "*.tsj": "json"
   },
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter-notebook"
@@ -143,7 +143,8 @@
       "other": "off",
       "comments": "off",
       "strings": "off"
-    }
+    },
+    "diffEditor.ignoreTrimWhitespace": false
   },
   "markdown.extension.italic.indicator": "_",
   "markdown.extension.toc.unorderedList.marker": "*",
@@ -186,7 +187,7 @@
       "path": "~/.dotfiles/cspell-words.txt",
       "description": "Shane's custom dictionary",
       "addWords": true
-    },
+    }
   },
 
   "csl-json-citation-picker.libraryPath": "~/Documents/Zotero_Library.json",
@@ -203,5 +204,24 @@
   // things I haven't sorted yet will be down here.
   "debug.allowBreakpointsEverywhere": true,
   "go.toolsManagement.autoUpdate": true,
-
+  "workbench.editor.empty.hint": "hidden",
+  "cSpell.userWords": [
+    "homosocial",
+    "Ignatian",
+    "Johannine",
+    "Rahner",
+    "retreatant"
+  ],
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "lldb.launch.expressions": "native",
+  "gitlens.views.repositories.showIncomingActivity": true,
+  "haskell.manageHLS": "GHCup",
+  "cmake.showOptionsMovedNotification": false,
+  "zig.path": "zig",
+  "zig.zls.path": "zls",
+  "zig.initialSetupDone": true,
+  "zig.zls.warnStyle": true,
+  "terminal.integrated.inheritEnv": false,
+  "markdown.preview.scrollEditorWithPreview": false,
+  "markdown.preview.scrollPreviewWithEditor": false,
 }
