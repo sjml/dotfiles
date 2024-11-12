@@ -3,7 +3,7 @@ root = true
 [*]
 charset = utf-8
 end_of_line = lf
-indent_style = space
+indent_style = tab
 indent_size = 4
 insert_final_newline = true
 trim_trailing_whitespace = true
@@ -30,6 +30,7 @@ indent_size = 2
 
 [*.yml]
 indent_size = 2
+indent_style = space
 
 [*.lua]
 indent_size = 2
@@ -39,6 +40,9 @@ indent_size = 2
 
 [*.go]
 indent_style = tab
+
+[*.py]
+indent_style = space
 
 # Windows files
 [{*.cmd,*.bat,*reg,*.ps1,*.vbs,*.cs,*.csproj,*.fs,*.sln,*.xaml*,*.ahk}]
