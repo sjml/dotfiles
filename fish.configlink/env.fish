@@ -49,6 +49,10 @@ set -x VIRTUAL_ENV_DISABLE_PROMPT 1
 # pipenv's default behavior is silly
 set -x PIPENV_VENV_IN_PROJECT 1
 
+## devbox setup
+# devbox thinks it's better than me
+set -x devbox_no_prompt true
+
 ## purty colors
 set -x LSCOLORS exfxcxdxbxegedabagacad
 # set LSCOLORS GxFxCxDxBxegedabagaced
