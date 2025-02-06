@@ -109,7 +109,7 @@ function fish_prompt
     if test $CONDA_SHLVL -gt 1
       set scaffold "$scaffold\[$dragon\]"
     end
-  else if test -n "$DEVBOX_SHELL_ENABLED"
+  else if test -n "$DEVBOX_SHELL_ENABLED"; or test -n "$DEVBOX_PROJECT_ROOT"
     set scaffold "$scaffold\[$box\]"
   end
 
@@ -157,7 +157,7 @@ function fish_prompt
       echo -n "[$dragon]"
       set lcount (math $lcount + 3 + (string length $dragon))
     end
-  else if test -n "$DEVBOX_SHELL_ENABLED"
+  else if test -n "$DEVBOX_SHELL_ENABLED"; or test -n "$DEVBOX_PROJECT_ROOT"
     echo -n "[$box]"
     set lcount (math $lcount + 3 + (string length $box))
   end
