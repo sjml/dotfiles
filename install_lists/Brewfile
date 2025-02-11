@@ -23,15 +23,16 @@ brew 'xz'
 brew 'brotli'
 brew 'pigz'
 
-# meta environments for my regularly used programming languages
-brew 'asdf' # handles python, nodejs, and ruby
-# brew 'rustup-init' # installed in provision-mac.sh
-
-# other programming languages
+# programming languages
 ## ones I actually use
+brew 'python'
+brew 'node'
+brew 'deno'
+# brew 'rustup-init' # installed in provision-mac.sh
 brew 'go'
 brew 'zig'
 brew 'r'
+brew 'ruby'
 brew 'php' # look, i'm not proud of it, but
 
 ## don't really use, but needed for other things

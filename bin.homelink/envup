@@ -11,7 +11,8 @@
 #   those might be pinned to specific versions and need to be checked
 #   individually.
 
-local -a envs=(brew cask mas python node ruby rust)
+# local -a envs=(brew cask mas python node ruby rust)
+local -a envs=(brew cask mas rust)
 local -a cmds=(check up)
 
 if [[ $(uname -m) == 'arm64' ]]; then
@@ -133,150 +134,150 @@ mas_up() {
 }
 
 
-env_remVer() {
-    asdf list all $1 2>&1 \
-        | grep -vE "\s*[a-zA-Z-]" \
-        | sort -V \
-        | grep "^\s*$2" \
-        | tail -1 \
-        | xargs
-}
-env_locVer() {
-    asdf list $1 \
-        | grep "^\s*\*$2" \
-        | xargs \
-        | sed 's/^\**//g'
-}
+# env_remVer() {
+#     asdf list all $1 2>&1 \
+#         | grep -vE "\s*[a-zA-Z-]" \
+#         | sort -V \
+#         | grep "^\s*$2" \
+#         | tail -1 \
+#         | xargs
+# }
+# env_locVer() {
+#     asdf list $1 \
+#         | grep "^\s*\*$2" \
+#         | xargs \
+#         | sed 's/^\**//g'
+# }
 
-env_check() {
-    local remoteVersion=$( env_remVer $1 $2 )
-    local localVersion=$( env_locVer $1 $2 )
+# env_check() {
+#     local remoteVersion=$( env_remVer $1 $2 )
+#     local localVersion=$( env_locVer $1 $2 )
 
-    print_check $3 $localVersion $remoteVersion
-}
+#     print_check $3 $localVersion $remoteVersion
+# }
 
-env_migration_failed() {
-    {
-        echo
-        echo "MIGRATION FAILED"
-        echo
-        echo "Inspect the requirements file: $REQ_FILE"
-    } 2>&1
-    exit
-}
-
-
-node_check() {
-    asdf plugin update nodejs > /dev/null 2>&1
-    env_check nodejs "\d*[02468]\." "Node.js LTS"
-}
-
-node_up() {
-    local newVersion=$( env_remVer nodejs "\d*[02468]\." )
-    local oldVersion=$( env_locVer nodejs "\d*[02468]\." )
-
-    if [[ $newVersion == $oldVersion ]]; then
-        print_check "Node.js LTS" $newVersion $newVersion
-        return
-    fi
-
-    NODEJS_CHECK_SIGNATURES="no" asdf install nodejs $newVersion
-
-    trap env_migration_failed ERR
-        local seed="$(date '+%Y%m%d%H%M%S').$$"
-        local REQ_FILE="$HOME/node-npmfile.$seed.txt"
-        ~/.asdf/installs/nodejs/$oldVersion/bin/npm list --global --depth=0 \
-            | tail -n +2 \
-            | cut -d" " -f2 \
-            | grep -v "npm@" \
-            > "$REQ_FILE"
-
-        asdf global nodejs $newVersion
-        ASDF_SKIP_RESHIM=1 ~/.asdf/installs/nodejs/$newVersion/bin/npm install --global npm
-        ASDF_SKIP_RESHIM=1 ~/.asdf/installs/nodejs/$newVersion/bin/npm install --global $(cat "$REQ_FILE")
-        asdf reshim nodejs
-        asdf uninstall nodejs $oldVersion
-        rm "$REQ_FILE"
-        print_check "Node.js LTS" $newVersion $newVersion
-    trap - ERR
-}
-
-python_check() {
-    asdf plugin update python > /dev/null 2>&1
-    env_check python 3 "Python"
-}
-
-python_up() {
-    local newVersion=$( env_remVer python 3 )
-    local oldVersion=$( env_locVer python 3 )
-
-    if [[ $newVersion == $oldVersion ]]; then
-        print_check "Python" $newVersion $newVersion
-        return
-    fi
-
-    LDFLAGS="-L$hbdir/opt/zlib/lib -L$hbdir/opt/sqlite/lib" \
-        CPPFLAGS="-I$hbdir/opt/zlib/include -I$hbdir/opt/sqlite/include" \
-        PYTHON_CONFIGURE_OPTS="--enable-shared" \
-        asdf install python $newVersion
-    asdf global python $newVersion
-    asdf reshim python
-
-    trap env_migration_failed ERR
-        local seed="$(date '+%Y%m%d%H%M%S').$$"
-        local REQ_FILE="$HOME/python3.requirements.$seed.txt"
-        ~/.asdf/installs/python/$oldVersion/bin/pip freeze | grep -v "^-e" > "$REQ_FILE"
-        ~/.asdf/installs/python/$newVersion/bin/python -m pip install --upgrade pip
-        ~/.asdf/installs/python/$newVersion/bin/pip install wheel
-        ~/.asdf/installs/python/$newVersion/bin/pip install -r "$REQ_FILE"
-        asdf uninstall python $oldVersion
-        asdf reshim python
-        rm "$REQ_FILE"
-        print_check "Python 3" $newVersion $newVersion
-    trap - ERR
-}
+# env_migration_failed() {
+#     {
+#         echo
+#         echo "MIGRATION FAILED"
+#         echo
+#         echo "Inspect the requirements file: $REQ_FILE"
+#     } 2>&1
+#     exit
+# }
 
 
-ruby_check() {
-    asdf plugin update ruby > /dev/null 2>&1
-    env_check ruby 3 "Ruby"
-}
+# node_check() {
+#     asdf plugin update nodejs > /dev/null 2>&1
+#     env_check nodejs "\d*[02468]\." "Node.js LTS"
+# }
 
-ruby_up() {
-    local newVersion=$( env_remVer ruby 3 )
-    local oldVersion=$( env_locVer ruby 3 )
+# node_up() {
+#     local newVersion=$( env_remVer nodejs "\d*[02468]\." )
+#     local oldVersion=$( env_locVer nodejs "\d*[02468]\." )
 
-    if [[ $newVersion == $oldVersion ]]; then
-        print_check "Ruby" $newVersion $newVersion
-        return
-    fi
+#     if [[ $newVersion == $oldVersion ]]; then
+#         print_check "Node.js LTS" $newVersion $newVersion
+#         return
+#     fi
 
-    RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)" \
-        asdf install ruby $newVersion
-    asdf global ruby $newVersion
-    asdf reshim ruby
+#     NODEJS_CHECK_SIGNATURES="no" asdf install nodejs $newVersion
 
-    local newGem=~/.asdf/installs/ruby/$newVersion/bin/gem
-    local oldGem=~/.asdf/installs/ruby/$oldVersion/bin/gem
+#     trap env_migration_failed ERR
+#         local seed="$(date '+%Y%m%d%H%M%S').$$"
+#         local REQ_FILE="$HOME/node-npmfile.$seed.txt"
+#         ~/.asdf/installs/nodejs/$oldVersion/bin/npm list --global --depth=0 \
+#             | tail -n +2 \
+#             | cut -d" " -f2 \
+#             | grep -v "npm@" \
+#             > "$REQ_FILE"
 
-    trap env_migration_failed ERR
-        local seed="$(date '+%Y%m%d%H%M%S').$$"
-        local REQ_FILE="$HOME/ruby-gemfile.$seed.txt"
-        $oldGem list > "$REQ_FILE"
-        $newGem update --system
-        yes | $newGem update
-        for i in $($oldGem list | awk '{ if ( $1 !~ /^$/ ) print $1}'); do
-            if [[ $($newGem list "${i}") != *"${i}"* ]]; then
-                $newGem install -f "${i}"
-            fi
-        done
+#         asdf global nodejs $newVersion
+#         ASDF_SKIP_RESHIM=1 ~/.asdf/installs/nodejs/$newVersion/bin/npm install --global npm
+#         ASDF_SKIP_RESHIM=1 ~/.asdf/installs/nodejs/$newVersion/bin/npm install --global $(cat "$REQ_FILE")
+#         asdf reshim nodejs
+#         asdf uninstall nodejs $oldVersion
+#         rm "$REQ_FILE"
+#         print_check "Node.js LTS" $newVersion $newVersion
+#     trap - ERR
+# }
 
-        asdf uninstall ruby $oldVersion
-        asdf reshim ruby
-        rm "$REQ_FILE"
-        print_check "Ruby" $newVersion $newVersion
-    trap - ERR
-}
+# python_check() {
+#     asdf plugin update python > /dev/null 2>&1
+#     env_check python 3 "Python"
+# }
+
+# python_up() {
+#     local newVersion=$( env_remVer python 3 )
+#     local oldVersion=$( env_locVer python 3 )
+
+#     if [[ $newVersion == $oldVersion ]]; then
+#         print_check "Python" $newVersion $newVersion
+#         return
+#     fi
+
+#     LDFLAGS="-L$hbdir/opt/zlib/lib -L$hbdir/opt/sqlite/lib" \
+#         CPPFLAGS="-I$hbdir/opt/zlib/include -I$hbdir/opt/sqlite/include" \
+#         PYTHON_CONFIGURE_OPTS="--enable-shared" \
+#         asdf install python $newVersion
+#     asdf global python $newVersion
+#     asdf reshim python
+
+#     trap env_migration_failed ERR
+#         local seed="$(date '+%Y%m%d%H%M%S').$$"
+#         local REQ_FILE="$HOME/python3.requirements.$seed.txt"
+#         ~/.asdf/installs/python/$oldVersion/bin/pip freeze | grep -v "^-e" > "$REQ_FILE"
+#         ~/.asdf/installs/python/$newVersion/bin/python -m pip install --upgrade pip
+#         ~/.asdf/installs/python/$newVersion/bin/pip install wheel
+#         ~/.asdf/installs/python/$newVersion/bin/pip install -r "$REQ_FILE"
+#         asdf uninstall python $oldVersion
+#         asdf reshim python
+#         rm "$REQ_FILE"
+#         print_check "Python 3" $newVersion $newVersion
+#     trap - ERR
+# }
+
+
+# ruby_check() {
+#     asdf plugin update ruby > /dev/null 2>&1
+#     env_check ruby 3 "Ruby"
+# }
+
+# ruby_up() {
+#     local newVersion=$( env_remVer ruby 3 )
+#     local oldVersion=$( env_locVer ruby 3 )
+
+#     if [[ $newVersion == $oldVersion ]]; then
+#         print_check "Ruby" $newVersion $newVersion
+#         return
+#     fi
+
+#     RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)" \
+#         asdf install ruby $newVersion
+#     asdf global ruby $newVersion
+#     asdf reshim ruby
+
+#     local newGem=~/.asdf/installs/ruby/$newVersion/bin/gem
+#     local oldGem=~/.asdf/installs/ruby/$oldVersion/bin/gem
+
+#     trap env_migration_failed ERR
+#         local seed="$(date '+%Y%m%d%H%M%S').$$"
+#         local REQ_FILE="$HOME/ruby-gemfile.$seed.txt"
+#         $oldGem list > "$REQ_FILE"
+#         $newGem update --system
+#         yes | $newGem update
+#         for i in $($oldGem list | awk '{ if ( $1 !~ /^$/ ) print $1}'); do
+#             if [[ $($newGem list "${i}") != *"${i}"* ]]; then
+#                 $newGem install -f "${i}"
+#             fi
+#         done
+
+#         asdf uninstall ruby $oldVersion
+#         asdf reshim ruby
+#         rm "$REQ_FILE"
+#         print_check "Ruby" $newVersion $newVersion
+#     trap - ERR
+# }
 
 
 rust_check() {

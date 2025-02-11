@@ -20,5 +20,9 @@ switch (uname)
 
     function oapp;open -a $argv;end
     complete -c oapp -a (basename -s .app /Applications{,/Utilities}/*.app|awk '{printf "\"%s\" ", $0 }')
+
+    alias clear="printf '\33c\e[3J'"
+
+		alias python=python3
 end
 
