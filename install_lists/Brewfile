@@ -68,6 +68,7 @@ brew 'micro'
 ## source control
 brew 'git'
 brew 'git-lfs'
+brew 'git-filter-repo'
 brew 'hub'
 brew 'gh'
 brew 'bfg'
@@ -133,6 +134,8 @@ brew 'ocrmypdf'
 brew 'lame'
 brew 'libdvdcss'
 brew 'youtube-dl'
+brew 'yt-dlp'
+brew 'gallery-dl'
 brew 'ffmpeg'
 brew 'speedtest-cli'
 # brew 'dieharder'  # removed from homebrew? :(
@@ -254,6 +257,7 @@ cask 'gog-galaxy'
 cask 'epic-games'
 cask 'steam'
 cask 'nvidia-geforce-now'
+cask 'whisky'
 
 cask 'dwarf-fortress'
 cask 'minecraft'
@@ -344,4 +348,4 @@ mas 'GIPHY Capture',       id: 668208984
 mas 'Pages',               id: 409201541
 mas 'Numbers',             id: 409203825
 mas 'Keynote',             id: 409183694
-mas 'Highland 2',          id: 1171820258
+# mas 'Highland 2',          id: 1171820258 # discontinued? :(
