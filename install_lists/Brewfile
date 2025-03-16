@@ -25,7 +25,7 @@ brew 'pigz'
 
 # programming languages
 ## ones I actually use
-brew 'python'
+brew 'uv' # for Python
 brew 'node'
 brew 'deno'
 # brew 'rustup-init' # installed in provision-mac.sh
