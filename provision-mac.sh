@@ -58,7 +58,7 @@ eval $($HBBIN/brew shellenv)
 # Turning off quarantine for casks; assuming I trust any apps that
 #   made it into the Brewfile. *slightly* perilous, though.
 HOMEBREW_CASK_OPTS="--no-quarantine" \
-  $HBBIN/brew bundle install --no-lock --file=$DOTFILES_ROOT/install_lists/Brewfile
+  $HBBIN/brew bundle install --file=$DOTFILES_ROOT/install_lists/Brewfile
 
 # set fish as user shell
 targetShell="$HBBIN/fish"
