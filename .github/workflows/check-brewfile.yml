@@ -9,7 +9,7 @@ on:
 jobs:
   brewfile-check:
     # just checks against the public listings, so don't need to be on a mac
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
