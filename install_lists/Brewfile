@@ -161,7 +161,6 @@ brew 'sjml/sjml/secure-pbcopy'
 
 # now getting into full macOS apps
 tap 'homebrew/cask'
-tap 'homebrew/cask-versions'
 
 # infrastructure
 cask '1password'
@@ -304,7 +303,6 @@ cask 'apparency'
 
 # a few monospaced fonts from caskroom
 #   (others handled outside of script)
-tap  'homebrew/cask-fonts'
 cask 'font-fira-code'
 cask 'font-juliamono'
 
