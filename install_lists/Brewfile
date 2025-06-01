@@ -168,7 +168,7 @@ cask '1password-cli'
 # cask 'backblaze' # don't use homebrew for this; upgrade will bork things
 cask 'backblaze-downloader'
 cask 'little-snitch'
-cask 'mullvadvpn'
+cask 'mullvad-vpn'
 
 # internet
 cask 'firefox'
