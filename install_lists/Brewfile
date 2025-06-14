@@ -133,7 +133,6 @@ brew 'multimarkdown'
 brew 'ocrmypdf'
 brew 'lame'
 brew 'libdvdcss'
-brew 'youtube-dl'
 brew 'yt-dlp'
 brew 'gallery-dl'
 brew 'ffmpeg'
@@ -157,6 +156,7 @@ brew 'solarus'
 brew 'sjml/sjml/beschi'
 brew 'sjml/sjml/paper'
 brew 'sjml/sjml/secure-pbcopy'
+brew 'sjml/sjml/hdr-resize'
 
 
 # now getting into full macOS apps
@@ -182,7 +182,6 @@ cask 'transmission'
 cask 'whatsapp'
 cask 'telegram'
 cask 'signal'
-cask 'skype'
 cask 'zoom'
 cask 'webex'
 cask 'discord'
@@ -234,7 +233,6 @@ cask 'krita'
 cask 'texturepacker'
 cask 'tiled'
 cask 'pixelorama'
-cask 'bfxr'
 cask 'audacity'
 cask 'losslesscut'
 cask 'twine'
@@ -243,9 +241,9 @@ cask 'nodebox'
 cask 'obs'
 
 # various virtualization thingies
-cask 'vmware-fusion'
 cask 'multipass'
 cask 'utm'
+# cask 'vmware-fusion' # probably dead?
 # cask 'virtualbox' # no arm support
 # cask 'crossover' # mostly have windows machines to do windows things
 # cask 'docker' # slow and bulky; probably don't need the desktop version
@@ -258,7 +256,6 @@ cask 'steam'
 cask 'nvidia-geforce-now'
 cask 'whisky'
 
-cask 'dwarf-fortress'
 cask 'minecraft'
 cask 'marathon'
 cask 'marathon-2'
@@ -269,7 +266,6 @@ cask 'iina'
 cask 'vlc'
 # cask 'mpv' # renamed to something scary, but not really using anyway
 cask 'calibre'
-cask 'kindle'
 cask 'yacreader'
 cask 'adobe-digital-editions'
 
@@ -296,7 +292,6 @@ cask 'qlprettypatch'
 cask 'quicklook-csv'
 cask 'suspicious-package'
 cask 'qlcolorcode'
-cask 'qlimagesize'
 cask 'qlvideo'
 cask 'apparency'
 
@@ -323,13 +318,15 @@ mas 'Ultra Character Map', id: 520265986
 mas 'WorldWideWeb',        id: 1621370168
 
 # internet
-# mas 'Tweetbot',            id: 557168941 # (kinda just use the website now, if at all)
 mas 'Messenger',           id: 1480068668
+mas 'Discovery',           id: 1381004916
+mas 'WireGuard',           id: 1451685025
 
 # media
 # mas 'GarageBand',          id: 682658836 # (takes up too much space)
 mas 'iMovie',              id: 408981434
 mas 'Overcast',            id: 888422857
+mas 'Kindle',              id: 302584613
 
 # utility
 mas 'GrandPerspective',    id: 1111570163
@@ -337,11 +334,13 @@ mas 'Menu World Time',     id: 1446377255
 # mas 'EasyRes',             id: 688211836 # discontinued? :(
 mas 'Shareful',            id: 1522267256
 mas 'Discovery',           id: 1381004916
+mas 'Notchmeister',        id: 1599169747
 
 # graphics and office
 mas 'Pixelmator Pro',      id: 1289583905
 # mas 'GIF Brewery 3',       id: 1081413713 # discontinued? :(
 mas 'Gifski',              id: 1351639930
+mas 'Gapplin',             id: 768053424
 mas 'GIPHY Capture',       id: 668208984
 mas 'Pages',               id: 409201541
 mas 'Numbers',             id: 409203825
