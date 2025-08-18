@@ -151,6 +151,8 @@ brew 'hyperfine'
 brew 'nethack'
 brew 'frotz'
 brew 'solarus'
+brew 'mame'
+brew 'rom-tools'
 
 # my own tools
 brew 'sjml/sjml/beschi'
@@ -211,6 +213,8 @@ cask 'hex-fiend'
 cask 'httpie-desktop'
 
 cask 'postgres-unofficial'
+cask 'base'
+
 cask 'sf-symbols'
 
 # programming languages
@@ -283,6 +287,7 @@ cask 'a-better-finder-rename'
 cask 'pastebot'
 cask 'crunch-app'
 cask 'sloth'
+cask 'betterzip'
 
 # quicklook stuff
 cask 'qlstephen'
@@ -312,7 +317,6 @@ brew 'mas'
 
 # development
 mas 'Xcode',               id: 497799835
-mas 'Base',                id: 402383384
 mas 'Calca',               id: 635758264
 mas 'Ultra Character Map', id: 520265986
 mas 'WorldWideWeb',        id: 1621370168
