@@ -106,6 +106,7 @@ brew 'colima'
 brew 'ripgrep'
 brew 'jq'
 brew 'yq'
+brew 'htmlq'
 brew 'sqlite'
 brew 'sqlite-utils'
 brew 'testdisk'
@@ -322,7 +323,7 @@ mas 'Ultra Character Map', id: 520265986
 mas 'WorldWideWeb',        id: 1621370168
 
 # internet
-mas 'Messenger',           id: 1480068668
+# mas 'Messenger',           id: 1480068668 # (discontinued)
 mas 'Discovery',           id: 1381004916
 mas 'WireGuard',           id: 1451685025
 
