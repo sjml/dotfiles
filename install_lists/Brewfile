@@ -11,7 +11,9 @@ brew 'tmux'
 brew 'reattach-to-user-namespace'
 brew 'readline'
 brew 'htop'
+brew 'mactop'
 brew 'eza'
+brew 'bat'
 
 # compression stuffs
 brew 'zlib'
@@ -22,18 +24,29 @@ brew 'gnupg'
 brew 'xz'
 brew 'brotli'
 brew 'pigz'
+brew 'gnu-tar'
+brew 'sevenzip'
 
 # programming languages
 ## ones I actually use
-brew 'uv' # for Python
+brew 'python'
+brew 'python-setuptools'
+brew 'virtualenv'
+# brew 'uv' # for Python, someday
 brew 'node'
+brew 'pnpm'
 brew 'deno'
 # brew 'rustup-init' # installed in provision-mac.sh
 brew 'go'
+brew 'tinygo-org/tools/tinygo'
 brew 'zig'
 brew 'r'
 brew 'ruby'
 brew 'php' # look, i'm not proud of it, but
+brew 'composer'
+brew 'nasm'
+brew 'wabt'
+brew 'wasmtime'
 
 ## don't really use, but needed for other things
 brew 'openjdk'
@@ -56,11 +69,15 @@ brew 'tor'
 brew 'felinks'
 brew 'openconnect'
 brew 'xxhash'
+brew 'telnet'
 
 # dev tools
 ## text editors
+##   in general I am not smart enough for non-gui editors but
+##      I keep intending to learn one of these days
 brew 'vim'
 brew 'neovim'
+brew 'helix'
 brew 'nano'
 brew 'emacs'
 brew 'micro'
@@ -72,6 +89,7 @@ brew 'git-filter-repo'
 brew 'hub'
 brew 'gh'
 brew 'bfg'
+brew 'jj'
 brew 'mercurial'
 brew 'subversion'
 brew 'fossil'
@@ -95,6 +113,15 @@ brew 'qcachegrind'
 brew 'yasm'
 brew 'flatbuffers'
 brew 'cloc'
+brew 'scc'
+brew 'dprint'
+
+## gcc versions so I can test stuff out
+brew 'gcc'
+brew 'gcc@11'
+brew 'gcc@12'
+brew 'gcc@13'
+brew 'gcc@14'
 
 ## virtualization
 brew 'qemu'
@@ -112,11 +139,17 @@ brew 'sqlite-utils'
 brew 'testdisk'
 
 # graphics tools
-brew 'imagemagick'
+brew 'imagemagick', link: false
+brew 'imagemagick-full', link: true
+brew 'exiftool'
 brew 'ghostscript'
+brew 'jpeg'
 brew 'pdf2svg'
 brew 'svg2png'
 brew 'librsvg'
+brew 'cpdf'
+brew 'mupdf-tools'
+brew 'diff-pdf'
 brew 'woff2'
 brew 'pngcrush'
 brew 'pngquant'
@@ -130,13 +163,18 @@ brew 'svgo'
 
 # various and sundry
 brew 'pandoc'
+brew 'typst'
 brew 'multimarkdown'
+brew 'epubcheck'
 brew 'ocrmypdf'
+brew 'verapdf'
 brew 'lame'
 brew 'libdvdcss'
 brew 'yt-dlp'
 brew 'gallery-dl'
-brew 'ffmpeg'
+brew 'ffmpeg', link: false,
+brew 'ffmpeg-full', link: true,
+brew 'yap'
 brew 'speedtest-cli'
 # brew 'dieharder'  # removed from homebrew? :(
 brew 'dockutil'
@@ -144,9 +182,10 @@ brew 'defaultbrowser'
 brew 'duti'
 brew 'trash'
 brew 'entr'
-brew 'molten-vk'
 brew 'm1ddc'
 brew 'hyperfine'
+brew 'gnu-units'
+brew 'imessage-exporter'
 
 # amusements!
 brew 'nethack'
@@ -154,6 +193,7 @@ brew 'frotz'
 brew 'solarus'
 brew 'mame'
 brew 'rom-tools'
+brew 'stockfish'
 
 # my own tools
 brew 'sjml/sjml/beschi'
@@ -177,10 +217,13 @@ cask 'mullvad-vpn'
 cask 'firefox'
 cask 'chromium'
 cask 'google-chrome'
+cask 'orion'
 cask 'tor-browser'
 
 cask 'transmit'
+cask 'cyberduck'
 cask 'transmission'
+cask 'jdownloader'
 
 cask 'whatsapp'
 cask 'telegram'
@@ -195,7 +238,6 @@ cask 'microsoft-teams'
 cask 'scrivener'
 cask 'microsoft-office'
 cask 'zotero'
-cask 'basictex'
 cask 'anki'
 cask 'skim'
 
@@ -209,7 +251,7 @@ cask 'github'
 cask 'sourcetree'
 
 cask 'dash'
-cask 'kaleidoscope'
+cask 'kaleidoscope@2'
 cask 'hex-fiend'
 cask 'httpie-desktop'
 
@@ -244,6 +286,8 @@ cask 'twine-app'
 cask 'inky'
 cask 'nodebox'
 cask 'obs'
+cask 'shotcut'
+
 
 # various virtualization thingies
 cask 'multipass'
@@ -263,7 +307,7 @@ cask 'whisky'
 
 cask 'minecraft'
 cask 'marathon'
-cask 'marathon-2'
+cask 'marathon2'
 cask 'marathon-infinity'
 
 cask 'handbrake-app'
@@ -340,6 +384,7 @@ mas 'Menu World Time',     id: 1446377255
 mas 'Shareful',            id: 1522267256
 mas 'Discovery',           id: 1381004916
 mas 'Notchmeister',        id: 1599169747
+mas 'HazeOver'             id: 430798174
 
 # graphics and office
 mas 'Pixelmator Pro',      id: 1289583905
