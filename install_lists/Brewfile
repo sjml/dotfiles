@@ -38,7 +38,6 @@ brew 'pnpm'
 brew 'deno'
 # brew 'rustup-init' # installed in provision-mac.sh
 brew 'go'
-brew 'tinygo-org/tools/tinygo'
 brew 'zig'
 brew 'r'
 brew 'ruby'
@@ -307,7 +306,7 @@ cask 'whisky'
 
 cask 'minecraft'
 cask 'marathon'
-cask 'marathon2'
+cask 'marathon-2'
 cask 'marathon-infinity'
 
 cask 'handbrake-app'

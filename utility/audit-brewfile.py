@@ -30,6 +30,8 @@ for line in brewfile_contents.splitlines():
         continue
     elements = line.split()
     if elements[0] == "brew":
+        if elements[1].endswith(","):
+            elements[1] = elements[1][:-1]
         brews.append(elements[1][1:-1])
     elif elements[0] == "cask":
         casks.append(elements[1][1:-1])
@@ -67,7 +69,7 @@ else:
     with open("./cask.json", "r") as fin:
         cask_json = fin.read()
 
-formula_list = [f['name'] for f in json.loads(formulae_json)]
+formula_list = [n for f in json.loads(formulae_json) for n in ([f['name']] + f['aliases'])]
 cask_list = [c['token'] for c in json.loads(cask_json)]
 
 print(f"🕵️  Checking Brewfile with {len(brews)} formulae and {len(casks)} casks...")
