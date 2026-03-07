@@ -17,6 +17,8 @@
 #   }
 # }
 
+set -o pipefail
+trap 'echo "Aborted."; exit 130' INT
 
 CONFIG_FILE=~/.config/tmpup.json
 

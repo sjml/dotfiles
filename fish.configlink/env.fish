@@ -14,14 +14,6 @@ end
 ## homebrew setup
 # don't phone home
 set -x HOMEBREW_NO_ANALYTICS 1
-# let it do its business
-set -x HOMEBREW_NO_ENV_HINTS 1
-# Cask otherwise adds their own quarantine flag that
-#   can break things. Figure anything I'm installing
-#   via cask is something I either trust or will be
-#   removing the flag so I can run it anyway, so it's
-#   kind of pointless.
-set -x HOMEBREW_CASK_OPTS "--no-quarantine"
 
 set -x DYLD_FALLBACK_LIBRARY_PATH /opt/homebrew/lib
 

@@ -4,3 +4,5 @@
 
 # keep filenames from getting too long
 --output "%(title).150B.%(ext)s"
+
+--compat-options allow-unsafe-ext

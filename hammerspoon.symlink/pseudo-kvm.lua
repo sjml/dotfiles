@@ -1,5 +1,4 @@
 -- Inspired by https://github.com/haimgel/display-switch, which
---   sadly does not work on Apple Silicon at the moment. :(
 --   Makes use of https://github.com/waydabber/m1ddc installed via Homebrew.
 
 pseudo_kvm = {}

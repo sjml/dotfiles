@@ -4,6 +4,6 @@ for font in $@; do
     baseName=${font:r}
 
     woff2_compress $font
-    ttf2woff $font ${baseName}.woff
+    # ttf2woff $font ${baseName}.woff
 done
 

@@ -34,7 +34,7 @@ set -e
 # not quite as automated as it used to be, but at least now I just paste
 #   and manually request the 2FA instead of having to dig out the password.
 echo "Getting BC password from 1Password..."
-eval $(op signin)
+op signin
 bcpw=$(op item get "Boston College" --format=json | jq --raw-output '.fields[] | select(.id=="password").value')
 echo $bcpw | secure-pbcopy
 

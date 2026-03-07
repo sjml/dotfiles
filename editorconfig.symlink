@@ -41,6 +41,12 @@ indent_size = 2
 [*.go]
 indent_style = tab
 
+[*.md]
+indent_style = space
+
+[*.zig]
+indent_style = space
+
 [*.py]
 indent_style = space
 

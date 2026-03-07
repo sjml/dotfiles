@@ -38,6 +38,15 @@ set PATH $myPath $PATH
 set -e myPath
 set -a myPath
 
+
+# this *should* be a simple `python = python3` kind of alias,
+#   but some tooling gets confused when it can't find Python this way,
+#   and I don't care enough to fix the tooling more smartly
+# Homebrew recommends something different
+#   (https://docs.brew.sh/Homebrew-and-Python#python-3)
+#   but that means upgrades are broken until shell restart
+set PATH /opt/homebrew/opt/python/libexec/bin $PATH
+
 # set --local haveASDF 0
 # set --local havePyenv 0
 # if test -f /usr/local/opt/asdf/asdf.fish;
