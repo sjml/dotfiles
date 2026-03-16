@@ -2,6 +2,7 @@
 brew 'fish'
 brew 'zsh'
 brew 'bash'
+brew 'powershell'
 brew 'coreutils'
 brew 'parallel'
 brew 'pv'
@@ -254,7 +255,7 @@ cask 'kaleidoscope@2'
 cask 'hex-fiend'
 cask 'httpie-desktop'
 
-cask 'postgres-unofficial'
+cask 'postgres-app'
 cask 'base'
 
 cask 'sf-symbols'
@@ -263,7 +264,6 @@ cask 'sf-symbols'
 cask 'dotnet-sdk'
 cask 'rstudio'
 cask 'julia-app'
-cask 'powershell'
 
 # artsy/media
 # cask 'godot' # manually install godot to control versioning
