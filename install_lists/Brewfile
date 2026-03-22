@@ -210,7 +210,6 @@ cask '1password'
 cask '1password-cli'
 # cask 'backblaze' # don't use homebrew for this; upgrade will bork things
 cask 'backblaze-downloader'
-cask 'little-snitch'
 cask 'mullvad-vpn'
 
 # internet
@@ -219,6 +218,7 @@ cask 'chromium'
 cask 'google-chrome'
 cask 'orion'
 cask 'tor-browser'
+cask 'zen'
 
 cask 'transmit'
 cask 'cyberduck'
@@ -243,6 +243,7 @@ cask 'skim'
 
 # development
 cask 'visual-studio-code'
+cask 'zed'
 cask 'sublime-text'
 cask 'zerobranestudio'
 cask 'processing'
@@ -341,7 +342,7 @@ cask 'qlprettypatch'
 cask 'quicklook-csv'
 cask 'suspicious-package'
 cask 'qlcolorcode'
-cask 'qlvideo'
+cask 'quicklook-video'
 cask 'apparency'
 
 
