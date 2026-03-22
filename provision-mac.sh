@@ -407,6 +407,9 @@ defaults write com.apple.dt.Xcode NSQuitAlwaysKeepsWindows -bool true
 # UGH ads in Xcode? The very name of this setting should be a source of shame to someone at Apple
 defaults write com.apple.dt.Xcode XcodeCloudUpsellPromptEnabled -bool false
 
+# turn off those stupid images in the menus that showed up in Tahoe
+defaults write -g NSMenuEnableActionImages -bool false
+
 # Set up Dock
 dockutil --remove all --no-restart
 declare -a dockList=(\
