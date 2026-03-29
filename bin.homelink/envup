@@ -285,7 +285,7 @@ rust_check() {
     local currentVersion=$(echo $rustStatus | sed -n -E "s/^.*: ([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+).*$/\1/p")
 
     local info=""
-    if echo $rustStatus | grep -q "Up to date"; then
+    if echo $rustStatus | grep -q "up to date"; then
         info="  ✅  Rust is up to date. ($currentVersion)"
     else
         local newVersion=$(echo $rustStatus | sed -n -E "s/^.*-> ([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+).*$/\1/p")
