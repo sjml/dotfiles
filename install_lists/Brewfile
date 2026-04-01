@@ -139,8 +139,7 @@ brew 'sqlite-utils'
 brew 'testdisk'
 
 # graphics tools
-brew 'imagemagick', link: false
-brew 'imagemagick-full', link: true
+brew 'imagemagick-full'
 brew 'exiftool'
 brew 'ghostscript'
 brew 'jpeg'
@@ -172,8 +171,7 @@ brew 'lame'
 brew 'libdvdcss'
 brew 'yt-dlp'
 brew 'gallery-dl'
-brew 'ffmpeg', link: false,
-brew 'ffmpeg-full', link: true,
+brew 'ffmpeg-full'
 brew 'yap'
 brew 'speedtest-cli'
 # brew 'dieharder'  # removed from homebrew? :(

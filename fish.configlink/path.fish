@@ -30,6 +30,8 @@ if test -f /usr/local/bin/go; or test -f /opt/homebrew/bin/go;
 end
 
 ## Installed stuff (mostly from Homebrew)
+set -a myPath /opt/homebrew/opt/imagemagick-full/bin
+set -a myPath /opt/homebrew/opt/ffmpeg-full/bin
 set -a myPath /opt/homebrew/bin
 set -a myPath /opt/homebrew/sbin
 set -a myPath /usr/local/bin
