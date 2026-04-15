@@ -32,6 +32,7 @@ brew 'sevenzip'
 ## ones I actually use
 brew 'python'
 brew 'python-setuptools'
+brew 'python-tk'
 brew 'virtualenv'
 # brew 'uv' # for Python, someday
 brew 'node'
@@ -313,6 +314,7 @@ cask 'iina'
 cask 'vlc'
 # cask 'mpv' # renamed to something scary, but not really using anyway
 cask 'calibre'
+cask 'thorium'
 cask 'yacreader'
 cask 'adobe-digital-editions'
 
@@ -390,7 +392,7 @@ mas 'Pixelmator Pro',      id: 1289583905
 mas 'Gifski',              id: 1351639930
 mas 'Gapplin',             id: 768053424
 mas 'GIPHY Capture',       id: 668208984
-mas 'Pages',               id: 409201541
-mas 'Numbers',             id: 409203825
-mas 'Keynote',             id: 409183694
+mas 'Pages',               id: 361309726
+mas 'Numbers',             id: 361304891
+mas 'Keynote',             id: 361285480
 # mas 'Highland 2',          id: 1171820258 # discontinued? :(
