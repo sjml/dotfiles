@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# the Finder's thumbnail creation process sometimes holds on to files too long
+## annoying as heck when trying to eject!
+## cf. https://github.com/Marginal/QuickLookVideo/issues/188
+
+killall -v -q -9 QLVideo\ Codecs
+killall -v -q -9 QLVideo\ Formats
+killall -v -q -9 AudiovisualThumbnailExtension
+
+# if there was nothing to kill at the last command it will not exit clean
+## we don't really care; this is just about clearing out whatever exists
+exit 0
