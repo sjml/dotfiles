@@ -15,6 +15,7 @@ alias ghwatch='gh run watch --exit-status $(gh run list -L 1 --json databaseId |
 switch (uname)
 	case Darwin
 		function c;if test (count $argv) -eq 0;code .;else;code $argv;end;end
+		function z;if test (count $argv) -eq 0;zed .;else;zed $argv;end;end
 		function o;if test (count $argv) -eq 0;open .;else;open $argv;end;end
 		alias edot="code ~/.dotfiles"
 
