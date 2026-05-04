@@ -1,0 +1,23 @@
+{
+  "csharp": "1.0.4",
+  "csv": "0.0.3",
+  "deno": "0.1.1",
+  "editorconfig": "0.1.0",
+  "emmet": "0.0.12",
+  "fish": "0.1.0",
+  "gdscript": "0.8.0",
+  "gdscript-snippets": "0.0.2",
+  "html": "0.3.1",
+  "jinja2": "0.0.1",
+  "latex": "0.2.3",
+  "metal": "0.1.19",
+  "neocmake": "1.0.0",
+  "package-swift-lsp": "1.1.0",
+  "php": "0.4.10",
+  "shader-ls": "0.1.0",
+  "svelte": "0.2.11",
+  "swift": "0.4.7",
+  "toml": "1.0.3",
+  "wat": "0.2.3",
+  "zig": "0.4.2"
+}

@@ -12,6 +12,11 @@ add menu bar background visibility to mac provision
 	- and frosted glass <sigh>
 	- put widgets back in sidebar
 
+Transition to Zed:
+    * find a good theme (it's version of One Dark is pretty low-contrast)
+    * move over my "simple icons" theme?
+    * maybe the CSL picker, too, but we're not gonna be doing as much academical writing from here on out
+    * find/make a lorem ipsum generator?
 
 NOT A TODO, MORE OF A COMMENT:
 Windows provisioning stuff is such a mess -- winget, scoop, and chocolatey all suck in different ways :(

@@ -1,0 +1,109 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "hover_popover_enabled": false,
+  "format_on_save": "off",
+  "minimap": {
+    "show": "always",
+  },
+  "proxy": "",
+  "active_pane_modifiers": {
+    "border_size": 3.0,
+  },
+  "tabs": {
+    "show_close_button": "hover",
+    "file_icons": true,
+    "git_status": true,
+  },
+  "title_bar": {
+    "show_user_menu": true,
+    "show_sign_in": true,
+  },
+  "terminal": {
+    "max_scroll_history_lines": 100000,
+    "font_weight": 450.0,
+    "font_size": 14.0,
+    "font_features": {
+      "calt": false,
+    },
+  },
+  "ui_font_weight": 400.0,
+  "buffer_font_weight": 450.0,
+  "buffer_font_features": {
+    "calt": false,
+  },
+  "show_whitespaces": "all",
+  "indent_guides": {
+    "enabled": true,
+  },
+  "sticky_scroll": {
+    "enabled": true,
+  },
+  "when_closing_with_no_tabs": "platform_default",
+  "cli_default_open_behavior": "new_window",
+  "buffer_line_height": "comfortable",
+  "buffer_font_family": "FiraMod NF",
+  "project_panel": {
+    "hide_root": true,
+    "git_status_indicator": true,
+    "bold_folder_labels": false,
+    "hide_gitignore": false,
+    "dock": "left",
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "agent": {
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "git_panel": {
+    "dock": "left",
+  },
+  "disable_ai": true,
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "base_keymap": "VSCode",
+  "ui_font_size": 16.0,
+  "buffer_font_size": 13.0,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "One Dark",
+  },
+  "theme_overrides": {
+    "One Dark": {
+      "terminal.background": "#1d2026",
+      "terminal.foreground": "#e6e6e6",
+      "panel.background": "#1d2026",
+      "minimap.thumb.background": "#ffffff11",
+      "minimap.thumb.hover_background": "#ffffff22",
+      "minimap.thumb.border": "#00000000",
+      "text.muted": "#e6e6e6",
+      "syntax": {
+        "comment": {
+          "color": "#929292",
+        },
+        "text": {
+          "color": "#ffffff",
+        },
+      },
+    },
+  },
+  "file_types": {
+    "Ruby": ["Brewfile"],
+    "Python": ["SCsub"],
+  },
+}
