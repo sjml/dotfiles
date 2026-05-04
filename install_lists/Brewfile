@@ -71,6 +71,7 @@ brew 'felinks'
 brew 'openconnect'
 brew 'xxhash'
 brew 'telnet'
+brew 'netcat'
 
 # dev tools
 ## text editors
