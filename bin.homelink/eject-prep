@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # tell Backblaze to chill for a second
-/Applications/Backblaze.app/Contents/MacOS/bzcli action --pause-backup
+# /Applications/Backblaze.app/Contents/MacOS/bzcli action --pause-backup
 
 # the Finder's thumbnail creation process sometimes holds on to files too long
 ## annoying as heck when trying to eject!
