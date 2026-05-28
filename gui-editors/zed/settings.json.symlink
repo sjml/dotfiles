@@ -7,6 +7,14 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "git": {
+    "path_style": "file_path_first",
+    "hunk_style": "unstaged_hollow",
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "icon_theme": "Colored Zed Icons Theme Dark",
   "hover_popover_enabled": false,
   "format_on_save": "off",
   "minimap": {
@@ -105,5 +113,10 @@
   "file_types": {
     "Ruby": ["Brewfile"],
     "Python": ["SCsub"],
+  },
+  "languages": {
+    "Go": {
+      "format_on_save": "on"
+    }
   },
 }
