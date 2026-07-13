@@ -383,6 +383,9 @@ defaults write com.apple.dock mru-spaces -bool false
 # Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app
 defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\U21a9"
 
+# Turn off smart links in Mail.app
+defaults write com.apple.mail AddLinkPreviews false
+
 # Enable the automatic update check
 defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
 
@@ -407,7 +410,7 @@ defaults write com.apple.dt.Xcode NSQuitAlwaysKeepsWindows -bool true
 # UGH ads in Xcode? The very name of this setting should be a source of shame to someone at Apple
 defaults write com.apple.dt.Xcode XcodeCloudUpsellPromptEnabled -bool false
 
-# turn off those stupid images in the menus that showed up in Tahoe
+# turn off those stupid icon images in the menus that showed up in Tahoe
 defaults write -g NSMenuEnableActionImages -bool false
 
 # Set up Dock
