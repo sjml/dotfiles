@@ -28,8 +28,11 @@ bind -n M-Down select-pane -D
 # Mouse works as expected
 set -g mouse on
 
+# ... but we can toggle it on and off
+bind m set -g mouse \; display "Mouse: #{?mouse,ON,OFF}"
+
 # Enable OS X copy/paste
-if-shell "type 'reattach-to-user-namespace' >/dev/null" "set -g default-command 'reattach-to-user-namespace -l $SHELL'"
+set -s copy-command 'pbcopy'
 
 ## Design stuff
 
