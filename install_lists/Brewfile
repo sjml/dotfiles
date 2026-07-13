@@ -9,7 +9,6 @@ brew 'pv'
 brew 'direnv'
 brew 'tree'
 brew 'tmux'
-brew 'reattach-to-user-namespace'
 brew 'readline'
 brew 'htop'
 brew 'mactop'
@@ -19,7 +18,7 @@ brew 'bat'
 # compression stuffs
 brew 'zlib'
 brew 'p7zip'
-brew 'lbzip2'
+# brew 'lbzip2' # removed because unmaintained
 brew 'unar'
 brew 'gnupg'
 brew 'xz'
@@ -72,6 +71,8 @@ brew 'openconnect'
 brew 'xxhash'
 brew 'telnet'
 brew 'netcat'
+brew 'rsync'
+brew 'rclone'
 
 # dev tools
 ## text editors
