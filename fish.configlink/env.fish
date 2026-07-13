@@ -14,6 +14,8 @@ end
 ## homebrew setup
 # don't phone home
 set -x HOMEBREW_NO_ANALYTICS 1
+# don't update casks that update themselves
+set -x HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS 1
 
 set -x DYLD_FALLBACK_LIBRARY_PATH /opt/homebrew/lib
 

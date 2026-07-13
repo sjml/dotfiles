@@ -73,7 +73,7 @@ brew_check() {
 }
 
 brew_up() {
-    HOMEBREW_NO_AUTO_UPDATE=1 $bindir/brew upgrade --formula -v
+    HOMEBREW_NO_AUTO_UPDATE=1 $bindir/brew upgrade --formula -v --no-ask
     $bindir/brew cleanup -s
     rm -rf $($bindir/brew --cache)
     brew_check
@@ -104,7 +104,7 @@ cask_check() {
 }
 
 cask_up() {
-    HOMEBREW_NO_AUTO_UPDATE=1 $bindir/brew upgrade --cask -v
+    HOMEBREW_NO_AUTO_UPDATE=1 $bindir/brew upgrade --cask -v --no-ask
     # $bindir/brew cleanup
     rm -rf $($bindir/brew --cache)
     echo "  ✅  Homebrew casks are up to date."
